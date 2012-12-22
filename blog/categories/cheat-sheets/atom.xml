@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: cheat-sheets | Junk I Would Otherwise Forget]]></title>
+  <link href="http://namman.github.com/blog/categories/cheat-sheets/atom.xml" rel="self"/>
+  <link href="http://namman.github.com/"/>
+  <updated>2012-12-22T16:50:02+11:00</updated>
+  <id>http://namman.github.com/</id>
+  <author>
+    <name><![CDATA[Nick Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[XAML notes]]></title>
+    <link href="http://namman.github.com/blog/2012/09/05/xaml-notes/"/>
+    <updated>2012-09-05T03:49:45+10:00</updated>
+    <id>http://namman.github.com/blog/2012/09/05/xaml-notes</id>
+    <content type="html"><![CDATA[<p>Every XAML element corresponds to a .NET class.<br/>
+This creates a new class 'Window1' inheriting from 'Window':
+<code>xml
+&lt;Window x:class="MyNamespace.Window1"/&gt;
+</code>
+The XAML XML namespaces map to collections of .NET namespaces.  The main ones are:</p>
+
+<ul>
+<li>xmlns="...presentation"  - all the .NET WPF namespaces</li>
+<li>xmlns:x="... xaml" - all the XAML .NET namespaces</li>
+</ul>
+
+
+<p>To reference classes outside the WPF or XAML namespaces, you need to map the .NET namespace to a XAML namespace:
+xmlns:myPrefix="clr-namespace:myDotNetNamespace;assembly=myDotNetAssembly"</p>
+
+<p>Several types of XAML properties:</p>
+
+<ul>
+<li>Simple properties, eg align="center".  Type converters change the string to the type of the property.</li>
+<li>Complex properties, eg .  This represents a property on the Grid class.</li>
+</ul>
+
+
+<p>Markup extensions in curly brackets {}: DSL for bindings and the like.</p>
+
+<p>Attached properties, eg &lt;Grid.Row=0/>, appear in child element but are properties of parent element.</p>
+
+<p>Two ways to find elements in XAML:</p>
+
+<ul>
+<li>LogicalTreeHelper</li>
+<li>FrameworkElement.FindName(...)</li>
+</ul>
+
+
+<p>How to refer to another XAML element without binding: x:Reference="nameOfElement".</p>
+
+<p>How to bind DataContext to viewmodel:
+<code>xml
+&lt;UserControl ... DataContext="{Binding RelativeSource={RelativeSource Self}, Path=UrViewModelPropertyInCodeBehind}"&gt;
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
