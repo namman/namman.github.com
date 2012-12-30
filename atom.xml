@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="http://namman.github.com/atom.xml" rel="self"/>
   <link href="http://namman.github.com/"/>
-  <updated>2012-12-31T08:47:09+11:00</updated>
+  <updated>2012-12-31T08:52:52+11:00</updated>
   <id>http://namman.github.com/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[git cheat sheet]]></title>
+    <link href="http://namman.github.com/blog/2012/12/31/git-cheat-sheet/"/>
+    <updated>2012-12-31T08:51:00+11:00</updated>
+    <id>http://namman.github.com/blog/2012/12/31/git-cheat-sheet</id>
+    <content type="html"><![CDATA[<p>Dredge up files deleted by previous lameness:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#Change to location where files deleted</span>
+</span><span class='line'><span class="nb">cd </span>wherever
+</span><span class='line'><span class="c"># Find last commit that affected this dir</span>
+</span><span class='line'>git log -- .
+</span><span class='line'><span class="c"># diff commits to find where deleted</span>
+</span><span class='line'>git diff <span class="o">[</span>commit 1 <span class="nb">hash</span><span class="o">]</span> <span class="o">[</span>commit 2 <span class="nb">hash</span><span class="o">]</span>
+</span><span class='line'><span class="c"># checkout files you deleted from last good commit</span>
+</span><span class='line'>git checkout <span class="o">[</span><span class="nb">hash </span>of commit with files you want<span class="o">]</span> -- .<span class="se">\*</span>*
+</span><span class='line'><span class="c"># short log of last five commits</span>
+</span><span class='line'>git log --oneline -5
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[WPF Cheat Sheet]]></title>
@@ -459,49 +491,6 @@ Specifies that the only valid captures are explicitly named or numbered groups o
 <p>{{{ lang=xml</p>
 
 <p>  }}}</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to execute SWRL rules in Protege with Drools]]></title>
-    <link href="http://namman.github.com/blog/2012/09/07/how-to-execute-swrl-rules-in-protege-with-drools/"/>
-    <updated>2012-09-07T08:12:50+10:00</updated>
-    <id>http://namman.github.com/blog/2012/09/07/how-to-execute-swrl-rules-in-protege-with-drools</id>
-    <content type="html"><![CDATA[<p>=Prerequisites=</p>
-
-<p>Download and install Protege 3.*: http://protege.stanford.edu/download/registered.html</p>
-
-<p>At time of writing, 3.5 beta is the latest version.</p>
-
-<p>Note that Protege 4.* does not yet support Drools.</p>
-
-<p>=Set up ontology=</p>
-
-<p>We will reuse the ontology from previous examples.  This appears below in RDF/XML format  Save this to a text file called &#8216;droolsDemo.owl&#8217;:</p>
-
-<p>{{{</p>
-
-<p>]></p>
-
-<p>}}}</p>
-
-<p>=Run rules in Protege using Drools=</p>
-
-<p>Open the rules in Protege.  Click on the &#8216;Individuals&#8217; tab, then on &#8216;Person1&#8217;.  Notice that Person1 satisfies only sections D and E.  This is because we have asserted this in the ontology above.  Protege has not inferred that the person satisfies Section A, even though this in the rules.</p>
-
-<p>[[image:beforeInference.jpg|link=source]]</p>
-
-<p>Now click the SWRL tab, then the Drools button:</p>
-
-<p>[[image:droolsButton.jpg|link=source]]</p>
-
-<p>Click the three buttons on the bottom of the screen in succession left to right:</p>
-
-<p>[[image:runDrools.jpg|link=source]]</p>
-
-<p>Notice that it is now inferred that Person1 satisfies Section A:</p>
-
-<p>[[image:inferred.jpg|link=source]]</p>
 ]]></content>
   </entry>
   

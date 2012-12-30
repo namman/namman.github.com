@@ -9,7 +9,10 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="[[http://stackoverflow.com/questions/618535/what-is-the-difference-between-decimal-float-and-double-in-c/618596#618596|http://stackoverflow.com/ &hellip;">
+  <meta name="description" content="{{{ lang=bash
+pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
+}}}
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -62,6 +65,44 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/02/how-to-concatenate-pdf-files-in-linux/">How to Concatenate PDF Files in Linux</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-02T20:25:45+10:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>{{{ lang=bash
+pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
+}}}</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -511,76 +552,6 @@ Specifies that the only valid captures are explicitly named or numbered groups o
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/07/how-to-execute-swrl-rules-in-protege-with-drools/">How to Execute SWRL Rules in Protege With Drools</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-07T08:12:50+10:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>=Prerequisites=</p>
-
-<p>Download and install Protege 3.*: http://protege.stanford.edu/download/registered.html</p>
-
-<p>At time of writing, 3.5 beta is the latest version.</p>
-
-<p>Note that Protege 4.* does not yet support Drools.</p>
-
-<p>=Set up ontology=</p>
-
-<p>We will reuse the ontology from previous examples.  This appears below in RDF/XML format  Save this to a text file called &#8216;droolsDemo.owl&#8217;:</p>
-
-<p>{{{</p>
-
-<p>]></p>
-
-<p>}}}</p>
-
-<p>=Run rules in Protege using Drools=</p>
-
-<p>Open the rules in Protege.  Click on the &#8216;Individuals&#8217; tab, then on &#8216;Person1&#8217;.  Notice that Person1 satisfies only sections D and E.  This is because we have asserted this in the ontology above.  Protege has not inferred that the person satisfies Section A, even though this in the rules.</p>
-
-<p>[[image:beforeInference.jpg|link=source]]</p>
-
-<p>Now click the SWRL tab, then the Drools button:</p>
-
-<p>[[image:droolsButton.jpg|link=source]]</p>
-
-<p>Click the three buttons on the bottom of the screen in succession left to right:</p>
-
-<p>[[image:runDrools.jpg|link=source]]</p>
-
-<p>Notice that it is now inferred that Person1 satisfies Section A:</p>
-
-<p>[[image:inferred.jpg|link=source]]</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -598,6 +569,10 @@ Specifies that the only valid captures are explicitly named or numbered groups o
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/31/git-cheat-sheet/">git cheat sheet</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/21/wpf-cheat-sheet/">WPF Cheat Sheet</a>
       </li>
     
@@ -611,10 +586,6 @@ Specifies that the only valid captures are explicitly named or numbered groups o
     
       <li class="post">
         <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
       </li>
     
   </ul>

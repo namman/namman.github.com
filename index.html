@@ -9,10 +9,7 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="IValueConverter:
-Convert goes source object -> UI
-ConvertBack goes UI -> source object
-&#8216;paramater is passed in by UI. 1
+  <meta name="description" content="Dredge up files deleted by previous lameness: 1
 2
 3
 4
@@ -22,7 +19,9 @@ ConvertBack goes UI -> source object
 8
 9
 10
-&lt; &hellip;">
+#Change to location where files deleted
+cd wherever
+# Find last commit that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +74,65 @@ ConvertBack goes UI -> source object
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/31/git-cheat-sheet/">Git Cheat Sheet</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T08:51:00+11:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Dredge up files deleted by previous lameness:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#Change to location where files deleted</span>
+</span><span class='line'><span class="nb">cd </span>wherever
+</span><span class='line'><span class="c"># Find last commit that affected this dir</span>
+</span><span class='line'>git log -- .
+</span><span class='line'><span class="c"># diff commits to find where deleted</span>
+</span><span class='line'>git diff <span class="o">[</span>commit 1 <span class="nb">hash</span><span class="o">]</span> <span class="o">[</span>commit 2 <span class="nb">hash</span><span class="o">]</span>
+</span><span class='line'><span class="c"># checkout files you deleted from last good commit</span>
+</span><span class='line'>git checkout <span class="o">[</span><span class="nb">hash </span>of commit with files you want<span class="o">]</span> -- .<span class="se">\*</span>*
+</span><span class='line'><span class="c"># short log of last five commits</span>
+</span><span class='line'>git log --oneline -5
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -552,44 +610,6 @@ internal class Validator
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/02/how-to-concatenate-pdf-files-in-linux/">How to Concatenate PDF Files in Linux</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-02T20:25:45+10:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>{{{ lang=bash
-pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
-}}}</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -605,6 +625,10 @@ pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/31/git-cheat-sheet/">git cheat sheet</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/21/wpf-cheat-sheet/">WPF Cheat Sheet</a>
       </li>
     
@@ -618,10 +642,6 @@ pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
     
       <li class="post">
         <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
       </li>
     
   </ul>
