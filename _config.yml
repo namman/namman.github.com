@@ -2,10 +2,9 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://namman.github.com
+title: Junk I Would Otherwise Forget
+author: Nick Miller 
 simple_search: http://google.com/search
 description:
 

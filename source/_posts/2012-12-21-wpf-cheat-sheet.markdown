@@ -12,7 +12,7 @@ Convert goes source object -> UI
 ConvertBack goes UI -> source object
 'paramater is passed in by UI.
 
-```xaml
+```xml
 <ObjectDataProvider x:Key="ZoomOptions"
 MethodName="GetNames"
 ObjectType="{x:Type sys:Enum}"
