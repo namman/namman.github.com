@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Junk I Would Otherwise Forget</title>
+  <meta name="author" content="Nick Miller">
+
+  
+  <meta name="description" content="[[http://stackoverflow.com/questions/618535/what-is-the-difference-between-decimal-float-and-double-in-c/618596#618596|http://stackoverflow.com/ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://namman.github.com/blog/page/2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Junk I Would Otherwise Forget" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Junk I Would Otherwise Forget</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:namman.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles/">When to Use Decimals and When to Use Floats or Doubles</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-02T10:37:03+10:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>[[http://stackoverflow.com/questions/618535/what-is-the-difference-between-decimal-float-and-double-in-c/618596#618596|http://stackoverflow.com/questions/618535/what-is-the-difference-between-decimal-float-and-double-in-c/618596#618596]]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/02/how-to-check-if-a-sequence-is-ordered-in-a-contract/">How to Check if a Sequence Is Ordered</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-02T10:14:55+10:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Extension method {{{SequenceEqual(this IEnumerable, IEqualityComparer)}}}</p>
+
+<p>Eg:
+{{{ lang=csharp
+Contract.Requires(remainingShares.OrderByDescending(s => s.PurchaseDate).SequenceEqual(remainingShares));
+}}}</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down/">Scala SBT Build Definitions: It&#8217;s Turtles All the Way Down!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-29T09:33:10+10:00" pubdate data-updated="true">Sep 29<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>From: [[https://github.com/harrah/xsbt/wiki/Getting-Started-Full-Def]]</p>
+
+<p>{{{
+ hello/                  # your project&#8217;s base directory</p>
+
+<pre><code> Hello.scala         # a source file in your project (could be in
+                     #   src/main/scala too)
+
+ build.sbt           # build.sbt is part of the source code for the
+                     #   build definition project inside project/
+
+ project/            # base directory of the build definition project
+
+     Build.scala     # a source file in the project/ project,
+                     #   that is, a source file in the build definition
+
+     build.sbt       # this is part of a build definition for a project
+                     #   in project/project ; build definition's build
+                     #   definition
+
+
+     project/        # base directory of the build definition project
+                     #   for the build definition
+
+         Build.scala # source file in the project/project/ project
+</code></pre>
+
+<p>}}}</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/21/delete-files-older-than-7-days/">Delete Files Older Than 7 Days</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-21T22:22:06+10:00" pubdate data-updated="true">Sep 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find . ! -newermt <span class="s2">&quot;7 days ago&quot;</span> -delete
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/15/difference-between-super-set-and-proper-super-set-also-subsets/">Difference Between Super Set and Proper Super Set (Also Subsets)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-15T02:20:33+10:00" pubdate data-updated="true">Sep 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>{{{ lang=csharp
+var first = new HashSet() {1,2};
+var second = new HashSet() {1,2};
+var isProperSuperSet = first.IsProperSupersetOf(second);
+Console.WriteLine (isProperSuperSet); // false
+var isSuperSet = first.IsSupersetOf(second);
+Console.WriteLine (isSuperSet); // true
+}}}</p>
+
+<p>Duh.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/15/example-of-using-enum-hasflags/">Example of Using Enum.HasFlags</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-15T00:39:40+10:00" pubdate data-updated="true">Sep 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">public</span> <span class="k">enum</span> <span class="n">Coffees</span> <span class="p">{</span>
+</span><span class='line'>     <span class="n">None</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
+</span><span class='line'>     <span class="n">BasicCoffee</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+</span><span class='line'>     <span class="n">WithMilk</span> <span class="p">=</span> <span class="m">8</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'><span class="na"> </span>
+</span><span class='line'><span class="na">[Flags]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">enum</span> <span class="n">FlaggedCoffees</span> <span class="p">{</span>
+</span><span class='line'>     <span class="n">None</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
+</span><span class='line'>     <span class="n">BasicCoffee</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+</span><span class='line'>     <span class="n">WithMilk</span> <span class="p">=</span> <span class="m">8</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>  
+</span><span class='line'><span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">Coffees</span> <span class="n">plain</span> <span class="p">=</span> <span class="n">Coffees</span><span class="p">.</span><span class="n">BasicCoffee</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">plain</span><span class="p">);</span>  <span class="c1">// BasicCoffee</span>
+</span><span class='line'>  <span class="n">Coffees</span> <span class="n">plainWithMilk</span> <span class="p">=</span>  <span class="n">Coffees</span><span class="p">.</span><span class="n">BasicCoffee</span> <span class="p">|</span> <span class="n">Coffees</span><span class="p">.</span><span class="n">WithMilk</span> <span class="p">;</span>
+</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">plainWithMilk</span><span class="p">);</span> <span class="c1">// 9 (the result of bitwise OR operation on Coffees.BasicCoffee and Coffees.WithMilk)</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="kt">var</span> <span class="n">basicPlusMilk</span> <span class="p">=</span>  <span class="n">FlaggedCoffees</span><span class="p">.</span><span class="n">BasicCoffee</span> <span class="p">|</span> <span class="n">FlaggedCoffees</span><span class="p">.</span><span class="n">WithMilk</span> <span class="p">;</span>
+</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">basicPlusMilk</span><span class="p">);</span>  <span class="c1">// BasicCoffee, WithMilk</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="kt">bool</span> <span class="n">hasMilk</span> <span class="p">=</span> <span class="n">basicPlusMilk</span><span class="p">.</span><span class="n">HasFlag</span><span class="p">(</span><span class="n">FlaggedCoffees</span><span class="p">.</span><span class="n">WithMilk</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">hasMilk</span><span class="p">);</span> <span class="c1">// True </span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/12/personal-programming-principles/">Personal Programming Principles</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-12T23:10:32+10:00" pubdate data-updated="true">Sep 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sententious advice abounds.  What has worked for me:</p>
+
+<p>| Principle | Where I first got it| Example |
+| Start in the middle. | Daryel Akerlind | For f*&k;&#8217;s sake don&#8217;t start a new module by sketching out interfaces and base classes - a recipe for over engineering. |
+| If data structures are likely to change a lot, but the behaviours not so much: use OO.  For the reverse, use FP.  If both, use OO. | &#8220;Real World Functional Programming&#8221; book. | FP: use C# extension methods for manipulating generated classes from Odata service reference.  Database is not going to change much.  If it does, you&#8217;re hosed anyway. |
+| Use small and cohesive functions and classes. | &#8220;Clean Code&#8221; book. |
+| For tricky and self contained: TDD.  For sprawling and fluid: TAD (test after development). | Personal goddamn experience. |
+| Depend on abstractions, not implementations. | Head First Design Patterns book. | Creating simple interfaces for everything that gets constructor injected seems like a hassle at first.  But it will be more of a hassle later when you can&#8217;t mock the dependencies.  Then you&#8217;ll have to extract interfaces from classes that are already throughout your code.  So just do it up front.  ReSharper makes it easy. |
+| Just &#8216;pushing through&#8217; never bloody works. | Daryel Akerlind | |
+| Use contracts and exceptions to flag things you don&#8217;t expect.  Don&#8217;t let these cases fall into an &#8216;else&#8217; branch or a default value. | Personal goddamned experience. | Slam a contract assertion in before returning from within an else block. |</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/12/what-regexoptions-explicitcapture-does/">What RegexOptions.ExplicitCapture Does</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-12T20:40:23+10:00" pubdate data-updated="true">Sep 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>public static RegexOptions ExplicitCapture = RegexOptions.ExplicitCapture
+in enum RegexOptions</p>
+
+<p>Summary:
+Specifies that the only valid captures are explicitly named or numbered groups of the form (?…). This allows unnamed parentheses to act as noncapturing groups without the syntactic clumsiness of the expression (?:…).</p>
+
+<p>Eg, this only captures the first letter of a the string, and the period at the end:</p>
+
+<p>{{{ csharp
+ var r = new Regex(@&#8221;(<sup>[a-z])|.\s+(.)&#8221;,</sup> RegexOptions.ExplicitCapture);
+}}}</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/10/how-to-update-metadata-source-for-odata-service-reference/">How to Update Metadata Source for Odata Service Reference</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-10T22:43:33+10:00" pubdate data-updated="true">Sep 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li>Show all files</li>
+<li>$(Project)/Service References/OdataApplicationData/Reference.datasvcmap</li>
+</ul>
+
+
+<p>{{{ lang=xml</p>
+
+<p>  }}}</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/07/how-to-execute-swrl-rules-in-protege-with-drools/">How to Execute SWRL Rules in Protege With Drools</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-07T08:12:50+10:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>=Prerequisites=</p>
+
+<p>Download and install Protege 3.*: http://protege.stanford.edu/download/registered.html</p>
+
+<p>At time of writing, 3.5 beta is the latest version.</p>
+
+<p>Note that Protege 4.* does not yet support Drools.</p>
+
+<p>=Set up ontology=</p>
+
+<p>We will reuse the ontology from previous examples.  This appears below in RDF/XML format  Save this to a text file called &#8216;droolsDemo.owl&#8217;:</p>
+
+<p>{{{</p>
+
+<p>]></p>
+
+<p>}}}</p>
+
+<p>=Run rules in Protege using Drools=</p>
+
+<p>Open the rules in Protege.  Click on the &#8216;Individuals&#8217; tab, then on &#8216;Person1&#8217;.  Notice that Person1 satisfies only sections D and E.  This is because we have asserted this in the ontology above.  Protege has not inferred that the person satisfies Section A, even though this in the rules.</p>
+
+<p>[[image:beforeInference.jpg|link=source]]</p>
+
+<p>Now click the SWRL tab, then the Drools button:</p>
+
+<p>[[image:droolsButton.jpg|link=source]]</p>
+
+<p>Click the three buttons on the bottom of the screen in succession left to right:</p>
+
+<p>[[image:runDrools.jpg|link=source]]</p>
+
+<p>Notice that it is now inferred that Person1 satisfies Section A:</p>
+
+<p>[[image:inferred.jpg|link=source]]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/21/wpf-cheat-sheet/">WPF Cheat Sheet</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control/">Run NuGet on build so you don&#8217;t have to keep libs in source control</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/16/location-of-windows-8-log-files/">Location of Windows 8 log files</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Nick Miller -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

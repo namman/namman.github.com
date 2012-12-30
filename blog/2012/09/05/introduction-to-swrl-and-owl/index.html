@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Introduction to SWRL and OWL - Junk I Would Otherwise Forget</title>
+  <meta name="author" content="Nick Miller">
+
+  
+  <meta name="description" content="=Purpose= The purpose of this tutorial is:
+* to show you how to express some basic knowledge and rules using the OWL and SWRL standards;
+* make your &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://namman.github.com/blog/2012/09/05/introduction-to-swrl-and-owl/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Junk I Would Otherwise Forget" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Junk I Would Otherwise Forget</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:namman.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Introduction to SWRL and OWL</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-05T04:17:46+10:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>=Purpose=</p>
+
+<p>The purpose of this tutorial is:
+* to show you how to express some basic knowledge and rules using the OWL and SWRL standards;
+* make your computer draw conclusions based on that knowledge, so you don&#8217;t have to.</p>
+
+<p>It is a jump straight in the deep end, but with extensive hand holding and exhaustive explanations.</p>
+
+<p>=Prerequisites=</p>
+
+<ul>
+<li>No programming experience required</li>
+<li>Must not feel oppressed by computers</li>
+</ul>
+
+
+<p>==Install Protoge and Pellet==</p>
+
+<ul>
+<li>Download and install Protege 4.2 following the instructions from the Protege homepage: protege.stanford.edu.</li>
+<li>Once installed, open Protege, select &#8216;Preferences&#8217; from the File menu, then select the &#8216;Plugins&#8217; tab.</li>
+<li>Click the &#8216;Check for downloads now&#8217; button.</li>
+<li>Tick the check box to install the &#8216;Pellet&#8217; plugin, and click Install.</li>
+<li>Restart Protege.</li>
+</ul>
+
+
+<p>==Get a text editor==</p>
+
+<p>You need a plain text editor such as Microsoft Notepad.  Wordprocessing software such as Microsoft Word will not work.</p>
+
+<p>=Knowledge=</p>
+
+<p>The knowledge we want to capture:</p>
+
+<p>Suppose there is a tax break for small business corporations.</p>
+
+<p>A corporation is eligible if:
+* it has annual revenue less than $2M, OR
+* it has less than five employees.</p>
+
+<p>Our objective is to capture this rule in a way that a computer can apply it to
+the particular facts of a given circumstance.</p>
+
+<p>=Ontology=</p>
+
+<p>Create a new file called helloSwrl.owl in your text editor.  You can add the code below progressively.  At the end, you should have the complete ontology - a specification of structured knowledge.</p>
+
+<p>The name of the ontology will be &#8216;hello_swrl&#8217;.</p>
+
+<p>We specify this as a &#8216;URI&#8217;: a unique name that has a special form:
+{{{</p>
+
+<pre><code>Ontology: 
+</code></pre>
+
+<p>}}}
+==Define some namespaces==</p>
+
+<p>Namespaces just allow you to give precise names to things in the ontology,
+ensuring that different things do not have the same name.  A full name is the
+namespace + the local name.  This is similar to how some forms request make you
+select &#8216;Mr, Mrs&#8217; or whatever as a title - it just reduces the chance of two
+different people having the same name.</p>
+
+<p>Namespace prefixes allow you to use a shorthand way to refer to a namespace
+rather than writing out the full namespace every time.
+{{{</p>
+
+<pre><code>Prefix: : &lt;urn:hello_swrl#&gt;
+</code></pre>
+
+<p>}}}
+This defines a default namespace for everything that does not otherwise have a
+namespace defined.
+{{{</p>
+
+<pre><code>Prefix: xsd: 
+</code></pre>
+
+<p>}}}
+Here we are defining the prefix &#8216;xsd&#8217; and associating it with the namespace
+&#8216;http://www.w3.org/2001/XMLSchema#&#8217; - a namespace defined by the W3C.
+{{{</p>
+
+<pre><code>    Prefix: swrlb: 
+</code></pre>
+
+<p>}}}
+This imports a namespace to do with functions built into SWRL, and gives it the
+&#8216;swrlb&#8217; prefix.</p>
+
+<p>Note that although these namespaces look like a web page address, it does not necessarily mean they point to a web page.</p>
+
+<p>==Define classes==</p>
+
+<p>A class is a group of individuals, like a class in school.  &#8216;Individuals&#8217; are <strong>particular</strong> things that are members of that class.  Usually both the individuals and the class have names.</p>
+
+<p>For example: &#8216;Year 7 Pottery&#8217; is the name of a class of students.  &#8216;Bobby Little&#8217; is
+the name of a boy in that class.  In OWL terms, people would say that Bobby Little is a &#8216;member of&#8217; Year 7 Pottery, is an &#8216;individual in&#8217; Year 7 Pottery or an &#8216;instance of&#8217; Year 7 Pottery.  Bobby Little can of course be members of other classes at the same time.  And the class can exist without Boddy Little or even if there are no students in it.</p>
+
+<p>We&#8217;ll define a new class called &#8216;Corporation&#8217; in the default namespace:
+{{{</p>
+
+<pre><code>Class: Corporation
+</code></pre>
+
+<p>}}}</p>
+
+<p>The corporation has two bits of data associated with that we are interested in:
+* Number of employees
+* annual revenue</p>
+
+<p>The simplest way to express this is using &#8216;datatype properties&#8217;.  Data type
+properties express that a particular bit of data may be connected to a
+particular individual.</p>
+
+<p>Continuing the school class example above, we may want to express that members
+of &#8216;Year 7 Pottery&#8217; have a particular grade for the semester.</p>
+
+<p>The properties have <strong>a subject, a predicate and an object</strong>.  These mirror the grammatical subject and object in a sentence.  For example, in the sentence &#8216;the corporation has an annual revenue of $1M&#8217;, you can identify a subject, predicate and object.  There are actually several ways to identify a subject, predicate and object in this sentence.  You should choose one that makes most sense to humans - the computer does not care so long as you are  consistent.</p>
+
+<p>One way is to say the subject is &#8216;a corporation&#8217;, the predicate is &#8216;has an annual revenue&#8217; and the object is &#8216;$1M&#8217;.  In OWL, the class that is the subject of a property is called the &#8216;domain&#8217; and the class that is the object is called the &#8216;range&#8217;.</p>
+
+<p>When we define these datatype properties, we are saying that individuals in this class <strong>can</strong> have these properties.  We are not attaching them to any particular individuals yet.  It is as if we are just setting a placeholder or container for them, which may or may not be filled.  So the datatype properties attach to classes, <strong>not</strong> individuals.  This is a very important distinction.</p>
+
+<p>Hence, we declare a datatype property for annual revenue called &#8216;hasAnnualRevenue&#8217;:
+{{{</p>
+
+<pre><code>DataProperty: hasAnnualRevenue
+      Domain:  Corporation
+  Range: xsd:integer
+  Characteristics: Functional
+</code></pre>
+
+<p>}}}
+&#8216;Domain: Corporation&#8217; means that this is a property of the Corporation class.
+&#8216;Range: xsd:integer&#8217; means that this property is an integer.
+&#8216;Characteristics: Functional&#8217; means that each Corporation has only one number for its revenue.</p>
+
+<p>We do the same thing again for the number of employees:
+{{{</p>
+
+<pre><code>DataProperty: hasNumberOfEmployees
+        Characteristics:  Functional
+    Domain: Corporation    
+    Range: xsd:integer
+</code></pre>
+
+<p>}}}
+How to we denote whether or not a corporation is eligble? We create a class called &#8216;Eligible&#8217;.  Eligible corporations will be members of that class.
+{{{</p>
+
+<pre><code>Class: Eligible
+</code></pre>
+
+<p>}}}
+There are two tests in this rule: the annual revenue and the employees test.  We&#8217;ll just focus on the first limb for the moment.</p>
+
+<p>First we will write the rule in a simplified format so we are sure we understand
+it:
+{{{</p>
+
+<pre><code>Corporation(?corporation) ^ hasAnnualRevenue(?corporation,?revenue) ^ lessThan(?revenue,2000000) -&gt; Eligible(?corporation)
+</code></pre>
+
+<p>}}}
+The rule has two main parts: the &#8216;body&#8217; and the &#8216;head&#8217;, separated by the &#8216;->&#8217; characters.  Within the body, there are three &#8216;atoms&#8217;, separated by the &#8217;<sup>&#8217;</sup> character.</p>
+
+<p>You can think of each atom as a sort of filter applied to all the individuals in the ontology.  The objective is to use the filters to narrow down the the individuals we are interested in.</p>
+
+<p>With a filter, either things pass through or they don&#8217;t. Another name for a filter is a &#8216;predicate&#8217; - an expression that resolves to either true or false.</p>
+
+<p>Each predicate also labels the things that pass through the filter - called
+&#8216;binding&#8217;.  Things that do not pass through the filter are discarded.</p>
+
+<p>The things in this context are individuals in the ontology.  Some pass through
+the filter and are bound to a variable.</p>
+
+<p>The first atom:
+{{{</p>
+
+<pre><code>Corporation(?corporation)
+</code></pre>
+
+<p>}}}
+This means &#8216;look for individuals in the ontology that are instances of the &#8220;Corporation&#8221; class.
+Bind those individuals to the variable &#8216;corporation&#8217;.&#8221;  (The &#8216;?&#8217; means it is a variable.)</p>
+
+<p>Since those individuals are bound to ?corporation, we can use them elsewhere in the rule.</p>
+
+<p>The second atom:
+{{{</p>
+
+<pre><code>hasAnnualRevenue(?corporation,?revenue)
+</code></pre>
+
+<p>}}}
+This means &#8216;find all the particular individuals which are bound to the ?corporation variable and have the property &#8220;hasAnnualRevenue&#8221;. Then bind the the revenue number for each individual to the variable &#8220;revenue&#8221;.&#8217;</p>
+
+<p>The third atom:
+{{{</p>
+
+<pre><code>lessThan(?revenue,2000000)
+</code></pre>
+
+<p>}}}
+This means &#8216;filter out revenue numbers less than 2,000,000&#8217;.</p>
+
+<p>Recall the atoms in the body all have to be true.  So the combined effect of the atoms above is to select <strong>all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000</strong>.  The filters apply cumulatively.</p>
+
+<p>Now we have isolated the individual corporations we are interested in, we want to <strong>make them eligible</strong>.  The head of the rule just takes all individuals bound to the ?corporation variable and makes them members of the class &#8216;Eligible&#8217;:
+{{{</p>
+
+<pre><code>Eligible(?corporation)
+</code></pre>
+
+<p>}}}
+So the effect of the whole rule is <strong>all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000 are eligible</strong>.</p>
+
+<p>=Translating to SWRL=</p>
+
+<p>You can see that expressing this in plain English is not really longer than the formal definition which Protege understands. However, in order to encode the rules in SWRL we need to add namespaces and prefixes.  The basic logic and structure is the same.</p>
+
+<p>We need <strong>two</strong> SWRL rules to capture our logic.  This is because the corporation is eligible if it has annual revenue less than $2M, <strong>or</strong> it has less than five employees.</p>
+
+<p>The first rule:
+{{{</p>
+
+<pre><code>Rule: 
+Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)
+</code></pre>
+
+<p>}}}
+Note:
+* We have replaced each variable name with a &#8216;URI&#8217; in angle brackets.
+* To do the comparison between the actual revenue and the function, we reference a &#8216;built in&#8217; function called &#8216;lessThan&#8217; in the &#8216;swrlb&#8217; namespace.  This is part of the SWRL specification in the W3C recommendation.</p>
+
+<p>The second rule is the same as the first except that it refers to number of employees instead of revenue:
+{{{</p>
+
+<pre><code>Rule: 
+Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)
+</code></pre>
+
+<p>}}}</p>
+
+<p>=Facts=</p>
+
+<p>So far we have defined a framework for our data, consisting of some classes and properties, and some rules which operate on that data.  Now we can provide some test data.</p>
+
+<p>Our test data consists of three corporations:</p>
+
+<p>Acme Corp:
+* Revenue: $1M dollars.
+* Employees: 10</p>
+
+<p>Maas Corp:
+* Revenue: $3M dollars
+* Employees: 4
+ 
+Globex Corp:
+* Revenue: $5M dollars
+* Employees: 15</p>
+
+<p>The expected results are:
+* Acme Corp is eligible because it has a revenue of less than $2M dollars.
+* Maas Corp is eligible because it has less than 5 employees.
+* Globex Corp is <strong>not</strong> eligible because it meets neither of the revenue or employees tests.</p>
+
+<p>The test data:
+{{{</p>
+
+<pre><code>Individual: AcmeCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 1000000
+    Facts: hasNumberOfEmployees 5
+
+Individual: MaasCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 3000000
+    Facts: hasNumberOfEmployees 4
+
+Individual: GlobexCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 5000000
+    Facts: hasNumberOfEmployees 15
+</code></pre>
+
+<p>}}}</p>
+
+<p>This is the full ontology which should now be saved in your file hello_swrl.owl:</p>
+
+<p>{{{</p>
+
+<p>Prefix: swrl:
+Prefix: xsd:
+Prefix: swrlb:
+Prefix: : &lt;urn:hello_swrl#></p>
+
+<p>Ontology:</p>
+
+<p>Class: Corporation</p>
+
+<p>Class: Eligible</p>
+
+<p>DataProperty: hasNumberOfEmployees</p>
+
+<pre><code>Characteristics: 
+    Functional
+
+Domain: 
+    Corporation
+
+Range: 
+    xsd:integer
+</code></pre>
+
+<p>DataProperty: hasAnnualRevenue</p>
+
+<pre><code>Characteristics: 
+    Functional
+
+Domain: 
+    Corporation
+
+Range: 
+    xsd:integer
+
+
+
+Rule: 
+Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)
+
+Rule: 
+Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)
+
+
+
+Individual: AcmeCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 1000000
+    Facts: hasNumberOfEmployees 5
+
+Individual: MaasCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 3000000
+    Facts: hasNumberOfEmployees 4
+
+Individual: GlobexCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 5000000
+    Facts: hasNumberOfEmployees 15
+</code></pre>
+
+<p>}}}</p>
+
+<p>=Testing in Protege=</p>
+
+<p>You should now be able to open hello_swrl.owl in Protege.  If you get &#8216;Load Error&#8217; dialogue box, there is mostly likely a typo in your ontology.  Click on the &#8216;ManchesterOWLSyntaxOntologyParser&#8217; tab.  The information in that dialog box will help you hunt down the error.</p>
+
+<p>From the &#8216;Reasoner&#8217; menu, select &#8216;Pellet&#8217;, then press Ctrl-R to start the reasoner.</p>
+
+<p>You should now be able to click on &#8216;Corporation&#8217; in the &#8216;Class hierarchy tab&#8217; and see the three companies that are members of that class.</p>
+
+<p>[[image:corporation.png|link=source]]</p>
+
+<p>Then click on the &#8216;Eligible&#8217; class and see that only the two companies we expect are members of that class, excluding GlobexCorp.</p>
+
+<p>[[image:eligible.png|link=source]]</p>
+
+<p>Now click on the small &#8216;?&#8217; next to &#8216;AcmeCorp&#8217;.  This will show the reasons why AcmeCorp isEligible.</p>
+
+<p>[[image:explanation.png|link=source]]</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Nick Miller</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-05T04:17:46+10:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/howto/'>howto</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://namman.github.com/blog/2012/09/05/introduction-to-swrl-and-owl/" data-via="" data-counturl="http://namman.github.com/blog/2012/09/05/introduction-to-swrl-and-owl/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/05/xaml-notes/" title="Previous Post: XAML notes">&laquo; XAML notes</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/09/07/how-to-model-and-execute-legislative-rules-in-swrl/" title="Next Post: How to model and execute legislative rules in SWRL">How to model and execute legislative rules in SWRL &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/21/wpf-cheat-sheet/">WPF Cheat Sheet</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control/">Run NuGet on build so you don't have to keep libs in source control</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/16/location-of-windows-8-log-files/">Location of Windows 8 log files</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Nick Miller -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

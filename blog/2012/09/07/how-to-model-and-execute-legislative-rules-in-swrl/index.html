@@ -1,0 +1,724 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to model and execute legislative rules in SWRL - Junk I Would Otherwise Forget</title>
+  <meta name="author" content="Nick Miller">
+
+  
+  <meta name="description" content="=Prequisites= Download and install:
+* Pellet reasoner: http://clarkparsia.com/pellet/ =Source Rules= In plain English the source rules are: A person &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://namman.github.com/blog/2012/09/07/how-to-model-and-execute-legislative-rules-in-swrl/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Junk I Would Otherwise Forget" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Junk I Would Otherwise Forget</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:namman.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Model and Execute Legislative Rules in SWRL</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-07T07:39:39+10:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>=Prequisites=</p>
+
+<p>Download and install:
+* Pellet reasoner: http://clarkparsia.com/pellet/</p>
+
+<p>=Source Rules=</p>
+
+<p>In plain English the source rules are:</p>
+
+<p>A person satisfies Section A if either:
+* they satisfy both Sections B and C, OR
+* they satisfy EITHER Section D or Section E.</p>
+
+<p>Further, a person satisfies Section E if they satisfy BOTH:
+* Section F, AND
+* Section G.</p>
+
+<p>=Prefixes=</p>
+
+<p>Define a default prefix for this file: &#8216;ls&#8217; for &#8216;legislative SWRL&#8217;.  The prefix
+is a full URI, followed by a &#8216;#&#8217;.<br/>
+{{{
+Prefix: : &lt;urn:ls#>
+}}}</p>
+
+<p>=Ontology Name=</p>
+
+<p>Ontologies have to have a name in the form of an absolute URI:</p>
+
+<p>{{{
+Ontology:
+}}}</p>
+
+<p>=Basic Classes=</p>
+
+<p>This is our simple method for modelling legislation:
+* Each section of the legislation is an instance of the class &#8216;Section&#8217;.
+* The legislation usually applies to something, such as a transaction, a company, or an amount.  In this case, we assume it applies to a person.  So each person that the legislation applies to is an instance of the class &#8216;Person&#8217;.</p>
+
+<p>Further, the same &#8216;thing&#8217; cannot be both a person and a section.  We need to express this explicity in OWL by saying the classes are &#8216;disjoint&#8217;.</p>
+
+<p>{{{
+Class: Person</p>
+
+<pre><code>DisjointWith: 
+    Section
+</code></pre>
+
+<p>Class: Section</p>
+
+<pre><code>DisjointWith: 
+    Person
+</code></pre>
+
+<p>}}}</p>
+
+<p>=Properties=</p>
+
+<p>A person can satisfy particular sections in the legislation.  For example, a particular person might satisfy Section Y by fulfilling whatever criteria are in Section Y.  If Section Y said &#8216;the person is under 18&#8217; and the particular person was in fact under 18, then we say that the person satisfies section Y.</p>
+
+<p>We express this in OWL with an &#8216;object type property&#8217; called &#8216;satisfies&#8217;.  This is a relationship between classes.  The &#8216;domain&#8217; of the property is the class Person.  The &#8216;range&#8217; of the property is the class Section.</p>
+
+<p>You can say this aloud as &#8216;a person satisfies a section&#8217;.  Notice that we are referring in general to <strong>a</strong> person, <strong>not</strong> a particular person at this point.  A particular person would be &#8216;Bob&#8217; or &#8216;Jill&#8217;.   The property is <strong>defined</strong> at a more abstract level as a relation between classes, not individuals.  When we create individual instances, they will have this property, but we do not define the property for them - we defined it at the class level.It is important not to get confused between classes and individuals, and between an object type property and instances of the property connecting individuals.
+{{{
+ObjectProperty: satisfies</p>
+
+<pre><code>Domain: 
+    Person
+
+Range:
+Section
+</code></pre>
+
+<p>}}}</p>
+
+<p>We can also add some additional characteristics to this object property to communicate more information about it.  In general, the more information we add, the more can be inferred from the ontology.  In this case, we want to express that the property is:
+* asymettric, and
+* irreflexive.</p>
+
+<p>&#8216;Asymetric&#8217; means that a person can satisfy a section, but a section cannot satisfy a person.</p>
+
+<p>&#8216;Irreflexive&#8217; means that a person cannot satisfy themselves (in this context, anyway).</p>
+
+<p>{{{</p>
+
+<pre><code>Characteristics: 
+    Asymmetric,
+    Irreflexive
+</code></pre>
+
+<p>}}}</p>
+
+<p>=Individuals=</p>
+
+<p>==Sections===
+As discussed above, each particular section of the legislation we will model as an instance of the class &#8216;Section&#8217;.  Since there are section &#8216;A&#8217; through &#8216;G&#8217; in our source rules, we create one individual for each:</p>
+
+<p>{{{</p>
+
+<p>Individual: SectionA</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionB</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionC</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionD</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionE</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionF</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionG</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>}}}</p>
+
+<p>=Rules=</p>
+
+<p>The rules contain the logic that glues together the sections so tthey apply to a person.  Since we have defined the person class and individuals for the praticular sections, we can now write the rules to capture the logic.</p>
+
+<p>Recall the first part of the source rules were that a person satisfies Section A if either:
+* they satisfy both Sections B and C, OR
+* they satisfy EITHER Section D or Section E.</p>
+
+<p>Recall that in SWRL, rules consist of a head and a body, and all the clauses in the body have to be true for the head to be true.  You cannot have a disjunction in the body of a rule - you need to create separate rules for disjunctions.</p>
+
+<p>So this rule above really breaks down to <strong>three</strong> rules, showing that a person may satisfy section A <strong>three</strong> ways:
+Rule 1:  A person satisfies Section A if they satisfy sections B AND C.
+Rule 2: A person satisfies Section A if they satisfy Section D.
+Rule 3: A person satisfies Section A if they satisfy section E.</p>
+
+<p>The rules will apply to any person, so we need a variable for person.  The variable has to have a full URI for a name, so we&#8217;ll call it &#8216;urn:anyPerson&#8217; just to make it clear that this variable represents any person.</p>
+
+<p>In SWRL, Rule 1 is :</p>
+
+<p>{{{
+Rule:
+Person(?), satisfies(?,SectionB), satisfies(?,SectionC) -> satisfies(?,SectionA)
+}}}</p>
+
+<p>This consists of three clauses in the body, separated by a comma, followed by the head.</p>
+
+<p>The first clause &#8216;Person&#8217; binds all instances of the class Person to the variable &#8216;urn:anyPerson&#8217;.  The predicate will be true if there is an instance of the class Person in our ontology.  (There isn&#8217;t yet as we haven&#8217;t defined one yet, but we will shortly.)  This is so we can refer to this set of persons in the rest of the rule.</p>
+
+<p>The second clause looks for persons with the object type property &#8216;satisfies&#8217; connecting to the individual &#8216;SectionB&#8217;. We have already defined the individual &#8216;SectionB&#8217;.  So this clause should identify a set of people that satisfy section B.  Similarly, the third clause identifies people that satisfy SectionC.</p>
+
+<p>If all three of those clauses are true for a given person, we know that person should satisfy Section A.  The clause in the head of the rule expresses this.</p>
+
+<p>So the overall effect of that rule is that for every person that satisfies section B and Section C, that person is inferred to satisfy Section A.  The rule will applies to multiple people if there are multiple people defined in the ontology.</p>
+
+<p>Rules 2 and 3 follow the same pattern.</p>
+
+<p>The last rule we need to write says that a person satisfies section E if they satisfy both Section F and Section G.  This time Section E is in the head of the rule rather than the body:
+{{{
+Rule:
+Person(?), satisfies(?,SectionF), satisfies(?,SectionG) -> satisfies(?,SectionD)
+}}}</p>
+
+<p>Note that the same clause &#8216;satisfies(?,SectionD)&#8217; appears in the head of this rule, but the body of Rule 3 discussed above.  This means the rules are <strong>chained</strong> together.  The inference of one rule can feed into another rule, so they are all evaluated together.</p>
+
+<p>==Testing the rules==</p>
+
+<p>We can test the rules by creating some instances of the class Person, then running our rules.</p>
+
+<p>For this simple example, we&#8217;ll just create one person, called &#8216;Person1&#8217;.</p>
+
+<p>{{{
+Individual: Person1</p>
+
+<pre><code>Types: Person
+</code></pre>
+
+<p>}}}</p>
+
+<p>For the purpose of this test, we will say the person satisfies Section D and Section E:</p>
+
+<p>{{{</p>
+
+<pre><code>Facts: satisfies SectionB
+Facts: satisfies SectionC
+</code></pre>
+
+<p>}}}</p>
+
+<p>The expected result is that Person01 also satisfies Section A.</p>
+
+<p>==Running the rules==</p>
+
+<p>We&#8217;ll demonstrate running the rules using the Pellet reasoner from the command line.  You can also  use Pellet from within Protege 3.x and 4.x.</p>
+
+<p>First, save the ontology you have built up as &#8216;legislativeSwrl.owl&#8217;.</p>
+
+<p>For convenience, create an environment variable that contains the full path of the this file, called &#8216;LS&#8217; for &#8216;Legislative SWRL&#8217;.  We&#8217;ll use this in the Pellet commands.</p>
+
+<p>Linux:
+{{{
+LS=
+}}}</p>
+
+<p>Change to the directory where you unzipped Pellet (cd ).</p>
+
+<p>The following command asks Pellet to explain whether Person1 satisfies Section A, and for the reasons why:</p>
+
+<p>Linux:
+{{{
+./pellet.sh explain &#8211;property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS
+}}}</p>
+
+<p>Some things to note:
+* we use the &#8216;-property-value&#8217; switch because &#8216;satisfies&#8217; is an object type property.
+* we specify the property value we want to explain in the form ,,.  This is: Person1,satisfies,SectionA.  We need to use the full URIs in the for the Pellet command line however.  The full URI&#8217;s begin with &lt;urn:ls#> because this was the default prefix we defined in our ontology (see above).</p>
+
+<p>The output of this command is:</p>
+
+<p>{{{
+Axiom: Person1 satisfies SectionA</p>
+
+<p>Explanation(s):
+1)   Rule(Emission(?urn:anyPerson), satisfies(?urn:anyPerson, SectionB), satisfies(?urn:anyPerson, SectionC) -> satisfies(?urn:anyPersone, SectionA))</p>
+
+<pre><code> Person1 satisfies SectionB
+ Person1 type Person
+ Person1 satisfies SectionC
+</code></pre>
+
+<p>}}}</p>
+
+<p>The first line of the result tells us that Person1 does indeed satisy SectionA.  This accords with our expected result.</p>
+
+<p>The explanation tells us <strong>why</strong> Person1 satisfies Section A in terms of our ontology.  In plain English, it tells us that Person1 satisfies Section A because they satisfy Section B and C, Person 1 is an individual of the &#8216;Person&#8217; class and because of the rule we defined.</p>
+
+<p>Note that Pellet has identifed only the <strong>relevant</strong> information from our ontology.  It has not listed any of the other rules, or any of the irrelevant sections.</p>
+
+<p>===What if there are multiple ways to satisfy a section?===</p>
+
+<p>In the test above, there is only one way that Person1 can satisfy Section A given the facts we provided: because they satisfy both sections B and C.  In other cases though, there may be multiple routes to the same conclusion.  To test this, change the facts for Person1 from:</p>
+
+<p>{{{</p>
+
+<pre><code>Facts: satisfies SectionB
+Facts: satisfies SectionC
+</code></pre>
+
+<p>}}}</p>
+
+<p>&#8230; to &#8230;</p>
+
+<p>{{{</p>
+
+<pre><code>Facts: satisfies SectionD
+</code></pre>
+
+<p>`   Facts: satisfies SectionE
+}}}</p>
+
+<p>Recall from the source rules that a person satisfies Section A if they satisfy <strong>either</strong> Section D <strong>or</strong> Section E.  In the new facts, Person1 satisfies <strong>both</strong> - so there are two ways they can satisfy Section A.</p>
+
+<p>Change the Pellet explain command to show up to 10 explanations:</p>
+
+<p>Linux:
+{{{
+./pellet.sh explain &#8211;max 10 &#8211;property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS
+}}}</p>
+
+<p>The output is:</p>
+
+<p>{{{
+Axiom: Person1 satisfies SectionA</p>
+
+<p>Explanation(s):
+1)   Person1 type Person</p>
+
+<pre><code> Person1 satisfies SectionD
+ Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</code></pre>
+
+<p>2)   satisfies domain Person</p>
+
+<pre><code> Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
+ Person1 satisfies SectionE
+</code></pre>
+
+<p>3)   satisfies domain Person</p>
+
+<pre><code> Person1 satisfies SectionD
+ Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</code></pre>
+
+<p>4)   Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -> satisfies(?urn:anyPerson, SectionA))</p>
+
+<pre><code> Person1 type Person
+ Person1 satisfies SectionE
+</code></pre>
+
+<p>}}}</p>
+
+<p>This shows <strong>four</strong> explanations for why Person1 satisfies SectionA.</p>
+
+<p>Explanation 1 is similar to the one in our first test: Person1 satisfies SectionA because they are a Person, they satisfy Section D, and there is a rule which says any person who satisfies Section D automatically satisfies Section A.</p>
+
+<p>Explanation 3 shows that you can infer Person1 satisies Section A because:
+* the domain of the satisfies property is the class &#8216;Person&#8217;
+* Person1 is in the domain of a satisfies property (in this case the property connected to &#8216;SectionD&#8217;), therefore Person1 must be a person.
+* The rule discussed above applies.</p>
+
+<p>If Explanation 3 is correct, we should not need to specify explicitly in our ontology that Person1 is a Person.  It should be sufficient to specify that Person1 satisfies SectionE.  To test this, <strong>temporarily remove</strong> the assertion that Person1 is a Person:
+{{{
+Individual: Person1</p>
+
+<pre><code>Types: &lt;-- REMOVE THIS LINE
+    Person &lt;-- REMOVE THIS LINE
+
+Facts:  
+ satisfies  SectionD,
+ satisfies  SectionE
+</code></pre>
+
+<p>}}}</p>
+
+<p>Now run the Pellet command again.  This time the explanation is:</p>
+
+<p>{{{
+Axiom: Person1 satisfies SectionA</p>
+
+<p>Explanation(s):
+1)   satisfies domain Person</p>
+
+<pre><code> Person1 satisfies SectionD
+ Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</code></pre>
+
+<p>2)   satisfies domain Person</p>
+
+<pre><code> Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
+ Person1 satisfies SectionE
+</code></pre>
+
+<p>}}}</p>
+
+<p>Notice how explanations based on the explicit fact that Person1 is a Person no longer appear. Don&#8217;t forget to put the lines you removed back in.</p>
+
+<p>Returning to the original explations, we can see Explanation 2 and 4 mirror the original Explanations 1 and 2 except that they refer to Section E.  As expected, this shows us that there are multiple ways the person in our test can satisfy Seciton A: via Section D or via Section E.</p>
+
+<p>==Chaining rules==</p>
+
+<p>Recall that a person satisfies Section A if they satisfy Section E.  Further, a person satisfies Section E if they satisfy both Section F and G.  Therefore, a person who satisfies Sections F and G should automatically satisfy Section A - because the rules chain together.</p>
+
+<p>To test this, change the facts about Person1 to:
+{{{
+Individual: Person1</p>
+
+<pre><code>Types: 
+    Person
+
+Facts:  
+ satisfies  SectionF,
+ satisfies  SectionG
+</code></pre>
+
+<p>}}}</p>
+
+<p>Now run the Pellet command again.  The first explanation is:</p>
+
+<p>{{{
+Axiom: Person1 satisfies SectionA</p>
+
+<p>Explanation(s):
+1)   Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionF), satisfies(?urn:anyPerson, SectionG) -> satisfies(?urn:anyPerson, SectionD))</p>
+
+<pre><code> Person1 satisfies SectionF
+ Person1 type Person
+ Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+ Person1 satisfies SectionG
+</code></pre>
+
+<p>}}}</p>
+
+<p>This tells us that Person1 satisfies Section A because:
+* they satisfy both Sections F and G;
+* of the rule which chains together Sections F, G, D;
+* of the rule which chains together Section D and Section A.</p>
+
+<p>=The complete ontology=</p>
+
+<p>{{{
+Prefix: : &lt;urn:ls#></p>
+
+<p>Ontology:</p>
+
+<p>ObjectProperty: satisfies</p>
+
+<pre><code>Characteristics: 
+    Asymmetric,
+    Irreflexive
+
+Domain: 
+    Person
+
+Range: 
+    Section
+</code></pre>
+
+<p>Class: Person</p>
+
+<pre><code>DisjointWith: 
+    Section
+</code></pre>
+
+<p>Class: Section</p>
+
+<pre><code>DisjointWith: 
+    Person
+</code></pre>
+
+<p>Individual: SectionG</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: SectionD</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: SectionC</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: SectionF</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: SectionE</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: SectionB</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: Person1</p>
+
+<pre><code>Types: 
+    Person
+
+Facts:  
+ satisfies  SectionD,
+ satisfies  SectionE
+</code></pre>
+
+<p>Individual: SectionA</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Rule:</p>
+
+<pre><code>Person(?), satisfies(?, SectionB), satisfies(?, SectionC) -&gt; satisfies(?, SectionA)
+</code></pre>
+
+<p>Rule:</p>
+
+<pre><code>Person(?), satisfies(?, SectionF), satisfies(?, SectionG) -&gt; satisfies(?, SectionD)
+</code></pre>
+
+<p>Rule:</p>
+
+<pre><code>Person(?), satisfies(?, SectionD) -&gt; satisfies(?, SectionA)
+</code></pre>
+
+<p>Rule:</p>
+
+<pre><code>Person(?), satisfies(?, SectionE) -&gt; satisfies(?, SectionA)
+</code></pre>
+
+<p>}}}</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Nick Miller</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-07T07:39:39+10:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/howto/'>howto</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://namman.github.com/blog/2012/09/07/how-to-model-and-execute-legislative-rules-in-swrl/" data-via="" data-counturl="http://namman.github.com/blog/2012/09/07/how-to-model-and-execute-legislative-rules-in-swrl/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/05/introduction-to-swrl-and-owl/" title="Previous Post: Introduction to SWRL and OWL">&laquo; Introduction to SWRL and OWL</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/09/07/how-to-query-swrl-rules-with-sparql/" title="Next Post: How to query SWRL rules with SPARQL">How to query SWRL rules with SPARQL &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/21/wpf-cheat-sheet/">WPF Cheat Sheet</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control/">Run NuGet on build so you don't have to keep libs in source control</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/16/location-of-windows-8-log-files/">Location of Windows 8 log files</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Nick Miller -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

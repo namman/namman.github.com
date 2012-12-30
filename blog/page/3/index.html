@@ -1,0 +1,2081 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Junk I Would Otherwise Forget</title>
+  <meta name="author" content="Nick Miller">
+
+  
+  <meta name="description" content="=Prerequisites= Download and install Arq which allows you to run SPARQL queries against RDF: http://incubator.apache.org/jena/documentation/query/ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://namman.github.com/blog/page/3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Junk I Would Otherwise Forget" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Junk I Would Otherwise Forget</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:namman.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/07/how-to-query-swrl-rules-with-sparql/">How to Query SWRL Rules With SPARQL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-07T08:00:08+10:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>=Prerequisites=</p>
+
+<p>Download and install Arq which allows you to run SPARQL queries against RDF: http://incubator.apache.org/jena/documentation/query/index.html</p>
+
+<p>Convert your ontology to the Turtle format.  You can do this by using the Save As command in Protege.</p>
+
+<p>=How to run queries=</p>
+
+<p>This Arq command runs the queries and displays output to the console:</p>
+
+<p>{{{
+arq &#8211;data= &#8211;query=</p>
+
+<p>}}}</p>
+
+<p>For example, to run the first query;</p>
+
+<ul>
+<li>Copy the text of the query into a text file and save it as &#8220;query1.rq&#8221;.</li>
+<li>Save the ontology in Turtle format as &#8220;legislativeSwrl.ttl&#8221;.</li>
+<li>Put both of those files in the same directory and change to that directory.</li>
+</ul>
+
+
+<p>{{{
+arq &#8211;data=legislativeSwrl.ttl &#8211;query=quer1.rq
+}}}</p>
+
+<p>=Find all sections in the head of a rule=
+{{{</p>
+
+<p>PREFIX rdf:<br/>
+PREFIX swrl:
+PREFIX : &lt;urn:ls#>
+PREFIX list:
+PREFIX owl:</p>
+
+<p>SELECT DISTINCT  ?headSection
+WHERE {</p>
+
+<pre><code>?rule a swrl:Imp . 
+?rule swrl:head ?head .
+
+?head list:member ?headMember .
+?headMember (swrl:argument1 | swrl:argument2) ?headSection .
+?headSection a owl:NamedIndividual .
+?headSection a :Section .
+</code></pre>
+
+<p>}
+}}}</p>
+
+<p>Output:</p>
+
+<p>{{{</p>
+
+<hr />
+
+<h1>| headSection |</h1>
+
+<p>| :SectionA   |</p>
+
+<h2>| :SectionD   |</h2>
+
+<p>}}}</p>
+
+<p>=Find all the sections referenced in the body of a rule=
+{{{
+PREFIX rdf:<br/>
+PREFIX swrl:
+PREFIX : &lt;urn:ls#>
+PREFIX list:
+PREFIX owl:</p>
+
+<p>SELECT DISTINCT ?bodySection
+WHERE {</p>
+
+<pre><code>?rule a swrl:Imp . 
+?rule swrl:body ?body .
+
+?head list:member ?headMember .
+?headMember (swrl:argument1 | swrl:argument2) ?bodySection .
+?bodySection a owl:NamedIndividual .
+?bodySection a :Section .
+</code></pre>
+
+<p>}</p>
+
+<p>}}}</p>
+
+<p>Output:</p>
+
+<h2>{{{</h2>
+
+<h1>| bodySection |</h1>
+
+<p>| :SectionB   |
+| :SectionC   |
+| :SectionD   |
+| :SectionA   |
+| :SectionE   |
+| :SectionF   |</p>
+
+<h2>| :SectionG   |</h2>
+
+<p>}}}</p>
+
+<p>The full text of the legislative SWRL example converted to Turtle:</p>
+
+<p>{{{</p>
+
+<p>@prefix : &lt;urn:ls#> .
+@prefix dc:  .
+@prefix owl:  .
+@prefix rdf:  .
+@prefix xml:  .
+@prefix xsd:  .
+@prefix rdfs:  .
+@base  .</p>
+
+<p>rdf:type owl:Ontology .</p>
+
+<h6>#</h6>
+
+<p>#</p>
+
+<h1>Object Properties</h1>
+
+<p>#</p>
+
+<h6>#</h6>
+
+<h3>urn:ls#satisfies</h3>
+
+<p>:satisfies rdf:type owl:AsymmetricProperty ,</p>
+
+<pre><code>                owl:IrreflexiveProperty ,
+                owl:ObjectProperty ;
+
+       rdfs:domain :Person ;
+
+       rdfs:range :Section .
+</code></pre>
+
+<h6>#</h6>
+
+<p>#</p>
+
+<h1>Classes</h1>
+
+<p>#</p>
+
+<h6>#</h6>
+
+<h3>urn:ls#Person</h3>
+
+<p>:Person rdf:type owl:Class ;</p>
+
+<pre><code>    owl:disjointWith :Section .
+</code></pre>
+
+<h3>urn:ls#Section</h3>
+
+<p>:Section rdf:type owl:Class .</p>
+
+<h6>#</h6>
+
+<p>#</p>
+
+<h1>Individuals</h1>
+
+<p>#</p>
+
+<h6>#</h6>
+
+<h3>urn:ls#Person1</h3>
+
+<p>:Person1 rdf:type owl:NamedIndividual ,</p>
+
+<pre><code>              :Person ;
+
+     :satisfies :SectionD ,
+                :SectionE .
+</code></pre>
+
+<h3>urn:ls#SectionA</h3>
+
+<p>:SectionA rdf:type owl:NamedIndividual ,</p>
+
+<pre><code>               :Section .
+</code></pre>
+
+<h3>urn:ls#SectionB</h3>
+
+<p>:SectionB rdf:type owl:NamedIndividual ,</p>
+
+<pre><code>               :Section .
+</code></pre>
+
+<h3>urn:ls#SectionC</h3>
+
+<p>:SectionC rdf:type owl:NamedIndividual ,</p>
+
+<pre><code>               :Section .
+</code></pre>
+
+<h3>urn:ls#SectionD</h3>
+
+<p>:SectionD rdf:type owl:NamedIndividual ,</p>
+
+<pre><code>               :Section .
+</code></pre>
+
+<h3>urn:ls#SectionE</h3>
+
+<p>:SectionE rdf:type owl:NamedIndividual ,</p>
+
+<pre><code>               :Section .
+</code></pre>
+
+<h3>urn:ls#SectionF</h3>
+
+<p>:SectionF rdf:type owl:NamedIndividual ,</p>
+
+<pre><code>               :Section .
+</code></pre>
+
+<h3>urn:ls#SectionG</h3>
+
+<p>:SectionG rdf:type owl:NamedIndividual ,</p>
+
+<pre><code>               :Section .
+</code></pre>
+
+<h6>#</h6>
+
+<p>#</p>
+
+<h1>Rules</h1>
+
+<p>#</p>
+
+<h6>#</h6>
+
+<p>rdf:type  .
+[ rdf:type  ;
+  rdf:label &#8220;rule1&#8221; ;
+   [ rdf:type  ;</p>
+
+<pre><code>                                      rdf:rest rdf:nil ;
+                                      rdf:first [ rdf:type  ;
+                                                   ;
+                                                   :SectionD ;
+                                                   :satisfies
+                                                ]
+                                    ] ;
+</code></pre>
+
+<p>   [ rdf:type  ;</p>
+
+<pre><code>                                      rdf:rest [ rdf:type  ;
+                                                 rdf:first [ rdf:type  ;
+                                                              ;
+                                                              :SectionF ;
+                                                              :satisfies
+                                                           ] ;
+                                                 rdf:rest [ rdf:type  ;
+                                                            rdf:rest rdf:nil ;
+                                                            rdf:first [ rdf:type  ;
+                                                                         ;
+                                                                         :SectionG ;
+                                                                         :satisfies
+                                                                      ]
+                                                          ]
+                                               ] ;
+                                      rdf:first [ rdf:type  ;
+                                                   ;
+                                                   :Person
+                                                ]
+                                    ]
+</code></pre>
+
+<p>] .
+[ rdf:type  ;
+ rdf:label &#8220;rule2&#8221; ;
+   [ rdf:type  ;</p>
+
+<pre><code>                                      rdf:rest [ rdf:type  ;
+                                                 rdf:rest rdf:nil ;
+                                                 rdf:first [ rdf:type  ;
+                                                              ;
+                                                              :SectionD ;
+                                                              :satisfies
+                                                           ]
+                                               ] ;
+                                      rdf:first [ rdf:type  ;
+                                                   ;
+                                                   :Person
+                                                ]
+                                    ] ;
+</code></pre>
+
+<p>   [ rdf:type  ;</p>
+
+<pre><code>                                      rdf:rest rdf:nil ;
+                                      rdf:first [ rdf:type  ;
+                                                   ;
+                                                   :SectionA ;
+                                                   :satisfies
+                                                ]
+                                    ]
+</code></pre>
+
+<p>] .
+[ rdf:type  ;
+rdf:label &#8220;rule3&#8221; ;
+   [ rdf:type  ;</p>
+
+<pre><code>                                      rdf:rest rdf:nil ;
+                                      rdf:first [ rdf:type  ;
+                                                   ;
+                                                   :SectionA ;
+                                                   :satisfies
+                                                ]
+                                    ] ;
+</code></pre>
+
+<p>   [ rdf:type  ;</p>
+
+<pre><code>                                      rdf:rest [ rdf:type  ;
+                                                 rdf:rest [ rdf:type  ;
+                                                            rdf:rest rdf:nil ;
+                                                            rdf:first [ rdf:type  ;
+                                                                         ;
+                                                                         :SectionC ;
+                                                                         :satisfies
+                                                                      ]
+                                                          ] ;
+                                                 rdf:first [ rdf:type  ;
+                                                              ;
+                                                              :SectionB ;
+                                                              :satisfies
+                                                           ]
+                                               ] ;
+                                      rdf:first [ rdf:type  ;
+                                                   ;
+                                                   :Person
+                                                ]
+                                    ]
+</code></pre>
+
+<p>] .
+[ rdf:type  ;
+rdf:label &#8220;rule4&#8221; ;
+   [ rdf:type  ;</p>
+
+<pre><code>                                      rdf:rest rdf:nil ;
+                                      rdf:first [ rdf:type  ;
+                                                   ;
+                                                   :SectionA ;
+                                                   :satisfies
+                                                ]
+                                    ] ;
+</code></pre>
+
+<p>   [ rdf:type  ;</p>
+
+<pre><code>                                      rdf:first [ rdf:type  ;
+                                                   ;
+                                                   :Person
+                                                ] ;
+                                      rdf:rest [ rdf:type  ;
+                                                 rdf:rest rdf:nil ;
+                                                 rdf:first [ rdf:type  ;
+                                                              ;
+                                                              :SectionE ;
+                                                              :satisfies
+                                                           ]
+                                               ]
+                                    ]
+</code></pre>
+
+<p>] .</p>
+
+<h3>Generated by the OWL API (version 3.2.5.1928) http://owlapi.sourceforge.net</h3>
+
+<p>}}}</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/07/how-to-model-and-execute-legislative-rules-in-swrl/">How to Model and Execute Legislative Rules in SWRL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-07T07:39:39+10:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>=Prequisites=</p>
+
+<p>Download and install:
+* Pellet reasoner: http://clarkparsia.com/pellet/</p>
+
+<p>=Source Rules=</p>
+
+<p>In plain English the source rules are:</p>
+
+<p>A person satisfies Section A if either:
+* they satisfy both Sections B and C, OR
+* they satisfy EITHER Section D or Section E.</p>
+
+<p>Further, a person satisfies Section E if they satisfy BOTH:
+* Section F, AND
+* Section G.</p>
+
+<p>=Prefixes=</p>
+
+<p>Define a default prefix for this file: &#8216;ls&#8217; for &#8216;legislative SWRL&#8217;.  The prefix
+is a full URI, followed by a &#8216;#&#8217;.<br/>
+{{{
+Prefix: : &lt;urn:ls#>
+}}}</p>
+
+<p>=Ontology Name=</p>
+
+<p>Ontologies have to have a name in the form of an absolute URI:</p>
+
+<p>{{{
+Ontology:
+}}}</p>
+
+<p>=Basic Classes=</p>
+
+<p>This is our simple method for modelling legislation:
+* Each section of the legislation is an instance of the class &#8216;Section&#8217;.
+* The legislation usually applies to something, such as a transaction, a company, or an amount.  In this case, we assume it applies to a person.  So each person that the legislation applies to is an instance of the class &#8216;Person&#8217;.</p>
+
+<p>Further, the same &#8216;thing&#8217; cannot be both a person and a section.  We need to express this explicity in OWL by saying the classes are &#8216;disjoint&#8217;.</p>
+
+<p>{{{
+Class: Person</p>
+
+<pre><code>DisjointWith: 
+    Section
+</code></pre>
+
+<p>Class: Section</p>
+
+<pre><code>DisjointWith: 
+    Person
+</code></pre>
+
+<p>}}}</p>
+
+<p>=Properties=</p>
+
+<p>A person can satisfy particular sections in the legislation.  For example, a particular person might satisfy Section Y by fulfilling whatever criteria are in Section Y.  If Section Y said &#8216;the person is under 18&#8217; and the particular person was in fact under 18, then we say that the person satisfies section Y.</p>
+
+<p>We express this in OWL with an &#8216;object type property&#8217; called &#8216;satisfies&#8217;.  This is a relationship between classes.  The &#8216;domain&#8217; of the property is the class Person.  The &#8216;range&#8217; of the property is the class Section.</p>
+
+<p>You can say this aloud as &#8216;a person satisfies a section&#8217;.  Notice that we are referring in general to <strong>a</strong> person, <strong>not</strong> a particular person at this point.  A particular person would be &#8216;Bob&#8217; or &#8216;Jill&#8217;.   The property is <strong>defined</strong> at a more abstract level as a relation between classes, not individuals.  When we create individual instances, they will have this property, but we do not define the property for them - we defined it at the class level.It is important not to get confused between classes and individuals, and between an object type property and instances of the property connecting individuals.
+{{{
+ObjectProperty: satisfies</p>
+
+<pre><code>Domain: 
+    Person
+
+Range:
+Section
+</code></pre>
+
+<p>}}}</p>
+
+<p>We can also add some additional characteristics to this object property to communicate more information about it.  In general, the more information we add, the more can be inferred from the ontology.  In this case, we want to express that the property is:
+* asymettric, and
+* irreflexive.</p>
+
+<p>&#8216;Asymetric&#8217; means that a person can satisfy a section, but a section cannot satisfy a person.</p>
+
+<p>&#8216;Irreflexive&#8217; means that a person cannot satisfy themselves (in this context, anyway).</p>
+
+<p>{{{</p>
+
+<pre><code>Characteristics: 
+    Asymmetric,
+    Irreflexive
+</code></pre>
+
+<p>}}}</p>
+
+<p>=Individuals=</p>
+
+<p>==Sections===
+As discussed above, each particular section of the legislation we will model as an instance of the class &#8216;Section&#8217;.  Since there are section &#8216;A&#8217; through &#8216;G&#8217; in our source rules, we create one individual for each:</p>
+
+<p>{{{</p>
+
+<p>Individual: SectionA</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionB</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionC</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionD</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionE</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionF</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>Individual: SectionG</p>
+
+<pre><code>Types: Section
+</code></pre>
+
+<p>}}}</p>
+
+<p>=Rules=</p>
+
+<p>The rules contain the logic that glues together the sections so tthey apply to a person.  Since we have defined the person class and individuals for the praticular sections, we can now write the rules to capture the logic.</p>
+
+<p>Recall the first part of the source rules were that a person satisfies Section A if either:
+* they satisfy both Sections B and C, OR
+* they satisfy EITHER Section D or Section E.</p>
+
+<p>Recall that in SWRL, rules consist of a head and a body, and all the clauses in the body have to be true for the head to be true.  You cannot have a disjunction in the body of a rule - you need to create separate rules for disjunctions.</p>
+
+<p>So this rule above really breaks down to <strong>three</strong> rules, showing that a person may satisfy section A <strong>three</strong> ways:
+Rule 1:  A person satisfies Section A if they satisfy sections B AND C.
+Rule 2: A person satisfies Section A if they satisfy Section D.
+Rule 3: A person satisfies Section A if they satisfy section E.</p>
+
+<p>The rules will apply to any person, so we need a variable for person.  The variable has to have a full URI for a name, so we&#8217;ll call it &#8216;urn:anyPerson&#8217; just to make it clear that this variable represents any person.</p>
+
+<p>In SWRL, Rule 1 is :</p>
+
+<p>{{{
+Rule:
+Person(?), satisfies(?,SectionB), satisfies(?,SectionC) -> satisfies(?,SectionA)
+}}}</p>
+
+<p>This consists of three clauses in the body, separated by a comma, followed by the head.</p>
+
+<p>The first clause &#8216;Person&#8217; binds all instances of the class Person to the variable &#8216;urn:anyPerson&#8217;.  The predicate will be true if there is an instance of the class Person in our ontology.  (There isn&#8217;t yet as we haven&#8217;t defined one yet, but we will shortly.)  This is so we can refer to this set of persons in the rest of the rule.</p>
+
+<p>The second clause looks for persons with the object type property &#8216;satisfies&#8217; connecting to the individual &#8216;SectionB&#8217;. We have already defined the individual &#8216;SectionB&#8217;.  So this clause should identify a set of people that satisfy section B.  Similarly, the third clause identifies people that satisfy SectionC.</p>
+
+<p>If all three of those clauses are true for a given person, we know that person should satisfy Section A.  The clause in the head of the rule expresses this.</p>
+
+<p>So the overall effect of that rule is that for every person that satisfies section B and Section C, that person is inferred to satisfy Section A.  The rule will applies to multiple people if there are multiple people defined in the ontology.</p>
+
+<p>Rules 2 and 3 follow the same pattern.</p>
+
+<p>The last rule we need to write says that a person satisfies section E if they satisfy both Section F and Section G.  This time Section E is in the head of the rule rather than the body:
+{{{
+Rule:
+Person(?), satisfies(?,SectionF), satisfies(?,SectionG) -> satisfies(?,SectionD)
+}}}</p>
+
+<p>Note that the same clause &#8216;satisfies(?,SectionD)&#8217; appears in the head of this rule, but the body of Rule 3 discussed above.  This means the rules are <strong>chained</strong> together.  The inference of one rule can feed into another rule, so they are all evaluated together.</p>
+
+<p>==Testing the rules==</p>
+
+<p>We can test the rules by creating some instances of the class Person, then running our rules.</p>
+
+<p>For this simple example, we&#8217;ll just create one person, called &#8216;Person1&#8217;.</p>
+
+<p>{{{
+Individual: Person1</p>
+
+<pre><code>Types: Person
+</code></pre>
+
+<p>}}}</p>
+
+<p>For the purpose of this test, we will say the person satisfies Section D and Section E:</p>
+
+<p>{{{</p>
+
+<pre><code>Facts: satisfies SectionB
+Facts: satisfies SectionC
+</code></pre>
+
+<p>}}}</p>
+
+<p>The expected result is that Person01 also satisfies Section A.</p>
+
+<p>==Running the rules==</p>
+
+<p>We&#8217;ll demonstrate running the rules using the Pellet reasoner from the command line.  You can also  use Pellet from within Protege 3.x and 4.x.</p>
+
+<p>First, save the ontology you have built up as &#8216;legislativeSwrl.owl&#8217;.</p>
+
+<p>For convenience, create an environment variable that contains the full path of the this file, called &#8216;LS&#8217; for &#8216;Legislative SWRL&#8217;.  We&#8217;ll use this in the Pellet commands.</p>
+
+<p>Linux:
+{{{
+LS=
+}}}</p>
+
+<p>Change to the directory where you unzipped Pellet (cd ).</p>
+
+<p>The following command asks Pellet to explain whether Person1 satisfies Section A, and for the reasons why:</p>
+
+<p>Linux:
+{{{
+./pellet.sh explain &#8211;property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS
+}}}</p>
+
+<p>Some things to note:
+* we use the &#8216;-property-value&#8217; switch because &#8216;satisfies&#8217; is an object type property.
+* we specify the property value we want to explain in the form ,,.  This is: Person1,satisfies,SectionA.  We need to use the full URIs in the for the Pellet command line however.  The full URI&#8217;s begin with &lt;urn:ls#> because this was the default prefix we defined in our ontology (see above).</p>
+
+<p>The output of this command is:</p>
+
+<p>{{{
+Axiom: Person1 satisfies SectionA</p>
+
+<p>Explanation(s):
+1)   Rule(Emission(?urn:anyPerson), satisfies(?urn:anyPerson, SectionB), satisfies(?urn:anyPerson, SectionC) -> satisfies(?urn:anyPersone, SectionA))</p>
+
+<pre><code> Person1 satisfies SectionB
+ Person1 type Person
+ Person1 satisfies SectionC
+</code></pre>
+
+<p>}}}</p>
+
+<p>The first line of the result tells us that Person1 does indeed satisy SectionA.  This accords with our expected result.</p>
+
+<p>The explanation tells us <strong>why</strong> Person1 satisfies Section A in terms of our ontology.  In plain English, it tells us that Person1 satisfies Section A because they satisfy Section B and C, Person 1 is an individual of the &#8216;Person&#8217; class and because of the rule we defined.</p>
+
+<p>Note that Pellet has identifed only the <strong>relevant</strong> information from our ontology.  It has not listed any of the other rules, or any of the irrelevant sections.</p>
+
+<p>===What if there are multiple ways to satisfy a section?===</p>
+
+<p>In the test above, there is only one way that Person1 can satisfy Section A given the facts we provided: because they satisfy both sections B and C.  In other cases though, there may be multiple routes to the same conclusion.  To test this, change the facts for Person1 from:</p>
+
+<p>{{{</p>
+
+<pre><code>Facts: satisfies SectionB
+Facts: satisfies SectionC
+</code></pre>
+
+<p>}}}</p>
+
+<p>&#8230; to &#8230;</p>
+
+<p>{{{</p>
+
+<pre><code>Facts: satisfies SectionD
+</code></pre>
+
+<p>`   Facts: satisfies SectionE
+}}}</p>
+
+<p>Recall from the source rules that a person satisfies Section A if they satisfy <strong>either</strong> Section D <strong>or</strong> Section E.  In the new facts, Person1 satisfies <strong>both</strong> - so there are two ways they can satisfy Section A.</p>
+
+<p>Change the Pellet explain command to show up to 10 explanations:</p>
+
+<p>Linux:
+{{{
+./pellet.sh explain &#8211;max 10 &#8211;property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS
+}}}</p>
+
+<p>The output is:</p>
+
+<p>{{{
+Axiom: Person1 satisfies SectionA</p>
+
+<p>Explanation(s):
+1)   Person1 type Person</p>
+
+<pre><code> Person1 satisfies SectionD
+ Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</code></pre>
+
+<p>2)   satisfies domain Person</p>
+
+<pre><code> Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
+ Person1 satisfies SectionE
+</code></pre>
+
+<p>3)   satisfies domain Person</p>
+
+<pre><code> Person1 satisfies SectionD
+ Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</code></pre>
+
+<p>4)   Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -> satisfies(?urn:anyPerson, SectionA))</p>
+
+<pre><code> Person1 type Person
+ Person1 satisfies SectionE
+</code></pre>
+
+<p>}}}</p>
+
+<p>This shows <strong>four</strong> explanations for why Person1 satisfies SectionA.</p>
+
+<p>Explanation 1 is similar to the one in our first test: Person1 satisfies SectionA because they are a Person, they satisfy Section D, and there is a rule which says any person who satisfies Section D automatically satisfies Section A.</p>
+
+<p>Explanation 3 shows that you can infer Person1 satisies Section A because:
+* the domain of the satisfies property is the class &#8216;Person&#8217;
+* Person1 is in the domain of a satisfies property (in this case the property connected to &#8216;SectionD&#8217;), therefore Person1 must be a person.
+* The rule discussed above applies.</p>
+
+<p>If Explanation 3 is correct, we should not need to specify explicitly in our ontology that Person1 is a Person.  It should be sufficient to specify that Person1 satisfies SectionE.  To test this, <strong>temporarily remove</strong> the assertion that Person1 is a Person:
+{{{
+Individual: Person1</p>
+
+<pre><code>Types: &lt;-- REMOVE THIS LINE
+    Person &lt;-- REMOVE THIS LINE
+
+Facts:  
+ satisfies  SectionD,
+ satisfies  SectionE
+</code></pre>
+
+<p>}}}</p>
+
+<p>Now run the Pellet command again.  This time the explanation is:</p>
+
+<p>{{{
+Axiom: Person1 satisfies SectionA</p>
+
+<p>Explanation(s):
+1)   satisfies domain Person</p>
+
+<pre><code> Person1 satisfies SectionD
+ Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</code></pre>
+
+<p>2)   satisfies domain Person</p>
+
+<pre><code> Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
+ Person1 satisfies SectionE
+</code></pre>
+
+<p>}}}</p>
+
+<p>Notice how explanations based on the explicit fact that Person1 is a Person no longer appear. Don&#8217;t forget to put the lines you removed back in.</p>
+
+<p>Returning to the original explations, we can see Explanation 2 and 4 mirror the original Explanations 1 and 2 except that they refer to Section E.  As expected, this shows us that there are multiple ways the person in our test can satisfy Seciton A: via Section D or via Section E.</p>
+
+<p>==Chaining rules==</p>
+
+<p>Recall that a person satisfies Section A if they satisfy Section E.  Further, a person satisfies Section E if they satisfy both Section F and G.  Therefore, a person who satisfies Sections F and G should automatically satisfy Section A - because the rules chain together.</p>
+
+<p>To test this, change the facts about Person1 to:
+{{{
+Individual: Person1</p>
+
+<pre><code>Types: 
+    Person
+
+Facts:  
+ satisfies  SectionF,
+ satisfies  SectionG
+</code></pre>
+
+<p>}}}</p>
+
+<p>Now run the Pellet command again.  The first explanation is:</p>
+
+<p>{{{
+Axiom: Person1 satisfies SectionA</p>
+
+<p>Explanation(s):
+1)   Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionF), satisfies(?urn:anyPerson, SectionG) -> satisfies(?urn:anyPerson, SectionD))</p>
+
+<pre><code> Person1 satisfies SectionF
+ Person1 type Person
+ Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+ Person1 satisfies SectionG
+</code></pre>
+
+<p>}}}</p>
+
+<p>This tells us that Person1 satisfies Section A because:
+* they satisfy both Sections F and G;
+* of the rule which chains together Sections F, G, D;
+* of the rule which chains together Section D and Section A.</p>
+
+<p>=The complete ontology=</p>
+
+<p>{{{
+Prefix: : &lt;urn:ls#></p>
+
+<p>Ontology:</p>
+
+<p>ObjectProperty: satisfies</p>
+
+<pre><code>Characteristics: 
+    Asymmetric,
+    Irreflexive
+
+Domain: 
+    Person
+
+Range: 
+    Section
+</code></pre>
+
+<p>Class: Person</p>
+
+<pre><code>DisjointWith: 
+    Section
+</code></pre>
+
+<p>Class: Section</p>
+
+<pre><code>DisjointWith: 
+    Person
+</code></pre>
+
+<p>Individual: SectionG</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: SectionD</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: SectionC</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: SectionF</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: SectionE</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: SectionB</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Individual: Person1</p>
+
+<pre><code>Types: 
+    Person
+
+Facts:  
+ satisfies  SectionD,
+ satisfies  SectionE
+</code></pre>
+
+<p>Individual: SectionA</p>
+
+<pre><code>Types: 
+    Section
+</code></pre>
+
+<p>Rule:</p>
+
+<pre><code>Person(?), satisfies(?, SectionB), satisfies(?, SectionC) -&gt; satisfies(?, SectionA)
+</code></pre>
+
+<p>Rule:</p>
+
+<pre><code>Person(?), satisfies(?, SectionF), satisfies(?, SectionG) -&gt; satisfies(?, SectionD)
+</code></pre>
+
+<p>Rule:</p>
+
+<pre><code>Person(?), satisfies(?, SectionD) -&gt; satisfies(?, SectionA)
+</code></pre>
+
+<p>Rule:</p>
+
+<pre><code>Person(?), satisfies(?, SectionE) -&gt; satisfies(?, SectionA)
+</code></pre>
+
+<p>}}}</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/05/introduction-to-swrl-and-owl/">Introduction to SWRL and OWL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-05T04:17:46+10:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>=Purpose=</p>
+
+<p>The purpose of this tutorial is:
+* to show you how to express some basic knowledge and rules using the OWL and SWRL standards;
+* make your computer draw conclusions based on that knowledge, so you don&#8217;t have to.</p>
+
+<p>It is a jump straight in the deep end, but with extensive hand holding and exhaustive explanations.</p>
+
+<p>=Prerequisites=</p>
+
+<ul>
+<li>No programming experience required</li>
+<li>Must not feel oppressed by computers</li>
+</ul>
+
+
+<p>==Install Protoge and Pellet==</p>
+
+<ul>
+<li>Download and install Protege 4.2 following the instructions from the Protege homepage: protege.stanford.edu.</li>
+<li>Once installed, open Protege, select &#8216;Preferences&#8217; from the File menu, then select the &#8216;Plugins&#8217; tab.</li>
+<li>Click the &#8216;Check for downloads now&#8217; button.</li>
+<li>Tick the check box to install the &#8216;Pellet&#8217; plugin, and click Install.</li>
+<li>Restart Protege.</li>
+</ul>
+
+
+<p>==Get a text editor==</p>
+
+<p>You need a plain text editor such as Microsoft Notepad.  Wordprocessing software such as Microsoft Word will not work.</p>
+
+<p>=Knowledge=</p>
+
+<p>The knowledge we want to capture:</p>
+
+<p>Suppose there is a tax break for small business corporations.</p>
+
+<p>A corporation is eligible if:
+* it has annual revenue less than $2M, OR
+* it has less than five employees.</p>
+
+<p>Our objective is to capture this rule in a way that a computer can apply it to
+the particular facts of a given circumstance.</p>
+
+<p>=Ontology=</p>
+
+<p>Create a new file called helloSwrl.owl in your text editor.  You can add the code below progressively.  At the end, you should have the complete ontology - a specification of structured knowledge.</p>
+
+<p>The name of the ontology will be &#8216;hello_swrl&#8217;.</p>
+
+<p>We specify this as a &#8216;URI&#8217;: a unique name that has a special form:
+{{{</p>
+
+<pre><code>Ontology: 
+</code></pre>
+
+<p>}}}
+==Define some namespaces==</p>
+
+<p>Namespaces just allow you to give precise names to things in the ontology,
+ensuring that different things do not have the same name.  A full name is the
+namespace + the local name.  This is similar to how some forms request make you
+select &#8216;Mr, Mrs&#8217; or whatever as a title - it just reduces the chance of two
+different people having the same name.</p>
+
+<p>Namespace prefixes allow you to use a shorthand way to refer to a namespace
+rather than writing out the full namespace every time.
+{{{</p>
+
+<pre><code>Prefix: : &lt;urn:hello_swrl#&gt;
+</code></pre>
+
+<p>}}}
+This defines a default namespace for everything that does not otherwise have a
+namespace defined.
+{{{</p>
+
+<pre><code>Prefix: xsd: 
+</code></pre>
+
+<p>}}}
+Here we are defining the prefix &#8216;xsd&#8217; and associating it with the namespace
+&#8216;http://www.w3.org/2001/XMLSchema#&#8217; - a namespace defined by the W3C.
+{{{</p>
+
+<pre><code>    Prefix: swrlb: 
+</code></pre>
+
+<p>}}}
+This imports a namespace to do with functions built into SWRL, and gives it the
+&#8216;swrlb&#8217; prefix.</p>
+
+<p>Note that although these namespaces look like a web page address, it does not necessarily mean they point to a web page.</p>
+
+<p>==Define classes==</p>
+
+<p>A class is a group of individuals, like a class in school.  &#8216;Individuals&#8217; are <strong>particular</strong> things that are members of that class.  Usually both the individuals and the class have names.</p>
+
+<p>For example: &#8216;Year 7 Pottery&#8217; is the name of a class of students.  &#8216;Bobby Little&#8217; is
+the name of a boy in that class.  In OWL terms, people would say that Bobby Little is a &#8216;member of&#8217; Year 7 Pottery, is an &#8216;individual in&#8217; Year 7 Pottery or an &#8216;instance of&#8217; Year 7 Pottery.  Bobby Little can of course be members of other classes at the same time.  And the class can exist without Boddy Little or even if there are no students in it.</p>
+
+<p>We&#8217;ll define a new class called &#8216;Corporation&#8217; in the default namespace:
+{{{</p>
+
+<pre><code>Class: Corporation
+</code></pre>
+
+<p>}}}</p>
+
+<p>The corporation has two bits of data associated with that we are interested in:
+* Number of employees
+* annual revenue</p>
+
+<p>The simplest way to express this is using &#8216;datatype properties&#8217;.  Data type
+properties express that a particular bit of data may be connected to a
+particular individual.</p>
+
+<p>Continuing the school class example above, we may want to express that members
+of &#8216;Year 7 Pottery&#8217; have a particular grade for the semester.</p>
+
+<p>The properties have <strong>a subject, a predicate and an object</strong>.  These mirror the grammatical subject and object in a sentence.  For example, in the sentence &#8216;the corporation has an annual revenue of $1M&#8217;, you can identify a subject, predicate and object.  There are actually several ways to identify a subject, predicate and object in this sentence.  You should choose one that makes most sense to humans - the computer does not care so long as you are  consistent.</p>
+
+<p>One way is to say the subject is &#8216;a corporation&#8217;, the predicate is &#8216;has an annual revenue&#8217; and the object is &#8216;$1M&#8217;.  In OWL, the class that is the subject of a property is called the &#8216;domain&#8217; and the class that is the object is called the &#8216;range&#8217;.</p>
+
+<p>When we define these datatype properties, we are saying that individuals in this class <strong>can</strong> have these properties.  We are not attaching them to any particular individuals yet.  It is as if we are just setting a placeholder or container for them, which may or may not be filled.  So the datatype properties attach to classes, <strong>not</strong> individuals.  This is a very important distinction.</p>
+
+<p>Hence, we declare a datatype property for annual revenue called &#8216;hasAnnualRevenue&#8217;:
+{{{</p>
+
+<pre><code>DataProperty: hasAnnualRevenue
+      Domain:  Corporation
+  Range: xsd:integer
+  Characteristics: Functional
+</code></pre>
+
+<p>}}}
+&#8216;Domain: Corporation&#8217; means that this is a property of the Corporation class.
+&#8216;Range: xsd:integer&#8217; means that this property is an integer.
+&#8216;Characteristics: Functional&#8217; means that each Corporation has only one number for its revenue.</p>
+
+<p>We do the same thing again for the number of employees:
+{{{</p>
+
+<pre><code>DataProperty: hasNumberOfEmployees
+        Characteristics:  Functional
+    Domain: Corporation    
+    Range: xsd:integer
+</code></pre>
+
+<p>}}}
+How to we denote whether or not a corporation is eligble? We create a class called &#8216;Eligible&#8217;.  Eligible corporations will be members of that class.
+{{{</p>
+
+<pre><code>Class: Eligible
+</code></pre>
+
+<p>}}}
+There are two tests in this rule: the annual revenue and the employees test.  We&#8217;ll just focus on the first limb for the moment.</p>
+
+<p>First we will write the rule in a simplified format so we are sure we understand
+it:
+{{{</p>
+
+<pre><code>Corporation(?corporation) ^ hasAnnualRevenue(?corporation,?revenue) ^ lessThan(?revenue,2000000) -&gt; Eligible(?corporation)
+</code></pre>
+
+<p>}}}
+The rule has two main parts: the &#8216;body&#8217; and the &#8216;head&#8217;, separated by the &#8216;->&#8217; characters.  Within the body, there are three &#8216;atoms&#8217;, separated by the &#8217;<sup>&#8217;</sup> character.</p>
+
+<p>You can think of each atom as a sort of filter applied to all the individuals in the ontology.  The objective is to use the filters to narrow down the the individuals we are interested in.</p>
+
+<p>With a filter, either things pass through or they don&#8217;t. Another name for a filter is a &#8216;predicate&#8217; - an expression that resolves to either true or false.</p>
+
+<p>Each predicate also labels the things that pass through the filter - called
+&#8216;binding&#8217;.  Things that do not pass through the filter are discarded.</p>
+
+<p>The things in this context are individuals in the ontology.  Some pass through
+the filter and are bound to a variable.</p>
+
+<p>The first atom:
+{{{</p>
+
+<pre><code>Corporation(?corporation)
+</code></pre>
+
+<p>}}}
+This means &#8216;look for individuals in the ontology that are instances of the &#8220;Corporation&#8221; class.
+Bind those individuals to the variable &#8216;corporation&#8217;.&#8221;  (The &#8216;?&#8217; means it is a variable.)</p>
+
+<p>Since those individuals are bound to ?corporation, we can use them elsewhere in the rule.</p>
+
+<p>The second atom:
+{{{</p>
+
+<pre><code>hasAnnualRevenue(?corporation,?revenue)
+</code></pre>
+
+<p>}}}
+This means &#8216;find all the particular individuals which are bound to the ?corporation variable and have the property &#8220;hasAnnualRevenue&#8221;. Then bind the the revenue number for each individual to the variable &#8220;revenue&#8221;.&#8217;</p>
+
+<p>The third atom:
+{{{</p>
+
+<pre><code>lessThan(?revenue,2000000)
+</code></pre>
+
+<p>}}}
+This means &#8216;filter out revenue numbers less than 2,000,000&#8217;.</p>
+
+<p>Recall the atoms in the body all have to be true.  So the combined effect of the atoms above is to select <strong>all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000</strong>.  The filters apply cumulatively.</p>
+
+<p>Now we have isolated the individual corporations we are interested in, we want to <strong>make them eligible</strong>.  The head of the rule just takes all individuals bound to the ?corporation variable and makes them members of the class &#8216;Eligible&#8217;:
+{{{</p>
+
+<pre><code>Eligible(?corporation)
+</code></pre>
+
+<p>}}}
+So the effect of the whole rule is <strong>all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000 are eligible</strong>.</p>
+
+<p>=Translating to SWRL=</p>
+
+<p>You can see that expressing this in plain English is not really longer than the formal definition which Protege understands. However, in order to encode the rules in SWRL we need to add namespaces and prefixes.  The basic logic and structure is the same.</p>
+
+<p>We need <strong>two</strong> SWRL rules to capture our logic.  This is because the corporation is eligible if it has annual revenue less than $2M, <strong>or</strong> it has less than five employees.</p>
+
+<p>The first rule:
+{{{</p>
+
+<pre><code>Rule: 
+Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)
+</code></pre>
+
+<p>}}}
+Note:
+* We have replaced each variable name with a &#8216;URI&#8217; in angle brackets.
+* To do the comparison between the actual revenue and the function, we reference a &#8216;built in&#8217; function called &#8216;lessThan&#8217; in the &#8216;swrlb&#8217; namespace.  This is part of the SWRL specification in the W3C recommendation.</p>
+
+<p>The second rule is the same as the first except that it refers to number of employees instead of revenue:
+{{{</p>
+
+<pre><code>Rule: 
+Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)
+</code></pre>
+
+<p>}}}</p>
+
+<p>=Facts=</p>
+
+<p>So far we have defined a framework for our data, consisting of some classes and properties, and some rules which operate on that data.  Now we can provide some test data.</p>
+
+<p>Our test data consists of three corporations:</p>
+
+<p>Acme Corp:
+* Revenue: $1M dollars.
+* Employees: 10</p>
+
+<p>Maas Corp:
+* Revenue: $3M dollars
+* Employees: 4
+ 
+Globex Corp:
+* Revenue: $5M dollars
+* Employees: 15</p>
+
+<p>The expected results are:
+* Acme Corp is eligible because it has a revenue of less than $2M dollars.
+* Maas Corp is eligible because it has less than 5 employees.
+* Globex Corp is <strong>not</strong> eligible because it meets neither of the revenue or employees tests.</p>
+
+<p>The test data:
+{{{</p>
+
+<pre><code>Individual: AcmeCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 1000000
+    Facts: hasNumberOfEmployees 5
+
+Individual: MaasCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 3000000
+    Facts: hasNumberOfEmployees 4
+
+Individual: GlobexCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 5000000
+    Facts: hasNumberOfEmployees 15
+</code></pre>
+
+<p>}}}</p>
+
+<p>This is the full ontology which should now be saved in your file hello_swrl.owl:</p>
+
+<p>{{{</p>
+
+<p>Prefix: swrl:
+Prefix: xsd:
+Prefix: swrlb:
+Prefix: : &lt;urn:hello_swrl#></p>
+
+<p>Ontology:</p>
+
+<p>Class: Corporation</p>
+
+<p>Class: Eligible</p>
+
+<p>DataProperty: hasNumberOfEmployees</p>
+
+<pre><code>Characteristics: 
+    Functional
+
+Domain: 
+    Corporation
+
+Range: 
+    xsd:integer
+</code></pre>
+
+<p>DataProperty: hasAnnualRevenue</p>
+
+<pre><code>Characteristics: 
+    Functional
+
+Domain: 
+    Corporation
+
+Range: 
+    xsd:integer
+
+
+
+Rule: 
+Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)
+
+Rule: 
+Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)
+
+
+
+Individual: AcmeCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 1000000
+    Facts: hasNumberOfEmployees 5
+
+Individual: MaasCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 3000000
+    Facts: hasNumberOfEmployees 4
+
+Individual: GlobexCorp
+    Types: Corporation
+    Facts: hasAnnualRevenue 5000000
+    Facts: hasNumberOfEmployees 15
+</code></pre>
+
+<p>}}}</p>
+
+<p>=Testing in Protege=</p>
+
+<p>You should now be able to open hello_swrl.owl in Protege.  If you get &#8216;Load Error&#8217; dialogue box, there is mostly likely a typo in your ontology.  Click on the &#8216;ManchesterOWLSyntaxOntologyParser&#8217; tab.  The information in that dialog box will help you hunt down the error.</p>
+
+<p>From the &#8216;Reasoner&#8217; menu, select &#8216;Pellet&#8217;, then press Ctrl-R to start the reasoner.</p>
+
+<p>You should now be able to click on &#8216;Corporation&#8217; in the &#8216;Class hierarchy tab&#8217; and see the three companies that are members of that class.</p>
+
+<p>[[image:corporation.png|link=source]]</p>
+
+<p>Then click on the &#8216;Eligible&#8217; class and see that only the two companies we expect are members of that class, excluding GlobexCorp.</p>
+
+<p>[[image:eligible.png|link=source]]</p>
+
+<p>Now click on the small &#8216;?&#8217; next to &#8216;AcmeCorp&#8217;.  This will show the reasons why AcmeCorp isEligible.</p>
+
+<p>[[image:explanation.png|link=source]]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/05/xaml-notes/">XAML Notes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-05T03:49:45+10:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Every XAML element corresponds to a .NET class.<br/>
+This creates a new class &#8216;Window1&#8217; inheriting from &#8216;Window&#8217;:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Window</span> <span class="na">x:class=</span><span class="s">&quot;MyNamespace.Window1&quot;</span><span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The XAML XML namespaces map to collections of .NET namespaces.  The main ones are:</p>
+
+<ul>
+<li>xmlns=&#8221;&#8230;presentation&#8221;  - all the .NET WPF namespaces</li>
+<li>xmlns:x=&#8221;&#8230; xaml&#8221; - all the XAML .NET namespaces</li>
+</ul>
+
+
+<p>To reference classes outside the WPF or XAML namespaces, you need to map the .NET namespace to a XAML namespace:
+xmlns:myPrefix=&#8221;clr-namespace:myDotNetNamespace;assembly=myDotNetAssembly&#8221;</p>
+
+<p>Several types of XAML properties:</p>
+
+<ul>
+<li>Simple properties, eg align=&#8221;center&#8221;.  Type converters change the string to the type of the property.</li>
+<li>Complex properties, eg .  This represents a property on the Grid class.</li>
+</ul>
+
+
+<p>Markup extensions in curly brackets {}: DSL for bindings and the like.</p>
+
+<p>Attached properties, eg &lt;Grid.Row=0/>, appear in child element but are properties of parent element.</p>
+
+<p>Two ways to find elements in XAML:</p>
+
+<ul>
+<li>LogicalTreeHelper</li>
+<li>FrameworkElement.FindName(&#8230;)</li>
+</ul>
+
+
+<p>How to refer to another XAML element without binding: x:Reference=&#8221;nameOfElement&#8221;.</p>
+
+<p>How to bind DataContext to viewmodel:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;UserControl</span> <span class="err">...</span> <span class="na">DataContext=</span><span class="s">&quot;{Binding RelativeSource={RelativeSource Self}, Path=UrViewModelPropertyInCodeBehind}&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/04/how-to-bind-the-name-of-a-the-selected-radio-button-to-a-string-property/">How to Bind the Name of a the Selected Radio Button to a String Property</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-04T02:41:00+10:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There are three radio buttons:
+- Unknown
+- True
+- False</p>
+
+<p>The ViewModel has a string property for the name of the selected button.</p>
+
+<p>The radio buttons should reflect the current value of the property and vice versa: two way binding.</p>
+
+<p>Simple? F&amp;*K no.</p>
+
+<p>The XAML for the control:</p>
+
+<p>[xml]</p>
+
+<p>&lt;UserControl x:Class=&#8221;CustomControls.DecisionPicker&#8221;</p>
+
+<pre><code>xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:local="clr-namespace:CustomControls" mc:Ignorable="d"
+d:DesignHeight="300" d:DesignWidth="400" &gt;
+&lt;UserControl.Resources&gt;
+    &lt;local:RadioButtonBoolToDecisionString x:Key="RadioButtonBoolToDecisionString"/&gt;
+&lt;/UserControl.Resources&gt;
+    &lt;StackPanel  x:Name="DecisionRadioButtonControl"  &gt;
+    &lt;RadioButton GroupName="g1" IsChecked="{Binding Path=DummyDecision, Mode=TwoWay, Converter={StaticResource RadioButtonBoolToDecisionString}, ConverterParameter=Unknown}"  x:Name="UnknownRadioButton" Content="Unknown" ClickMode="Press" /&gt;
+    &lt;RadioButton GroupName="g1" IsChecked="{Binding Path=DummyDecision, Mode=TwoWay, Converter={StaticResource RadioButtonBoolToDecisionString}, ConverterParameter=True}" x:Name="TrueRadioButton" Content="True" /&gt;
+    &lt;RadioButton GroupName="g1" IsChecked="{Binding Path=DummyDecision, Mode=TwoWay, Converter={StaticResource RadioButtonBoolToDecisionString}, ConverterParameter=False}" x:Name="FalseRadioButton" Content="False" /&gt;
+    &lt;/StackPanel&gt;
+</code></pre>
+
+<p></UserControl></p>
+
+<p>[/xml]</p>
+
+<p>Note:</p>
+
+<ul>
+<li><p>New up the value converter as a static resource in the XAML</p></li>
+<li><p>The DataContext of the control is instantiated ViewModel.  The is for the MainPage.  But the control inherits it.</p></li>
+<li><p>The Path of the binding is the string property on the instantiated ViewModel.</p></li>
+</ul>
+
+
+<p>The value converter:</p>
+
+<p>[csharp]
+public class RadioButtonBoolToDecisionString : IValueConverter</p>
+
+<pre><code>{
+    // Convert method is from the ViewModel -&gt; the IsChecked boolean property of the radio button
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        var parameterString = (string)parameter;
+        string decisionString = System.Convert.ToString(value);
+
+        if (parameterString == decisionString)
+            return true;
+
+        return false;
+    }
+
+    // ConvertBack is from the IsChecked property of the radio button to the string property on the ViewModel
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        var decisionStringFromControl = (string) parameter;
+        return decisionStringFromControl;
+
+    }
+}
+</code></pre>
+
+<p>[/csharp]</p>
+
+<p>The ViewModel and MainPage setup:</p>
+
+<p>[csharp]</p>
+
+<p> public partial class MainPage : UserControl</p>
+
+<pre><code>{
+    public MainPage()
+    {
+        InitializeComponent();
+
+        var dvm = new DummyViewModel();
+        DataContext = dvm;
+        dvm.InitDecision("False");
+
+    }
+}
+</code></pre>
+
+<p> public class DummyViewModel : INotifyPropertyChanged</p>
+
+<pre><code>{
+    private string _dummyDecision;
+
+    public string DummyDecision { get { return _dummyDecision; }
+    set
+    {
+            _dummyDecision = value;
+
+    }}
+
+    public void InitDecision(string decision)
+    {
+        _dummyDecision = decision;
+        OnPropertyChanged("DummyDecision");
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChangedEventHandler handler = PropertyChanged;
+        if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+</code></pre>
+
+<p>[/csharp]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/03/my-simple-wpf-data-binding-example-binding-to-poco-source-object/">My Simple WPF Data Binding Example - Binding to POCO Source Object</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-03T04:25:10+10:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>[xml]
+&lt;Window</p>
+
+<pre><code>    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:BindingExamples" x:Class="BindingExamples.MainWindow"
+    Title="MainWindow" Height="350" Width="525"
+    &gt;
+&lt;Window.DataContext&gt;
+    &lt;local:TheSourceObject/&gt;
+&lt;/Window.DataContext&gt;
+
+
+&lt;Grid&gt;
+    &lt;TextBox Text="{Binding TheChangingProperty, Mode=OneWay}"/&gt;
+
+&lt;/Grid&gt;
+</code></pre>
+
+<p></Window></p>
+
+<p>[/xml]</p>
+
+<p>[csharp]
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;</p>
+
+<p>namespace BindingExamples
+{</p>
+
+<pre><code>/// &lt;summary&gt;
+/// Interaction logic for MainWindow.xaml
+/// &lt;/summary&gt;
+public partial class MainWindow : Window
+{
+    private TheSourceObject _mySourceObject;
+
+    public MainWindow()
+    {
+        InitializeComponent();
+        _mySourceObject = new TheSourceObject();
+        //DataContext = _mySourceObject;
+
+    }
+}
+
+public class TheSourceObject : INotifyPropertyChanged 
+{
+    private string _theChangingProperty;
+    // has to implement INotifyPropertyChanged
+
+    public TheSourceObject()
+    {
+        var worker = new BackgroundWorker();
+        worker.DoWork += worker_DoWork;
+        worker.RunWorkerAsync();
+
+    }
+
+    void worker_DoWork(object sender, DoWorkEventArgs e)
+    {
+        ChangeProperty();
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChangedEventHandler handler = PropertyChanged;
+        if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    public string TheChangingProperty
+    {
+        get { return _theChangingProperty;
+        }
+    }
+
+    void ChangeProperty()
+    {
+        int count = 0;
+        while (count &lt; 100)
+        {
+            _theChangingProperty = Convert.ToString(count);
+            Debug.WriteLine("Changed property to : " + _theChangingProperty);
+            OnPropertyChanged("TheChangingProperty");
+            Thread.Sleep(2000);
+            count++;
+        }
+    }
+}
+</code></pre>
+
+<p>}
+[/csharp]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/02/simple-background-worker/">Simple Background Worker</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-02T08:54:05+10:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>[csharp]</p>
+
+<p>var worker = new BackgroundWorker();</p>
+
+<pre><code>        worker.DoWork += worker_DoWork;
+        worker.RunWorkerAsync();
+</code></pre>
+
+<p>void worker_DoWork(object sender, DoWorkEventArgs e)</p>
+
+<pre><code>    {
+        // the actual work
+    }
+</code></pre>
+
+<p>[/csharp]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/25/parts-of-uri/">Parts of Uri</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-25T09:13:17+10:00" pubdate data-updated="true">Aug 25<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;scheme name&gt; : &lt;hierarchical part&gt; [ ? &lt;query&gt; ] [ # &lt;fragment&gt; ]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The hierarchical part can have an &#8216;authority&#8217;, like &#8216;username:password@&#8217;, then a host name, then optionally a colon followed by port number.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/23/how-to-sense-the-port-of-a-running-lightswitch-app-during-development/">How to Sense the Port of a Running Lightswitch App During Development</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-23T00:20:51+10:00" pubdate data-updated="true">Aug 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ma code: <a href="https://gist.github.com/3422254">https://gist.github.com/3422254</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/21/how-to-find-modified-entities-in-lightswitch/">How to Find Modified Entities in Lightswitch</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-21T22:06:20+10:00" pubdate data-updated="true">Aug 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Add to SaveChanges_Executing() hook (runs before EF writes scheduled changes to database):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'>    <span class="kt">var</span> <span class="n">remainingChangesToMyEntity</span> <span class="p">=</span>
+</span><span class='line'>            <span class="k">from</span> <span class="n">e</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="n">DataWorkspace</span><span class="p">.</span><span class="n">ApplicationData</span><span class="p">.</span><span class="n">Details</span><span class="p">.</span><span class="n">GetChanges</span><span class="p">().</span><span class="n">ModifiedEntities</span>
+</span><span class='line'>             <span class="k">where</span> <span class="n">e</span> <span class="k">is</span> <span class="n">MyEntity</span>
+</span><span class='line'>             <span class="k">select</span> <span class="n">e</span> <span class="k">as</span> <span class="n">MyEntity</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/21/wpf-cheat-sheet/">WPF Cheat Sheet</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control/">Run NuGet on build so you don&#8217;t have to keep libs in source control</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/16/location-of-windows-8-log-files/">Location of Windows 8 log files</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Nick Miller -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

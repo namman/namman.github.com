@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to bind the name of a the selected radio button to a string property - Junk I Would Otherwise Forget</title>
+  <meta name="author" content="Nick Miller">
+
+  
+  <meta name="description" content="There are three radio buttons:
+- Unknown
+- True
+- False The ViewModel has a string property for the name of the selected button. The radio buttons &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://namman.github.com/blog/2012/09/04/how-to-bind-the-name-of-a-the-selected-radio-button-to-a-string-property/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Junk I Would Otherwise Forget" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Junk I Would Otherwise Forget</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:namman.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Bind the Name of a the Selected Radio Button to a String Property</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-04T02:41:00+10:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>There are three radio buttons:
+- Unknown
+- True
+- False</p>
+
+<p>The ViewModel has a string property for the name of the selected button.</p>
+
+<p>The radio buttons should reflect the current value of the property and vice versa: two way binding.</p>
+
+<p>Simple? F&amp;*K no.</p>
+
+<p>The XAML for the control:</p>
+
+<p>[xml]</p>
+
+<p>&lt;UserControl x:Class=&#8221;CustomControls.DecisionPicker&#8221;</p>
+
+<pre><code>xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:local="clr-namespace:CustomControls" mc:Ignorable="d"
+d:DesignHeight="300" d:DesignWidth="400" &gt;
+&lt;UserControl.Resources&gt;
+    &lt;local:RadioButtonBoolToDecisionString x:Key="RadioButtonBoolToDecisionString"/&gt;
+&lt;/UserControl.Resources&gt;
+    &lt;StackPanel  x:Name="DecisionRadioButtonControl"  &gt;
+    &lt;RadioButton GroupName="g1" IsChecked="{Binding Path=DummyDecision, Mode=TwoWay, Converter={StaticResource RadioButtonBoolToDecisionString}, ConverterParameter=Unknown}"  x:Name="UnknownRadioButton" Content="Unknown" ClickMode="Press" /&gt;
+    &lt;RadioButton GroupName="g1" IsChecked="{Binding Path=DummyDecision, Mode=TwoWay, Converter={StaticResource RadioButtonBoolToDecisionString}, ConverterParameter=True}" x:Name="TrueRadioButton" Content="True" /&gt;
+    &lt;RadioButton GroupName="g1" IsChecked="{Binding Path=DummyDecision, Mode=TwoWay, Converter={StaticResource RadioButtonBoolToDecisionString}, ConverterParameter=False}" x:Name="FalseRadioButton" Content="False" /&gt;
+    &lt;/StackPanel&gt;
+</code></pre>
+
+<p></UserControl></p>
+
+<p>[/xml]</p>
+
+<p>Note:</p>
+
+<ul>
+<li><p>New up the value converter as a static resource in the XAML</p></li>
+<li><p>The DataContext of the control is instantiated ViewModel.  The is for the MainPage.  But the control inherits it.</p></li>
+<li><p>The Path of the binding is the string property on the instantiated ViewModel.</p></li>
+</ul>
+
+
+<p>The value converter:</p>
+
+<p>[csharp]
+public class RadioButtonBoolToDecisionString : IValueConverter</p>
+
+<pre><code>{
+    // Convert method is from the ViewModel -&gt; the IsChecked boolean property of the radio button
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        var parameterString = (string)parameter;
+        string decisionString = System.Convert.ToString(value);
+
+        if (parameterString == decisionString)
+            return true;
+
+        return false;
+    }
+
+    // ConvertBack is from the IsChecked property of the radio button to the string property on the ViewModel
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        var decisionStringFromControl = (string) parameter;
+        return decisionStringFromControl;
+
+    }
+}
+</code></pre>
+
+<p>[/csharp]</p>
+
+<p>The ViewModel and MainPage setup:</p>
+
+<p>[csharp]</p>
+
+<p> public partial class MainPage : UserControl</p>
+
+<pre><code>{
+    public MainPage()
+    {
+        InitializeComponent();
+
+        var dvm = new DummyViewModel();
+        DataContext = dvm;
+        dvm.InitDecision("False");
+
+    }
+}
+</code></pre>
+
+<p> public class DummyViewModel : INotifyPropertyChanged</p>
+
+<pre><code>{
+    private string _dummyDecision;
+
+    public string DummyDecision { get { return _dummyDecision; }
+    set
+    {
+            _dummyDecision = value;
+
+    }}
+
+    public void InitDecision(string decision)
+    {
+        _dummyDecision = decision;
+        OnPropertyChanged("DummyDecision");
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChangedEventHandler handler = PropertyChanged;
+        if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+</code></pre>
+
+<p>[/csharp]</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Nick Miller</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-04T02:41:00+10:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/exocortex/'>exocortex</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://namman.github.com/blog/2012/09/04/how-to-bind-the-name-of-a-the-selected-radio-button-to-a-string-property/" data-via="" data-counturl="http://namman.github.com/blog/2012/09/04/how-to-bind-the-name-of-a-the-selected-radio-button-to-a-string-property/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/03/my-simple-wpf-data-binding-example-binding-to-poco-source-object/" title="Previous Post: My simple WPF data binding example - binding to POCO Source Object">&laquo; My simple WPF data binding example - binding to POCO Source Object</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/09/05/xaml-notes/" title="Next Post: XAML notes">XAML notes &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/21/wpf-cheat-sheet/">WPF Cheat Sheet</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control/">Run NuGet on build so you don't have to keep libs in source control</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/16/location-of-windows-8-log-files/">Location of Windows 8 log files</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Nick Miller -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="http://namman.github.com/atom.xml" rel="self"/>
   <link href="http://namman.github.com/"/>
-  <updated>2012-12-22T16:49:15+11:00</updated>
+  <updated>2012-12-31T08:47:09+11:00</updated>
   <id>http://namman.github.com/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -12,5 +12,497 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[WPF Cheat Sheet]]></title>
+    <link href="http://namman.github.com/blog/2012/12/21/wpf-cheat-sheet/"/>
+    <updated>2012-12-21T06:52:00+11:00</updated>
+    <id>http://namman.github.com/blog/2012/12/21/wpf-cheat-sheet</id>
+    <content type="html"><![CDATA[<p>IValueConverter:
+Convert goes source object -> UI
+ConvertBack goes UI -> source object
+&#8216;paramater is passed in by UI.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;ObjectDataProvider</span> <span class="na">x:Key=</span><span class="s">&quot;ZoomOptions&quot;</span>
+</span><span class='line'><span class="na">MethodName=</span><span class="s">&quot;GetNames&quot;</span>
+</span><span class='line'><span class="na">ObjectType=</span><span class="s">&quot;{x:Type sys:Enum}&quot;</span>
+</span><span class='line'><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;ObjectDataProvider.MethodParameters&gt;</span>
+</span><span class='line'><span class="nt">&lt;x:Type</span> <span class="na">TypeName=</span><span class="s">&quot;bll:enumZoomOptions&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ObjectDataProvider.MethodParameters&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ObjectDataProvider&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;ComboBox</span> <span class="na">ItemsSource=</span><span class="s">&quot;{Binding Source={StaticResource ZoomOptions}}&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Run NuGet on build so you don't have to keep libs in source control]]></title>
+    <link href="http://namman.github.com/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control/"/>
+    <updated>2012-11-20T20:14:10+11:00</updated>
+    <id>http://namman.github.com/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control</id>
+    <content type="html"><![CDATA[<ul>
+<li>Check &#8216;Allow nuget to download missing packages during build&#8217;.  (Tools: Library Package Manager: Package Manager Settings).</li>
+<li>Check in repositories.config (in packages dir) and packages.config files (one for each project).</li>
+<li>Check in .nuget folder from root of solution (yes, even including the .exe)</li>
+<li>Right-click on Solution file -> Enable Nuget Package Restore</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Location of Windows 8 log files]]></title>
+    <link href="http://namman.github.com/blog/2012/11/16/location-of-windows-8-log-files/"/>
+    <updated>2012-11-16T21:38:14+11:00</updated>
+    <id>http://namman.github.com/blog/2012/11/16/location-of-windows-8-log-files</id>
+    <content type="html"><![CDATA[<p>$windows.~bt\Sources\Panther: Log location before Setup can access the drive.
+$windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event of a fatal error.
+%WINDIR%\Panther: Log location of Setup actions after disk configuration.
+%WINDIR%\Inf\Setupapi*.log: Used to log Plug and Play device installations.
+%WINDIR%\Memory.dmp: Location of memory dump from bug checks.
+%WINDIR%\Minidump*.dmp: Location of log minidumps from bug checks.
+%WINDIR%\System32\Sysprep\Panther: Location of Sysprep logs.
+%WINDIR%\System32\LogFiles\Srt\SrtTrail.txt: Startup repair log.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Expand root partition on Windows EC2 instance using AWS Console]]></title>
+    <link href="http://namman.github.com/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/"/>
+    <updated>2012-11-15T20:28:21+11:00</updated>
+    <id>http://namman.github.com/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console</id>
+    <content type="html"><![CDATA[<ul>
+<li>Stop instance.</li>
+<li>Create AMI from instance, choosing to expand partition.</li>
+<li>Start instance and log in</li>
+<li>Control Panel -> Create and Format Disk Partitions</li>
+<li>Extend partition</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Path to localDB instances]]></title>
+    <link href="http://namman.github.com/blog/2012/11/09/path-to-localdb-instances/"/>
+    <updated>2012-11-09T23:42:08+11:00</updated>
+    <id>http://namman.github.com/blog/2012/11/09/path-to-localdb-instances</id>
+    <content type="html"><![CDATA[<h2>C:\Users{user name}\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances></h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Validate XML file against schema]]></title>
+    <link href="http://namman.github.com/blog/2012/11/09/validate-xml-file-against-schema/"/>
+    <updated>2012-11-09T22:39:53+11:00</updated>
+    <id>http://namman.github.com/blog/2012/11/09/validate-xml-file-against-schema</id>
+    <content type="html"><![CDATA[<p>{{{ lang=csharp</p>
+
+<pre><code>/// 
+/// Validates XML file against schema.
+/// 
+internal class Validator
+{
+    private readonly IEnumerable _filesToValidate;
+    private readonly XmlSchemaSet _xmlSchemaSet;
+    private int _errorCount = 0;
+
+    // no namespaces in schema or target
+    public Validator(IEnumerable filesToValidate, string pathToSchema)
+    {
+        _filesToValidate = filesToValidate;
+        var schemaSet = new XmlSchemaSet();
+        schemaSet.Add(null, pathToSchema);
+        _xmlSchemaSet = schemaSet;
+    }
+
+
+    public Validator(IEnumerable filesToValidate, XmlSchemaSet xmlSchemaSet)
+    {
+        _filesToValidate = filesToValidate;
+        _xmlSchemaSet = xmlSchemaSet;
+    }
+
+    public bool AllValid()
+    {
+        _errorCount = 0;
+        foreach (var file in _filesToValidate)
+        {
+            ValidateFile(file);
+        }
+        Console.WriteLine(String.Format("\nTotal error count: {0}",_errorCount));
+        return _errorCount == 0;
+
+    }
+
+
+    void ValidateFile(string file)
+    {
+
+        var settings = new XmlReaderSettings();
+        settings.Schemas = _xmlSchemaSet;
+   //     settings.ValidationFlags =
+   //XmlSchemaValidationFlags.ReportValidationWarnings |
+   //XmlSchemaValidationFlags.ProcessIdentityConstraints |
+   //XmlSchemaValidationFlags.ProcessInlineSchema |
+   //XmlSchemaValidationFlags.ProcessSchemaLocation;
+        settings.ValidationType = ValidationType.Schema;
+        settings.CloseInput = true;
+        settings.ValidationEventHandler += (o, e) =&gt;
+                                               {
+                                                   _errorCount++;
+                                                   var message = String.Format("Line: {0} of {1}: {2}",
+                                                                               e.Exception.LineNumber, file, e.Message);
+                                                   Console.WriteLine(message);
+                                               };
+
+
+        using (XmlReader xmlReader = XmlReader.Create(file, settings))
+        {
+            while (xmlReader.Read())
+            {
+            }
+        }
+
+    }
+}
+</code></pre>
+
+<p>}}}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Awesome outline of date format strings for .NET]]></title>
+    <link href="http://namman.github.com/blog/2012/10/24/awesome-outline-of-date-format-strings-for-net/"/>
+    <updated>2012-10-24T05:26:49+11:00</updated>
+    <id>http://namman.github.com/blog/2012/10/24/awesome-outline-of-date-format-strings-for-net</id>
+    <content type="html"><![CDATA[<p>[[http://blog.stevex.net/string-formatting-in-csharp/]]</p>
+
+<p>Make nice time string for file name:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DateTime.Now.ToString("dd-MM-yyyy_hh-mm-tt")</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to remap key in linux]]></title>
+    <link href="http://namman.github.com/blog/2012/10/23/how-to-remap-key-in-linux/"/>
+    <updated>2012-10-23T01:56:52+11:00</updated>
+    <id>http://namman.github.com/blog/2012/10/23/how-to-remap-key-in-linux</id>
+    <content type="html"><![CDATA[<p>Use ##xev## to find the keycode for any key.</p>
+
+<p>To remap the annoying backslash on a British Standard 4822 keyboard to left shift:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~
+</span><span class='line'>xmodmap -e <span class="s2">&quot;keycode 94 = Shift_L&quot;</span>
+</span><span class='line'>xmodmap -pke &gt; .Xmodmap
+</span><span class='line'><span class="nb">echo </span>xmodmap .Xmodmap &gt; .xinitrc
+</span><span class='line'>chmod u+x .xinitrc
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Simple LINQ group]]></title>
+    <link href="http://namman.github.com/blog/2012/10/22/simple-linq-group/"/>
+    <updated>2012-10-22T01:20:19+11:00</updated>
+    <id>http://namman.github.com/blog/2012/10/22/simple-linq-group</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'> <span class="kt">int</span><span class="p">[]</span> <span class="n">numbers</span> <span class="p">=</span> <span class="p">{</span> <span class="m">5</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0</span> <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kt">var</span> <span class="n">numberGroups</span> <span class="p">=</span>
+</span><span class='line'>            <span class="k">from</span> <span class="n">n</span> <span class="k">in</span> <span class="n">numbers</span>
+</span><span class='line'>            <span class="k">group</span> <span class="n">n</span> <span class="n">by</span> <span class="n">n</span> <span class="p">%</span> <span class="m">5</span> <span class="k">into</span> <span class="n">g</span>
+</span><span class='line'>            <span class="k">select</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Remainder</span> <span class="p">=</span> <span class="n">g</span><span class="p">.</span><span class="n">Key</span><span class="p">,</span> <span class="n">Numbers</span> <span class="p">=</span> <span class="n">g</span> <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to concatenate PDF files in linux]]></title>
+    <link href="http://namman.github.com/blog/2012/10/02/how-to-concatenate-pdf-files-in-linux/"/>
+    <updated>2012-10-02T20:25:45+10:00</updated>
+    <id>http://namman.github.com/blog/2012/10/02/how-to-concatenate-pdf-files-in-linux</id>
+    <content type="html"><![CDATA[<p>{{{ lang=bash
+pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
+}}}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[When to use decimals and when to use floats or doubles]]></title>
+    <link href="http://namman.github.com/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles/"/>
+    <updated>2012-10-02T10:37:03+10:00</updated>
+    <id>http://namman.github.com/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles</id>
+    <content type="html"><![CDATA[<p>[[http://stackoverflow.com/questions/618535/what-is-the-difference-between-decimal-float-and-double-in-c/618596#618596|http://stackoverflow.com/questions/618535/what-is-the-difference-between-decimal-float-and-double-in-c/618596#618596]]</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to check if a sequence is ordered]]></title>
+    <link href="http://namman.github.com/blog/2012/10/02/how-to-check-if-a-sequence-is-ordered-in-a-contract/"/>
+    <updated>2012-10-02T10:14:55+10:00</updated>
+    <id>http://namman.github.com/blog/2012/10/02/how-to-check-if-a-sequence-is-ordered-in-a-contract</id>
+    <content type="html"><![CDATA[<p>Extension method {{{SequenceEqual(this IEnumerable, IEqualityComparer)}}}</p>
+
+<p>Eg:
+{{{ lang=csharp
+Contract.Requires(remainingShares.OrderByDescending(s => s.PurchaseDate).SequenceEqual(remainingShares));
+}}}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Scala SBT build definitions: it's turtles all the way down!]]></title>
+    <link href="http://namman.github.com/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down/"/>
+    <updated>2012-09-29T09:33:10+10:00</updated>
+    <id>http://namman.github.com/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down</id>
+    <content type="html"><![CDATA[<p>From: [[https://github.com/harrah/xsbt/wiki/Getting-Started-Full-Def]]</p>
+
+<p>{{{
+ hello/                  # your project&#8217;s base directory</p>
+
+<pre><code> Hello.scala         # a source file in your project (could be in
+                     #   src/main/scala too)
+
+ build.sbt           # build.sbt is part of the source code for the
+                     #   build definition project inside project/
+
+ project/            # base directory of the build definition project
+
+     Build.scala     # a source file in the project/ project,
+                     #   that is, a source file in the build definition
+
+     build.sbt       # this is part of a build definition for a project
+                     #   in project/project ; build definition's build
+                     #   definition
+
+
+     project/        # base directory of the build definition project
+                     #   for the build definition
+
+         Build.scala # source file in the project/project/ project
+</code></pre>
+
+<p>}}}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Delete files older than 7 days]]></title>
+    <link href="http://namman.github.com/blog/2012/09/21/delete-files-older-than-7-days/"/>
+    <updated>2012-09-21T22:22:06+10:00</updated>
+    <id>http://namman.github.com/blog/2012/09/21/delete-files-older-than-7-days</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find . ! -newermt <span class="s2">&quot;7 days ago&quot;</span> -delete
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Difference between Super Set and Proper Super Set (also subsets)]]></title>
+    <link href="http://namman.github.com/blog/2012/09/15/difference-between-super-set-and-proper-super-set-also-subsets/"/>
+    <updated>2012-09-15T02:20:33+10:00</updated>
+    <id>http://namman.github.com/blog/2012/09/15/difference-between-super-set-and-proper-super-set-also-subsets</id>
+    <content type="html"><![CDATA[<p>{{{ lang=csharp
+var first = new HashSet() {1,2};
+var second = new HashSet() {1,2};
+var isProperSuperSet = first.IsProperSupersetOf(second);
+Console.WriteLine (isProperSuperSet); // false
+var isSuperSet = first.IsSupersetOf(second);
+Console.WriteLine (isSuperSet); // true
+}}}</p>
+
+<p>Duh.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Example of using Enum.HasFlags]]></title>
+    <link href="http://namman.github.com/blog/2012/09/15/example-of-using-enum-hasflags/"/>
+    <updated>2012-09-15T00:39:40+10:00</updated>
+    <id>http://namman.github.com/blog/2012/09/15/example-of-using-enum-hasflags</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">public</span> <span class="k">enum</span> <span class="n">Coffees</span> <span class="p">{</span>
+</span><span class='line'>     <span class="n">None</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
+</span><span class='line'>     <span class="n">BasicCoffee</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+</span><span class='line'>     <span class="n">WithMilk</span> <span class="p">=</span> <span class="m">8</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'><span class="na"> </span>
+</span><span class='line'><span class="na">[Flags]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">enum</span> <span class="n">FlaggedCoffees</span> <span class="p">{</span>
+</span><span class='line'>     <span class="n">None</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
+</span><span class='line'>     <span class="n">BasicCoffee</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+</span><span class='line'>     <span class="n">WithMilk</span> <span class="p">=</span> <span class="m">8</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>  
+</span><span class='line'><span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">Coffees</span> <span class="n">plain</span> <span class="p">=</span> <span class="n">Coffees</span><span class="p">.</span><span class="n">BasicCoffee</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">plain</span><span class="p">);</span>  <span class="c1">// BasicCoffee</span>
+</span><span class='line'>  <span class="n">Coffees</span> <span class="n">plainWithMilk</span> <span class="p">=</span>  <span class="n">Coffees</span><span class="p">.</span><span class="n">BasicCoffee</span> <span class="p">|</span> <span class="n">Coffees</span><span class="p">.</span><span class="n">WithMilk</span> <span class="p">;</span>
+</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">plainWithMilk</span><span class="p">);</span> <span class="c1">// 9 (the result of bitwise OR operation on Coffees.BasicCoffee and Coffees.WithMilk)</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="kt">var</span> <span class="n">basicPlusMilk</span> <span class="p">=</span>  <span class="n">FlaggedCoffees</span><span class="p">.</span><span class="n">BasicCoffee</span> <span class="p">|</span> <span class="n">FlaggedCoffees</span><span class="p">.</span><span class="n">WithMilk</span> <span class="p">;</span>
+</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">basicPlusMilk</span><span class="p">);</span>  <span class="c1">// BasicCoffee, WithMilk</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="kt">bool</span> <span class="n">hasMilk</span> <span class="p">=</span> <span class="n">basicPlusMilk</span><span class="p">.</span><span class="n">HasFlag</span><span class="p">(</span><span class="n">FlaggedCoffees</span><span class="p">.</span><span class="n">WithMilk</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">hasMilk</span><span class="p">);</span> <span class="c1">// True </span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Personal Programming Principles]]></title>
+    <link href="http://namman.github.com/blog/2012/09/12/personal-programming-principles/"/>
+    <updated>2012-09-12T23:10:32+10:00</updated>
+    <id>http://namman.github.com/blog/2012/09/12/personal-programming-principles</id>
+    <content type="html"><![CDATA[<p>Sententious advice abounds.  What has worked for me:</p>
+
+<p>| Principle | Where I first got it| Example |
+| Start in the middle. | Daryel Akerlind | For f*&k;&#8217;s sake don&#8217;t start a new module by sketching out interfaces and base classes - a recipe for over engineering. |
+| If data structures are likely to change a lot, but the behaviours not so much: use OO.  For the reverse, use FP.  If both, use OO. | &#8220;Real World Functional Programming&#8221; book. | FP: use C# extension methods for manipulating generated classes from Odata service reference.  Database is not going to change much.  If it does, you&#8217;re hosed anyway. |
+| Use small and cohesive functions and classes. | &#8220;Clean Code&#8221; book. |
+| For tricky and self contained: TDD.  For sprawling and fluid: TAD (test after development). | Personal goddamn experience. |
+| Depend on abstractions, not implementations. | Head First Design Patterns book. | Creating simple interfaces for everything that gets constructor injected seems like a hassle at first.  But it will be more of a hassle later when you can&#8217;t mock the dependencies.  Then you&#8217;ll have to extract interfaces from classes that are already throughout your code.  So just do it up front.  ReSharper makes it easy. |
+| Just &#8216;pushing through&#8217; never bloody works. | Daryel Akerlind | |
+| Use contracts and exceptions to flag things you don&#8217;t expect.  Don&#8217;t let these cases fall into an &#8216;else&#8217; branch or a default value. | Personal goddamned experience. | Slam a contract assertion in before returning from within an else block. |</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What RegexOptions.ExplicitCapture does]]></title>
+    <link href="http://namman.github.com/blog/2012/09/12/what-regexoptions-explicitcapture-does/"/>
+    <updated>2012-09-12T20:40:23+10:00</updated>
+    <id>http://namman.github.com/blog/2012/09/12/what-regexoptions-explicitcapture-does</id>
+    <content type="html"><![CDATA[<p>public static RegexOptions ExplicitCapture = RegexOptions.ExplicitCapture
+in enum RegexOptions</p>
+
+<p>Summary:
+Specifies that the only valid captures are explicitly named or numbered groups of the form (?…). This allows unnamed parentheses to act as noncapturing groups without the syntactic clumsiness of the expression (?:…).</p>
+
+<p>Eg, this only captures the first letter of a the string, and the period at the end:</p>
+
+<p>{{{ csharp
+ var r = new Regex(@&#8221;(<sup>[a-z])|.\s+(.)&#8221;,</sup> RegexOptions.ExplicitCapture);
+}}}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to update metadata source for Odata Service Reference]]></title>
+    <link href="http://namman.github.com/blog/2012/09/10/how-to-update-metadata-source-for-odata-service-reference/"/>
+    <updated>2012-09-10T22:43:33+10:00</updated>
+    <id>http://namman.github.com/blog/2012/09/10/how-to-update-metadata-source-for-odata-service-reference</id>
+    <content type="html"><![CDATA[<ul>
+<li>Show all files</li>
+<li>$(Project)/Service References/OdataApplicationData/Reference.datasvcmap</li>
+</ul>
+
+
+<p>{{{ lang=xml</p>
+
+<p>  }}}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to execute SWRL rules in Protege with Drools]]></title>
+    <link href="http://namman.github.com/blog/2012/09/07/how-to-execute-swrl-rules-in-protege-with-drools/"/>
+    <updated>2012-09-07T08:12:50+10:00</updated>
+    <id>http://namman.github.com/blog/2012/09/07/how-to-execute-swrl-rules-in-protege-with-drools</id>
+    <content type="html"><![CDATA[<p>=Prerequisites=</p>
+
+<p>Download and install Protege 3.*: http://protege.stanford.edu/download/registered.html</p>
+
+<p>At time of writing, 3.5 beta is the latest version.</p>
+
+<p>Note that Protege 4.* does not yet support Drools.</p>
+
+<p>=Set up ontology=</p>
+
+<p>We will reuse the ontology from previous examples.  This appears below in RDF/XML format  Save this to a text file called &#8216;droolsDemo.owl&#8217;:</p>
+
+<p>{{{</p>
+
+<p>]></p>
+
+<p>}}}</p>
+
+<p>=Run rules in Protege using Drools=</p>
+
+<p>Open the rules in Protege.  Click on the &#8216;Individuals&#8217; tab, then on &#8216;Person1&#8217;.  Notice that Person1 satisfies only sections D and E.  This is because we have asserted this in the ontology above.  Protege has not inferred that the person satisfies Section A, even though this in the rules.</p>
+
+<p>[[image:beforeInference.jpg|link=source]]</p>
+
+<p>Now click the SWRL tab, then the Drools button:</p>
+
+<p>[[image:droolsButton.jpg|link=source]]</p>
+
+<p>Click the three buttons on the bottom of the screen in succession left to right:</p>
+
+<p>[[image:runDrools.jpg|link=source]]</p>
+
+<p>Notice that it is now inferred that Person1 satisfies Section A:</p>
+
+<p>[[image:inferred.jpg|link=source]]</p>
+]]></content>
+  </entry>
   
 </feed>
