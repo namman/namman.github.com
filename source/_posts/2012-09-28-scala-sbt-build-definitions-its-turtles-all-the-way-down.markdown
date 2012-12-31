@@ -12,9 +12,9 @@ tags:
 - scala
 ---
 
-From: [[https://github.com/harrah/xsbt/wiki/Getting-Started-Full-Def]]
+From: (https://github.com/harrah/xsbt/wiki/Getting-Started-Full-Def)
 
-{{{
+```bash
  hello/                  # your project's base directory
 
      Hello.scala         # a source file in your project (could be in
@@ -37,4 +37,4 @@ From: [[https://github.com/harrah/xsbt/wiki/Getting-Started-Full-Def]]
                          #   for the build definition
 
              Build.scala # source file in the project/project/ project
-}}}
+```

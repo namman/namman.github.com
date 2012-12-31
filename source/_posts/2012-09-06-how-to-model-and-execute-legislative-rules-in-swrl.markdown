@@ -35,17 +35,17 @@ Further, a person satisfies Section E if they satisfy BOTH:
 
 Define a default prefix for this file: 'ls' for 'legislative SWRL'.  The prefix
 is a full URI, followed by a '#'.  
-{{{
+```
 Prefix: : <urn:ls#>
-}}}
+```
 
 =Ontology Name=
 
 Ontologies have to have a name in the form of an absolute URI:
 
-{{{
+```
 Ontology: 
-}}}
+```
 
 =Basic Classes=
 
@@ -56,7 +56,7 @@ This is our simple method for modelling legislation:
 Further, the same 'thing' cannot be both a person and a section.  We need to express this explicity in OWL by saying the classes are 'disjoint'.
 
 
-{{{
+```
 Class: Person
 
     DisjointWith: 
@@ -69,7 +69,7 @@ Class: Section
         Person
  
 
-}}}
+```
 
 =Properties=
 
@@ -78,7 +78,7 @@ A person can satisfy particular sections in the legislation.  For example, a par
 We express this in OWL with an 'object type property' called 'satisfies'.  This is a relationship between classes.  The 'domain' of the property is the class Person.  The 'range' of the property is the class Section. 
 
 You can say this aloud as 'a person satisfies a section'.  Notice that we are referring in general to **a** person, **not** a particular person at this point.  A particular person would be 'Bob' or 'Jill'.   The property is **defined** at a more abstract level as a relation between classes, not individuals.  When we create individual instances, they will have this property, but we do not define the property for them - we defined it at the class level.It is important not to get confused between classes and individuals, and between an object type property and instances of the property connecting individuals.
-{{{
+```
 ObjectProperty: satisfies
 
     Domain: 
@@ -86,7 +86,7 @@ ObjectProperty: satisfies
     
     Range:
 	Section
-}}}         
+```         
 
 We can also add some additional characteristics to this object property to communicate more information about it.  In general, the more information we add, the more can be inferred from the ontology.  In this case, we want to express that the property is:
 * asymettric, and
@@ -96,11 +96,11 @@ We can also add some additional characteristics to this object property to commu
 
 'Irreflexive' means that a person cannot satisfy themselves (in this context, anyway).
 
-{{{
+```
     Characteristics: 
         Asymmetric,
         Irreflexive
-}}}
+```
 
 
 =Individuals=
@@ -108,7 +108,7 @@ We can also add some additional characteristics to this object property to commu
 ==Sections===
 As discussed above, each particular section of the legislation we will model as an instance of the class 'Section'.  Since there are section 'A' through 'G' in our source rules, we create one individual for each:
 
-{{{
+```
  
 Individual: SectionA
 	Types: Section
@@ -130,7 +130,7 @@ Individual: SectionF
 
 Individual: SectionG
 	Types: Section
-}}}
+```
 
 
 =Rules=
@@ -152,10 +152,10 @@ The rules will apply to any person, so we need a variable for person.  The varia
 
 In SWRL, Rule 1 is :
 
-{{{
+```
 Rule:
 Person(?), satisfies(?,SectionB), satisfies(?,SectionC) -> satisfies(?,SectionA)
-}}}
+```
 
 This consists of three clauses in the body, separated by a comma, followed by the head.
 
@@ -170,10 +170,10 @@ So the overall effect of that rule is that for every person that satisfies secti
 Rules 2 and 3 follow the same pattern.
 
 The last rule we need to write says that a person satisfies section E if they satisfy both Section F and Section G.  This time Section E is in the head of the rule rather than the body:
-{{{
+```
 Rule:
 Person(?), satisfies(?,SectionF), satisfies(?,SectionG) -> satisfies(?,SectionD)
-}}}
+```
 
 Note that the same clause 'satisfies(?,SectionD)' appears in the head of this rule, but the body of Rule 3 discussed above.  This means the rules are **chained** together.  The inference of one rule can feed into another rule, so they are all evaluated together.
 
@@ -183,18 +183,18 @@ We can test the rules by creating some instances of the class Person, then runni
 
 For this simple example, we'll just create one person, called 'Person1'.
 
-{{{
+```
 Individual: Person1
 	Types: Person
-}}}
+```
 
 
 For the purpose of this test, we will say the person satisfies Section D and Section E:
 
-{{{
+```
 	Facts: satisfies SectionB
 	Facts: satisfies SectionC
-}}}
+```
 
 The expected result is that Person01 also satisfies Section A.
 
@@ -207,18 +207,18 @@ First, save the ontology you have built up as 'legislativeSwrl.owl'.
 For convenience, create an environment variable that contains the full path of the this file, called 'LS' for 'Legislative SWRL'.  We'll use this in the Pellet commands.
 
 Linux:
-{{{
+```
 LS=
-}}}
+```
 
 Change to the directory where you unzipped Pellet (cd ).
 
 The following command asks Pellet to explain whether Person1 satisfies Section A, and for the reasons why:
  
 Linux:
-{{{
+```
 ./pellet.sh explain --property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS
-}}}
+```
 
 Some things to note:
 * we use the '-property-value' switch because 'satisfies' is an object type property.
@@ -226,7 +226,7 @@ Some things to note:
 
 The output of this command is:
 
-{{{
+```
 Axiom: Person1 satisfies SectionA
 
 Explanation(s): 
@@ -235,7 +235,7 @@ Explanation(s):
      Person1 type Person
      Person1 satisfies SectionC
 
-}}}
+```
 
 The first line of the result tells us that Person1 does indeed satisy SectionA.  This accords with our expected result.
 
@@ -248,31 +248,31 @@ Note that Pellet has identifed only the **relevant** information from our ontolo
 In the test above, there is only one way that Person1 can satisfy Section A given the facts we provided: because they satisfy both sections B and C.  In other cases though, there may be multiple routes to the same conclusion.  To test this, change the facts for Person1 from:
 
 
-{{{
+```
 	Facts: satisfies SectionB
 	Facts: satisfies SectionC
-}}}
+```
 
 ... to ...
 
 
-{{{
+```
 	Facts: satisfies SectionD
 `	Facts: satisfies SectionE
-}}}
+```
 
 Recall from the source rules that a person satisfies Section A if they satisfy **either** Section D **or** Section E.  In the new facts, Person1 satisfies **both** - so there are two ways they can satisfy Section A.
 
 Change the Pellet explain command to show up to 10 explanations:
 
 Linux:
-{{{
+```
 ./pellet.sh explain --max 10 --property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS
-}}}
+```
 
 The output is:
 
-{{{
+```
 Axiom: Person1 satisfies SectionA
 
 Explanation(s): 
@@ -295,7 +295,7 @@ Explanation(s):
      Person1 type Person
      Person1 satisfies SectionE
 
-}}}
+```
 
 This shows **four** explanations for why Person1 satisfies SectionA.
 
@@ -307,7 +307,7 @@ Explanation 3 shows that you can infer Person1 satisies Section A because:
 * The rule discussed above applies.
 
 If Explanation 3 is correct, we should not need to specify explicitly in our ontology that Person1 is a Person.  It should be sufficient to specify that Person1 satisfies SectionE.  To test this, **temporarily remove** the assertion that Person1 is a Person:
-{{{
+```
 Individual: Person1
 
     Types: <-- REMOVE THIS LINE
@@ -317,11 +317,11 @@ Individual: Person1
      satisfies  SectionD,
      satisfies  SectionE
  
-}}}
+```
 
 Now run the Pellet command again.  This time the explanation is:
 
-{{{
+```
 Axiom: Person1 satisfies SectionA
 
 Explanation(s): 
@@ -334,7 +334,7 @@ Explanation(s):
      Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -> satisfies(?urn:anyPerson, SectionA))
      Person1 satisfies SectionE
 
-}}}
+```
 
 Notice how explanations based on the explicit fact that Person1 is a Person no longer appear. Don't forget to put the lines you removed back in.
 
@@ -345,7 +345,7 @@ Returning to the original explations, we can see Explanation 2 and 4 mirror the 
 Recall that a person satisfies Section A if they satisfy Section E.  Further, a person satisfies Section E if they satisfy both Section F and G.  Therefore, a person who satisfies Sections F and G should automatically satisfy Section A - because the rules chain together.
 
 To test this, change the facts about Person1 to:
-{{{
+```
 Individual: Person1
 
     Types: 
@@ -355,11 +355,11 @@ Individual: Person1
      satisfies  SectionF,
      satisfies  SectionG
  
-}}} 
+``` 
 
 Now run the Pellet command again.  The first explanation is:
 
-{{{
+```
 Axiom: Person1 satisfies SectionA
 
 Explanation(s): 
@@ -370,7 +370,7 @@ Explanation(s):
      Person1 satisfies SectionG
 
 
-}}}
+```
 
 This tells us that Person1 satisfies Section A because:
 * they satisfy both Sections F and G;
@@ -380,7 +380,7 @@ This tells us that Person1 satisfies Section A because:
 
 =The complete ontology=
 
-{{{
+```
 Prefix: : <urn:ls#>
 
 
@@ -476,7 +476,7 @@ Rule:
 Rule: 
     Person(?), satisfies(?, SectionE) -> satisfies(?, SectionA)
 
-}}}
+```
 
 
 

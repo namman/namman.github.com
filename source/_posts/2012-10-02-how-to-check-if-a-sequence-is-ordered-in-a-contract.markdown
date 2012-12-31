@@ -11,9 +11,9 @@ tags:
 - C#
 ---
 
-Extension method {{{SequenceEqual(this IEnumerable, IEqualityComparer)}}}
+Extension method ```SequenceEqual(this IEnumerable, IEqualityComparer)```
 
 Eg:
-{{{ lang=csharp
+```csharp
 Contract.Requires(remainingShares.OrderByDescending(s => s.PurchaseDate).SequenceEqual(remainingShares));
-}}}
+```

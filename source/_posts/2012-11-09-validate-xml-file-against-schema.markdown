@@ -9,7 +9,7 @@ categories:
 - exocortex
 ---
 
-{{{ lang=csharp
+```csharp
 
     /// 
     /// Validates XML file against schema.
@@ -79,4 +79,4 @@ categories:
             
         }
     }
-}}}
+```

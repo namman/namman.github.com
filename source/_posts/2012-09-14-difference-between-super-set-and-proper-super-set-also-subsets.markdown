@@ -9,13 +9,13 @@ categories:
 - exocortex
 ---
 
-{{{ lang=csharp
+```csharp
 var first = new HashSet() {1,2};
 var second = new HashSet() {1,2};
 var isProperSuperSet = first.IsProperSupersetOf(second);
 Console.WriteLine (isProperSuperSet); // false
 var isSuperSet = first.IsSupersetOf(second);
 Console.WriteLine (isSuperSet); // true
-}}}
+```
 
 Duh.

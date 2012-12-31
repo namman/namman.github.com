@@ -12,6 +12,6 @@ tags:
 ---
 
 Remove any junk previous test runs may have written to TestOutput directory:
-{{{ 
+``` 
 del /Q $(ProjectDir)\TestOutput
-}}}
+```

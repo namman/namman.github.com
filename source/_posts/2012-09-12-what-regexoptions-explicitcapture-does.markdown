@@ -20,8 +20,8 @@ Specifies that the only valid captures are explicitly named or numbered groups o
 
 Eg, this only captures the first letter of a the string, and the period at the end:
 
-{{{ csharp
+``` csharp
  var r = new Regex(@"(^[a-z])|\.\s+(.)", RegexOptions.ExplicitCapture);
-}}}
+```
 
 

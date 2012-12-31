@@ -60,9 +60,9 @@ Create a new file called helloSwrl.owl in your text editor.  You can add the cod
 The name of the ontology will be 'hello_swrl'.
 
 We specify this as a 'URI': a unique name that has a special form:
-{{{
+```
 	Ontology: 
-}}}
+```
 ==Define some namespaces==
 
 Namespaces just allow you to give precise names to things in the ontology,
@@ -73,19 +73,19 @@ different people having the same name.
 
 Namespace prefixes allow you to use a shorthand way to refer to a namespace
 rather than writing out the full namespace every time.
-{{{
+```
 	Prefix: : <urn:hello_swrl#>
-}}}
+```
 This defines a default namespace for everything that does not otherwise have a
 namespace defined.
-{{{
+```
 	Prefix: xsd: 
-}}}
+```
 Here we are defining the prefix 'xsd' and associating it with the namespace
 'http://www.w3.org/2001/XMLSchema#' - a namespace defined by the W3C.
-{{{
+```
     	Prefix: swrlb: 
-}}}
+```
 This imports a namespace to do with functions built into SWRL, and gives it the
 'swrlb' prefix.
 
@@ -99,9 +99,9 @@ For example: 'Year 7 Pottery' is the name of a class of students.  'Bobby Little
 the name of a boy in that class.  In OWL terms, people would say that Bobby Little is a 'member of' Year 7 Pottery, is an 'individual in' Year 7 Pottery or an 'instance of' Year 7 Pottery.  Bobby Little can of course be members of other classes at the same time.  And the class can exist without Boddy Little or even if there are no students in it.
 
 We'll define a new class called 'Corporation' in the default namespace:
-{{{
+```
 	Class: Corporation
-}}}
+```
 
 The corporation has two bits of data associated with that we are interested in:
 * Number of employees
@@ -121,34 +121,34 @@ One way is to say the subject is 'a corporation', the predicate is 'has an annua
 When we define these datatype properties, we are saying that individuals in this class **can** have these properties.  We are not attaching them to any particular individuals yet.  It is as if we are just setting a placeholder or container for them, which may or may not be filled.  So the datatype properties attach to classes, **not** individuals.  This is a very important distinction.
 
 Hence, we declare a datatype property for annual revenue called 'hasAnnualRevenue':
-{{{
+```
 	DataProperty: hasAnnualRevenue
       	  Domain:  Corporation
 	  Range: xsd:integer
 	  Characteristics: Functional
-}}}
+```
 'Domain: Corporation' means that this is a property of the Corporation class.
 'Range: xsd:integer' means that this property is an integer.
 'Characteristics: Functional' means that each Corporation has only one number for its revenue.
 	
 We do the same thing again for the number of employees:
-{{{
+```
 	DataProperty: hasNumberOfEmployees
     		Characteristics:  Functional
 		Domain: Corporation    
 		Range: xsd:integer
-}}}
+```
 How to we denote whether or not a corporation is eligble? We create a class called 'Eligible'.  Eligible corporations will be members of that class.
-{{{
+```
 	Class: Eligible
-}}}
+```
 There are two tests in this rule: the annual revenue and the employees test.  We'll just focus on the first limb for the moment.
 
 First we will write the rule in a simplified format so we are sure we understand
 it:
-{{{
+```
     Corporation(?corporation) ^ hasAnnualRevenue(?corporation,?revenue) ^ lessThan(?revenue,2000000) -> Eligible(?corporation)
-}}}
+```
 The rule has two main parts: the 'body' and the 'head', separated by the '->' characters.  Within the body, there are three 'atoms', separated by the '^' character.
 
 You can think of each atom as a sort of filter applied to all the individuals in the ontology.  The objective is to use the filters to narrow down the the individuals we are interested in.
@@ -163,33 +163,33 @@ the filter and are bound to a variable.
 
 
 The first atom:
-{{{
+```
 	Corporation(?corporation)
-}}}
+```
 This means 'look for individuals in the ontology that are instances of the "Corporation" class.
 Bind those individuals to the variable 'corporation'."  (The '?' means it is a variable.)
 
 Since those individuals are bound to ?corporation, we can use them elsewhere in the rule.
 
 The second atom:
-{{{
+```
 	hasAnnualRevenue(?corporation,?revenue)
-}}}
+```
 This means 'find all the particular individuals which are bound to the ?corporation variable and have the property "hasAnnualRevenue". Then bind the the revenue number for each individual to the variable "revenue".'
 
 
 The third atom:
-{{{
+```
 	lessThan(?revenue,2000000)
-}}}
+```
 This means 'filter out revenue numbers less than 2,000,000'.
 
 Recall the atoms in the body all have to be true.  So the combined effect of the atoms above is to select **all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000**.  The filters apply cumulatively.
 
 Now we have isolated the individual corporations we are interested in, we want to **make them eligible**.  The head of the rule just takes all individuals bound to the ?corporation variable and makes them members of the class 'Eligible':
-{{{
+```
 	Eligible(?corporation)
-}}}
+```
 So the effect of the whole rule is **all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000 are eligible**.
 
 =Translating to SWRL=
@@ -199,20 +199,20 @@ You can see that expressing this in plain English is not really longer than the 
 We need **two** SWRL rules to capture our logic.  This is because the corporation is eligible if it has annual revenue less than $2M, **or** it has less than five employees. 
 
 The first rule:
-{{{
+```
 	Rule: 
 	Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -> Eligible(?)
-}}}
+```
 Note:
 * We have replaced each variable name with a 'URI' in angle brackets. 
 * To do the comparison between the actual revenue and the function, we reference a 'built in' function called 'lessThan' in the 'swrlb' namespace.  This is part of the SWRL specification in the W3C recommendation.
 
 
 The second rule is the same as the first except that it refers to number of employees instead of revenue:
-{{{
+```
 	Rule: 
 	Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -> Eligible(?)
-}}}
+```
 
 
 =Facts=
@@ -242,7 +242,7 @@ The expected results are:
 
 
 The test data:
-{{{
+```
 	Individual: AcmeCorp
 		Types: Corporation
 		Facts: hasAnnualRevenue 1000000
@@ -258,12 +258,12 @@ The test data:
 		Facts: hasAnnualRevenue 5000000
 		Facts: hasNumberOfEmployees 15
 
-}}}
+```
 
 
 This is the full ontology which should now be saved in your file hello_swrl.owl:
 
-{{{
+```
 
 Prefix: swrl: 
 Prefix: xsd: 
@@ -324,7 +324,7 @@ DataProperty: hasAnnualRevenue
 		Facts: hasAnnualRevenue 5000000
 		Facts: hasNumberOfEmployees 15
 
-}}}
+```
 
 =Testing in Protege=
 

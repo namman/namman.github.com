@@ -15,7 +15,7 @@ tags:
 * Show all files
 * $(Project)/Service References/OdataApplicationData/Reference.datasvcmap
 
-{{{ lang=xml
+```xml
 
     
-  }}}
+  ```

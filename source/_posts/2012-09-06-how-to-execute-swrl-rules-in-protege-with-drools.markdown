@@ -26,7 +26,7 @@ Note that Protege 4.* does not yet support Drools.
 
 We will reuse the ontology from previous examples.  This appears below in RDF/XML format  Save this to a text file called 'droolsDemo.owl':
 
-{{{
+```
 
 
 
@@ -362,7 +362,7 @@ We will reuse the ontology from previous examples.  This appears below in RDF/XM
 
 
 
-}}}
+```
 
 =Run rules in Protege using Drools=
 
