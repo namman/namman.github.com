@@ -9,9 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Extension method {{{SequenceEqual(this IEnumerable, IEqualityComparer)}}} Eg:
-{{{ lang=csharp
-Contract.Requires(remainingShares.OrderByDescending(s &hellip;">
+  <meta name="description" content="Extension method SequenceEqual(this IEnumerable, IEqualityComparer) Eg: 1
+Contract.Requires(remainingShares.OrderByDescending(s =&gt; s.PurchaseDate &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,12 +89,14 @@ Contract.Requires(remainingShares.OrderByDescending(s &hellip;">
   </header>
 
 
-<div class="entry-content"><p>Extension method {{{SequenceEqual(this IEnumerable, IEqualityComparer)}}}</p>
+<div class="entry-content"><p>Extension method <code>SequenceEqual(this IEnumerable, IEqualityComparer)</code></p>
 
-<p>Eg:
-{{{ lang=csharp
-Contract.Requires(remainingShares.OrderByDescending(s => s.PurchaseDate).SequenceEqual(remainingShares));
-}}}</p>
+<p>Eg:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">Contract</span><span class="p">.</span><span class="n">Requires</span><span class="p">(</span><span class="n">remainingShares</span><span class="p">.</span><span class="n">OrderByDescending</span><span class="p">(</span><span class="n">s</span> <span class="p">=&gt;</span> <span class="n">s</span><span class="p">.</span><span class="n">PurchaseDate</span><span class="p">).</span><span class="n">SequenceEqual</span><span class="p">(</span><span class="n">remainingShares</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 

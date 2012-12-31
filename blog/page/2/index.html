@@ -9,10 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="{{{ lang=bash
-pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
-}}}
-">
+  <meta name="description" content="1
+pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,9 +92,10 @@ pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
   </header>
 
 
-  <div class="entry-content"><p>{{{ lang=bash
-pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
-}}}</p>
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
   
   
@@ -168,12 +167,14 @@ pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
   </header>
 
 
-  <div class="entry-content"><p>Extension method {{{SequenceEqual(this IEnumerable, IEqualityComparer)}}}</p>
+  <div class="entry-content"><p>Extension method <code>SequenceEqual(this IEnumerable, IEqualityComparer)</code></p>
 
-<p>Eg:
-{{{ lang=csharp
-Contract.Requires(remainingShares.OrderByDescending(s => s.PurchaseDate).SequenceEqual(remainingShares));
-}}}</p>
+<p>Eg:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">Contract</span><span class="p">.</span><span class="n">Requires</span><span class="p">(</span><span class="n">remainingShares</span><span class="p">.</span><span class="n">OrderByDescending</span><span class="p">(</span><span class="n">s</span> <span class="p">=&gt;</span> <span class="n">s</span><span class="p">.</span><span class="n">PurchaseDate</span><span class="p">).</span><span class="n">SequenceEqual</span><span class="p">(</span><span class="n">remainingShares</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
   
   
@@ -331,14 +332,20 @@ Contract.Requires(remainingShares.OrderByDescending(s => s.PurchaseDate).Sequenc
   </header>
 
 
-  <div class="entry-content"><p>{{{ lang=csharp
-var first = new HashSet() {1,2};
-var second = new HashSet() {1,2};
-var isProperSuperSet = first.IsProperSupersetOf(second);
-Console.WriteLine (isProperSuperSet); // false
-var isSuperSet = first.IsSupersetOf(second);
-Console.WriteLine (isSuperSet); // true
-}}}</p>
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="kt">var</span> <span class="n">first</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">()</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">};</span>
+</span><span class='line'><span class="kt">var</span> <span class="n">second</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">()</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">};</span>
+</span><span class='line'><span class="kt">var</span> <span class="n">isProperSuperSet</span> <span class="p">=</span> <span class="n">first</span><span class="p">.</span><span class="n">IsProperSupersetOf</span><span class="p">(</span><span class="n">second</span><span class="p">);</span>
+</span><span class='line'><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">isProperSuperSet</span><span class="p">);</span> <span class="c1">// false</span>
+</span><span class='line'><span class="kt">var</span> <span class="n">isSuperSet</span> <span class="p">=</span> <span class="n">first</span><span class="p">.</span><span class="n">IsSupersetOf</span><span class="p">(</span><span class="n">second</span><span class="p">);</span>
+</span><span class='line'><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">isSuperSet</span><span class="p">);</span> <span class="c1">// true</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Duh.</p>
 </div>
@@ -518,9 +525,12 @@ Specifies that the only valid captures are explicitly named or numbered groups o
 
 <p>Eg, this only captures the first letter of a the string, and the period at the end:</p>
 
-<p>{{{ csharp
- var r = new Regex(@&#8221;(<sup>[a-z])|.\s+(.)&#8221;,</sup> RegexOptions.ExplicitCapture);
-}}}</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'> <span class="kt">var</span> <span class="n">r</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Regex</span><span class="p">(</span><span class="s">@&quot;(^[a-z])|\.\s+(.)&quot;</span><span class="p">,</span> <span class="n">RegexOptions</span><span class="p">.</span><span class="n">ExplicitCapture</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
   
   
@@ -562,9 +572,9 @@ Specifies that the only valid captures are explicitly named or numbered groups o
 </ul>
 
 
-<p>{{{ lang=xml</p>
+<p>&#8220;`xml</p>
 
-<p>  }}}</p>
+<p>  &#8220;`</p>
 </div>
   
   

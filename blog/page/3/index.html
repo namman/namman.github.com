@@ -103,11 +103,676 @@
 
 <p>We will reuse the ontology from previous examples.  This appears below in RDF/XML format  Save this to a text file called &#8216;droolsDemo.owl&#8217;:</p>
 
-<p>{{{</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+<span class='line-number'>197</span>
+<span class='line-number'>198</span>
+<span class='line-number'>199</span>
+<span class='line-number'>200</span>
+<span class='line-number'>201</span>
+<span class='line-number'>202</span>
+<span class='line-number'>203</span>
+<span class='line-number'>204</span>
+<span class='line-number'>205</span>
+<span class='line-number'>206</span>
+<span class='line-number'>207</span>
+<span class='line-number'>208</span>
+<span class='line-number'>209</span>
+<span class='line-number'>210</span>
+<span class='line-number'>211</span>
+<span class='line-number'>212</span>
+<span class='line-number'>213</span>
+<span class='line-number'>214</span>
+<span class='line-number'>215</span>
+<span class='line-number'>216</span>
+<span class='line-number'>217</span>
+<span class='line-number'>218</span>
+<span class='line-number'>219</span>
+<span class='line-number'>220</span>
+<span class='line-number'>221</span>
+<span class='line-number'>222</span>
+<span class='line-number'>223</span>
+<span class='line-number'>224</span>
+<span class='line-number'>225</span>
+<span class='line-number'>226</span>
+<span class='line-number'>227</span>
+<span class='line-number'>228</span>
+<span class='line-number'>229</span>
+<span class='line-number'>230</span>
+<span class='line-number'>231</span>
+<span class='line-number'>232</span>
+<span class='line-number'>233</span>
+<span class='line-number'>234</span>
+<span class='line-number'>235</span>
+<span class='line-number'>236</span>
+<span class='line-number'>237</span>
+<span class='line-number'>238</span>
+<span class='line-number'>239</span>
+<span class='line-number'>240</span>
+<span class='line-number'>241</span>
+<span class='line-number'>242</span>
+<span class='line-number'>243</span>
+<span class='line-number'>244</span>
+<span class='line-number'>245</span>
+<span class='line-number'>246</span>
+<span class='line-number'>247</span>
+<span class='line-number'>248</span>
+<span class='line-number'>249</span>
+<span class='line-number'>250</span>
+<span class='line-number'>251</span>
+<span class='line-number'>252</span>
+<span class='line-number'>253</span>
+<span class='line-number'>254</span>
+<span class='line-number'>255</span>
+<span class='line-number'>256</span>
+<span class='line-number'>257</span>
+<span class='line-number'>258</span>
+<span class='line-number'>259</span>
+<span class='line-number'>260</span>
+<span class='line-number'>261</span>
+<span class='line-number'>262</span>
+<span class='line-number'>263</span>
+<span class='line-number'>264</span>
+<span class='line-number'>265</span>
+<span class='line-number'>266</span>
+<span class='line-number'>267</span>
+<span class='line-number'>268</span>
+<span class='line-number'>269</span>
+<span class='line-number'>270</span>
+<span class='line-number'>271</span>
+<span class='line-number'>272</span>
+<span class='line-number'>273</span>
+<span class='line-number'>274</span>
+<span class='line-number'>275</span>
+<span class='line-number'>276</span>
+<span class='line-number'>277</span>
+<span class='line-number'>278</span>
+<span class='line-number'>279</span>
+<span class='line-number'>280</span>
+<span class='line-number'>281</span>
+<span class='line-number'>282</span>
+<span class='line-number'>283</span>
+<span class='line-number'>284</span>
+<span class='line-number'>285</span>
+<span class='line-number'>286</span>
+<span class='line-number'>287</span>
+<span class='line-number'>288</span>
+<span class='line-number'>289</span>
+<span class='line-number'>290</span>
+<span class='line-number'>291</span>
+<span class='line-number'>292</span>
+<span class='line-number'>293</span>
+<span class='line-number'>294</span>
+<span class='line-number'>295</span>
+<span class='line-number'>296</span>
+<span class='line-number'>297</span>
+<span class='line-number'>298</span>
+<span class='line-number'>299</span>
+<span class='line-number'>300</span>
+<span class='line-number'>301</span>
+<span class='line-number'>302</span>
+<span class='line-number'>303</span>
+<span class='line-number'>304</span>
+<span class='line-number'>305</span>
+<span class='line-number'>306</span>
+<span class='line-number'>307</span>
+<span class='line-number'>308</span>
+<span class='line-number'>309</span>
+<span class='line-number'>310</span>
+<span class='line-number'>311</span>
+<span class='line-number'>312</span>
+<span class='line-number'>313</span>
+<span class='line-number'>314</span>
+<span class='line-number'>315</span>
+<span class='line-number'>316</span>
+<span class='line-number'>317</span>
+<span class='line-number'>318</span>
+<span class='line-number'>319</span>
+<span class='line-number'>320</span>
+<span class='line-number'>321</span>
+<span class='line-number'>322</span>
+<span class='line-number'>323</span>
+<span class='line-number'>324</span>
+<span class='line-number'>325</span>
+<span class='line-number'>326</span>
+<span class='line-number'>327</span>
+<span class='line-number'>328</span>
+<span class='line-number'>329</span>
+<span class='line-number'>330</span>
+<span class='line-number'>331</span>
+<span class='line-number'>332</span>
+<span class='line-number'>333</span>
+<span class='line-number'>334</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>]&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>            
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                            
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                            
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>            
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>            
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>            
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>            
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>            
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>            
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                            
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                    
+</span><span class='line'>                                        
+</span><span class='line'>                                        
+</span><span class='line'>                                        
+</span><span class='line'>                                        
+</span><span class='line'>                                    
+</span><span class='line'>                                
+</span><span class='line'>                            
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                            
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                            
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>            
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>            
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>            
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>            
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                            
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                            
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                            
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                    
+</span><span class='line'>                                        
+</span><span class='line'>                                        
+</span><span class='line'>                                        
+</span><span class='line'>                                        
+</span><span class='line'>                                    
+</span><span class='line'>                                
+</span><span class='line'>                            
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>            
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>            
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>            
+</span><span class='line'>        
+</span><span class='line'>        
+</span><span class='line'>            
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                            
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                                
+</span><span class='line'>                            
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>                
+</span><span class='line'>                    
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                        
+</span><span class='line'>                    
+</span><span class='line'>                
+</span><span class='line'>            
+</span><span class='line'>        
+</span><span class='line'>    
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>]></p>
-
-<p>}}}</p>
 
 <p>=Run rules in Protege using Drools=</p>
 
@@ -171,10 +836,10 @@
 
 <p>This Arq command runs the queries and displays output to the console:</p>
 
-<p>{{{
-arq &#8211;data= &#8211;query=</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>arq --data= --query=
+</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}</p>
 
 <p>For example, to run the first query;</p>
 
@@ -185,369 +850,638 @@ arq &#8211;data= &#8211;query=</p>
 </ul>
 
 
-<p>{{{
-arq &#8211;data=legislativeSwrl.ttl &#8211;query=quer1.rq
-}}}</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>arq --data=legislativeSwrl.ttl --query=quer1.rq</span></code></pre></td></tr></table></div></figure>
 
-<p>=Find all sections in the head of a rule=
-{{{</p>
 
-<p>PREFIX rdf:<br/>
-PREFIX swrl:
-PREFIX : &lt;urn:ls#>
-PREFIX list:
-PREFIX owl:</p>
+<p>=Find all sections in the head of a rule=</p>
 
-<p>SELECT DISTINCT  ?headSection
-WHERE {</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>PREFIX rdf:  
+</span><span class='line'>PREFIX swrl: 
+</span><span class='line'>PREFIX : &lt;urn:ls#&gt; 
+</span><span class='line'>PREFIX list: 
+</span><span class='line'>PREFIX owl:  
+</span><span class='line'>
+</span><span class='line'>SELECT DISTINCT  ?headSection 
+</span><span class='line'>WHERE {
+</span><span class='line'>  ?rule a swrl:Imp . 
+</span><span class='line'>  ?rule swrl:head ?head .
+</span><span class='line'>
+</span><span class='line'>  ?head list:member ?headMember .
+</span><span class='line'>  ?headMember (swrl:argument1 | swrl:argument2) ?headSection .
+</span><span class='line'>  ?headSection a owl:NamedIndividual .
+</span><span class='line'>  ?headSection a :Section .
+</span><span class='line'>
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>?rule a swrl:Imp . 
-?rule swrl:head ?head .
-
-?head list:member ?headMember .
-?headMember (swrl:argument1 | swrl:argument2) ?headSection .
-?headSection a owl:NamedIndividual .
-?headSection a :Section .
-</code></pre>
-
-<p>}
-}}}</p>
-
-<p>Output:</p>
-
-<p>{{{</p>
-
-<hr />
-
-<h1>| headSection |</h1>
-
-<p>| :SectionA   |</p>
-
-<h2>| :SectionD   |</h2>
-
-<p>}}}</p>
-
-<p>=Find all the sections referenced in the body of a rule=
-{{{
-PREFIX rdf:<br/>
-PREFIX swrl:
-PREFIX : &lt;urn:ls#>
-PREFIX list:
-PREFIX owl:</p>
-
-<p>SELECT DISTINCT ?bodySection
-WHERE {</p>
-
-<pre><code>?rule a swrl:Imp . 
-?rule swrl:body ?body .
-
-?head list:member ?headMember .
-?headMember (swrl:argument1 | swrl:argument2) ?bodySection .
-?bodySection a owl:NamedIndividual .
-?bodySection a :Section .
-</code></pre>
-
-<p>}</p>
-
-<p>}}}</p>
 
 <p>Output:</p>
 
-<h2>{{{</h2>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>---------------
+</span><span class='line'>| headSection |
+</span><span class='line'>===============
+</span><span class='line'>| :SectionA   |
+</span><span class='line'>| :SectionD   |
+</span><span class='line'>---------------
+</span></code></pre></td></tr></table></div></figure>
 
-<h1>| bodySection |</h1>
 
-<p>| :SectionB   |
-| :SectionC   |
-| :SectionD   |
-| :SectionA   |
-| :SectionE   |
-| :SectionF   |</p>
+<p>=Find all the sections referenced in the body of a rule=</p>
 
-<h2>| :SectionG   |</h2>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PREFIX rdf:  
+</span><span class='line'>PREFIX swrl: 
+</span><span class='line'>PREFIX : &lt;urn:ls#&gt; 
+</span><span class='line'>PREFIX list: 
+</span><span class='line'>PREFIX owl:  
+</span><span class='line'>
+</span><span class='line'>SELECT DISTINCT ?bodySection 
+</span><span class='line'>WHERE {
+</span><span class='line'>  ?rule a swrl:Imp . 
+</span><span class='line'>  ?rule swrl:body ?body .
+</span><span class='line'>
+</span><span class='line'>  ?head list:member ?headMember .
+</span><span class='line'>  ?headMember (swrl:argument1 | swrl:argument2) ?bodySection .
+</span><span class='line'>  ?bodySection a owl:NamedIndividual .
+</span><span class='line'>  ?bodySection a :Section .
+</span><span class='line'>}
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}</p>
+
+<p>Output:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>---------------
+</span><span class='line'>| bodySection |
+</span><span class='line'>===============
+</span><span class='line'>| :SectionB   |
+</span><span class='line'>| :SectionC   |
+</span><span class='line'>| :SectionD   |
+</span><span class='line'>| :SectionA   |
+</span><span class='line'>| :SectionE   |
+</span><span class='line'>| :SectionF   |
+</span><span class='line'>| :SectionG   |
+</span><span class='line'>---------------</span></code></pre></td></tr></table></div></figure>
+
 
 <p>The full text of the legislative SWRL example converted to Turtle:</p>
 
-<p>{{{</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+<span class='line-number'>197</span>
+<span class='line-number'>198</span>
+<span class='line-number'>199</span>
+<span class='line-number'>200</span>
+<span class='line-number'>201</span>
+<span class='line-number'>202</span>
+<span class='line-number'>203</span>
+<span class='line-number'>204</span>
+<span class='line-number'>205</span>
+<span class='line-number'>206</span>
+<span class='line-number'>207</span>
+<span class='line-number'>208</span>
+<span class='line-number'>209</span>
+<span class='line-number'>210</span>
+<span class='line-number'>211</span>
+<span class='line-number'>212</span>
+<span class='line-number'>213</span>
+<span class='line-number'>214</span>
+<span class='line-number'>215</span>
+<span class='line-number'>216</span>
+<span class='line-number'>217</span>
+<span class='line-number'>218</span>
+<span class='line-number'>219</span>
+<span class='line-number'>220</span>
+<span class='line-number'>221</span>
+<span class='line-number'>222</span>
+<span class='line-number'>223</span>
+<span class='line-number'>224</span>
+<span class='line-number'>225</span>
+<span class='line-number'>226</span>
+<span class='line-number'>227</span>
+<span class='line-number'>228</span>
+<span class='line-number'>229</span>
+<span class='line-number'>230</span>
+<span class='line-number'>231</span>
+<span class='line-number'>232</span>
+<span class='line-number'>233</span>
+<span class='line-number'>234</span>
+<span class='line-number'>235</span>
+<span class='line-number'>236</span>
+<span class='line-number'>237</span>
+<span class='line-number'>238</span>
+<span class='line-number'>239</span>
+<span class='line-number'>240</span>
+<span class='line-number'>241</span>
+<span class='line-number'>242</span>
+<span class='line-number'>243</span>
+<span class='line-number'>244</span>
+<span class='line-number'>245</span>
+<span class='line-number'>246</span>
+<span class='line-number'>247</span>
+<span class='line-number'>248</span>
+<span class='line-number'>249</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>@prefix : &lt;urn:ls#&gt; .
+</span><span class='line'>@prefix dc:  .
+</span><span class='line'>@prefix owl:  .
+</span><span class='line'>@prefix rdf:  .
+</span><span class='line'>@prefix xml:  .
+</span><span class='line'>@prefix xsd:  .
+</span><span class='line'>@prefix rdfs:  .
+</span><span class='line'>@base  .
+</span><span class='line'>
+</span><span class='line'>rdf:type owl:Ontology .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#################################################################
+</span><span class='line'>#
+</span><span class='line'>#    Object Properties
+</span><span class='line'>#
+</span><span class='line'>#################################################################
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>###  urn:ls#satisfies
+</span><span class='line'>
+</span><span class='line'>:satisfies rdf:type owl:AsymmetricProperty ,
+</span><span class='line'>                    owl:IrreflexiveProperty ,
+</span><span class='line'>                    owl:ObjectProperty ;
+</span><span class='line'>           
+</span><span class='line'>           rdfs:domain :Person ;
+</span><span class='line'>           
+</span><span class='line'>           rdfs:range :Section .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#################################################################
+</span><span class='line'>#
+</span><span class='line'>#    Classes
+</span><span class='line'>#
+</span><span class='line'>#################################################################
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>###  urn:ls#Person
+</span><span class='line'>
+</span><span class='line'>:Person rdf:type owl:Class ;
+</span><span class='line'>        
+</span><span class='line'>        owl:disjointWith :Section .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>###  urn:ls#Section
+</span><span class='line'>
+</span><span class='line'>:Section rdf:type owl:Class .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#################################################################
+</span><span class='line'>#
+</span><span class='line'>#    Individuals
+</span><span class='line'>#
+</span><span class='line'>#################################################################
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>###  urn:ls#Person1
+</span><span class='line'>
+</span><span class='line'>:Person1 rdf:type owl:NamedIndividual ,
+</span><span class='line'>                  :Person ;
+</span><span class='line'>         
+</span><span class='line'>         :satisfies :SectionD ,
+</span><span class='line'>                    :SectionE .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>###  urn:ls#SectionA
+</span><span class='line'>
+</span><span class='line'>:SectionA rdf:type owl:NamedIndividual ,
+</span><span class='line'>                   :Section .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>###  urn:ls#SectionB
+</span><span class='line'>
+</span><span class='line'>:SectionB rdf:type owl:NamedIndividual ,
+</span><span class='line'>                   :Section .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>###  urn:ls#SectionC
+</span><span class='line'>
+</span><span class='line'>:SectionC rdf:type owl:NamedIndividual ,
+</span><span class='line'>                   :Section .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>###  urn:ls#SectionD
+</span><span class='line'>
+</span><span class='line'>:SectionD rdf:type owl:NamedIndividual ,
+</span><span class='line'>                   :Section .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>###  urn:ls#SectionE
+</span><span class='line'>
+</span><span class='line'>:SectionE rdf:type owl:NamedIndividual ,
+</span><span class='line'>                   :Section .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>###  urn:ls#SectionF
+</span><span class='line'>
+</span><span class='line'>:SectionF rdf:type owl:NamedIndividual ,
+</span><span class='line'>                   :Section .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>###  urn:ls#SectionG
+</span><span class='line'>
+</span><span class='line'>:SectionG rdf:type owl:NamedIndividual ,
+</span><span class='line'>                   :Section .
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#################################################################
+</span><span class='line'>#
+</span><span class='line'>#    Rules
+</span><span class='line'>#
+</span><span class='line'>#################################################################
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>rdf:type  .
+</span><span class='line'>[ rdf:type  ;
+</span><span class='line'>  rdf:label "rule1" ;
+</span><span class='line'>   [ rdf:type  ;
+</span><span class='line'>                                          rdf:rest rdf:nil ;
+</span><span class='line'>                                          rdf:first [ rdf:type  ;
+</span><span class='line'>                                                       ;
+</span><span class='line'>                                                       :SectionD ;
+</span><span class='line'>                                                       :satisfies
+</span><span class='line'>                                                    ]
+</span><span class='line'>                                        ] ;
+</span><span class='line'>   [ rdf:type  ;
+</span><span class='line'>                                          rdf:rest [ rdf:type  ;
+</span><span class='line'>                                                     rdf:first [ rdf:type  ;
+</span><span class='line'>                                                                  ;
+</span><span class='line'>                                                                  :SectionF ;
+</span><span class='line'>                                                                  :satisfies
+</span><span class='line'>                                                               ] ;
+</span><span class='line'>                                                     rdf:rest [ rdf:type  ;
+</span><span class='line'>                                                                rdf:rest rdf:nil ;
+</span><span class='line'>                                                                rdf:first [ rdf:type  ;
+</span><span class='line'>                                                                             ;
+</span><span class='line'>                                                                             :SectionG ;
+</span><span class='line'>                                                                             :satisfies
+</span><span class='line'>                                                                          ]
+</span><span class='line'>                                                              ]
+</span><span class='line'>                                                   ] ;
+</span><span class='line'>                                          rdf:first [ rdf:type  ;
+</span><span class='line'>                                                       ;
+</span><span class='line'>                                                       :Person
+</span><span class='line'>                                                    ]
+</span><span class='line'>                                        ]
+</span><span class='line'>] .
+</span><span class='line'>[ rdf:type  ;
+</span><span class='line'> rdf:label "rule2" ;
+</span><span class='line'>   [ rdf:type  ;
+</span><span class='line'>                                          rdf:rest [ rdf:type  ;
+</span><span class='line'>                                                     rdf:rest rdf:nil ;
+</span><span class='line'>                                                     rdf:first [ rdf:type  ;
+</span><span class='line'>                                                                  ;
+</span><span class='line'>                                                                  :SectionD ;
+</span><span class='line'>                                                                  :satisfies
+</span><span class='line'>                                                               ]
+</span><span class='line'>                                                   ] ;
+</span><span class='line'>                                          rdf:first [ rdf:type  ;
+</span><span class='line'>                                                       ;
+</span><span class='line'>                                                       :Person
+</span><span class='line'>                                                    ]
+</span><span class='line'>                                        ] ;
+</span><span class='line'>   [ rdf:type  ;
+</span><span class='line'>                                          rdf:rest rdf:nil ;
+</span><span class='line'>                                          rdf:first [ rdf:type  ;
+</span><span class='line'>                                                       ;
+</span><span class='line'>                                                       :SectionA ;
+</span><span class='line'>                                                       :satisfies
+</span><span class='line'>                                                    ]
+</span><span class='line'>                                        ]
+</span><span class='line'>] .
+</span><span class='line'>[ rdf:type  ;
+</span><span class='line'>rdf:label "rule3" ;
+</span><span class='line'>   [ rdf:type  ;
+</span><span class='line'>                                          rdf:rest rdf:nil ;
+</span><span class='line'>                                          rdf:first [ rdf:type  ;
+</span><span class='line'>                                                       ;
+</span><span class='line'>                                                       :SectionA ;
+</span><span class='line'>                                                       :satisfies
+</span><span class='line'>                                                    ]
+</span><span class='line'>                                        ] ;
+</span><span class='line'>   [ rdf:type  ;
+</span><span class='line'>                                          rdf:rest [ rdf:type  ;
+</span><span class='line'>                                                     rdf:rest [ rdf:type  ;
+</span><span class='line'>                                                                rdf:rest rdf:nil ;
+</span><span class='line'>                                                                rdf:first [ rdf:type  ;
+</span><span class='line'>                                                                             ;
+</span><span class='line'>                                                                             :SectionC ;
+</span><span class='line'>                                                                             :satisfies
+</span><span class='line'>                                                                          ]
+</span><span class='line'>                                                              ] ;
+</span><span class='line'>                                                     rdf:first [ rdf:type  ;
+</span><span class='line'>                                                                  ;
+</span><span class='line'>                                                                  :SectionB ;
+</span><span class='line'>                                                                  :satisfies
+</span><span class='line'>                                                               ]
+</span><span class='line'>                                                   ] ;
+</span><span class='line'>                                          rdf:first [ rdf:type  ;
+</span><span class='line'>                                                       ;
+</span><span class='line'>                                                       :Person
+</span><span class='line'>                                                    ]
+</span><span class='line'>                                        ]
+</span><span class='line'>] .
+</span><span class='line'>[ rdf:type  ;
+</span><span class='line'>rdf:label "rule4" ;
+</span><span class='line'>   [ rdf:type  ;
+</span><span class='line'>                                          rdf:rest rdf:nil ;
+</span><span class='line'>                                          rdf:first [ rdf:type  ;
+</span><span class='line'>                                                       ;
+</span><span class='line'>                                                       :SectionA ;
+</span><span class='line'>                                                       :satisfies
+</span><span class='line'>                                                    ]
+</span><span class='line'>                                        ] ;
+</span><span class='line'>   [ rdf:type  ;
+</span><span class='line'>                                          rdf:first [ rdf:type  ;
+</span><span class='line'>                                                       ;
+</span><span class='line'>                                                       :Person
+</span><span class='line'>                                                    ] ;
+</span><span class='line'>                                          rdf:rest [ rdf:type  ;
+</span><span class='line'>                                                     rdf:rest rdf:nil ;
+</span><span class='line'>                                                     rdf:first [ rdf:type  ;
+</span><span class='line'>                                                                  ;
+</span><span class='line'>                                                                  :SectionE ;
+</span><span class='line'>                                                                  :satisfies
+</span><span class='line'>                                                               ]
+</span><span class='line'>                                                   ]
+</span><span class='line'>                                        ]
+</span><span class='line'>] .
+</span><span class='line'>
+</span><span class='line'>###  Generated by the OWL API (version 3.2.5.1928) http://owlapi.sourceforge.net
+</span></code></pre></td></tr></table></div></figure>
 
-<p>@prefix : &lt;urn:ls#> .
-@prefix dc:  .
-@prefix owl:  .
-@prefix rdf:  .
-@prefix xml:  .
-@prefix xsd:  .
-@prefix rdfs:  .
-@base  .</p>
 
-<p>rdf:type owl:Ontology .</p>
 
-<h6>#</h6>
-
-<p>#</p>
-
-<h1>Object Properties</h1>
-
-<p>#</p>
-
-<h6>#</h6>
-
-<h3>urn:ls#satisfies</h3>
-
-<p>:satisfies rdf:type owl:AsymmetricProperty ,</p>
-
-<pre><code>                owl:IrreflexiveProperty ,
-                owl:ObjectProperty ;
-
-       rdfs:domain :Person ;
-
-       rdfs:range :Section .
-</code></pre>
-
-<h6>#</h6>
-
-<p>#</p>
-
-<h1>Classes</h1>
-
-<p>#</p>
-
-<h6>#</h6>
-
-<h3>urn:ls#Person</h3>
-
-<p>:Person rdf:type owl:Class ;</p>
-
-<pre><code>    owl:disjointWith :Section .
-</code></pre>
-
-<h3>urn:ls#Section</h3>
-
-<p>:Section rdf:type owl:Class .</p>
-
-<h6>#</h6>
-
-<p>#</p>
-
-<h1>Individuals</h1>
-
-<p>#</p>
-
-<h6>#</h6>
-
-<h3>urn:ls#Person1</h3>
-
-<p>:Person1 rdf:type owl:NamedIndividual ,</p>
-
-<pre><code>              :Person ;
-
-     :satisfies :SectionD ,
-                :SectionE .
-</code></pre>
-
-<h3>urn:ls#SectionA</h3>
-
-<p>:SectionA rdf:type owl:NamedIndividual ,</p>
-
-<pre><code>               :Section .
-</code></pre>
-
-<h3>urn:ls#SectionB</h3>
-
-<p>:SectionB rdf:type owl:NamedIndividual ,</p>
-
-<pre><code>               :Section .
-</code></pre>
-
-<h3>urn:ls#SectionC</h3>
-
-<p>:SectionC rdf:type owl:NamedIndividual ,</p>
-
-<pre><code>               :Section .
-</code></pre>
-
-<h3>urn:ls#SectionD</h3>
-
-<p>:SectionD rdf:type owl:NamedIndividual ,</p>
-
-<pre><code>               :Section .
-</code></pre>
-
-<h3>urn:ls#SectionE</h3>
-
-<p>:SectionE rdf:type owl:NamedIndividual ,</p>
-
-<pre><code>               :Section .
-</code></pre>
-
-<h3>urn:ls#SectionF</h3>
-
-<p>:SectionF rdf:type owl:NamedIndividual ,</p>
-
-<pre><code>               :Section .
-</code></pre>
-
-<h3>urn:ls#SectionG</h3>
-
-<p>:SectionG rdf:type owl:NamedIndividual ,</p>
-
-<pre><code>               :Section .
-</code></pre>
-
-<h6>#</h6>
-
-<p>#</p>
-
-<h1>Rules</h1>
-
-<p>#</p>
-
-<h6>#</h6>
-
-<p>rdf:type  .
-[ rdf:type  ;
-  rdf:label &#8220;rule1&#8221; ;
-   [ rdf:type  ;</p>
-
-<pre><code>                                      rdf:rest rdf:nil ;
-                                      rdf:first [ rdf:type  ;
-                                                   ;
-                                                   :SectionD ;
-                                                   :satisfies
-                                                ]
-                                    ] ;
-</code></pre>
-
-<p>   [ rdf:type  ;</p>
-
-<pre><code>                                      rdf:rest [ rdf:type  ;
-                                                 rdf:first [ rdf:type  ;
-                                                              ;
-                                                              :SectionF ;
-                                                              :satisfies
-                                                           ] ;
-                                                 rdf:rest [ rdf:type  ;
-                                                            rdf:rest rdf:nil ;
-                                                            rdf:first [ rdf:type  ;
-                                                                         ;
-                                                                         :SectionG ;
-                                                                         :satisfies
-                                                                      ]
-                                                          ]
-                                               ] ;
-                                      rdf:first [ rdf:type  ;
-                                                   ;
-                                                   :Person
-                                                ]
-                                    ]
-</code></pre>
-
-<p>] .
-[ rdf:type  ;
- rdf:label &#8220;rule2&#8221; ;
-   [ rdf:type  ;</p>
-
-<pre><code>                                      rdf:rest [ rdf:type  ;
-                                                 rdf:rest rdf:nil ;
-                                                 rdf:first [ rdf:type  ;
-                                                              ;
-                                                              :SectionD ;
-                                                              :satisfies
-                                                           ]
-                                               ] ;
-                                      rdf:first [ rdf:type  ;
-                                                   ;
-                                                   :Person
-                                                ]
-                                    ] ;
-</code></pre>
-
-<p>   [ rdf:type  ;</p>
-
-<pre><code>                                      rdf:rest rdf:nil ;
-                                      rdf:first [ rdf:type  ;
-                                                   ;
-                                                   :SectionA ;
-                                                   :satisfies
-                                                ]
-                                    ]
-</code></pre>
-
-<p>] .
-[ rdf:type  ;
-rdf:label &#8220;rule3&#8221; ;
-   [ rdf:type  ;</p>
-
-<pre><code>                                      rdf:rest rdf:nil ;
-                                      rdf:first [ rdf:type  ;
-                                                   ;
-                                                   :SectionA ;
-                                                   :satisfies
-                                                ]
-                                    ] ;
-</code></pre>
-
-<p>   [ rdf:type  ;</p>
-
-<pre><code>                                      rdf:rest [ rdf:type  ;
-                                                 rdf:rest [ rdf:type  ;
-                                                            rdf:rest rdf:nil ;
-                                                            rdf:first [ rdf:type  ;
-                                                                         ;
-                                                                         :SectionC ;
-                                                                         :satisfies
-                                                                      ]
-                                                          ] ;
-                                                 rdf:first [ rdf:type  ;
-                                                              ;
-                                                              :SectionB ;
-                                                              :satisfies
-                                                           ]
-                                               ] ;
-                                      rdf:first [ rdf:type  ;
-                                                   ;
-                                                   :Person
-                                                ]
-                                    ]
-</code></pre>
-
-<p>] .
-[ rdf:type  ;
-rdf:label &#8220;rule4&#8221; ;
-   [ rdf:type  ;</p>
-
-<pre><code>                                      rdf:rest rdf:nil ;
-                                      rdf:first [ rdf:type  ;
-                                                   ;
-                                                   :SectionA ;
-                                                   :satisfies
-                                                ]
-                                    ] ;
-</code></pre>
-
-<p>   [ rdf:type  ;</p>
-
-<pre><code>                                      rdf:first [ rdf:type  ;
-                                                   ;
-                                                   :Person
-                                                ] ;
-                                      rdf:rest [ rdf:type  ;
-                                                 rdf:rest rdf:nil ;
-                                                 rdf:first [ rdf:type  ;
-                                                              ;
-                                                              :SectionE ;
-                                                              :satisfies
-                                                           ]
-                                               ]
-                                    ]
-</code></pre>
-
-<p>] .</p>
-
-<h3>Generated by the OWL API (version 3.2.5.1928) http://owlapi.sourceforge.net</h3>
-
-<p>}}}</p>
 </div>
   
   
@@ -603,18 +1537,19 @@ rdf:label &#8220;rule4&#8221; ;
 <p>=Prefixes=</p>
 
 <p>Define a default prefix for this file: &#8216;ls&#8217; for &#8216;legislative SWRL&#8217;.  The prefix
-is a full URI, followed by a &#8216;#&#8217;.<br/>
-{{{
-Prefix: : &lt;urn:ls#>
-}}}</p>
+is a full URI, followed by a &#8216;#&#8217;.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Prefix: : &lt;urn:ls#&gt;</span></code></pre></td></tr></table></div></figure>
+
 
 <p>=Ontology Name=</p>
 
 <p>Ontologies have to have a name in the form of an absolute URI:</p>
 
-<p>{{{
-Ontology:
-}}}</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Ontology: </span></code></pre></td></tr></table></div></figure>
+
 
 <p>=Basic Classes=</p>
 
@@ -624,20 +1559,30 @@ Ontology:
 
 <p>Further, the same &#8216;thing&#8217; cannot be both a person and a section.  We need to express this explicity in OWL by saying the classes are &#8216;disjoint&#8217;.</p>
 
-<p>{{{
-Class: Person</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Class: Person
+</span><span class='line'>
+</span><span class='line'>    DisjointWith: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Class: Section
+</span><span class='line'>
+</span><span class='line'>    DisjointWith: 
+</span><span class='line'>        Person
+</span><span class='line'> 
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>DisjointWith: 
-    Section
-</code></pre>
-
-<p>Class: Section</p>
-
-<pre><code>DisjointWith: 
-    Person
-</code></pre>
-
-<p>}}}</p>
 
 <p>=Properties=</p>
 
@@ -645,18 +1590,25 @@ Class: Person</p>
 
 <p>We express this in OWL with an &#8216;object type property&#8217; called &#8216;satisfies&#8217;.  This is a relationship between classes.  The &#8216;domain&#8217; of the property is the class Person.  The &#8216;range&#8217; of the property is the class Section.</p>
 
-<p>You can say this aloud as &#8216;a person satisfies a section&#8217;.  Notice that we are referring in general to <strong>a</strong> person, <strong>not</strong> a particular person at this point.  A particular person would be &#8216;Bob&#8217; or &#8216;Jill&#8217;.   The property is <strong>defined</strong> at a more abstract level as a relation between classes, not individuals.  When we create individual instances, they will have this property, but we do not define the property for them - we defined it at the class level.It is important not to get confused between classes and individuals, and between an object type property and instances of the property connecting individuals.
-{{{
-ObjectProperty: satisfies</p>
+<p>You can say this aloud as &#8216;a person satisfies a section&#8217;.  Notice that we are referring in general to <strong>a</strong> person, <strong>not</strong> a particular person at this point.  A particular person would be &#8216;Bob&#8217; or &#8216;Jill&#8217;.   The property is <strong>defined</strong> at a more abstract level as a relation between classes, not individuals.  When we create individual instances, they will have this property, but we do not define the property for them - we defined it at the class level.It is important not to get confused between classes and individuals, and between an object type property and instances of the property connecting individuals.</p>
 
-<pre><code>Domain: 
-    Person
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ObjectProperty: satisfies
+</span><span class='line'>
+</span><span class='line'>    Domain: 
+</span><span class='line'>        Person
+</span><span class='line'>    
+</span><span class='line'>    Range:
+</span><span class='line'>  Section</span></code></pre></td></tr></table></div></figure>
 
-Range:
-Section
-</code></pre>
 
-<p>}}}</p>
+<p></p>
 
 <p>We can also add some additional characteristics to this object property to communicate more information about it.  In general, the more information we add, the more can be inferred from the ontology.  In this case, we want to express that the property is:
 * asymettric, and
@@ -666,58 +1618,62 @@ Section
 
 <p>&#8216;Irreflexive&#8217; means that a person cannot satisfy themselves (in this context, anyway).</p>
 
-<p>{{{</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Characteristics: 
+</span><span class='line'>    Asymmetric,
+</span><span class='line'>    Irreflexive</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>Characteristics: 
-    Asymmetric,
-    Irreflexive
-</code></pre>
-
-<p>}}}</p>
 
 <p>=Individuals=</p>
 
 <p>==Sections===
 As discussed above, each particular section of the legislation we will model as an instance of the class &#8216;Section&#8217;.  Since there are section &#8216;A&#8217; through &#8216;G&#8217; in our source rules, we create one individual for each:</p>
 
-<p>{{{</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> 
+</span><span class='line'>Individual: SectionA
+</span><span class='line'>  Types: Section
+</span><span class='line'>  
+</span><span class='line'>Individual: SectionB
+</span><span class='line'>  Types: Section
+</span><span class='line'>
+</span><span class='line'>Individual: SectionC
+</span><span class='line'>  Types: Section
+</span><span class='line'>
+</span><span class='line'>Individual: SectionD
+</span><span class='line'>  Types: Section
+</span><span class='line'>
+</span><span class='line'>Individual: SectionE
+</span><span class='line'>  Types: Section
+</span><span class='line'>
+</span><span class='line'>Individual: SectionF
+</span><span class='line'>  Types: Section
+</span><span class='line'>
+</span><span class='line'>Individual: SectionG
+</span><span class='line'>  Types: Section</span></code></pre></td></tr></table></div></figure>
 
-<p>Individual: SectionA</p>
-
-<pre><code>Types: Section
-</code></pre>
-
-<p>Individual: SectionB</p>
-
-<pre><code>Types: Section
-</code></pre>
-
-<p>Individual: SectionC</p>
-
-<pre><code>Types: Section
-</code></pre>
-
-<p>Individual: SectionD</p>
-
-<pre><code>Types: Section
-</code></pre>
-
-<p>Individual: SectionE</p>
-
-<pre><code>Types: Section
-</code></pre>
-
-<p>Individual: SectionF</p>
-
-<pre><code>Types: Section
-</code></pre>
-
-<p>Individual: SectionG</p>
-
-<pre><code>Types: Section
-</code></pre>
-
-<p>}}}</p>
 
 <p>=Rules=</p>
 
@@ -738,10 +1694,11 @@ Rule 3: A person satisfies Section A if they satisfy section E.</p>
 
 <p>In SWRL, Rule 1 is :</p>
 
-<p>{{{
-Rule:
-Person(?), satisfies(?,SectionB), satisfies(?,SectionC) -> satisfies(?,SectionA)
-}}}</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Rule:
+</span><span class='line'>Person(?), satisfies(?,SectionB), satisfies(?,SectionC) -&gt; satisfies(?,SectionA)</span></code></pre></td></tr></table></div></figure>
+
 
 <p>This consists of three clauses in the body, separated by a comma, followed by the head.</p>
 
@@ -755,11 +1712,13 @@ Person(?), satisfies(?,SectionB), satisfies(?,SectionC) -> satisfies(?,SectionA)
 
 <p>Rules 2 and 3 follow the same pattern.</p>
 
-<p>The last rule we need to write says that a person satisfies section E if they satisfy both Section F and Section G.  This time Section E is in the head of the rule rather than the body:
-{{{
-Rule:
-Person(?), satisfies(?,SectionF), satisfies(?,SectionG) -> satisfies(?,SectionD)
-}}}</p>
+<p>The last rule we need to write says that a person satisfies section E if they satisfy both Section F and Section G.  This time Section E is in the head of the rule rather than the body:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Rule:
+</span><span class='line'>Person(?), satisfies(?,SectionF), satisfies(?,SectionG) -&gt; satisfies(?,SectionD)</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Note that the same clause &#8216;satisfies(?,SectionD)&#8217; appears in the head of this rule, but the body of Rule 3 discussed above.  This means the rules are <strong>chained</strong> together.  The inference of one rule can feed into another rule, so they are all evaluated together.</p>
 
@@ -769,23 +1728,19 @@ Person(?), satisfies(?,SectionF), satisfies(?,SectionG) -> satisfies(?,SectionD)
 
 <p>For this simple example, we&#8217;ll just create one person, called &#8216;Person1&#8217;.</p>
 
-<p>{{{
-Individual: Person1</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Individual: Person1
+</span><span class='line'>  Types: Person</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>Types: Person
-</code></pre>
-
-<p>}}}</p>
 
 <p>For the purpose of this test, we will say the person satisfies Section D and Section E:</p>
 
-<p>{{{</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Facts: satisfies SectionB
+</span><span class='line'>Facts: satisfies SectionC</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>Facts: satisfies SectionB
-Facts: satisfies SectionC
-</code></pre>
-
-<p>}}}</p>
 
 <p>The expected result is that Person01 also satisfies Section A.</p>
 
@@ -797,19 +1752,21 @@ Facts: satisfies SectionC
 
 <p>For convenience, create an environment variable that contains the full path of the this file, called &#8216;LS&#8217; for &#8216;Legislative SWRL&#8217;.  We&#8217;ll use this in the Pellet commands.</p>
 
-<p>Linux:
-{{{
-LS=
-}}}</p>
+<p>Linux:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>LS=</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Change to the directory where you unzipped Pellet (cd ).</p>
 
 <p>The following command asks Pellet to explain whether Person1 satisfies Section A, and for the reasons why:</p>
 
-<p>Linux:
-{{{
-./pellet.sh explain &#8211;property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS
-}}}</p>
+<p>Linux:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./pellet.sh explain --property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Some things to note:
 * we use the &#8216;-property-value&#8217; switch because &#8216;satisfies&#8217; is an object type property.
@@ -817,18 +1774,22 @@ LS=
 
 <p>The output of this command is:</p>
 
-<p>{{{
-Axiom: Person1 satisfies SectionA</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Axiom: Person1 satisfies SectionA
+</span><span class='line'>
+</span><span class='line'>Explanation(s): 
+</span><span class='line'>1)   Rule(Emission(?urn:anyPerson), satisfies(?urn:anyPerson, SectionB), satisfies(?urn:anyPerson, SectionC) -&gt; satisfies(?urn:anyPersone, SectionA))
+</span><span class='line'>     Person1 satisfies SectionB
+</span><span class='line'>     Person1 type Person
+</span><span class='line'>     Person1 satisfies SectionC
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Explanation(s):
-1)   Rule(Emission(?urn:anyPerson), satisfies(?urn:anyPerson, SectionB), satisfies(?urn:anyPerson, SectionC) -> satisfies(?urn:anyPersone, SectionA))</p>
-
-<pre><code> Person1 satisfies SectionB
- Person1 type Person
- Person1 satisfies SectionC
-</code></pre>
-
-<p>}}}</p>
 
 <p>The first line of the result tells us that Person1 does indeed satisy SectionA.  This accords with our expected result.</p>
 
@@ -840,64 +1801,76 @@ Axiom: Person1 satisfies SectionA</p>
 
 <p>In the test above, there is only one way that Person1 can satisfy Section A given the facts we provided: because they satisfy both sections B and C.  In other cases though, there may be multiple routes to the same conclusion.  To test this, change the facts for Person1 from:</p>
 
-<p>{{{</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Facts: satisfies SectionB
+</span><span class='line'>Facts: satisfies SectionC</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>Facts: satisfies SectionB
-Facts: satisfies SectionC
-</code></pre>
-
-<p>}}}</p>
 
 <p>&#8230; to &#8230;</p>
 
-<p>{{{</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Facts: satisfies SectionD
+</span><span class='line'>` Facts: satisfies SectionE</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>Facts: satisfies SectionD
-</code></pre>
-
-<p>`   Facts: satisfies SectionE
-}}}</p>
 
 <p>Recall from the source rules that a person satisfies Section A if they satisfy <strong>either</strong> Section D <strong>or</strong> Section E.  In the new facts, Person1 satisfies <strong>both</strong> - so there are two ways they can satisfy Section A.</p>
 
 <p>Change the Pellet explain command to show up to 10 explanations:</p>
 
-<p>Linux:
-{{{
-./pellet.sh explain &#8211;max 10 &#8211;property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS
-}}}</p>
+<p>Linux:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./pellet.sh explain --max 10 --property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS</span></code></pre></td></tr></table></div></figure>
+
 
 <p>The output is:</p>
 
-<p>{{{
-Axiom: Person1 satisfies SectionA</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Axiom: Person1 satisfies SectionA
+</span><span class='line'>
+</span><span class='line'>Explanation(s): 
+</span><span class='line'>1)   Person1 type Person
+</span><span class='line'>     Person1 satisfies SectionD
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>2)   satisfies domain Person
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>     Person1 satisfies SectionE
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>3)   satisfies domain Person
+</span><span class='line'>     Person1 satisfies SectionD
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>4)   Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>     Person1 type Person
+</span><span class='line'>     Person1 satisfies SectionE
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Explanation(s):
-1)   Person1 type Person</p>
-
-<pre><code> Person1 satisfies SectionD
- Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
-</code></pre>
-
-<p>2)   satisfies domain Person</p>
-
-<pre><code> Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
- Person1 satisfies SectionE
-</code></pre>
-
-<p>3)   satisfies domain Person</p>
-
-<pre><code> Person1 satisfies SectionD
- Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
-</code></pre>
-
-<p>4)   Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -> satisfies(?urn:anyPerson, SectionA))</p>
-
-<pre><code> Person1 type Person
- Person1 satisfies SectionE
-</code></pre>
-
-<p>}}}</p>
 
 <p>This shows <strong>four</strong> explanations for why Person1 satisfies SectionA.</p>
 
@@ -908,39 +1881,54 @@ Axiom: Person1 satisfies SectionA</p>
 * Person1 is in the domain of a satisfies property (in this case the property connected to &#8216;SectionD&#8217;), therefore Person1 must be a person.
 * The rule discussed above applies.</p>
 
-<p>If Explanation 3 is correct, we should not need to specify explicitly in our ontology that Person1 is a Person.  It should be sufficient to specify that Person1 satisfies SectionE.  To test this, <strong>temporarily remove</strong> the assertion that Person1 is a Person:
-{{{
-Individual: Person1</p>
+<p>If Explanation 3 is correct, we should not need to specify explicitly in our ontology that Person1 is a Person.  It should be sufficient to specify that Person1 satisfies SectionE.  To test this, <strong>temporarily remove</strong> the assertion that Person1 is a Person:</p>
 
-<pre><code>Types: &lt;-- REMOVE THIS LINE
-    Person &lt;-- REMOVE THIS LINE
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Individual: Person1
+</span><span class='line'>
+</span><span class='line'>    Types: &lt;-- REMOVE THIS LINE
+</span><span class='line'>        Person &lt;-- REMOVE THIS LINE
+</span><span class='line'>    
+</span><span class='line'>    Facts:  
+</span><span class='line'>     satisfies  SectionD,
+</span><span class='line'>     satisfies  SectionE
+</span><span class='line'> </span></code></pre></td></tr></table></div></figure>
 
-Facts:  
- satisfies  SectionD,
- satisfies  SectionE
-</code></pre>
-
-<p>}}}</p>
 
 <p>Now run the Pellet command again.  This time the explanation is:</p>
 
-<p>{{{
-Axiom: Person1 satisfies SectionA</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Axiom: Person1 satisfies SectionA
+</span><span class='line'>
+</span><span class='line'>Explanation(s): 
+</span><span class='line'>1)   satisfies domain Person
+</span><span class='line'>     Person1 satisfies SectionD
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>2)   satisfies domain Person
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>     Person1 satisfies SectionE
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Explanation(s):
-1)   satisfies domain Person</p>
-
-<pre><code> Person1 satisfies SectionD
- Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
-</code></pre>
-
-<p>2)   satisfies domain Person</p>
-
-<pre><code> Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
- Person1 satisfies SectionE
-</code></pre>
-
-<p>}}}</p>
 
 <p>Notice how explanations based on the explicit fact that Person1 is a Person no longer appear. Don&#8217;t forget to put the lines you removed back in.</p>
 
@@ -950,35 +1938,52 @@ Axiom: Person1 satisfies SectionA</p>
 
 <p>Recall that a person satisfies Section A if they satisfy Section E.  Further, a person satisfies Section E if they satisfy both Section F and G.  Therefore, a person who satisfies Sections F and G should automatically satisfy Section A - because the rules chain together.</p>
 
-<p>To test this, change the facts about Person1 to:
-{{{
-Individual: Person1</p>
+<p>To test this, change the facts about Person1 to:</p>
 
-<pre><code>Types: 
-    Person
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Individual: Person1
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Person
+</span><span class='line'>    
+</span><span class='line'>    Facts:  
+</span><span class='line'>     satisfies  SectionF,
+</span><span class='line'>     satisfies  SectionG
+</span><span class='line'> </span></code></pre></td></tr></table></div></figure>
 
-Facts:  
- satisfies  SectionF,
- satisfies  SectionG
-</code></pre>
 
-<p>}}}</p>
+<p></p>
 
 <p>Now run the Pellet command again.  The first explanation is:</p>
 
-<p>{{{
-Axiom: Person1 satisfies SectionA</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Axiom: Person1 satisfies SectionA
+</span><span class='line'>
+</span><span class='line'>Explanation(s): 
+</span><span class='line'>1)   Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionF), satisfies(?urn:anyPerson, SectionG) -&gt; satisfies(?urn:anyPerson, SectionD))
+</span><span class='line'>     Person1 satisfies SectionF
+</span><span class='line'>     Person1 type Person
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>     Person1 satisfies SectionG
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Explanation(s):
-1)   Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionF), satisfies(?urn:anyPerson, SectionG) -> satisfies(?urn:anyPerson, SectionD))</p>
-
-<pre><code> Person1 satisfies SectionF
- Person1 type Person
- Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
- Person1 satisfies SectionG
-</code></pre>
-
-<p>}}}</p>
 
 <p>This tells us that Person1 satisfies Section A because:
 * they satisfy both Sections F and G;
@@ -987,109 +1992,198 @@ Axiom: Person1 satisfies SectionA</p>
 
 <p>=The complete ontology=</p>
 
-<p>{{{
-Prefix: : &lt;urn:ls#></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Prefix: : &lt;urn:ls#&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Ontology: 
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>ObjectProperty: satisfies
+</span><span class='line'>
+</span><span class='line'>    Characteristics: 
+</span><span class='line'>        Asymmetric,
+</span><span class='line'>        Irreflexive
+</span><span class='line'>    
+</span><span class='line'>    Domain: 
+</span><span class='line'>        Person
+</span><span class='line'>    
+</span><span class='line'>    Range: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Class: Person
+</span><span class='line'>
+</span><span class='line'>    DisjointWith: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Class: Section
+</span><span class='line'>
+</span><span class='line'>    DisjointWith: 
+</span><span class='line'>        Person
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionG
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionD
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionC
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionF
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionE
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionB
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: Person1
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Person
+</span><span class='line'>    
+</span><span class='line'>    Facts:  
+</span><span class='line'>     satisfies  SectionD,
+</span><span class='line'>     satisfies  SectionE
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionA
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Rule: 
+</span><span class='line'>    Person(?), satisfies(?, SectionB), satisfies(?, SectionC) -&gt; satisfies(?, SectionA)
+</span><span class='line'>
+</span><span class='line'>Rule: 
+</span><span class='line'>    Person(?), satisfies(?, SectionF), satisfies(?, SectionG) -&gt; satisfies(?, SectionD)
+</span><span class='line'>
+</span><span class='line'>Rule: 
+</span><span class='line'>    Person(?), satisfies(?, SectionD) -&gt; satisfies(?, SectionA)
+</span><span class='line'>
+</span><span class='line'>Rule: 
+</span><span class='line'>    Person(?), satisfies(?, SectionE) -&gt; satisfies(?, SectionA)
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Ontology:</p>
 
-<p>ObjectProperty: satisfies</p>
 
-<pre><code>Characteristics: 
-    Asymmetric,
-    Irreflexive
-
-Domain: 
-    Person
-
-Range: 
-    Section
-</code></pre>
-
-<p>Class: Person</p>
-
-<pre><code>DisjointWith: 
-    Section
-</code></pre>
-
-<p>Class: Section</p>
-
-<pre><code>DisjointWith: 
-    Person
-</code></pre>
-
-<p>Individual: SectionG</p>
-
-<pre><code>Types: 
-    Section
-</code></pre>
-
-<p>Individual: SectionD</p>
-
-<pre><code>Types: 
-    Section
-</code></pre>
-
-<p>Individual: SectionC</p>
-
-<pre><code>Types: 
-    Section
-</code></pre>
-
-<p>Individual: SectionF</p>
-
-<pre><code>Types: 
-    Section
-</code></pre>
-
-<p>Individual: SectionE</p>
-
-<pre><code>Types: 
-    Section
-</code></pre>
-
-<p>Individual: SectionB</p>
-
-<pre><code>Types: 
-    Section
-</code></pre>
-
-<p>Individual: Person1</p>
-
-<pre><code>Types: 
-    Person
-
-Facts:  
- satisfies  SectionD,
- satisfies  SectionE
-</code></pre>
-
-<p>Individual: SectionA</p>
-
-<pre><code>Types: 
-    Section
-</code></pre>
-
-<p>Rule:</p>
-
-<pre><code>Person(?), satisfies(?, SectionB), satisfies(?, SectionC) -&gt; satisfies(?, SectionA)
-</code></pre>
-
-<p>Rule:</p>
-
-<pre><code>Person(?), satisfies(?, SectionF), satisfies(?, SectionG) -&gt; satisfies(?, SectionD)
-</code></pre>
-
-<p>Rule:</p>
-
-<pre><code>Person(?), satisfies(?, SectionD) -&gt; satisfies(?, SectionA)
-</code></pre>
-
-<p>Rule:</p>
-
-<pre><code>Person(?), satisfies(?, SectionE) -&gt; satisfies(?, SectionA)
-</code></pre>
-
-<p>}}}</p>
 </div>
   
   
@@ -1175,14 +2269,13 @@ the particular facts of a given circumstance.</p>
 
 <p>The name of the ontology will be &#8216;hello_swrl&#8217;.</p>
 
-<p>We specify this as a &#8216;URI&#8217;: a unique name that has a special form:
-{{{</p>
+<p>We specify this as a &#8216;URI&#8217;: a unique name that has a special form:</p>
 
-<pre><code>Ontology: 
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Ontology: </span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-==Define some namespaces==</p>
+
+<p>==Define some namespaces==</p>
 
 <p>Namespaces just allow you to give precise names to things in the ontology,
 ensuring that different things do not have the same name.  A full name is the
@@ -1191,30 +2284,27 @@ select &#8216;Mr, Mrs&#8217; or whatever as a title - it just reduces the chance
 different people having the same name.</p>
 
 <p>Namespace prefixes allow you to use a shorthand way to refer to a namespace
-rather than writing out the full namespace every time.
-{{{</p>
+rather than writing out the full namespace every time.</p>
 
-<pre><code>Prefix: : &lt;urn:hello_swrl#&gt;
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Prefix: : &lt;urn:hello_swrl#&gt;</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-This defines a default namespace for everything that does not otherwise have a
-namespace defined.
-{{{</p>
 
-<pre><code>Prefix: xsd: 
-</code></pre>
+<p>This defines a default namespace for everything that does not otherwise have a
+namespace defined.</p>
 
-<p>}}}
-Here we are defining the prefix &#8216;xsd&#8217; and associating it with the namespace
-&#8216;http://www.w3.org/2001/XMLSchema#&#8217; - a namespace defined by the W3C.
-{{{</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Prefix: xsd: </span></code></pre></td></tr></table></div></figure>
 
-<pre><code>    Prefix: swrlb: 
-</code></pre>
 
-<p>}}}
-This imports a namespace to do with functions built into SWRL, and gives it the
+<p>Here we are defining the prefix &#8216;xsd&#8217; and associating it with the namespace
+&#8216;http://www.w3.org/2001/XMLSchema#&#8217; - a namespace defined by the W3C.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> Prefix: swrlb: </span></code></pre></td></tr></table></div></figure>
+
+
+<p>This imports a namespace to do with functions built into SWRL, and gives it the
 &#8216;swrlb&#8217; prefix.</p>
 
 <p>Note that although these namespaces look like a web page address, it does not necessarily mean they point to a web page.</p>
@@ -1226,13 +2316,11 @@ This imports a namespace to do with functions built into SWRL, and gives it the
 <p>For example: &#8216;Year 7 Pottery&#8217; is the name of a class of students.  &#8216;Bobby Little&#8217; is
 the name of a boy in that class.  In OWL terms, people would say that Bobby Little is a &#8216;member of&#8217; Year 7 Pottery, is an &#8216;individual in&#8217; Year 7 Pottery or an &#8216;instance of&#8217; Year 7 Pottery.  Bobby Little can of course be members of other classes at the same time.  And the class can exist without Boddy Little or even if there are no students in it.</p>
 
-<p>We&#8217;ll define a new class called &#8216;Corporation&#8217; in the default namespace:
-{{{</p>
+<p>We&#8217;ll define a new class called &#8216;Corporation&#8217; in the default namespace:</p>
 
-<pre><code>Class: Corporation
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Class: Corporation</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}</p>
 
 <p>The corporation has two bits of data associated with that we are interested in:
 * Number of employees
@@ -1251,48 +2339,50 @@ of &#8216;Year 7 Pottery&#8217; have a particular grade for the semester.</p>
 
 <p>When we define these datatype properties, we are saying that individuals in this class <strong>can</strong> have these properties.  We are not attaching them to any particular individuals yet.  It is as if we are just setting a placeholder or container for them, which may or may not be filled.  So the datatype properties attach to classes, <strong>not</strong> individuals.  This is a very important distinction.</p>
 
-<p>Hence, we declare a datatype property for annual revenue called &#8216;hasAnnualRevenue&#8217;:
-{{{</p>
+<p>Hence, we declare a datatype property for annual revenue called &#8216;hasAnnualRevenue&#8217;:</p>
 
-<pre><code>DataProperty: hasAnnualRevenue
-      Domain:  Corporation
-  Range: xsd:integer
-  Characteristics: Functional
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DataProperty: hasAnnualRevenue
+</span><span class='line'>        Domain:  Corporation
+</span><span class='line'>  Range: xsd:integer
+</span><span class='line'>  Characteristics: Functional</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-&#8216;Domain: Corporation&#8217; means that this is a property of the Corporation class.
+
+<p>&#8216;Domain: Corporation&#8217; means that this is a property of the Corporation class.
 &#8216;Range: xsd:integer&#8217; means that this property is an integer.
 &#8216;Characteristics: Functional&#8217; means that each Corporation has only one number for its revenue.</p>
 
-<p>We do the same thing again for the number of employees:
-{{{</p>
+<p>We do the same thing again for the number of employees:</p>
 
-<pre><code>DataProperty: hasNumberOfEmployees
-        Characteristics:  Functional
-    Domain: Corporation    
-    Range: xsd:integer
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DataProperty: hasNumberOfEmployees
+</span><span class='line'>      Characteristics:  Functional
+</span><span class='line'>  Domain: Corporation    
+</span><span class='line'>  Range: xsd:integer</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-How to we denote whether or not a corporation is eligble? We create a class called &#8216;Eligible&#8217;.  Eligible corporations will be members of that class.
-{{{</p>
 
-<pre><code>Class: Eligible
-</code></pre>
+<p>How to we denote whether or not a corporation is eligble? We create a class called &#8216;Eligible&#8217;.  Eligible corporations will be members of that class.</p>
 
-<p>}}}
-There are two tests in this rule: the annual revenue and the employees test.  We&#8217;ll just focus on the first limb for the moment.</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Class: Eligible</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There are two tests in this rule: the annual revenue and the employees test.  We&#8217;ll just focus on the first limb for the moment.</p>
 
 <p>First we will write the rule in a simplified format so we are sure we understand
-it:
-{{{</p>
+it:</p>
 
-<pre><code>Corporation(?corporation) ^ hasAnnualRevenue(?corporation,?revenue) ^ lessThan(?revenue,2000000) -&gt; Eligible(?corporation)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Corporation(?corporation) ^ hasAnnualRevenue(?corporation,?revenue) ^ lessThan(?revenue,2000000) -&gt; Eligible(?corporation)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-The rule has two main parts: the &#8216;body&#8217; and the &#8216;head&#8217;, separated by the &#8216;->&#8217; characters.  Within the body, there are three &#8216;atoms&#8217;, separated by the &#8217;<sup>&#8217;</sup> character.</p>
+
+<p>The rule has two main parts: the &#8216;body&#8217; and the &#8216;head&#8217;, separated by the &#8216;->&#8217; characters.  Within the body, there are three &#8216;atoms&#8217;, separated by the &#8217;<sup>&#8217;</sup> character.</p>
 
 <p>You can think of each atom as a sort of filter applied to all the individuals in the ontology.  The objective is to use the filters to narrow down the the individuals we are interested in.</p>
 
@@ -1304,46 +2394,42 @@ The rule has two main parts: the &#8216;body&#8217; and the &#8216;head&#8217;, 
 <p>The things in this context are individuals in the ontology.  Some pass through
 the filter and are bound to a variable.</p>
 
-<p>The first atom:
-{{{</p>
+<p>The first atom:</p>
 
-<pre><code>Corporation(?corporation)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Corporation(?corporation)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-This means &#8216;look for individuals in the ontology that are instances of the &#8220;Corporation&#8221; class.
+
+<p>This means &#8216;look for individuals in the ontology that are instances of the &#8220;Corporation&#8221; class.
 Bind those individuals to the variable &#8216;corporation&#8217;.&#8221;  (The &#8216;?&#8217; means it is a variable.)</p>
 
 <p>Since those individuals are bound to ?corporation, we can use them elsewhere in the rule.</p>
 
-<p>The second atom:
-{{{</p>
+<p>The second atom:</p>
 
-<pre><code>hasAnnualRevenue(?corporation,?revenue)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>hasAnnualRevenue(?corporation,?revenue)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-This means &#8216;find all the particular individuals which are bound to the ?corporation variable and have the property &#8220;hasAnnualRevenue&#8221;. Then bind the the revenue number for each individual to the variable &#8220;revenue&#8221;.&#8217;</p>
 
-<p>The third atom:
-{{{</p>
+<p>This means &#8216;find all the particular individuals which are bound to the ?corporation variable and have the property &#8220;hasAnnualRevenue&#8221;. Then bind the the revenue number for each individual to the variable &#8220;revenue&#8221;.&#8217;</p>
 
-<pre><code>lessThan(?revenue,2000000)
-</code></pre>
+<p>The third atom:</p>
 
-<p>}}}
-This means &#8216;filter out revenue numbers less than 2,000,000&#8217;.</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lessThan(?revenue,2000000)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This means &#8216;filter out revenue numbers less than 2,000,000&#8217;.</p>
 
 <p>Recall the atoms in the body all have to be true.  So the combined effect of the atoms above is to select <strong>all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000</strong>.  The filters apply cumulatively.</p>
 
-<p>Now we have isolated the individual corporations we are interested in, we want to <strong>make them eligible</strong>.  The head of the rule just takes all individuals bound to the ?corporation variable and makes them members of the class &#8216;Eligible&#8217;:
-{{{</p>
+<p>Now we have isolated the individual corporations we are interested in, we want to <strong>make them eligible</strong>.  The head of the rule just takes all individuals bound to the ?corporation variable and makes them members of the class &#8216;Eligible&#8217;:</p>
 
-<pre><code>Eligible(?corporation)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Eligible(?corporation)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-So the effect of the whole rule is <strong>all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000 are eligible</strong>.</p>
+
+<p>So the effect of the whole rule is <strong>all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000 are eligible</strong>.</p>
 
 <p>=Translating to SWRL=</p>
 
@@ -1351,26 +2437,25 @@ So the effect of the whole rule is <strong>all individuals which are corporation
 
 <p>We need <strong>two</strong> SWRL rules to capture our logic.  This is because the corporation is eligible if it has annual revenue less than $2M, <strong>or</strong> it has less than five employees.</p>
 
-<p>The first rule:
-{{{</p>
+<p>The first rule:</p>
 
-<pre><code>Rule: 
-Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Rule: 
+</span><span class='line'>Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-Note:
+
+<p>Note:
 * We have replaced each variable name with a &#8216;URI&#8217; in angle brackets.
 * To do the comparison between the actual revenue and the function, we reference a &#8216;built in&#8217; function called &#8216;lessThan&#8217; in the &#8216;swrlb&#8217; namespace.  This is part of the SWRL specification in the W3C recommendation.</p>
 
-<p>The second rule is the same as the first except that it refers to number of employees instead of revenue:
-{{{</p>
+<p>The second rule is the same as the first except that it refers to number of employees instead of revenue:</p>
 
-<pre><code>Rule: 
-Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Rule: 
+</span><span class='line'>Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}</p>
 
 <p>=Facts=</p>
 
@@ -1395,92 +2480,161 @@ Globex Corp:
 * Maas Corp is eligible because it has less than 5 employees.
 * Globex Corp is <strong>not</strong> eligible because it meets neither of the revenue or employees tests.</p>
 
-<p>The test data:
-{{{</p>
+<p>The test data:</p>
 
-<pre><code>Individual: AcmeCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 1000000
-    Facts: hasNumberOfEmployees 5
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Individual: AcmeCorp
+</span><span class='line'>  Types: Corporation
+</span><span class='line'>  Facts: hasAnnualRevenue 1000000
+</span><span class='line'>  Facts: hasNumberOfEmployees 5
+</span><span class='line'>      
+</span><span class='line'>Individual: MaasCorp
+</span><span class='line'>  Types: Corporation
+</span><span class='line'>  Facts: hasAnnualRevenue 3000000
+</span><span class='line'>  Facts: hasNumberOfEmployees 4
+</span><span class='line'>
+</span><span class='line'>Individual: GlobexCorp
+</span><span class='line'>  Types: Corporation
+</span><span class='line'>  Facts: hasAnnualRevenue 5000000
+</span><span class='line'>  Facts: hasNumberOfEmployees 15
+</span></code></pre></td></tr></table></div></figure>
 
-Individual: MaasCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 3000000
-    Facts: hasNumberOfEmployees 4
-
-Individual: GlobexCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 5000000
-    Facts: hasNumberOfEmployees 15
-</code></pre>
-
-<p>}}}</p>
 
 <p>This is the full ontology which should now be saved in your file hello_swrl.owl:</p>
 
-<p>{{{</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>Prefix: swrl: 
+</span><span class='line'>Prefix: xsd: 
+</span><span class='line'>Prefix: swrlb: 
+</span><span class='line'>Prefix: : &lt;urn:hello_swrl#&gt;
+</span><span class='line'>
+</span><span class='line'>Ontology: 
+</span><span class='line'> 
+</span><span class='line'>Class: Corporation
+</span><span class='line'>    
+</span><span class='line'>Class: Eligible
+</span><span class='line'>    
+</span><span class='line'>DataProperty: hasNumberOfEmployees
+</span><span class='line'>
+</span><span class='line'>    Characteristics: 
+</span><span class='line'>        Functional
+</span><span class='line'>    
+</span><span class='line'>    Domain: 
+</span><span class='line'>        Corporation
+</span><span class='line'>    
+</span><span class='line'>    Range: 
+</span><span class='line'>        xsd:integer
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>DataProperty: hasAnnualRevenue
+</span><span class='line'>
+</span><span class='line'>    Characteristics: 
+</span><span class='line'>        Functional
+</span><span class='line'>    
+</span><span class='line'>    Domain: 
+</span><span class='line'>        Corporation
+</span><span class='line'>    
+</span><span class='line'>    Range: 
+</span><span class='line'>        xsd:integer
+</span><span class='line'>    
+</span><span class='line'>   
+</span><span class='line'>    
+</span><span class='line'>  Rule: 
+</span><span class='line'>  Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)
+</span><span class='line'>
+</span><span class='line'>  Rule: 
+</span><span class='line'>  Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  Individual: AcmeCorp
+</span><span class='line'>      Types: Corporation
+</span><span class='line'>      Facts: hasAnnualRevenue 1000000
+</span><span class='line'>      Facts: hasNumberOfEmployees 5
+</span><span class='line'>          
+</span><span class='line'>  Individual: MaasCorp
+</span><span class='line'>      Types: Corporation
+</span><span class='line'>      Facts: hasAnnualRevenue 3000000
+</span><span class='line'>      Facts: hasNumberOfEmployees 4
+</span><span class='line'>
+</span><span class='line'>  Individual: GlobexCorp
+</span><span class='line'>      Types: Corporation
+</span><span class='line'>      Facts: hasAnnualRevenue 5000000
+</span><span class='line'>      Facts: hasNumberOfEmployees 15
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Prefix: swrl:
-Prefix: xsd:
-Prefix: swrlb:
-Prefix: : &lt;urn:hello_swrl#></p>
-
-<p>Ontology:</p>
-
-<p>Class: Corporation</p>
-
-<p>Class: Eligible</p>
-
-<p>DataProperty: hasNumberOfEmployees</p>
-
-<pre><code>Characteristics: 
-    Functional
-
-Domain: 
-    Corporation
-
-Range: 
-    xsd:integer
-</code></pre>
-
-<p>DataProperty: hasAnnualRevenue</p>
-
-<pre><code>Characteristics: 
-    Functional
-
-Domain: 
-    Corporation
-
-Range: 
-    xsd:integer
-
-
-
-Rule: 
-Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)
-
-Rule: 
-Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)
-
-
-
-Individual: AcmeCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 1000000
-    Facts: hasNumberOfEmployees 5
-
-Individual: MaasCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 3000000
-    Facts: hasNumberOfEmployees 4
-
-Individual: GlobexCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 5000000
-    Facts: hasNumberOfEmployees 15
-</code></pre>
-
-<p>}}}</p>
 
 <p>=Testing in Protege=</p>
 

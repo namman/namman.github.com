@@ -98,9 +98,12 @@ Specifies that the only valid captures are explicitly named or numbered groups o
 
 <p>Eg, this only captures the first letter of a the string, and the period at the end:</p>
 
-<p>{{{ csharp
- var r = new Regex(@&#8221;(<sup>[a-z])|.\s+(.)&#8221;,</sup> RegexOptions.ExplicitCapture);
-}}}</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'> <span class="kt">var</span> <span class="n">r</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Regex</span><span class="p">(</span><span class="s">@&quot;(^[a-z])|\.\s+(.)&quot;</span><span class="p">,</span> <span class="n">RegexOptions</span><span class="p">.</span><span class="n">ExplicitCapture</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
 
 

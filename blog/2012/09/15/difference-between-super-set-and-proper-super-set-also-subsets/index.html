@@ -9,7 +9,12 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="{{{ lang=csharp
+  <meta name="description" content="1
+2
+3
+4
+5
+6
 var first = new HashSet() {1,2};
 var second = new HashSet() {1,2};
 var isProperSuperSet = first.IsProperSupersetOf(second);
@@ -92,14 +97,20 @@ Console. &hellip;">
   </header>
 
 
-<div class="entry-content"><p>{{{ lang=csharp
-var first = new HashSet() {1,2};
-var second = new HashSet() {1,2};
-var isProperSuperSet = first.IsProperSupersetOf(second);
-Console.WriteLine (isProperSuperSet); // false
-var isSuperSet = first.IsSupersetOf(second);
-Console.WriteLine (isSuperSet); // true
-}}}</p>
+<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="kt">var</span> <span class="n">first</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">()</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">};</span>
+</span><span class='line'><span class="kt">var</span> <span class="n">second</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">()</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">};</span>
+</span><span class='line'><span class="kt">var</span> <span class="n">isProperSuperSet</span> <span class="p">=</span> <span class="n">first</span><span class="p">.</span><span class="n">IsProperSupersetOf</span><span class="p">(</span><span class="n">second</span><span class="p">);</span>
+</span><span class='line'><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">isProperSuperSet</span><span class="p">);</span> <span class="c1">// false</span>
+</span><span class='line'><span class="kt">var</span> <span class="n">isSuperSet</span> <span class="p">=</span> <span class="n">first</span><span class="p">.</span><span class="n">IsSupersetOf</span><span class="p">(</span><span class="n">second</span><span class="p">);</span>
+</span><span class='line'><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">isSuperSet</span><span class="p">);</span> <span class="c1">// true</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Duh.</p>
 </div>

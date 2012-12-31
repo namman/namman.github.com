@@ -140,14 +140,13 @@ the particular facts of a given circumstance.</p>
 
 <p>The name of the ontology will be &#8216;hello_swrl&#8217;.</p>
 
-<p>We specify this as a &#8216;URI&#8217;: a unique name that has a special form:
-{{{</p>
+<p>We specify this as a &#8216;URI&#8217;: a unique name that has a special form:</p>
 
-<pre><code>Ontology: 
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Ontology: </span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-==Define some namespaces==</p>
+
+<p>==Define some namespaces==</p>
 
 <p>Namespaces just allow you to give precise names to things in the ontology,
 ensuring that different things do not have the same name.  A full name is the
@@ -156,30 +155,27 @@ select &#8216;Mr, Mrs&#8217; or whatever as a title - it just reduces the chance
 different people having the same name.</p>
 
 <p>Namespace prefixes allow you to use a shorthand way to refer to a namespace
-rather than writing out the full namespace every time.
-{{{</p>
+rather than writing out the full namespace every time.</p>
 
-<pre><code>Prefix: : &lt;urn:hello_swrl#&gt;
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Prefix: : &lt;urn:hello_swrl#&gt;</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-This defines a default namespace for everything that does not otherwise have a
-namespace defined.
-{{{</p>
 
-<pre><code>Prefix: xsd: 
-</code></pre>
+<p>This defines a default namespace for everything that does not otherwise have a
+namespace defined.</p>
 
-<p>}}}
-Here we are defining the prefix &#8216;xsd&#8217; and associating it with the namespace
-&#8216;http://www.w3.org/2001/XMLSchema#&#8217; - a namespace defined by the W3C.
-{{{</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Prefix: xsd: </span></code></pre></td></tr></table></div></figure>
 
-<pre><code>    Prefix: swrlb: 
-</code></pre>
 
-<p>}}}
-This imports a namespace to do with functions built into SWRL, and gives it the
+<p>Here we are defining the prefix &#8216;xsd&#8217; and associating it with the namespace
+&#8216;http://www.w3.org/2001/XMLSchema#&#8217; - a namespace defined by the W3C.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> Prefix: swrlb: </span></code></pre></td></tr></table></div></figure>
+
+
+<p>This imports a namespace to do with functions built into SWRL, and gives it the
 &#8216;swrlb&#8217; prefix.</p>
 
 <p>Note that although these namespaces look like a web page address, it does not necessarily mean they point to a web page.</p>
@@ -191,13 +187,11 @@ This imports a namespace to do with functions built into SWRL, and gives it the
 <p>For example: &#8216;Year 7 Pottery&#8217; is the name of a class of students.  &#8216;Bobby Little&#8217; is
 the name of a boy in that class.  In OWL terms, people would say that Bobby Little is a &#8216;member of&#8217; Year 7 Pottery, is an &#8216;individual in&#8217; Year 7 Pottery or an &#8216;instance of&#8217; Year 7 Pottery.  Bobby Little can of course be members of other classes at the same time.  And the class can exist without Boddy Little or even if there are no students in it.</p>
 
-<p>We&#8217;ll define a new class called &#8216;Corporation&#8217; in the default namespace:
-{{{</p>
+<p>We&#8217;ll define a new class called &#8216;Corporation&#8217; in the default namespace:</p>
 
-<pre><code>Class: Corporation
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Class: Corporation</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}</p>
 
 <p>The corporation has two bits of data associated with that we are interested in:
 * Number of employees
@@ -216,48 +210,50 @@ of &#8216;Year 7 Pottery&#8217; have a particular grade for the semester.</p>
 
 <p>When we define these datatype properties, we are saying that individuals in this class <strong>can</strong> have these properties.  We are not attaching them to any particular individuals yet.  It is as if we are just setting a placeholder or container for them, which may or may not be filled.  So the datatype properties attach to classes, <strong>not</strong> individuals.  This is a very important distinction.</p>
 
-<p>Hence, we declare a datatype property for annual revenue called &#8216;hasAnnualRevenue&#8217;:
-{{{</p>
+<p>Hence, we declare a datatype property for annual revenue called &#8216;hasAnnualRevenue&#8217;:</p>
 
-<pre><code>DataProperty: hasAnnualRevenue
-      Domain:  Corporation
-  Range: xsd:integer
-  Characteristics: Functional
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DataProperty: hasAnnualRevenue
+</span><span class='line'>        Domain:  Corporation
+</span><span class='line'>  Range: xsd:integer
+</span><span class='line'>  Characteristics: Functional</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-&#8216;Domain: Corporation&#8217; means that this is a property of the Corporation class.
+
+<p>&#8216;Domain: Corporation&#8217; means that this is a property of the Corporation class.
 &#8216;Range: xsd:integer&#8217; means that this property is an integer.
 &#8216;Characteristics: Functional&#8217; means that each Corporation has only one number for its revenue.</p>
 
-<p>We do the same thing again for the number of employees:
-{{{</p>
+<p>We do the same thing again for the number of employees:</p>
 
-<pre><code>DataProperty: hasNumberOfEmployees
-        Characteristics:  Functional
-    Domain: Corporation    
-    Range: xsd:integer
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DataProperty: hasNumberOfEmployees
+</span><span class='line'>      Characteristics:  Functional
+</span><span class='line'>  Domain: Corporation    
+</span><span class='line'>  Range: xsd:integer</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-How to we denote whether or not a corporation is eligble? We create a class called &#8216;Eligible&#8217;.  Eligible corporations will be members of that class.
-{{{</p>
 
-<pre><code>Class: Eligible
-</code></pre>
+<p>How to we denote whether or not a corporation is eligble? We create a class called &#8216;Eligible&#8217;.  Eligible corporations will be members of that class.</p>
 
-<p>}}}
-There are two tests in this rule: the annual revenue and the employees test.  We&#8217;ll just focus on the first limb for the moment.</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Class: Eligible</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There are two tests in this rule: the annual revenue and the employees test.  We&#8217;ll just focus on the first limb for the moment.</p>
 
 <p>First we will write the rule in a simplified format so we are sure we understand
-it:
-{{{</p>
+it:</p>
 
-<pre><code>Corporation(?corporation) ^ hasAnnualRevenue(?corporation,?revenue) ^ lessThan(?revenue,2000000) -&gt; Eligible(?corporation)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Corporation(?corporation) ^ hasAnnualRevenue(?corporation,?revenue) ^ lessThan(?revenue,2000000) -&gt; Eligible(?corporation)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-The rule has two main parts: the &#8216;body&#8217; and the &#8216;head&#8217;, separated by the &#8216;->&#8217; characters.  Within the body, there are three &#8216;atoms&#8217;, separated by the &#8217;<sup>&#8217;</sup> character.</p>
+
+<p>The rule has two main parts: the &#8216;body&#8217; and the &#8216;head&#8217;, separated by the &#8216;->&#8217; characters.  Within the body, there are three &#8216;atoms&#8217;, separated by the &#8217;<sup>&#8217;</sup> character.</p>
 
 <p>You can think of each atom as a sort of filter applied to all the individuals in the ontology.  The objective is to use the filters to narrow down the the individuals we are interested in.</p>
 
@@ -269,46 +265,42 @@ The rule has two main parts: the &#8216;body&#8217; and the &#8216;head&#8217;, 
 <p>The things in this context are individuals in the ontology.  Some pass through
 the filter and are bound to a variable.</p>
 
-<p>The first atom:
-{{{</p>
+<p>The first atom:</p>
 
-<pre><code>Corporation(?corporation)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Corporation(?corporation)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-This means &#8216;look for individuals in the ontology that are instances of the &#8220;Corporation&#8221; class.
+
+<p>This means &#8216;look for individuals in the ontology that are instances of the &#8220;Corporation&#8221; class.
 Bind those individuals to the variable &#8216;corporation&#8217;.&#8221;  (The &#8216;?&#8217; means it is a variable.)</p>
 
 <p>Since those individuals are bound to ?corporation, we can use them elsewhere in the rule.</p>
 
-<p>The second atom:
-{{{</p>
+<p>The second atom:</p>
 
-<pre><code>hasAnnualRevenue(?corporation,?revenue)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>hasAnnualRevenue(?corporation,?revenue)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-This means &#8216;find all the particular individuals which are bound to the ?corporation variable and have the property &#8220;hasAnnualRevenue&#8221;. Then bind the the revenue number for each individual to the variable &#8220;revenue&#8221;.&#8217;</p>
 
-<p>The third atom:
-{{{</p>
+<p>This means &#8216;find all the particular individuals which are bound to the ?corporation variable and have the property &#8220;hasAnnualRevenue&#8221;. Then bind the the revenue number for each individual to the variable &#8220;revenue&#8221;.&#8217;</p>
 
-<pre><code>lessThan(?revenue,2000000)
-</code></pre>
+<p>The third atom:</p>
 
-<p>}}}
-This means &#8216;filter out revenue numbers less than 2,000,000&#8217;.</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lessThan(?revenue,2000000)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This means &#8216;filter out revenue numbers less than 2,000,000&#8217;.</p>
 
 <p>Recall the atoms in the body all have to be true.  So the combined effect of the atoms above is to select <strong>all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000</strong>.  The filters apply cumulatively.</p>
 
-<p>Now we have isolated the individual corporations we are interested in, we want to <strong>make them eligible</strong>.  The head of the rule just takes all individuals bound to the ?corporation variable and makes them members of the class &#8216;Eligible&#8217;:
-{{{</p>
+<p>Now we have isolated the individual corporations we are interested in, we want to <strong>make them eligible</strong>.  The head of the rule just takes all individuals bound to the ?corporation variable and makes them members of the class &#8216;Eligible&#8217;:</p>
 
-<pre><code>Eligible(?corporation)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Eligible(?corporation)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-So the effect of the whole rule is <strong>all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000 are eligible</strong>.</p>
+
+<p>So the effect of the whole rule is <strong>all individuals which are corporations, have a value for annual revenue, and the value is less than 2,000,000 are eligible</strong>.</p>
 
 <p>=Translating to SWRL=</p>
 
@@ -316,26 +308,25 @@ So the effect of the whole rule is <strong>all individuals which are corporation
 
 <p>We need <strong>two</strong> SWRL rules to capture our logic.  This is because the corporation is eligible if it has annual revenue less than $2M, <strong>or</strong> it has less than five employees.</p>
 
-<p>The first rule:
-{{{</p>
+<p>The first rule:</p>
 
-<pre><code>Rule: 
-Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Rule: 
+</span><span class='line'>Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}
-Note:
+
+<p>Note:
 * We have replaced each variable name with a &#8216;URI&#8217; in angle brackets.
 * To do the comparison between the actual revenue and the function, we reference a &#8216;built in&#8217; function called &#8216;lessThan&#8217; in the &#8216;swrlb&#8217; namespace.  This is part of the SWRL specification in the W3C recommendation.</p>
 
-<p>The second rule is the same as the first except that it refers to number of employees instead of revenue:
-{{{</p>
+<p>The second rule is the same as the first except that it refers to number of employees instead of revenue:</p>
 
-<pre><code>Rule: 
-Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Rule: 
+</span><span class='line'>Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)</span></code></pre></td></tr></table></div></figure>
 
-<p>}}}</p>
 
 <p>=Facts=</p>
 
@@ -360,92 +351,161 @@ Globex Corp:
 * Maas Corp is eligible because it has less than 5 employees.
 * Globex Corp is <strong>not</strong> eligible because it meets neither of the revenue or employees tests.</p>
 
-<p>The test data:
-{{{</p>
+<p>The test data:</p>
 
-<pre><code>Individual: AcmeCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 1000000
-    Facts: hasNumberOfEmployees 5
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Individual: AcmeCorp
+</span><span class='line'>  Types: Corporation
+</span><span class='line'>  Facts: hasAnnualRevenue 1000000
+</span><span class='line'>  Facts: hasNumberOfEmployees 5
+</span><span class='line'>      
+</span><span class='line'>Individual: MaasCorp
+</span><span class='line'>  Types: Corporation
+</span><span class='line'>  Facts: hasAnnualRevenue 3000000
+</span><span class='line'>  Facts: hasNumberOfEmployees 4
+</span><span class='line'>
+</span><span class='line'>Individual: GlobexCorp
+</span><span class='line'>  Types: Corporation
+</span><span class='line'>  Facts: hasAnnualRevenue 5000000
+</span><span class='line'>  Facts: hasNumberOfEmployees 15
+</span></code></pre></td></tr></table></div></figure>
 
-Individual: MaasCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 3000000
-    Facts: hasNumberOfEmployees 4
-
-Individual: GlobexCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 5000000
-    Facts: hasNumberOfEmployees 15
-</code></pre>
-
-<p>}}}</p>
 
 <p>This is the full ontology which should now be saved in your file hello_swrl.owl:</p>
 
-<p>{{{</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>Prefix: swrl: 
+</span><span class='line'>Prefix: xsd: 
+</span><span class='line'>Prefix: swrlb: 
+</span><span class='line'>Prefix: : &lt;urn:hello_swrl#&gt;
+</span><span class='line'>
+</span><span class='line'>Ontology: 
+</span><span class='line'> 
+</span><span class='line'>Class: Corporation
+</span><span class='line'>    
+</span><span class='line'>Class: Eligible
+</span><span class='line'>    
+</span><span class='line'>DataProperty: hasNumberOfEmployees
+</span><span class='line'>
+</span><span class='line'>    Characteristics: 
+</span><span class='line'>        Functional
+</span><span class='line'>    
+</span><span class='line'>    Domain: 
+</span><span class='line'>        Corporation
+</span><span class='line'>    
+</span><span class='line'>    Range: 
+</span><span class='line'>        xsd:integer
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>DataProperty: hasAnnualRevenue
+</span><span class='line'>
+</span><span class='line'>    Characteristics: 
+</span><span class='line'>        Functional
+</span><span class='line'>    
+</span><span class='line'>    Domain: 
+</span><span class='line'>        Corporation
+</span><span class='line'>    
+</span><span class='line'>    Range: 
+</span><span class='line'>        xsd:integer
+</span><span class='line'>    
+</span><span class='line'>   
+</span><span class='line'>    
+</span><span class='line'>  Rule: 
+</span><span class='line'>  Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)
+</span><span class='line'>
+</span><span class='line'>  Rule: 
+</span><span class='line'>  Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  Individual: AcmeCorp
+</span><span class='line'>      Types: Corporation
+</span><span class='line'>      Facts: hasAnnualRevenue 1000000
+</span><span class='line'>      Facts: hasNumberOfEmployees 5
+</span><span class='line'>          
+</span><span class='line'>  Individual: MaasCorp
+</span><span class='line'>      Types: Corporation
+</span><span class='line'>      Facts: hasAnnualRevenue 3000000
+</span><span class='line'>      Facts: hasNumberOfEmployees 4
+</span><span class='line'>
+</span><span class='line'>  Individual: GlobexCorp
+</span><span class='line'>      Types: Corporation
+</span><span class='line'>      Facts: hasAnnualRevenue 5000000
+</span><span class='line'>      Facts: hasNumberOfEmployees 15
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Prefix: swrl:
-Prefix: xsd:
-Prefix: swrlb:
-Prefix: : &lt;urn:hello_swrl#></p>
-
-<p>Ontology:</p>
-
-<p>Class: Corporation</p>
-
-<p>Class: Eligible</p>
-
-<p>DataProperty: hasNumberOfEmployees</p>
-
-<pre><code>Characteristics: 
-    Functional
-
-Domain: 
-    Corporation
-
-Range: 
-    xsd:integer
-</code></pre>
-
-<p>DataProperty: hasAnnualRevenue</p>
-
-<pre><code>Characteristics: 
-    Functional
-
-Domain: 
-    Corporation
-
-Range: 
-    xsd:integer
-
-
-
-Rule: 
-Corporation(?), hasAnnualRevenue(?, ?), (?, 2000000) -&gt; Eligible(?)
-
-Rule: 
-Corporation(?), hasNumberOfEmployees(?, ?), (?, 5) -&gt; Eligible(?)
-
-
-
-Individual: AcmeCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 1000000
-    Facts: hasNumberOfEmployees 5
-
-Individual: MaasCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 3000000
-    Facts: hasNumberOfEmployees 4
-
-Individual: GlobexCorp
-    Types: Corporation
-    Facts: hasAnnualRevenue 5000000
-    Facts: hasNumberOfEmployees 15
-</code></pre>
-
-<p>}}}</p>
 
 <p>=Testing in Protege=</p>
 
