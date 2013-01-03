@@ -1,12 +1,11 @@
 ---
 layout: post
-title: "lightswitch-cheat-sheet"
+title: Order of Lightswitch screen events
 date: 2013-01-03 17:33
 comments: true
-categories: 
+categories: lightswitch
 ---
 
-Order of screen events:
 1. InitialiseDataWorkspace.  Has already hydrated the data context from database.
 2. Now loads custom controls: ControlAvailable events fire.
 3. Created
