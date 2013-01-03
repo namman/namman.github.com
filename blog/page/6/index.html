@@ -9,8 +9,11 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Delete all htm files recursively: 1
-find . -type f -name &#39;*.htm&#39; -delete ">
+  <meta name="description" content="To make paths actually work in .bashrc: 1
+2
+3
+export AKKA_HOME=~/Programs/typesafe-stack
+alias t=&#39;todo.sh -d ~/Programs/todo.txt/todo.cfg&#39; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +66,51 @@ find . -type f -name &#39;*.htm&#39; -delete ">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/10/syntax-for-paths-in-bashrc/">Syntax for Paths in .bashrc</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-10T02:42:41+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>To make paths actually work in .bashrc:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">AKKA_HOME</span><span class="o">=</span>~/Programs/typesafe-stack
+</span><span class='line'><span class="nb">alias </span><span class="nv">t</span><span class="o">=</span><span class="s1">&#39;todo.sh -d ~/Programs/todo.txt/todo.cfg&#39;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/Programs/typesafe-stack/bin
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -422,6 +470,10 @@ find . -type f -name &#39;*.htm&#39; -delete ">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/03/lightswitch-cheat-sheet/">lightswitch-cheat-sheet</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/31/git-cheat-sheet/">git cheat sheet</a>
       </li>
     
@@ -495,10 +547,6 @@ find . -type f -name &#39;*.htm&#39; -delete ">
     
       <li class="post">
         <a href="/blog/2012/09/12/what-regexoptions-explicitcapture-does/">What RegexOptions.ExplicitCapture does</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/10/how-to-update-metadata-source-for-odata-service-reference/">How to update metadata source for Odata Service Reference</a>
       </li>
     
   </ul>

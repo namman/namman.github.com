@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="http://namman.github.com/atom.xml" rel="self"/>
   <link href="http://namman.github.com/"/>
-  <updated>2013-01-02T08:19:22+11:00</updated>
+  <updated>2013-01-03T17:37:01+11:00</updated>
   <id>http://namman.github.com/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[lightswitch-cheat-sheet]]></title>
+    <link href="http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet/"/>
+    <updated>2013-01-03T17:33:00+11:00</updated>
+    <id>http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet</id>
+    <content type="html"><![CDATA[<p>Order of screen events:
+1. InitialiseDataWorkspace.  Has already hydrated the data context from database.
+2. Now loads custom controls: ControlAvailable events fire.
+3. Created
+4. Activated</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[git cheat sheet]]></title>
@@ -571,23 +584,6 @@ Specifies that the only valid captures are explicitly named or numbered groups o
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to update metadata source for Odata Service Reference]]></title>
-    <link href="http://namman.github.com/blog/2012/09/10/how-to-update-metadata-source-for-odata-service-reference/"/>
-    <updated>2012-09-10T22:43:33+10:00</updated>
-    <id>http://namman.github.com/blog/2012/09/10/how-to-update-metadata-source-for-odata-service-reference</id>
-    <content type="html"><![CDATA[<ul>
-<li>Show all files</li>
-<li>$(Project)/Service References/OdataApplicationData/Reference.datasvcmap</li>
-</ul>
-
-
-<p>&#8220;`xml</p>
-
-<p>  &#8220;`</p>
 ]]></content>
   </entry>
   

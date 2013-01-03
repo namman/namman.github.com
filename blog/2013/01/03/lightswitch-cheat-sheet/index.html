@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Reference equality in C# - Junk I Would Otherwise Forget</title>
+  <title>lightswitch-cheat-sheet - Junk I Would Otherwise Forget</title>
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Object.ReferenceEquals(x, y))
-">
+  <meta name="description" content="Order of screen events:
+1. InitialiseDataWorkspace. Has already hydrated the data context from database.
+2. Now loads custom controls: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://namman.github.com/blog/2012/08/10/reference-equality-in-c/">
+  <link rel="canonical" href="http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -66,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Reference Equality in C#</h1>
+      <h1 class="entry-title">Lightswitch-cheat-sheet</h1>
     
     
       <p class="meta">
@@ -82,14 +83,18 @@
   
 
 
-<time datetime="2012-08-10T02:53:12+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
+<time datetime="2013-01-03T17:33:00+11:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Object.ReferenceEquals(x, y))</p>
+<div class="entry-content"><p>Order of screen events:
+1. InitialiseDataWorkspace.  Has already hydrated the data context from database.
+2. Now loads custom controls: ControlAvailable events fire.
+3. Created
+4. Activated</p>
 </div>
 
 
@@ -112,21 +117,15 @@
   
 
 
-<time datetime="2012-08-10T02:53:12+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
+<time datetime="2013-01-03T17:33:00+11:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/exocortex/'>exocortex</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://namman.github.com/blog/2012/08/10/reference-equality-in-c/" data-via="" data-counturl="http://namman.github.com/blog/2012/08/10/reference-equality-in-c/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet/" data-via="" data-counturl="http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet/" >Tweet</a>
   
   
   
@@ -135,10 +134,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/08/10/how-to-bind-identifiers-in-scala-pattern-matching/" title="Previous Post: How to bind identifiers in Scala pattern matching">&laquo; How to bind identifiers in Scala pattern matching</a>
+        <a class="basic-alignment left" href="/blog/2012/12/31/git-cheat-sheet/" title="Previous Post: git cheat sheet">&laquo; git cheat sheet</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/08/10/nullable-enums-in-c/" title="Next Post: Nullable enums in C#">Nullable enums in C# &raquo;</a>
       
     </p>
   </footer>
