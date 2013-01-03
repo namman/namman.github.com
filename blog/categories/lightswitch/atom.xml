@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: lightswitch | Junk I Would Otherwise Forget]]></title>
+  <link href="http://namman.github.com/blog/categories/lightswitch/atom.xml" rel="self"/>
+  <link href="http://namman.github.com/"/>
+  <updated>2013-01-03T17:43:59+11:00</updated>
+  <id>http://namman.github.com/</id>
+  <author>
+    <name><![CDATA[Nick Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Order of Lightswitch screen events]]></title>
+    <link href="http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet/"/>
+    <updated>2013-01-03T17:33:00+11:00</updated>
+    <id>http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet</id>
+    <content type="html"><![CDATA[<ol>
+<li>InitialiseDataWorkspace.  Has already hydrated the data context from database.</li>
+<li>Now loads custom controls: ControlAvailable events fire.</li>
+<li>Created</li>
+<li>Activated</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

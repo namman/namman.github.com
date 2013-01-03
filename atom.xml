@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="http://namman.github.com/atom.xml" rel="self"/>
   <link href="http://namman.github.com/"/>
-  <updated>2013-01-03T17:37:01+11:00</updated>
+  <updated>2013-01-03T17:43:59+11:00</updated>
   <id>http://namman.github.com/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -14,15 +14,17 @@
 
   
   <entry>
-    <title type="html"><![CDATA[lightswitch-cheat-sheet]]></title>
+    <title type="html"><![CDATA[Order of Lightswitch screen events]]></title>
     <link href="http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet/"/>
     <updated>2013-01-03T17:33:00+11:00</updated>
     <id>http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet</id>
-    <content type="html"><![CDATA[<p>Order of screen events:
-1. InitialiseDataWorkspace.  Has already hydrated the data context from database.
-2. Now loads custom controls: ControlAvailable events fire.
-3. Created
-4. Activated</p>
+    <content type="html"><![CDATA[<ol>
+<li>InitialiseDataWorkspace.  Has already hydrated the data context from database.</li>
+<li>Now loads custom controls: ControlAvailable events fire.</li>
+<li>Created</li>
+<li>Activated</li>
+</ol>
+
 ]]></content>
   </entry>
   

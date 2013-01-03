@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>lightswitch-cheat-sheet - Junk I Would Otherwise Forget</title>
+  <title>Order of Lightswitch screen events - Junk I Would Otherwise Forget</title>
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Order of screen events:
-1. InitialiseDataWorkspace. Has already hydrated the data context from database.
-2. Now loads custom controls: &hellip;">
+  <meta name="description" content="InitialiseDataWorkspace. Has already hydrated the data context from database.
+Now loads custom controls: ControlAvailable events fire.
+Created &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Lightswitch-cheat-sheet</h1>
+      <h1 class="entry-title">Order of Lightswitch Screen Events</h1>
     
     
       <p class="meta">
@@ -90,11 +90,13 @@
   </header>
 
 
-<div class="entry-content"><p>Order of screen events:
-1. InitialiseDataWorkspace.  Has already hydrated the data context from database.
-2. Now loads custom controls: ControlAvailable events fire.
-3. Created
-4. Activated</p>
+<div class="entry-content"><ol>
+<li>InitialiseDataWorkspace.  Has already hydrated the data context from database.</li>
+<li>Now loads custom controls: ControlAvailable events fire.</li>
+<li>Created</li>
+<li>Activated</li>
+</ol>
+
 </div>
 
 
@@ -119,6 +121,12 @@
 
 <time datetime="2013-01-03T17:33:00+11:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/lightswitch/'>lightswitch</a>
+  
+</span>
 
 
     </p>
@@ -150,7 +158,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/01/03/lightswitch-cheat-sheet/">lightswitch-cheat-sheet</a>
+        <a href="/blog/2013/01/03/lightswitch-cheat-sheet/">Order of Lightswitch screen events</a>
       </li>
     
       <li class="post">
