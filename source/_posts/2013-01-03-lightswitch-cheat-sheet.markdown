@@ -6,7 +6,12 @@ comments: true
 categories: lightswitch
 ---
 
-1. InitialiseDataWorkspace.  Has already hydrated the data context from database.
-2. Now loads custom controls: ControlAvailable events fire.
-3. Created
-4. Activated
+When opening a new screen:
+1. InitialiseDataWorkspace.  Appears to happen BEFORE data context gets hydrated from database.
+1. Now loads custom controls. (ControlAvailable events fire when done.)
+1. CanRun
+1. Created
+1. Activated
+1. Validate on all the entity properties.
+1. Loaded
+
