@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lightswitch | Junk I Would Otherwise Forget]]></title>
   <link href="http://namman.github.com/blog/categories/lightswitch/atom.xml" rel="self"/>
   <link href="http://namman.github.com/"/>
-  <updated>2013-01-04T11:25:39+11:00</updated>
+  <updated>2013-01-04T11:26:41+11:00</updated>
   <id>http://namman.github.com/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -18,14 +18,18 @@
     <link href="http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet/"/>
     <updated>2013-01-03T17:33:00+11:00</updated>
     <id>http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet</id>
-    <content type="html"><![CDATA[<p>When opening a new screen:
-1. InitialiseDataWorkspace.  Appears to happen BEFORE data context gets hydrated from database.
-1. Now loads custom controls. (ControlAvailable events fire when done.)
-1. CanRun
-1. Created
-1. Activated
-1. Validate on all the entity properties.
-1. Loaded</p>
+    <content type="html"><![CDATA[<p>When opening a new screen:</p>
+
+<ol>
+<li>InitialiseDataWorkspace.  Appears to happen BEFORE data context gets hydrated from database.</li>
+<li>Now loads custom controls. (ControlAvailable events fire when done.)</li>
+<li>CanRun</li>
+<li>Created</li>
+<li>Activated</li>
+<li>Validate on all the entity properties.</li>
+<li>Loaded</li>
+</ol>
+
 ]]></content>
   </entry>
   

@@ -9,9 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="When opening a new screen:
-1. InitialiseDataWorkspace. Appears to happen BEFORE data context gets hydrated from database.
-1. Now loads custom &hellip;">
+  <meta name="description" content="When opening a new screen: InitialiseDataWorkspace. Appears to happen BEFORE data context gets hydrated from database.
+Now loads custom controls. ( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,14 +92,18 @@
   </header>
 
 
-  <div class="entry-content"><p>When opening a new screen:
-1. InitialiseDataWorkspace.  Appears to happen BEFORE data context gets hydrated from database.
-1. Now loads custom controls. (ControlAvailable events fire when done.)
-1. CanRun
-1. Created
-1. Activated
-1. Validate on all the entity properties.
-1. Loaded</p>
+  <div class="entry-content"><p>When opening a new screen:</p>
+
+<ol>
+<li>InitialiseDataWorkspace.  Appears to happen BEFORE data context gets hydrated from database.</li>
+<li>Now loads custom controls. (ControlAvailable events fire when done.)</li>
+<li>CanRun</li>
+<li>Created</li>
+<li>Activated</li>
+<li>Validate on all the entity properties.</li>
+<li>Loaded</li>
+</ol>
+
 </div>
   
   
