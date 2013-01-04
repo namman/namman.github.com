@@ -9,9 +9,9 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="InitialiseDataWorkspace. Has already hydrated the data context from database.
-Now loads custom controls: ControlAvailable events fire.
-Created &hellip;">
+  <meta name="description" content="When opening a new screen:
+1. InitialiseDataWorkspace. Appears to happen BEFORE data context gets hydrated from database.
+1. Now loads custom &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,13 +90,14 @@ Created &hellip;">
   </header>
 
 
-<div class="entry-content"><ol>
-<li>InitialiseDataWorkspace.  Has already hydrated the data context from database.</li>
-<li>Now loads custom controls: ControlAvailable events fire.</li>
-<li>Created</li>
-<li>Activated</li>
-</ol>
-
+<div class="entry-content"><p>When opening a new screen:
+1. InitialiseDataWorkspace.  Appears to happen BEFORE data context gets hydrated from database.
+1. Now loads custom controls. (ControlAvailable events fire when done.)
+1. CanRun
+1. Created
+1. Activated
+1. Validate on all the entity properties.
+1. Loaded</p>
 </div>
 
 
