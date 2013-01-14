@@ -9,8 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="sudo dpkg -i webmin-current.deb sudo apt-get install -f sudo dpkg -i webmin-current.deb
-">
+  <meta name="description" content="1
+xcopy.exe $(ProjectDir)\TestResources . /E /Y ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://namman.github.com/blog/page/5/">
+  <link rel="canonical" href="nickmiller.com.au/blog/page/5/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -48,7 +48,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:namman.github.com" />
+    <input type="hidden" name="q" value="site:nickmiller.com.au" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -63,6 +63,44 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/10/how-to-copy-test-resources-in-visual-studio-with-post-build-action/">How to Copy Test Resources to Output Dir in Visual Studio With Post-build Action</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-10T03:25:30+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>xcopy.exe $(ProjectDir)\TestResources . /E /Y</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -506,47 +544,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/how-to-use-scala-pattern-matching-against-tuples/">How to Use Scala Pattern Matching Against Tuples</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T02:44:58+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>pattern matching against tuples:</p>
-
-<p>def passed(in : Any) = in match {<br/>
-case (a,b,c) => true<br/>
-case _ => false<br/>
-}</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -562,6 +559,10 @@ case _ => false<br/>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/06/dot-net-collections-i-would-otherwise-forget/">Junk about .NET collections I would otherwise forget</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/03/lightswitch-cheat-sheet/">Order of Lightswitch screen events</a>
@@ -637,10 +638,6 @@ case _ => false<br/>
     
       <li class="post">
         <a href="/blog/2012/09/12/personal-programming-principles/">Personal Programming Principles</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/12/what-regexoptions-explicitcapture-does/">What RegexOptions.ExplicitCapture does</a>
       </li>
     
   </ul>

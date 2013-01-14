@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: .NET, | Junk I Would Otherwise Forget]]></title>
+  <link href="nickmiller.com.au/blog/categories/-net-/atom.xml" rel="self"/>
+  <link href="nickmiller.com.au/"/>
+  <updated>2013-01-14T17:31:30+11:00</updated>
+  <id>nickmiller.com.au/</id>
+  <author>
+    <name><![CDATA[Nick Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Junk about .NET collections I would otherwise forget]]></title>
+    <link href="nickmiller.com.au/blog/2013/01/06/dot-net-collections-i-would-otherwise-forget/"/>
+    <updated>2013-01-06T09:19:00+11:00</updated>
+    <id>nickmiller.com.au/blog/2013/01/06/dot-net-collections-i-would-otherwise-forget</id>
+    <content type="html"><![CDATA[<h1>SortedSet<T></h1>
+
+<ul>
+<li>Reverse() does not mutate collection, but the other methods do.
+'''csharp
+  var sortedSet = new SortedSet<int>(new []{1,2,3});
+
+<pre><code>      sortedSet.Reverse();
+      Console.WriteLine(String.Join(",",sortedSet)); // 1,2,3 
+      var reversed = sortedSet.Reverse();
+      Console.WriteLine(String.Join(",",reversed));  // 3,2,1
+</code></pre>
+
+<p>```</p></li>
+</ul>
+
+
+<p>todo: complexity of removing from list, show with stopwatch
+todo: show diff between sort and orderby
+todo: show difference in stability
+todo: show covariance of arrays
+todo: single dimentional arrays are vectors
+rectangular arrays: int[,]
+jagged arrays: int[5][10]</p>
+
+<p>int[][] jagged = new int[
+show how to access
+#</p>
+]]></content>
+  </entry>
+  
+</feed>

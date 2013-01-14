@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: cheat-sheets | Junk I Would Otherwise Forget]]></title>
-  <link href="http://namman.github.com/blog/categories/cheat-sheets/atom.xml" rel="self"/>
-  <link href="http://namman.github.com/"/>
-  <updated>2013-01-04T11:26:41+11:00</updated>
-  <id>http://namman.github.com/</id>
+  <link href="nickmiller.com.au/blog/categories/cheat-sheets/atom.xml" rel="self"/>
+  <link href="nickmiller.com.au/"/>
+  <updated>2013-01-14T17:31:30+11:00</updated>
+  <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[XAML notes]]></title>
-    <link href="http://namman.github.com/blog/2012/09/05/xaml-notes/"/>
+    <link href="nickmiller.com.au/blog/2012/09/05/xaml-notes/"/>
     <updated>2012-09-05T03:49:45+10:00</updated>
-    <id>http://namman.github.com/blog/2012/09/05/xaml-notes</id>
+    <id>nickmiller.com.au/blog/2012/09/05/xaml-notes</id>
     <content type="html"><![CDATA[<p>Every XAML element corresponds to a .NET class.<br/>
 This creates a new class 'Window1' inheriting from 'Window':
 <code>xml

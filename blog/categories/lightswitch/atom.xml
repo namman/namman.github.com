@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: lightswitch | Junk I Would Otherwise Forget]]></title>
-  <link href="http://namman.github.com/blog/categories/lightswitch/atom.xml" rel="self"/>
-  <link href="http://namman.github.com/"/>
-  <updated>2013-01-04T11:26:41+11:00</updated>
-  <id>http://namman.github.com/</id>
+  <link href="nickmiller.com.au/blog/categories/lightswitch/atom.xml" rel="self"/>
+  <link href="nickmiller.com.au/"/>
+  <updated>2013-01-14T17:31:30+11:00</updated>
+  <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Order of Lightswitch screen events]]></title>
-    <link href="http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet/"/>
+    <link href="nickmiller.com.au/blog/2013/01/03/lightswitch-cheat-sheet/"/>
     <updated>2013-01-03T17:33:00+11:00</updated>
-    <id>http://namman.github.com/blog/2013/01/03/lightswitch-cheat-sheet</id>
+    <id>nickmiller.com.au/blog/2013/01/03/lightswitch-cheat-sheet</id>
     <content type="html"><![CDATA[<p>When opening a new screen:</p>
 
 <ol>

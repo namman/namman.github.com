@@ -9,11 +9,11 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="To make paths actually work in .bashrc: 1
-2
-3
-export AKKA_HOME=~/Programs/typesafe-stack
-alias t=&#39;todo.sh -d ~/Programs/todo.txt/todo.cfg&#39; &hellip;">
+  <meta name="description" content="pattern matching against tuples: def passed(in : Any) = in match {
+case (a,b,c) => true
+case _ => false
+}
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +22,7 @@ alias t=&#39;todo.sh -d ~/Programs/todo.txt/todo.cfg&#39; &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://namman.github.com/blog/page/6/">
+  <link rel="canonical" href="nickmiller.com.au/blog/page/6/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -51,7 +51,7 @@ alias t=&#39;todo.sh -d ~/Programs/todo.txt/todo.cfg&#39; &hellip;">
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:namman.github.com" />
+    <input type="hidden" name="q" value="site:nickmiller.com.au" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -66,6 +66,47 @@ alias t=&#39;todo.sh -d ~/Programs/todo.txt/todo.cfg&#39; &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/10/how-to-use-scala-pattern-matching-against-tuples/">How to Use Scala Pattern Matching Against Tuples</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-10T02:44:58+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>pattern matching against tuples:</p>
+
+<p>def passed(in : Any) = in match {<br/>
+case (a,b,c) => true<br/>
+case _ => false<br/>
+}</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -470,6 +511,10 @@ alias t=&#39;todo.sh -d ~/Programs/todo.txt/todo.cfg&#39; &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/06/dot-net-collections-i-would-otherwise-forget/">Junk about .NET collections I would otherwise forget</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/03/lightswitch-cheat-sheet/">Order of Lightswitch screen events</a>
       </li>
     
@@ -543,10 +588,6 @@ alias t=&#39;todo.sh -d ~/Programs/todo.txt/todo.cfg&#39; &hellip;">
     
       <li class="post">
         <a href="/blog/2012/09/12/personal-programming-principles/">Personal Programming Principles</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/12/what-regexoptions-explicitcapture-does/">What RegexOptions.ExplicitCapture does</a>
       </li>
     
   </ul>

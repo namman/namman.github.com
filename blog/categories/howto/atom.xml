@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: howto | Junk I Would Otherwise Forget]]></title>
-  <link href="http://namman.github.com/blog/categories/howto/atom.xml" rel="self"/>
-  <link href="http://namman.github.com/"/>
-  <updated>2013-01-04T11:26:41+11:00</updated>
-  <id>http://namman.github.com/</id>
+  <link href="nickmiller.com.au/blog/categories/howto/atom.xml" rel="self"/>
+  <link href="nickmiller.com.au/"/>
+  <updated>2013-01-14T17:31:30+11:00</updated>
+  <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to execute SWRL rules in Protege with Drools]]></title>
-    <link href="http://namman.github.com/blog/2012/09/07/how-to-execute-swrl-rules-in-protege-with-drools/"/>
+    <link href="nickmiller.com.au/blog/2012/09/07/how-to-execute-swrl-rules-in-protege-with-drools/"/>
     <updated>2012-09-07T08:12:50+10:00</updated>
-    <id>http://namman.github.com/blog/2012/09/07/how-to-execute-swrl-rules-in-protege-with-drools</id>
+    <id>nickmiller.com.au/blog/2012/09/07/how-to-execute-swrl-rules-in-protege-with-drools</id>
     <content type="html"><![CDATA[<p>=Prerequisites=</p>
 
 <p>Download and install Protege 3.*: http://protege.stanford.edu/download/registered.html</p>
@@ -58,9 +58,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to query SWRL rules with SPARQL]]></title>
-    <link href="http://namman.github.com/blog/2012/09/07/how-to-query-swrl-rules-with-sparql/"/>
+    <link href="nickmiller.com.au/blog/2012/09/07/how-to-query-swrl-rules-with-sparql/"/>
     <updated>2012-09-07T08:00:08+10:00</updated>
-    <id>http://namman.github.com/blog/2012/09/07/how-to-query-swrl-rules-with-sparql</id>
+    <id>nickmiller.com.au/blog/2012/09/07/how-to-query-swrl-rules-with-sparql</id>
     <content type="html"><![CDATA[<p>=Prerequisites=</p>
 
 <p>Download and install Arq which allows you to run SPARQL queries against RDF: http://incubator.apache.org/jena/documentation/query/index.html</p>
@@ -453,9 +453,9 @@ rdf:label "rule4" ;
   
   <entry>
     <title type="html"><![CDATA[How to model and execute legislative rules in SWRL]]></title>
-    <link href="http://namman.github.com/blog/2012/09/07/how-to-model-and-execute-legislative-rules-in-swrl/"/>
+    <link href="nickmiller.com.au/blog/2012/09/07/how-to-model-and-execute-legislative-rules-in-swrl/"/>
     <updated>2012-09-07T07:39:39+10:00</updated>
-    <id>http://namman.github.com/blog/2012/09/07/how-to-model-and-execute-legislative-rules-in-swrl</id>
+    <id>nickmiller.com.au/blog/2012/09/07/how-to-model-and-execute-legislative-rules-in-swrl</id>
     <content type="html"><![CDATA[<p>=Prequisites=</p>
 
 <p>Download and install:
@@ -968,9 +968,9 @@ Facts:
   
   <entry>
     <title type="html"><![CDATA[Introduction to SWRL and OWL]]></title>
-    <link href="http://namman.github.com/blog/2012/09/05/introduction-to-swrl-and-owl/"/>
+    <link href="nickmiller.com.au/blog/2012/09/05/introduction-to-swrl-and-owl/"/>
     <updated>2012-09-05T04:17:46+10:00</updated>
-    <id>http://namman.github.com/blog/2012/09/05/introduction-to-swrl-and-owl</id>
+    <id>nickmiller.com.au/blog/2012/09/05/introduction-to-swrl-and-owl</id>
     <content type="html"><![CDATA[<p>=Purpose=</p>
 
 <p>The purpose of this tutorial is:

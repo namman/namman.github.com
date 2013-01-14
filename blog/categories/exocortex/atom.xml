@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: exocortex | Junk I Would Otherwise Forget]]></title>
-  <link href="http://namman.github.com/blog/categories/exocortex/atom.xml" rel="self"/>
-  <link href="http://namman.github.com/"/>
-  <updated>2013-01-04T11:26:41+11:00</updated>
-  <id>http://namman.github.com/</id>
+  <link href="nickmiller.com.au/blog/categories/exocortex/atom.xml" rel="self"/>
+  <link href="nickmiller.com.au/"/>
+  <updated>2013-01-14T17:31:30+11:00</updated>
+  <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Run NuGet on build so you don't have to keep libs in source control]]></title>
-    <link href="http://namman.github.com/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control/"/>
+    <link href="nickmiller.com.au/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control/"/>
     <updated>2012-11-20T20:14:10+11:00</updated>
-    <id>http://namman.github.com/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control</id>
+    <id>nickmiller.com.au/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control</id>
     <content type="html"><![CDATA[<ul>
 <li>Check 'Allow nuget to download missing packages during build'.  (Tools: Library Package Manager: Package Manager Settings).</li>
 <li>Check in repositories.config (in packages dir) and packages.config files (one for each project).</li>
@@ -30,9 +30,9 @@
   
   <entry>
     <title type="html"><![CDATA[Location of Windows 8 log files]]></title>
-    <link href="http://namman.github.com/blog/2012/11/16/location-of-windows-8-log-files/"/>
+    <link href="nickmiller.com.au/blog/2012/11/16/location-of-windows-8-log-files/"/>
     <updated>2012-11-16T21:38:14+11:00</updated>
-    <id>http://namman.github.com/blog/2012/11/16/location-of-windows-8-log-files</id>
+    <id>nickmiller.com.au/blog/2012/11/16/location-of-windows-8-log-files</id>
     <content type="html"><![CDATA[<p>$windows.~bt\Sources\Panther: Log location before Setup can access the drive.
 $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event of a fatal error.
 %WINDIR%\Panther: Log location of Setup actions after disk configuration.
@@ -46,9 +46,9 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
   
   <entry>
     <title type="html"><![CDATA[Expand root partition on Windows EC2 instance using AWS Console]]></title>
-    <link href="http://namman.github.com/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/"/>
+    <link href="nickmiller.com.au/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/"/>
     <updated>2012-11-15T20:28:21+11:00</updated>
-    <id>http://namman.github.com/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console</id>
+    <id>nickmiller.com.au/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console</id>
     <content type="html"><![CDATA[<ul>
 <li>Stop instance.</li>
 <li>Create AMI from instance, choosing to expand partition.</li>
@@ -62,18 +62,18 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
   
   <entry>
     <title type="html"><![CDATA[Path to localDB instances]]></title>
-    <link href="http://namman.github.com/blog/2012/11/09/path-to-localdb-instances/"/>
+    <link href="nickmiller.com.au/blog/2012/11/09/path-to-localdb-instances/"/>
     <updated>2012-11-09T23:42:08+11:00</updated>
-    <id>http://namman.github.com/blog/2012/11/09/path-to-localdb-instances</id>
+    <id>nickmiller.com.au/blog/2012/11/09/path-to-localdb-instances</id>
     <content type="html"><![CDATA[<h2>C:\Users{user name}\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances></h2>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Validate XML file against schema]]></title>
-    <link href="http://namman.github.com/blog/2012/11/09/validate-xml-file-against-schema/"/>
+    <link href="nickmiller.com.au/blog/2012/11/09/validate-xml-file-against-schema/"/>
     <updated>2012-11-09T22:39:53+11:00</updated>
-    <id>http://namman.github.com/blog/2012/11/09/validate-xml-file-against-schema</id>
+    <id>nickmiller.com.au/blog/2012/11/09/validate-xml-file-against-schema</id>
     <content type="html"><![CDATA[<p>```csharp</p>
 
 <pre><code>/// 

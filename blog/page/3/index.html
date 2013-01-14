@@ -9,10 +9,9 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="
-Show all files
-$(Project)/Service References/OdataApplicationData/Reference.datasvcmap &#8220;`xml &#8220;`
-">
+  <meta name="description" content="public static RegexOptions ExplicitCapture = RegexOptions.ExplicitCapture
+in enum RegexOptions Summary:
+Specifies that the only valid captures are &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +20,7 @@ $(Project)/Service References/OdataApplicationData/Reference.datasvcmap &#8220;`
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://namman.github.com/blog/page/3/">
+  <link rel="canonical" href="nickmiller.com.au/blog/page/3/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -50,7 +49,7 @@ $(Project)/Service References/OdataApplicationData/Reference.datasvcmap &#8220;`
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:namman.github.com" />
+    <input type="hidden" name="q" value="site:nickmiller.com.au" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -65,6 +64,55 @@ $(Project)/Service References/OdataApplicationData/Reference.datasvcmap &#8220;`
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/12/what-regexoptions-explicitcapture-does/">What RegexOptions.ExplicitCapture Does</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-12T20:40:23+10:00" pubdate data-updated="true">Sep 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>public static RegexOptions ExplicitCapture = RegexOptions.ExplicitCapture
+in enum RegexOptions</p>
+
+<p>Summary:
+Specifies that the only valid captures are explicitly named or numbered groups of the form (?…). This allows unnamed parentheses to act as noncapturing groups without the syntactic clumsiness of the expression (?:…).</p>
+
+<p>Eg, this only captures the first letter of a the string, and the period at the end:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'> <span class="kt">var</span> <span class="n">r</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Regex</span><span class="p">(</span><span class="s">@&quot;(^[a-z])|\.\s+(.)&quot;</span><span class="p">,</span> <span class="n">RegexOptions</span><span class="p">.</span><span class="n">ExplicitCapture</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -3146,46 +3194,6 @@ public class TheSourceObject : INotifyPropertyChanged
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/25/parts-of-uri/">Parts of Uri</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-25T09:13:17+10:00" pubdate data-updated="true">Aug 25<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;scheme name&gt; : &lt;hierarchical part&gt; [ ? &lt;query&gt; ] [ # &lt;fragment&gt; ]</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The hierarchical part can have an &#8216;authority&#8217;, like &#8216;username:password@&#8217;, then a host name, then optionally a colon followed by port number.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -3201,6 +3209,10 @@ public class TheSourceObject : INotifyPropertyChanged
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/06/dot-net-collections-i-would-otherwise-forget/">Junk about .NET collections I would otherwise forget</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/03/lightswitch-cheat-sheet/">Order of Lightswitch screen events</a>
@@ -3276,10 +3288,6 @@ public class TheSourceObject : INotifyPropertyChanged
     
       <li class="post">
         <a href="/blog/2012/09/12/personal-programming-principles/">Personal Programming Principles</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/12/what-regexoptions-explicitcapture-does/">What RegexOptions.ExplicitCapture does</a>
       </li>
     
   </ul>
