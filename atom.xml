@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-01-15T17:12:07+11:00</updated>
+  <updated>2013-01-15T17:34:14+11:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -65,6 +65,14 @@ show how to access
 <li>Activated</li>
 <li>Validate on all the entity properties.</li>
 <li>Loaded</li>
+</ol>
+
+
+<p>When navigating back to an already open screen:</p>
+
+<ol>
+<li>Activated</li>
+<li>Control available events fire.</li>
 </ol>
 
 ]]></content>
