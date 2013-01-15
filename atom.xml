@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-01-14T17:31:30+11:00</updated>
+  <updated>2013-01-15T17:12:07+11:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -57,6 +57,7 @@ show how to access
     <content type="html"><![CDATA[<p>When opening a new screen:</p>
 
 <ol>
+<li>Run.  (It&#8217;s in Application namespace.  Screen paramaters are arguments.)</li>
 <li>InitialiseDataWorkspace.  Appears to happen BEFORE data context gets hydrated from database.</li>
 <li>Now loads custom controls. (ControlAvailable events fire when done.)</li>
 <li>CanRun</li>
