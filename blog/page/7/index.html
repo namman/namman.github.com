@@ -5,12 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Parts of Uri - Junk I Would Otherwise Forget</title>
+  <title>Junk I Would Otherwise Forget</title>
   <meta name="author" content="Nick Miller">
 
   
   <meta name="description" content="1
-&lt;scheme name&gt; : &lt;hierarchical part&gt; [ ? &lt;query&gt; ] [ # &lt;fragment&gt; ] The hierarchical part can have an &#8216;authority&#8217 &hellip;">
+2
+3 def passed(in : Any) = in match {
+case (a,b,c) =&gt; true
+case _ =&gt; false ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="nickmiller.com.au/blog/2012/08/25/parts-of-uri/">
+  <link rel="canonical" href="nickmiller.com.au/blog/page/7/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -61,12 +64,15 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article class="hentry" role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
     
-      <h1 class="entry-title">Parts of Uri</h1>
+      <h1 class="entry-title"><a href="/blog/2012/07/15/scala-pattern-match-against-tuples/">Scala Pattern Match Against Tuples</a></h1>
     
     
       <p class="meta">
@@ -82,74 +88,36 @@
   
 
 
-<time datetime="2012-08-25T09:13:17+10:00" pubdate data-updated="true">Aug 25<span>th</span>, 2012</time>
+<time datetime="2012-07-15T19:08:00+10:00" pubdate data-updated="true">Jul 15<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;scheme name&gt; : &lt;hierarchical part&gt; [ ? &lt;query&gt; ] [ # &lt;fragment&gt; ]</span></code></pre></td></tr></table></div></figure>
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'> <span class="k">def</span> <span class="n">passed</span><span class="o">(</span><span class="n">in</span> <span class="k">:</span> <span class="kt">Any</span><span class="o">)</span> <span class="k">=</span> <span class="n">in</span> <span class="k">match</span> <span class="o">{</span>
+</span><span class='line'><span class="k">case</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">,</span><span class="n">c</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="kc">true</span>
+</span><span class='line'><span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="kc">false</span>
+</span></code></pre></td></tr></table></div></figure>
 
-
-<p>The hierarchical part can have an &#8216;authority&#8217;, like &#8216;username:password@&#8217;, then a host name, then optionally a colon followed by port number.</p>
 </div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Nick Miller</span></span>
-
-      
-
-
-
-
-
-
-
-
   
 
 
-<time datetime="2012-08-25T09:13:17+10:00" pubdate data-updated="true">Aug 25<span>th</span>, 2012</time>
-      
-
-<span class="categories">
+    </article>
   
-    <a class='category' href='/blog/categories/exocortex/'>exocortex</a>
-  
-</span>
-
-
-    </p>
+  <div class="pagination">
     
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="nickmiller.com.au/blog/2012/08/25/parts-of-uri/" data-via="" data-counturl="nickmiller.com.au/blog/2012/08/25/parts-of-uri/" >Tweet</a>
-  
-  
-  
-</div>
-
+    <a href="/blog/archives">Blog Archives</a>
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2012/08/23/how-to-sense-the-port-of-a-running-lightswitch-app-during-development/" title="Previous Post: How to sense the port of a running Lightswitch app during development">&laquo; How to sense the port of a running Lightswitch app during development</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2012/09/02/simple-background-worker/" title="Next Post: Simple background worker">Simple background worker &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
+    <a class="next" href="/blog/page/6/">Newer &rarr;</a>
+    
+  </div>
 </div>
-
 <aside class="sidebar">
   
     <section>
@@ -177,7 +145,7 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control/">Run NuGet on build so you don't have to keep libs in source control</a>
+        <a href="/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control/">Run NuGet on build so you don&#8217;t have to keep libs in source control</a>
       </li>
     
       <li class="post">
@@ -221,7 +189,7 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down/">Scala SBT build definitions: it's turtles all the way down!</a>
+        <a href="/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down/">Scala SBT build definitions: it&#8217;s turtles all the way down!</a>
       </li>
     
       <li class="post">
@@ -246,7 +214,6 @@
 
   
 </aside>
-
 
     </div>
   </div>

@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-01-15T17:40:49+11:00</updated>
+  <updated>2013-01-17T17:24:56+11:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to bind to a property on an immediate ancestor (parent) control in XAML in Silverlight?]]></title>
+    <link href="nickmiller.com.au/blog/2013/01/17/how-to-bind-to-a-property-on-an-ancestor-control-in-xaml-in-silverlight/"/>
+    <updated>2013-01-17T17:20:00+11:00</updated>
+    <id>nickmiller.com.au/blog/2013/01/17/how-to-bind-to-a-property-on-an-ancestor-control-in-xaml-in-silverlight</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;ElementYouWantToSetPropertyIn</span> <span class="na">PropertyYouWantToSet=</span><span class="s">{Binding</span> <span class="na">RelativeSource=</span><span class="s">{RelativeSource</span> <span class="na">Mode=</span><span class="s">FindAncestor,</span> <span class="na">AncestorLevel=</span><span class="s">1,</span> <span class="na">AncestorType=</span><span class="s">namespaceOfType:AncestorTypeName}</span> <span class="na">Path=</span><span class="s">PropertyOnAncestor}&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>xml</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Junk about .NET collections I would otherwise forget]]></title>
@@ -596,24 +610,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Personal Programming Principles]]></title>
-    <link href="nickmiller.com.au/blog/2012/09/12/personal-programming-principles/"/>
-    <updated>2012-09-12T23:10:32+10:00</updated>
-    <id>nickmiller.com.au/blog/2012/09/12/personal-programming-principles</id>
-    <content type="html"><![CDATA[<p>Sententious advice abounds.  What has worked for me:</p>
-
-<p>| Principle | Where I first got it| Example |
-| Start in the middle. | Daryel Akerlind | For f*&k;&#8217;s sake don&#8217;t start a new module by sketching out interfaces and base classes - a recipe for over engineering. |
-| If data structures are likely to change a lot, but the behaviours not so much: use OO.  For the reverse, use FP.  If both, use OO. | &#8220;Real World Functional Programming&#8221; book. | FP: use C# extension methods for manipulating generated classes from Odata service reference.  Database is not going to change much.  If it does, you&#8217;re hosed anyway. |
-| Use small and cohesive functions and classes. | &#8220;Clean Code&#8221; book. |
-| For tricky and self contained: TDD.  For sprawling and fluid: TAD (test after development). | Personal goddamn experience. |
-| Depend on abstractions, not implementations. | Head First Design Patterns book. | Creating simple interfaces for everything that gets constructor injected seems like a hassle at first.  But it will be more of a hassle later when you can&#8217;t mock the dependencies.  Then you&#8217;ll have to extract interfaces from classes that are already throughout your code.  So just do it up front.  ReSharper makes it easy. |
-| Just &#8216;pushing through&#8217; never bloody works. | Daryel Akerlind | |
-| Use contracts and exceptions to flag things you don&#8217;t expect.  Don&#8217;t let these cases fall into an &#8216;else&#8217; branch or a default value. | Personal goddamned experience. | Slam a contract assertion in before returning from within an else block. |</p>
 ]]></content>
   </entry>
   

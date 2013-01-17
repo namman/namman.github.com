@@ -9,11 +9,17 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="pattern matching against tuples: def passed(in : Any) = in match {
-case (a,b,c) => true
-case _ => false
-}
-">
+  <meta name="description" content="1
+2
+3
+4
+5
+6
+def commit[T](p: =&gt; Parser[T]) = Parser{ in =&gt;
+p(in) match{
+case s @ Success(_, _) =&gt; s
+case e @ Error(_, _) =&gt; e
+case f @ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +72,57 @@ case _ => false
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/10/how-to-bind-identifiers-in-scala-pattern-matching/">How to Bind Identifiers in Scala Pattern Matching</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-10T02:46:39+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">commit</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="n">p</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Parser</span><span class="o">[</span><span class="kt">T</span><span class="o">])</span> <span class="k">=</span> <span class="nc">Parser</span><span class="o">{</span> <span class="n">in</span> <span class="k">=&gt;</span>
+</span><span class='line'><span class="n">p</span><span class="o">(</span><span class="n">in</span><span class="o">)</span> <span class="k">match</span><span class="o">{</span>
+</span><span class='line'><span class="k">case</span> <span class="n">s</span> <span class="k">@</span> <span class="nc">Success</span><span class="o">(</span><span class="k">_</span><span class="o">,</span> <span class="k">_</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span>
+</span><span class='line'><span class="k">case</span> <span class="n">e</span> <span class="k">@</span> <span class="nc">Error</span><span class="o">(</span><span class="k">_</span><span class="o">,</span> <span class="k">_</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">e</span>
+</span><span class='line'><span class="k">case</span> <span class="n">f</span> <span class="k">@</span> <span class="nc">Failure</span><span class="o">(</span><span class="n">msg</span><span class="o">,</span> <span class="n">next</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Error</span><span class="o">(</span><span class="n">msg</span><span class="o">,</span> <span class="n">next</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -453,50 +510,9 @@ case _ => false<br/>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/15/scala-pattern-match-against-tuples/">Scala Pattern Match Against Tuples</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-15T19:08:00+10:00" pubdate data-updated="true">Jul 15<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'> <span class="k">def</span> <span class="n">passed</span><span class="o">(</span><span class="n">in</span> <span class="k">:</span> <span class="kt">Any</span><span class="o">)</span> <span class="k">=</span> <span class="n">in</span> <span class="k">match</span> <span class="o">{</span>
-</span><span class='line'><span class="k">case</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">,</span><span class="n">c</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="kc">true</span>
-</span><span class='line'><span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="kc">false</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/7/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -509,6 +525,10 @@ case _ => false<br/>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/17/how-to-bind-to-a-property-on-an-ancestor-control-in-xaml-in-silverlight/">How to bind to a property on an immediate ancestor (parent) control in XAML in Silverlight?</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/06/dot-net-collections-i-would-otherwise-forget/">Junk about .NET collections I would otherwise forget</a>
@@ -584,10 +604,6 @@ case _ => false<br/>
     
       <li class="post">
         <a href="/blog/2012/09/15/example-of-using-enum-hasflags/">Example of using Enum.HasFlags</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/12/personal-programming-principles/">Personal Programming Principles</a>
       </li>
     
   </ul>
