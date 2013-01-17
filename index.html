@@ -108,69 +108,6 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/01/06/dot-net-collections-i-would-otherwise-forget/">Junk About .NET Collections I Would Otherwise Forget</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-06T09:19:00+11:00" pubdate data-updated="true">Jan 6<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>SortedSet<T></h1>
-
-<ul>
-<li>Reverse() does not mutate collection, but the other methods do.
-&#8221;&#8217;csharp
-  var sortedSet = new SortedSet<int>(new []{1,2,3});
-
-<pre><code>      sortedSet.Reverse();
-      Console.WriteLine(String.Join(",",sortedSet)); // 1,2,3 
-      var reversed = sortedSet.Reverse();
-      Console.WriteLine(String.Join(",",reversed));  // 3,2,1
-</code></pre>
-
-<p>&#8220;`</p></li>
-</ul>
-
-
-<p>todo: complexity of removing from list, show with stopwatch
-todo: show diff between sort and orderby
-todo: show difference in stability
-todo: show covariance of arrays
-todo: single dimentional arrays are vectors
-rectangular arrays: int[,]
-jagged arrays: int[5][10]</p>
-
-<p>int[][] jagged = new int[
-show how to access
-#</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
       <h1 class="entry-title"><a href="/blog/2013/01/03/lightswitch-cheat-sheet/">Order of Lightswitch Screen Events</a></h1>
     
     
@@ -680,6 +617,48 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/24/awesome-outline-of-date-format-strings-for-net/">Awesome Outline of Date Format Strings for .NET</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-24T05:26:49+11:00" pubdate data-updated="true">Oct 24<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>[[http://blog.stevex.net/string-formatting-in-csharp/]]</p>
+
+<p>Make nice time string for file name:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DateTime.Now.ToString("dd-MM-yyyy_hh-mm-tt")</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -696,10 +675,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
     
       <li class="post">
         <a href="/blog/2013/01/17/how-to-bind-to-a-property-on-an-ancestor-control-in-xaml-in-silverlight/">How to bind to a property on an immediate ancestor (parent) control in XAML in Silverlight?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/06/dot-net-collections-i-would-otherwise-forget/">Junk about .NET collections I would otherwise forget</a>
       </li>
     
       <li class="post">
@@ -772,6 +747,10 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
     
       <li class="post">
         <a href="/blog/2012/09/15/example-of-using-enum-hasflags/">Example of using Enum.HasFlags</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/12/personal-programming-principles/">Personal Programming Principles</a>
       </li>
     
   </ul>

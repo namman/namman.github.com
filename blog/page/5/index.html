@@ -9,7 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="XmlSerializer xmlSerializer = new XmlSerializer(typeof(lkif)); var lkifToSerialize = new lkif(); lkifToSerialize.PopulateFromRulebase(this); &hellip;">
+  <meta name="description" content="1
+xcopy.exe $(ProjectDir)\TestResources . /E /Y ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -62,48 +63,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/how-to-use-xmlserializer/">How to Use XmlSerializer</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T03:26:47+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>XmlSerializer xmlSerializer = new XmlSerializer(typeof(lkif));</p>
-
-<p>var lkifToSerialize = new lkif();</p>
-
-<p>lkifToSerialize.PopulateFromRulebase(this);</p>
-
-<p>xmlSerializer.Serialize(xmlWriter,lkifToSerialize);</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -534,6 +493,57 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/10/how-to-bind-identifiers-in-scala-pattern-matching/">How to Bind Identifiers in Scala Pattern Matching</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-10T02:46:39+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">commit</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="n">p</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Parser</span><span class="o">[</span><span class="kt">T</span><span class="o">])</span> <span class="k">=</span> <span class="nc">Parser</span><span class="o">{</span> <span class="n">in</span> <span class="k">=&gt;</span>
+</span><span class='line'><span class="n">p</span><span class="o">(</span><span class="n">in</span><span class="o">)</span> <span class="k">match</span><span class="o">{</span>
+</span><span class='line'><span class="k">case</span> <span class="n">s</span> <span class="k">@</span> <span class="nc">Success</span><span class="o">(</span><span class="k">_</span><span class="o">,</span> <span class="k">_</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span>
+</span><span class='line'><span class="k">case</span> <span class="n">e</span> <span class="k">@</span> <span class="nc">Error</span><span class="o">(</span><span class="k">_</span><span class="o">,</span> <span class="k">_</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">e</span>
+</span><span class='line'><span class="k">case</span> <span class="n">f</span> <span class="k">@</span> <span class="nc">Failure</span><span class="o">(</span><span class="n">msg</span><span class="o">,</span> <span class="n">next</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Error</span><span class="o">(</span><span class="n">msg</span><span class="o">,</span> <span class="n">next</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -552,10 +562,6 @@
     
       <li class="post">
         <a href="/blog/2013/01/17/how-to-bind-to-a-property-on-an-ancestor-control-in-xaml-in-silverlight/">How to bind to a property on an immediate ancestor (parent) control in XAML in Silverlight?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/06/dot-net-collections-i-would-otherwise-forget/">Junk about .NET collections I would otherwise forget</a>
       </li>
     
       <li class="post">
@@ -628,6 +634,10 @@
     
       <li class="post">
         <a href="/blog/2012/09/15/example-of-using-enum-hasflags/">Example of using Enum.HasFlags</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/12/personal-programming-principles/">Personal Programming Principles</a>
       </li>
     
   </ul>
