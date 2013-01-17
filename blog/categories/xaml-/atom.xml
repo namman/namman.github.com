@@ -4,7 +4,7 @@
   <title><![CDATA[Category: XAML, | Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/blog/categories/xaml-/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-01-17T17:24:56+11:00</updated>
+  <updated>2013-01-17T17:27:31+11:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -20,7 +20,7 @@
     <id>nickmiller.com.au/blog/2013/01/17/how-to-bind-to-a-property-on-an-ancestor-control-in-xaml-in-silverlight</id>
     <content type="html"><![CDATA[<p><code>xml
 &lt;ElementYouWantToSetPropertyIn PropertyYouWantToSet={Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=namespaceOfType:AncestorTypeName} Path=PropertyOnAncestor}"&gt;
-</code>xml</p>
+</code></p>
 ]]></content>
   </entry>
   
