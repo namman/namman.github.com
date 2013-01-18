@@ -9,8 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="1
-&lt;scheme name&gt; : &lt;hierarchical part&gt; [ ? &lt;query&gt; ] [ # &lt;fragment&gt; ] The hierarchical part can have an &#8216;authority&#8217 &hellip;">
+  <meta name="description" content="[xml]
+&lt;Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,202 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/03/my-simple-wpf-data-binding-example-binding-to-poco-source-object/">My Simple WPF Data Binding Example - Binding to POCO Source Object</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-03T04:25:10+10:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>[xml]
+&lt;Window</p>
+
+<pre><code>    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:BindingExamples" x:Class="BindingExamples.MainWindow"
+    Title="MainWindow" Height="350" Width="525"
+    &gt;
+&lt;Window.DataContext&gt;
+    &lt;local:TheSourceObject/&gt;
+&lt;/Window.DataContext&gt;
+
+
+&lt;Grid&gt;
+    &lt;TextBox Text="{Binding TheChangingProperty, Mode=OneWay}"/&gt;
+
+&lt;/Grid&gt;
+</code></pre>
+
+<p></Window></p>
+
+<p>[/xml]</p>
+
+<p>[csharp]
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;</p>
+
+<p>namespace BindingExamples
+{</p>
+
+<pre><code>/// &lt;summary&gt;
+/// Interaction logic for MainWindow.xaml
+/// &lt;/summary&gt;
+public partial class MainWindow : Window
+{
+    private TheSourceObject _mySourceObject;
+
+    public MainWindow()
+    {
+        InitializeComponent();
+        _mySourceObject = new TheSourceObject();
+        //DataContext = _mySourceObject;
+
+    }
+}
+
+public class TheSourceObject : INotifyPropertyChanged 
+{
+    private string _theChangingProperty;
+    // has to implement INotifyPropertyChanged
+
+    public TheSourceObject()
+    {
+        var worker = new BackgroundWorker();
+        worker.DoWork += worker_DoWork;
+        worker.RunWorkerAsync();
+
+    }
+
+    void worker_DoWork(object sender, DoWorkEventArgs e)
+    {
+        ChangeProperty();
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChangedEventHandler handler = PropertyChanged;
+        if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    public string TheChangingProperty
+    {
+        get { return _theChangingProperty;
+        }
+    }
+
+    void ChangeProperty()
+    {
+        int count = 0;
+        while (count &lt; 100)
+        {
+            _theChangingProperty = Convert.ToString(count);
+            Debug.WriteLine("Changed property to : " + _theChangingProperty);
+            OnPropertyChanged("TheChangingProperty");
+            Thread.Sleep(2000);
+            count++;
+        }
+    }
+}
+</code></pre>
+
+<p>}
+[/csharp]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/02/simple-background-worker/">Simple Background Worker</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-02T08:54:05+10:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>[csharp]</p>
+
+<p>var worker = new BackgroundWorker();</p>
+
+<pre><code>        worker.DoWork += worker_DoWork;
+        worker.RunWorkerAsync();
+</code></pre>
+
+<p>void worker_DoWork(object sender, DoWorkEventArgs e)</p>
+
+<pre><code>    {
+        // the actual work
+    }
+</code></pre>
+
+<p>[/csharp]</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -487,101 +683,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/how-to-check-attributes-on-a-class/">How to Check Attributes on a Class</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T09:08:02+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="kt">bool</span> <span class="nf">IsEFClass</span><span class="p">()</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'><span class="kt">var</span> <span class="n">typeOfT</span> <span class="p">=</span> <span class="k">typeof</span> <span class="p">(</span><span class="n">T</span><span class="p">);</span>
-</span><span class='line'><span class="kt">var</span> <span class="n">attributes</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Attribute</span><span class="p">.</span><span class="n">GetCustomAttributes</span><span class="p">(</span><span class="n">typeOfT</span><span class="p">);</span>
-</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">attributes</span><span class="p">.</span><span class="n">Any</span><span class="p">(</span><span class="n">a</span> <span class="p">=&gt;</span> <span class="n">a</span> <span class="k">is</span> <span class="n">System</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">Common</span><span class="p">.</span><span class="n">EntitySetAttribute</span><span class="p">))</span>
-</span><span class='line'>   <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
-</span><span class='line'><span class="k">return</span> <span class="k">false</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/how-to-use-xmlserializer/">How to Use XmlSerializer</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T03:26:47+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>XmlSerializer xmlSerializer = new XmlSerializer(typeof(lkif));</p>
-
-<p>var lkifToSerialize = new lkif();</p>
-
-<p>lkifToSerialize.PopulateFromRulebase(this);</p>
-
-<p>xmlSerializer.Serialize(xmlWriter,lkifToSerialize);</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -597,6 +698,14 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/18/httphandlers/">How to register HTTP handler in web.config in IIS 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/18/what-is-global-dot-asax/">What is Global.asax?</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/17/how-to-bind-to-a-property-on-an-ancestor-control-in-xaml-in-silverlight/">How to bind to a property on an immediate ancestor (parent) control in XAML in Silverlight?</a>
@@ -668,14 +777,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/15/difference-between-super-set-and-proper-super-set-also-subsets/">Difference between Super Set and Proper Super Set (also subsets)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/15/example-of-using-enum-hasflags/">Example of using Enum.HasFlags</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/12/personal-programming-principles/">Personal Programming Principles</a>
       </li>
     
   </ul>

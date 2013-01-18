@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Junk I Would Otherwise Forget</title>
+  <meta name="author" content="Nick Miller">
+
+  
+  <meta name="description" content="Call method by reflection in Scala on all instantiated instances of base class: 1
+2
+3
+4
+val baseClass = &quot;UrBaseClass&quot;.getClass
+val urMethod &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="nickmiller.com.au/blog/page/7/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Junk I Would Otherwise Forget" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Junk I Would Otherwise Forget</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:nickmiller.com.au" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/15/scala-reflection/">Scala Reflection</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-15T19:25:51+10:00" pubdate data-updated="true">Jul 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Call method by reflection in Scala on all instantiated instances of base class:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">baseClass</span> <span class="k">=</span> <span class="s">&quot;UrBaseClass&quot;</span><span class="o">.</span><span class="n">getClass</span>
+</span><span class='line'><span class="k">val</span> <span class="n">urMethod</span> <span class="k">=</span> <span class="n">baseClass</span><span class="o">.</span><span class="n">getMethod</span><span class="o">(</span><span class="s">&quot;urMethod&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">instances</span> <span class="k">=</span> <span class="n">baseClass</span><span class="o">.</span><span class="n">getDeclaredClasses</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">dc</span> <span class="k">=&gt;</span> <span class="n">dc</span><span class="o">.</span><span class="n">newInstance</span><span class="o">())</span>
+</span><span class='line'><span class="k">val</span> <span class="n">resultsOfMethodCallsOnAllClasses</span> <span class="k">=</span> <span class="n">instances</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">instance</span> <span class="k">=&gt;</span> <span class="n">urMethod</span><span class="o">.</span><span class="n">invoke</span><span class="o">(</span><span class="n">instance</span><span class="o">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/15/scala-pattern-match-against-tuples/">Scala Pattern Match Against Tuples</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-15T19:08:00+10:00" pubdate data-updated="true">Jul 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'> <span class="k">def</span> <span class="n">passed</span><span class="o">(</span><span class="n">in</span> <span class="k">:</span> <span class="kt">Any</span><span class="o">)</span> <span class="k">=</span> <span class="n">in</span> <span class="k">match</span> <span class="o">{</span>
+</span><span class='line'><span class="k">case</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">,</span><span class="n">c</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="kc">true</span>
+</span><span class='line'><span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="kc">false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/6/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/18/httphandlers/">How to register HTTP handler in web.config in IIS 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/18/what-is-global-dot-asax/">What is Global.asax?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/17/how-to-bind-to-a-property-on-an-ancestor-control-in-xaml-in-silverlight/">How to bind to a property on an immediate ancestor (parent) control in XAML in Silverlight?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/03/lightswitch-cheat-sheet/">Order of Lightswitch screen events</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/31/git-cheat-sheet/">git cheat sheet</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/21/wpf-cheat-sheet/">WPF Cheat Sheet</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/20/run-nuget-on-build-so-you-dont-have-to-keep-libs-in-source-control/">Run NuGet on build so you don&#8217;t have to keep libs in source control</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/16/location-of-windows-8-log-files/">Location of Windows 8 log files</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/09/validate-xml-file-against-schema/">Validate XML file against schema</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/24/awesome-outline-of-date-format-strings-for-net/">Awesome outline of date format strings for .NET</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/23/how-to-remap-key-in-linux/">How to remap key in linux</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/22/simple-linq-group/">Simple LINQ group</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/02/how-to-concatenate-pdf-files-in-linux/">How to concatenate PDF files in linux</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles/">When to use decimals and when to use floats or doubles</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/02/how-to-check-if-a-sequence-is-ordered-in-a-contract/">How to check if a sequence is ordered</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down/">Scala SBT build definitions: it&#8217;s turtles all the way down!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/21/delete-files-older-than-7-days/">Delete files older than 7 days</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/15/difference-between-super-set-and-proper-super-set-also-subsets/">Difference between Super Set and Proper Super Set (also subsets)</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Nick Miller -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

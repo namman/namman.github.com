@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-01-18T10:53:56+11:00</updated>
+  <updated>2013-01-18T15:44:09+11:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to register HTTP handler in web.config in IIS 7]]></title>
+    <link href="nickmiller.com.au/blog/2013/01/18/httphandlers/"/>
+    <updated>2013-01-18T15:26:00+11:00</updated>
+    <id>nickmiller.com.au/blog/2013/01/18/httphandlers</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;system.webServer&gt;</span>
+</span><span class='line'><span class="nt">&lt;handlers&gt;</span>
+</span><span class='line'><span class="nt">&lt;add</span> <span class="na">path=</span><span class="s">&quot;RelativePathWithoutLeadingOrTrailingBackslashOrAlternativelyAFileNameOrGlobFilePattern&quot;</span>
+</span><span class='line'><span class="na">verb=</span><span class="s">&quot;*&quot;</span>
+</span><span class='line'><span class="na">type=</span><span class="s">&quot;ClassNameOfHTTPHandlerClassIncludingFullNamspace, AssemblyNameOfHandlerClassIfReferencedAssemblyFromWebProject&quot;</span>
+</span><span class='line'><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/handlers&gt;</span>
+</span><span class='line'><span class="nt">&lt;/system.webServer&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Full options on MSDN: http://msdn.microsoft.com/en-us/library/ms691481(v=vs.90).aspx</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What is Global.asax?]]></title>
+    <link href="nickmiller.com.au/blog/2013/01/18/what-is-global-dot-asax/"/>
+    <updated>2013-01-18T13:50:00+11:00</updated>
+    <id>nickmiller.com.au/blog/2013/01/18/what-is-global-dot-asax</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to bind to a property on an immediate ancestor (parent) control in XAML in Silverlight?]]></title>
@@ -510,86 +547,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
 
 
 <p>Duh.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Example of using Enum.HasFlags]]></title>
-    <link href="nickmiller.com.au/blog/2012/09/15/example-of-using-enum-hasflags/"/>
-    <updated>2012-09-15T00:39:40+10:00</updated>
-    <id>nickmiller.com.au/blog/2012/09/15/example-of-using-enum-hasflags</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">public</span> <span class="k">enum</span> <span class="n">Coffees</span> <span class="p">{</span>
-</span><span class='line'>     <span class="n">None</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
-</span><span class='line'>     <span class="n">BasicCoffee</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-</span><span class='line'>     <span class="n">WithMilk</span> <span class="p">=</span> <span class="m">8</span>
-</span><span class='line'>  <span class="p">};</span>
-</span><span class='line'><span class="na"> </span>
-</span><span class='line'><span class="na">[Flags]</span>
-</span><span class='line'><span class="k">public</span> <span class="k">enum</span> <span class="n">FlaggedCoffees</span> <span class="p">{</span>
-</span><span class='line'>     <span class="n">None</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
-</span><span class='line'>     <span class="n">BasicCoffee</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-</span><span class='line'>     <span class="n">WithMilk</span> <span class="p">=</span> <span class="m">8</span>
-</span><span class='line'>  <span class="p">};</span>
-</span><span class='line'>  
-</span><span class='line'><span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="n">Coffees</span> <span class="n">plain</span> <span class="p">=</span> <span class="n">Coffees</span><span class="p">.</span><span class="n">BasicCoffee</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">plain</span><span class="p">);</span>  <span class="c1">// BasicCoffee</span>
-</span><span class='line'>  <span class="n">Coffees</span> <span class="n">plainWithMilk</span> <span class="p">=</span>  <span class="n">Coffees</span><span class="p">.</span><span class="n">BasicCoffee</span> <span class="p">|</span> <span class="n">Coffees</span><span class="p">.</span><span class="n">WithMilk</span> <span class="p">;</span>
-</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">plainWithMilk</span><span class="p">);</span> <span class="c1">// 9 (the result of bitwise OR operation on Coffees.BasicCoffee and Coffees.WithMilk)</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="kt">var</span> <span class="n">basicPlusMilk</span> <span class="p">=</span>  <span class="n">FlaggedCoffees</span><span class="p">.</span><span class="n">BasicCoffee</span> <span class="p">|</span> <span class="n">FlaggedCoffees</span><span class="p">.</span><span class="n">WithMilk</span> <span class="p">;</span>
-</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">basicPlusMilk</span><span class="p">);</span>  <span class="c1">// BasicCoffee, WithMilk</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="kt">bool</span> <span class="n">hasMilk</span> <span class="p">=</span> <span class="n">basicPlusMilk</span><span class="p">.</span><span class="n">HasFlag</span><span class="p">(</span><span class="n">FlaggedCoffees</span><span class="p">.</span><span class="n">WithMilk</span><span class="p">);</span>
-</span><span class='line'>  <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">hasMilk</span><span class="p">);</span> <span class="c1">// True </span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Personal Programming Principles]]></title>
-    <link href="nickmiller.com.au/blog/2012/09/12/personal-programming-principles/"/>
-    <updated>2012-09-12T23:10:32+10:00</updated>
-    <id>nickmiller.com.au/blog/2012/09/12/personal-programming-principles</id>
-    <content type="html"><![CDATA[<p>Sententious advice abounds.  What has worked for me:</p>
-
-<p>| Principle | Where I first got it| Example |
-| Start in the middle. | Daryel Akerlind | For f*&k;&#8217;s sake don&#8217;t start a new module by sketching out interfaces and base classes - a recipe for over engineering. |
-| If data structures are likely to change a lot, but the behaviours not so much: use OO.  For the reverse, use FP.  If both, use OO. | &#8220;Real World Functional Programming&#8221; book. | FP: use C# extension methods for manipulating generated classes from Odata service reference.  Database is not going to change much.  If it does, you&#8217;re hosed anyway. |
-| Use small and cohesive functions and classes. | &#8220;Clean Code&#8221; book. |
-| For tricky and self contained: TDD.  For sprawling and fluid: TAD (test after development). | Personal goddamn experience. |
-| Depend on abstractions, not implementations. | Head First Design Patterns book. | Creating simple interfaces for everything that gets constructor injected seems like a hassle at first.  But it will be more of a hassle later when you can&#8217;t mock the dependencies.  Then you&#8217;ll have to extract interfaces from classes that are already throughout your code.  So just do it up front.  ReSharper makes it easy. |
-| Just &#8216;pushing through&#8217; never bloody works. | Daryel Akerlind | |
-| Use contracts and exceptions to flag things you don&#8217;t expect.  Don&#8217;t let these cases fall into an &#8216;else&#8217; branch or a default value. | Personal goddamned experience. | Slam a contract assertion in before returning from within an else block. |</p>
 ]]></content>
   </entry>
   
