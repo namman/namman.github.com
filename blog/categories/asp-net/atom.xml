@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ASP.NET | Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/blog/categories/asp-net/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-01-18T15:44:09+11:00</updated>
+  <updated>2013-01-18T16:20:31+11:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -29,15 +29,6 @@ type="ClassNameOfHTTPHandlerClassIncludingFullNamspace, AssemblyNameOfHandlerCla
 &lt;/system.webServer&gt;
 </code>
 Full options on MSDN: http://msdn.microsoft.com/en-us/library/ms691481(v=vs.90).aspx</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What is Global.asax?]]></title>
-    <link href="nickmiller.com.au/blog/2013/01/18/what-is-global-dot-asax/"/>
-    <updated>2013-01-18T13:50:00+11:00</updated>
-    <id>nickmiller.com.au/blog/2013/01/18/what-is-global-dot-asax</id>
-    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
