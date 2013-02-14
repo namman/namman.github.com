@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Order of Lightswitch screen events - Junk I Would Otherwise Forget</title>
+  <title>How does x:Name attribute magically pop up in the code behind? - Junk I Would Otherwise Forget</title>
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="When opening a new screen: Run. (It&#8217;s in Application namespace. Screen paramaters are arguments.)
-InitialiseDataWorkspace. Appears to happen &hellip;">
+  <meta name="description" content="&#8220;The specified x:Name becomes the name of a field that is created in the underlying code when XAML is processed, and that field holds a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ InitialiseDataWorkspace. Appears to happen &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="nickmiller.com.au/blog/2013/01/03/lightswitch-cheat-sheet/">
+  <link rel="canonical" href="nickmiller.com.au/blog/2013/02/14/xaml-name-attributes/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -66,7 +65,7 @@ InitialiseDataWorkspace. Appears to happen &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Order of Lightswitch Screen Events</h1>
+      <h1 class="entry-title">How Does x:Name Attribute Magically Pop Up in the Code Behind?</h1>
     
     
       <p class="meta">
@@ -82,34 +81,22 @@ InitialiseDataWorkspace. Appears to happen &hellip;">
   
 
 
-<time datetime="2013-01-03T17:33:00+11:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
+<time datetime="2013-02-14T11:15:00+11:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>When opening a new screen:</p>
+<div class="entry-content"><p>&#8220;The specified x:Name becomes the name of a field that is created in the underlying code when XAML is processed, and that field holds a reference to the object. In Silverlight, using the managed API, the process of creating this field is performed by the MSBuild target steps, which also are responsible for joining the partial classes for a XAML file and its code-behind. &#8221;</p>
 
-<ol>
-<li>Run.  (It&#8217;s in Application namespace.  Screen paramaters are arguments.)</li>
-<li>InitialiseDataWorkspace.  Appears to happen BEFORE data context gets hydrated from database.</li>
-<li>Now loads custom controls. (ControlAvailable events fire when done.)</li>
-<li>CanRun</li>
-<li>Created</li>
-<li>Activated</li>
-<li>Validate on all the entity properties.</li>
-<li>Loaded</li>
-</ol>
+<p>The name applies for a XAML namescope.</p>
 
+<p>All the XAML in a single XAML file can be in one namescope.  So the name applies for all the elements in that XAML file.</p>
 
-<p>When navigating back to an already open screen:</p>
+<p>So that&#8217;s why you can access it anywhere in the code behind for that XAML file.</p>
 
-<ol>
-<li>Activated</li>
-<li>Control available events fire.</li>
-</ol>
-
+<p>http://msdn.microsoft.com/en-us/library/cc189028(v=vs.95).aspx</p>
 </div>
 
 
@@ -132,12 +119,12 @@ InitialiseDataWorkspace. Appears to happen &hellip;">
   
 
 
-<time datetime="2013-01-03T17:33:00+11:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
+<time datetime="2013-02-14T11:15:00+11:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/lightswitch/'>lightswitch</a>
+    <a class='category' href='/blog/categories/silverlight/'>Silverlight</a>, <a class='category' href='/blog/categories/c-/'>c#,</a>, <a class='category' href='/blog/categories/xaml-/'>xaml,</a>
   
 </span>
 
@@ -146,7 +133,7 @@ InitialiseDataWorkspace. Appears to happen &hellip;">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="nickmiller.com.au/blog/2013/01/03/lightswitch-cheat-sheet/" data-via="" data-counturl="nickmiller.com.au/blog/2013/01/03/lightswitch-cheat-sheet/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="nickmiller.com.au/blog/2013/02/14/xaml-name-attributes/" data-via="" data-counturl="nickmiller.com.au/blog/2013/02/14/xaml-name-attributes/" >Tweet</a>
   
   
   
@@ -155,10 +142,8 @@ InitialiseDataWorkspace. Appears to happen &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/12/31/git-cheat-sheet/" title="Previous Post: git cheat sheet">&laquo; git cheat sheet</a>
+        <a class="basic-alignment left" href="/blog/2013/01/18/httphandlers/" title="Previous Post: How to register HTTP handler in web.config in IIS 7">&laquo; How to register HTTP handler in web.config in IIS 7</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/01/17/how-to-bind-to-a-property-on-an-ancestor-control-in-xaml-in-silverlight/" title="Next Post: How to bind to a property on an immediate ancestor (parent) control in XAML in Silverlight?">How to bind to a property on an immediate ancestor (parent) control in XAML in Silverlight? &raquo;</a>
       
     </p>
   </footer>

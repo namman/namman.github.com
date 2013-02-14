@@ -9,11 +9,12 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="1
+  <meta name="description" content="Call method by reflection in Scala on all instantiated instances of base class: 1
 2
-3 def passed(in : Any) = in match {
-case (a,b,c) =&gt; true
-case _ =&gt; false ">
+3
+4
+val baseClass = &quot;UrBaseClass&quot;.getClass
+val urMethod &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +73,55 @@ case _ =&gt; false ">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/07/15/scala-reflection/">Scala Reflection</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-15T19:25:51+10:00" pubdate data-updated="true">Jul 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Call method by reflection in Scala on all instantiated instances of base class:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">baseClass</span> <span class="k">=</span> <span class="s">&quot;UrBaseClass&quot;</span><span class="o">.</span><span class="n">getClass</span>
+</span><span class='line'><span class="k">val</span> <span class="n">urMethod</span> <span class="k">=</span> <span class="n">baseClass</span><span class="o">.</span><span class="n">getMethod</span><span class="o">(</span><span class="s">&quot;urMethod&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">instances</span> <span class="k">=</span> <span class="n">baseClass</span><span class="o">.</span><span class="n">getDeclaredClasses</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">dc</span> <span class="k">=&gt;</span> <span class="n">dc</span><span class="o">.</span><span class="n">newInstance</span><span class="o">())</span>
+</span><span class='line'><span class="k">val</span> <span class="n">resultsOfMethodCallsOnAllClasses</span> <span class="k">=</span> <span class="n">instances</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">instance</span> <span class="k">=&gt;</span> <span class="n">urMethod</span><span class="o">.</span><span class="n">invoke</span><span class="o">(</span><span class="n">instance</span><span class="o">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/07/15/scala-pattern-match-against-tuples/">Scala Pattern Match Against Tuples</a></h1>
     
     
@@ -123,6 +173,10 @@ case _ =&gt; false ">
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/xaml-name-attributes/">How does x:Name attribute magically pop up in the code behind?</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/18/httphandlers/">How to register HTTP handler in web.config in IIS 7</a>
@@ -198,10 +252,6 @@ case _ =&gt; false ">
     
       <li class="post">
         <a href="/blog/2012/09/15/difference-between-super-set-and-proper-super-set-also-subsets/">Difference between Super Set and Proper Super Set (also subsets)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/15/example-of-using-enum-hasflags/">Example of using Enum.HasFlags</a>
       </li>
     
   </ul>

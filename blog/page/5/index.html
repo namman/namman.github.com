@@ -9,7 +9,19 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="XmlSerializer xmlSerializer = new XmlSerializer(typeof(lkif)); var lkifToSerialize = new lkif(); lkifToSerialize.PopulateFromRulebase(this); &hellip;">
+  <meta name="description" content="1
+2
+3
+4
+5
+6
+7
+8
+bool IsEFClass()
+{
+var typeOfT = typeof (T);
+var attributes = System.Attribute.GetCustomAttributes(typeOfT);
+if (attributes.Any(a =& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -62,6 +74,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/10/how-to-check-attributes-on-a-class/">How to Check Attributes on a Class</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-10T09:08:02+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="kt">bool</span> <span class="nf">IsEFClass</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="kt">var</span> <span class="n">typeOfT</span> <span class="p">=</span> <span class="k">typeof</span> <span class="p">(</span><span class="n">T</span><span class="p">);</span>
+</span><span class='line'><span class="kt">var</span> <span class="n">attributes</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Attribute</span><span class="p">.</span><span class="n">GetCustomAttributes</span><span class="p">(</span><span class="n">typeOfT</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">attributes</span><span class="p">.</span><span class="n">Any</span><span class="p">(</span><span class="n">a</span> <span class="p">=&gt;</span> <span class="n">a</span> <span class="k">is</span> <span class="n">System</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">Common</span><span class="p">.</span><span class="n">EntitySetAttribute</span><span class="p">))</span>
+</span><span class='line'>   <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+</span><span class='line'><span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -498,42 +563,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/reference-equality-in-c/">Reference Equality in C#</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T02:53:12+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Object.ReferenceEquals(x, y))</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -549,6 +578,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/xaml-name-attributes/">How does x:Name attribute magically pop up in the code behind?</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/18/httphandlers/">How to register HTTP handler in web.config in IIS 7</a>
@@ -624,10 +657,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/15/difference-between-super-set-and-proper-super-set-also-subsets/">Difference between Super Set and Proper Super Set (also subsets)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/15/example-of-using-enum-hasflags/">Example of using Enum.HasFlags</a>
       </li>
     
   </ul>

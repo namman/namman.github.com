@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: c#, | Junk I Would Otherwise Forget]]></title>
+  <link href="nickmiller.com.au/blog/categories/c-/atom.xml" rel="self"/>
+  <link href="nickmiller.com.au/"/>
+  <updated>2013-02-14T11:28:01+11:00</updated>
+  <id>nickmiller.com.au/</id>
+  <author>
+    <name><![CDATA[Nick Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How does x:Name attribute magically pop up in the code behind?]]></title>
+    <link href="nickmiller.com.au/blog/2013/02/14/xaml-name-attributes/"/>
+    <updated>2013-02-14T11:15:00+11:00</updated>
+    <id>nickmiller.com.au/blog/2013/02/14/xaml-name-attributes</id>
+    <content type="html"><![CDATA[<p>"The specified x:Name becomes the name of a field that is created in the underlying code when XAML is processed, and that field holds a reference to the object. In Silverlight, using the managed API, the process of creating this field is performed by the MSBuild target steps, which also are responsible for joining the partial classes for a XAML file and its code-behind. "</p>
+
+<p>The name applies for a XAML namescope.</p>
+
+<p>All the XAML in a single XAML file can be in one namescope.  So the name applies for all the elements in that XAML file.</p>
+
+<p>So that's why you can access it anywhere in the code behind for that XAML file.</p>
+
+<p>http://msdn.microsoft.com/en-us/library/cc189028(v=vs.95).aspx</p>
+]]></content>
+  </entry>
+  
+</feed>
