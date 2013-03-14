@@ -250,6 +250,8 @@
 <li>Control available events fire.</li>
 </ol>
 
+
+<p>To do something with a custom control on load (like set its view model or feed it some data), use FindControl in the <em>Activated hook, then hook into the Control_Available event.  Don&#8217;t use </em>Activated - it may appear to work, but this is just dumb luck.</p>
 </div>
   
   
