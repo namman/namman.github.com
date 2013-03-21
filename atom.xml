@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-03-14T14:41:35+11:00</updated>
+  <updated>2013-03-21T22:27:20+11:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to understand MTF graphs]]></title>
+    <link href="nickmiller.com.au/blog/2013/03/21/mtf/"/>
+    <updated>2013-03-21T21:12:00+11:00</updated>
+    <id>nickmiller.com.au/blog/2013/03/21/mtf</id>
+    <content type="html"><![CDATA[<p>MTF stands for &#8216;Modulation Transfer Function&#8217;.  It is a function which tells how many line pairs can be distinguished per unit of distance for a given value between 0 and 1.  As number of line pairs increases, MTF decreases because of diffraction.  At 1, there is perfect contrast.  At zero, there is no contrast.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How does x:Name attribute magically pop up in the code behind?]]></title>
@@ -533,30 +542,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>find . ! -newermt <span class="s2">&quot;7 days ago&quot;</span> -delete
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Difference between Super Set and Proper Super Set (also subsets)]]></title>
-    <link href="nickmiller.com.au/blog/2012/09/15/difference-between-super-set-and-proper-super-set-also-subsets/"/>
-    <updated>2012-09-15T02:20:33+10:00</updated>
-    <id>nickmiller.com.au/blog/2012/09/15/difference-between-super-set-and-proper-super-set-also-subsets</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="kt">var</span> <span class="n">first</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">()</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">};</span>
-</span><span class='line'><span class="kt">var</span> <span class="n">second</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">()</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">};</span>
-</span><span class='line'><span class="kt">var</span> <span class="n">isProperSuperSet</span> <span class="p">=</span> <span class="n">first</span><span class="p">.</span><span class="n">IsProperSupersetOf</span><span class="p">(</span><span class="n">second</span><span class="p">);</span>
-</span><span class='line'><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">isProperSuperSet</span><span class="p">);</span> <span class="c1">// false</span>
-</span><span class='line'><span class="kt">var</span> <span class="n">isSuperSet</span> <span class="p">=</span> <span class="n">first</span><span class="p">.</span><span class="n">IsSupersetOf</span><span class="p">(</span><span class="n">second</span><span class="p">);</span>
-</span><span class='line'><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">isSuperSet</span><span class="p">);</span> <span class="c1">// true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Duh.</p>
 ]]></content>
   </entry>
   
