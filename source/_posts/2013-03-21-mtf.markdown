@@ -1,0 +1,11 @@
+---
+layout: post
+title: "How to understand MTF graphs"
+date: 2013-03-21 21:12
+comments: true
+categories:
+---
+
+MTF stands for 'Modulation Transfer Function'.  It is a function which tells how many line pairs can be distinguished per unit of distance for a given value between 0 and 1.  As number of line pairs increases, MTF decreases because of diffraction.  At 1, there is perfect contrast.  At zero, there is no contrast.
+
+

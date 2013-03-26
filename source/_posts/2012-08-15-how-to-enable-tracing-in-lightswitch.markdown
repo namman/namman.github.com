@@ -16,3 +16,7 @@ Edit Web.config in server project:
 ```xml
 <add key="Microsoft.LightSwitch.Trace.Enabled" value="true" />
 ```
+
+Make sure custom errors in web.config is also set to "Off" (sic).
+
+Then check <your app root>/trace.axd in browser.
