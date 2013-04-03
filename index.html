@@ -10,8 +10,7 @@
 
   
   <meta name="description" content="1
-2
-mock.Setup(x =&gt; x.DoSomething(It.IsAny&lt;string&gt;())) .Returns((string s) =&gt; s.ToLower()); ">
+doSomethingCommand `ls | tail -n1&#39; ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +63,45 @@ mock.Setup(x =&gt; x.DoSomething(It.IsAny&lt;string&gt;())) .Returns((string s) 
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/03/get-most-recent-file-in-bash/">Get-most-recent-file-in-bash</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-03T12:29:00+11:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>doSomethingCommand <span class="sb">`</span>ls | tail -n1<span class="err">&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -503,49 +541,6 @@ ConvertBack goes UI -> source object
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/16/location-of-windows-8-log-files/">Location of Windows 8 Log Files</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-16T21:38:14+11:00" pubdate data-updated="true">Nov 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>$windows.~bt\Sources\Panther: Log location before Setup can access the drive.
-$windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event of a fatal error.
-%WINDIR%\Panther: Log location of Setup actions after disk configuration.
-%WINDIR%\Inf\Setupapi*.log: Used to log Plug and Play device installations.
-%WINDIR%\Memory.dmp: Location of memory dump from bug checks.
-%WINDIR%\Minidump*.dmp: Location of log minidumps from bug checks.
-%WINDIR%\System32\Sysprep\Panther: Location of Sysprep logs.
-%WINDIR%\System32\LogFiles\Srt\SrtTrail.txt: Startup repair log.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -559,6 +554,10 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/03/get-most-recent-file-in-bash/">get-most-recent-file-in-bash</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/03/how-to-mock-method-with-moq/">how-to-mock-method-with-moq</a>
@@ -634,10 +633,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
     
       <li class="post">
         <a href="/blog/2012/10/02/how-to-check-if-a-sequence-is-ordered-in-a-contract/">How to check if a sequence is ordered</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down/">Scala SBT build definitions: it&#8217;s turtles all the way down!</a>
       </li>
     
   </ul>

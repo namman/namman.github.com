@@ -9,7 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Create the control as Silverlight User Control. Make sure there is a dependency property in the control for the data you want to access from the &hellip;">
+  <meta name="description" content="$(MainLightswitchProjectDirectory)\Bin\Data
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -62,6 +63,42 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/13/where-to-find-localdb-file-in-lightswitch-project/">Where to Find localDB File in Lightswitch Project</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-13T02:32:35+10:00" pubdate data-updated="true">Aug 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>$(MainLightswitchProjectDirectory)\Bin\Data</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -595,55 +632,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/difference-between-ref-and-out-in-c/">Difference Between Ref and Out in C#</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T03:01:51+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Difference between ref and out:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
-</span><span class='line'><span class="n">Foo</span><span class="p">(</span><span class="k">out</span> <span class="n">x</span><span class="p">);</span> <span class="c1">// OK</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
-</span><span class='line'><span class="n">Foo</span><span class="p">(</span><span class="k">ref</span> <span class="n">y</span><span class="p">);</span> <span class="c1">// Error</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ref has to be initialised before passed in, out has to be initialised before passed out.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -659,6 +647,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/03/get-most-recent-file-in-bash/">get-most-recent-file-in-bash</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/03/how-to-mock-method-with-moq/">how-to-mock-method-with-moq</a>
@@ -734,10 +726,6 @@
     
       <li class="post">
         <a href="/blog/2012/10/02/how-to-check-if-a-sequence-is-ordered-in-a-contract/">How to check if a sequence is ordered</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down/">Scala SBT build definitions: it&#8217;s turtles all the way down!</a>
       </li>
     
   </ul>

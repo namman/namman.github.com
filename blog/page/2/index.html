@@ -9,10 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Stop instance.
-Create AMI from instance, choosing to expand partition.
-Start instance and log in
-Control Panel -> Create and Format Disk Partitions &hellip;">
+  <meta name="description" content="$windows.~bt\Sources\Panther: Log location before Setup can access the drive.
+$windows.~bt\Sources\Rollback: Log location when Setup rolls back in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +63,49 @@ Control Panel -> Create and Format Disk Partitions &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/11/16/location-of-windows-8-log-files/">Location of Windows 8 Log Files</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-16T21:38:14+11:00" pubdate data-updated="true">Nov 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>$windows.~bt\Sources\Panther: Log location before Setup can access the drive.
+$windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event of a fatal error.
+%WINDIR%\Panther: Log location of Setup actions after disk configuration.
+%WINDIR%\Inf\Setupapi*.log: Used to log Plug and Play device installations.
+%WINDIR%\Memory.dmp: Location of memory dump from bug checks.
+%WINDIR%\Minidump*.dmp: Location of log minidumps from bug checks.
+%WINDIR%\System32\Sysprep\Panther: Location of Sysprep logs.
+%WINDIR%\System32\LogFiles\Srt\SrtTrail.txt: Startup repair log.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -578,89 +619,6 @@ Control Panel -> Create and Format Disk Partitions &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down/">Scala SBT Build Definitions: It&#8217;s Turtles All the Way Down!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-29T09:33:10+10:00" pubdate data-updated="true">Sep 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>From: (https://github.com/harrah/xsbt/wiki/Getting-Started-Full-Def)</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'> hello/                  <span class="c"># your project&#39;s base directory</span>
-</span><span class='line'>
-</span><span class='line'>     Hello.scala         <span class="c"># a source file in your project (could be in</span>
-</span><span class='line'>                         <span class="c">#   src/main/scala too)</span>
-</span><span class='line'>
-</span><span class='line'>     build.sbt           <span class="c"># build.sbt is part of the source code for the</span>
-</span><span class='line'>                         <span class="c">#   build definition project inside project/</span>
-</span><span class='line'>
-</span><span class='line'>     project/            <span class="c"># base directory of the build definition project</span>
-</span><span class='line'>
-</span><span class='line'>         Build.scala     <span class="c"># a source file in the project/ project,</span>
-</span><span class='line'>                         <span class="c">#   that is, a source file in the build definition</span>
-</span><span class='line'>
-</span><span class='line'>         build.sbt       <span class="c"># this is part of a build definition for a project</span>
-</span><span class='line'>                         <span class="c">#   in project/project ; build definition&#39;s build</span>
-</span><span class='line'>                         <span class="c">#   definition</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>         project/        <span class="c"># base directory of the build definition project</span>
-</span><span class='line'>                         <span class="c">#   for the build definition</span>
-</span><span class='line'>
-</span><span class='line'>             Build.scala <span class="c"># source file in the project/project/ project</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -676,6 +634,10 @@ Control Panel -> Create and Format Disk Partitions &hellip;">
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/03/get-most-recent-file-in-bash/">get-most-recent-file-in-bash</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/03/how-to-mock-method-with-moq/">how-to-mock-method-with-moq</a>
@@ -751,10 +713,6 @@ Control Panel -> Create and Format Disk Partitions &hellip;">
     
       <li class="post">
         <a href="/blog/2012/10/02/how-to-check-if-a-sequence-is-ordered-in-a-contract/">How to check if a sequence is ordered</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down/">Scala SBT build definitions: it&#8217;s turtles all the way down!</a>
       </li>
     
   </ul>

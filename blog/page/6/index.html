@@ -9,9 +9,14 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="OOXML SDK assemblies to add: WindowsBase
-DocumentFormat.OpenXml Search for them in add references. DocumentFormat is in:
-* &#8220;C:\Program Files ( &hellip;">
+  <meta name="description" content="Difference between ref and out: 1
+2
+3
+4
+int x;
+Foo(out x); // OK
+int y;
+Foo(ref y); // Error ref has to be initialised before passed in, out has to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +69,55 @@ DocumentFormat.OpenXml Search for them in add references. DocumentFormat is in:
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/10/difference-between-ref-and-out-in-c/">Difference Between Ref and Out in C#</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-10T03:01:51+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Difference between ref and out:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</span><span class='line'><span class="n">Foo</span><span class="p">(</span><span class="k">out</span> <span class="n">x</span><span class="p">);</span> <span class="c1">// OK</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+</span><span class='line'><span class="n">Foo</span><span class="p">(</span><span class="k">ref</span> <span class="n">y</span><span class="p">);</span> <span class="c1">// Error</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ref has to be initialised before passed in, out has to be initialised before passed out.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -447,49 +501,6 @@ case _ => false<br/>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/how-to-specify-the-java-classpath-from-the-command-line/">How to Specify the Java Classpath From the Command Line</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T02:41:20+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Classpath: parameter for JVM that tells it where to look for user-defined classes and packages.</p>
-
-<pre><code>java -classpath /home/user/myprogram org.mypackage.HelloWorld 
-</code></pre>
-
-<p>org.mypackage.HelloWorld is the main class</p>
-
-<p>class path is where to look for classes used in main class</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -505,6 +516,10 @@ case _ => false<br/>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/03/get-most-recent-file-in-bash/">get-most-recent-file-in-bash</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/03/how-to-mock-method-with-moq/">how-to-mock-method-with-moq</a>
@@ -580,10 +595,6 @@ case _ => false<br/>
     
       <li class="post">
         <a href="/blog/2012/10/02/how-to-check-if-a-sequence-is-ordered-in-a-contract/">How to check if a sequence is ordered</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down/">Scala SBT build definitions: it&#8217;s turtles all the way down!</a>
       </li>
     
   </ul>
