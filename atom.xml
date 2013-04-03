@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-04-03T12:30:24+11:00</updated>
+  <updated>2013-04-03T12:33:18+11:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[get-most-recent-file-in-bash]]></title>
+    <title type="html"><![CDATA[get most recent file in bash]]></title>
     <link href="nickmiller.com.au/blog/2013/04/03/get-most-recent-file-in-bash/"/>
     <updated>2013-04-03T12:29:00+11:00</updated>
     <id>nickmiller.com.au/blog/2013/04/03/get-most-recent-file-in-bash</id>
@@ -26,7 +26,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[how-to-mock-method-with-moq]]></title>
+    <title type="html"><![CDATA[How To Mock Method With Moq]]></title>
     <link href="nickmiller.com.au/blog/2013/04/03/how-to-mock-method-with-moq/"/>
     <updated>2013-04-03T12:17:00+11:00</updated>
     <id>nickmiller.com.au/blog/2013/04/03/how-to-mock-method-with-moq</id>
