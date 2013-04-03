@@ -10,15 +10,7 @@
 
   
   <meta name="description" content="1
-2
-3
-4
-5
-6
-var first = new HashSet() {1,2};
-var second = new HashSet() {1,2};
-var isProperSuperSet = first.IsProperSupersetOf(second);
-Console. &hellip;">
+find . ! -newermt &quot;7 days ago&quot; -delete ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,6 +63,45 @@ Console. &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/21/delete-files-older-than-7-days/">Delete Files Older Than 7 Days</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-21T22:22:06+10:00" pubdate data-updated="true">Sep 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find . ! -newermt <span class="s2">&quot;7 days ago&quot;</span> -delete
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -2947,90 +2978,6 @@ Globex Corp:
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/05/xaml-notes/">XAML Notes</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-05T03:49:45+10:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Every XAML element corresponds to a .NET class.<br/>
-This creates a new class &#8216;Window1&#8217; inheriting from &#8216;Window&#8217;:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Window</span> <span class="na">x:class=</span><span class="s">&quot;MyNamespace.Window1&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The XAML XML namespaces map to collections of .NET namespaces.  The main ones are:</p>
-
-<ul>
-<li>xmlns=&#8221;&#8230;presentation&#8221;  - all the .NET WPF namespaces</li>
-<li>xmlns:x=&#8221;&#8230; xaml&#8221; - all the XAML .NET namespaces</li>
-</ul>
-
-
-<p>To reference classes outside the WPF or XAML namespaces, you need to map the .NET namespace to a XAML namespace:
-xmlns:myPrefix=&#8221;clr-namespace:myDotNetNamespace;assembly=myDotNetAssembly&#8221;</p>
-
-<p>Several types of XAML properties:</p>
-
-<ul>
-<li>Simple properties, eg align=&#8221;center&#8221;.  Type converters change the string to the type of the property.</li>
-<li>Complex properties, eg .  This represents a property on the Grid class.</li>
-</ul>
-
-
-<p>Markup extensions in curly brackets {}: DSL for bindings and the like.</p>
-
-<p>Attached properties, eg &lt;Grid.Row=0/>, appear in child element but are properties of parent element.</p>
-
-<p>Two ways to find elements in XAML:</p>
-
-<ul>
-<li>LogicalTreeHelper</li>
-<li>FrameworkElement.FindName(&#8230;)</li>
-</ul>
-
-
-<p>How to refer to another XAML element without binding: x:Reference=&#8221;nameOfElement&#8221;.</p>
-
-<p>How to bind DataContext to viewmodel:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;UserControl</span> <span class="err">...</span> <span class="na">DataContext=</span><span class="s">&quot;{Binding RelativeSource={RelativeSource Self}, Path=UrViewModelPropertyInCodeBehind}&quot;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -3046,6 +2993,10 @@ xmlns:myPrefix=&#8221;clr-namespace:myDotNetNamespace;assembly=myDotNetAssembly&
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/03/how-to-mock-method-with-moq/">how-to-mock-method-with-moq</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/03/21/mtf/">How to understand MTF graphs</a>
@@ -3121,10 +3072,6 @@ xmlns:myPrefix=&#8221;clr-namespace:myDotNetNamespace;assembly=myDotNetAssembly&
     
       <li class="post">
         <a href="/blog/2012/09/29/scala-sbt-build-definitions-its-turtles-all-the-way-down/">Scala SBT build definitions: it&#8217;s turtles all the way down!</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/21/delete-files-older-than-7-days/">Delete files older than 7 days</a>
       </li>
     
   </ul>
