@@ -7,9 +7,9 @@ categories: c#, .NET
 ---
 
 * Attribute usage:
-** whether to allow mulitple instances of attribute on same method or class
-** what it applies to: class or method
-** whether subclasses of the class inherit the attribate attached to the base class
+ * whether to allow mulitple instances of attribute on same method or class
+ * what it applies to: class or method
+ * whether subclasses of the class inherit the attribate attached to the base class
 * Create class inheriting from Attrbribute and stick the Attribute usage element on that.
 * For attribute parameters, make constructor parameters of the custom attribute class
 
