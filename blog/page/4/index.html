@@ -9,9 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="=Purpose= The purpose of this tutorial is:
-* to show you how to express some basic knowledge and rules using the OWL and SWRL standards;
-* make your &hellip;">
+  <meta name="description" content="=Prequisites= Download and install:
+* Pellet reasoner: http://clarkparsia.com/pellet/ =Source Rules= In plain English the source rules are: A person &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +63,708 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/07/how-to-model-and-execute-legislative-rules-in-swrl/">How to Model and Execute Legislative Rules in SWRL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-07T07:39:39+10:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>=Prequisites=</p>
+
+<p>Download and install:
+* Pellet reasoner: http://clarkparsia.com/pellet/</p>
+
+<p>=Source Rules=</p>
+
+<p>In plain English the source rules are:</p>
+
+<p>A person satisfies Section A if either:
+* they satisfy both Sections B and C, OR
+* they satisfy EITHER Section D or Section E.</p>
+
+<p>Further, a person satisfies Section E if they satisfy BOTH:
+* Section F, AND
+* Section G.</p>
+
+<p>=Prefixes=</p>
+
+<p>Define a default prefix for this file: &#8216;ls&#8217; for &#8216;legislative SWRL&#8217;.  The prefix
+is a full URI, followed by a &#8216;#&#8217;.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Prefix: : &lt;urn:ls#&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>=Ontology Name=</p>
+
+<p>Ontologies have to have a name in the form of an absolute URI:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Ontology: </span></code></pre></td></tr></table></div></figure>
+
+
+<p>=Basic Classes=</p>
+
+<p>This is our simple method for modelling legislation:
+* Each section of the legislation is an instance of the class &#8216;Section&#8217;.
+* The legislation usually applies to something, such as a transaction, a company, or an amount.  In this case, we assume it applies to a person.  So each person that the legislation applies to is an instance of the class &#8216;Person&#8217;.</p>
+
+<p>Further, the same &#8216;thing&#8217; cannot be both a person and a section.  We need to express this explicity in OWL by saying the classes are &#8216;disjoint&#8217;.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Class: Person
+</span><span class='line'>
+</span><span class='line'>    DisjointWith: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Class: Section
+</span><span class='line'>
+</span><span class='line'>    DisjointWith: 
+</span><span class='line'>        Person
+</span><span class='line'> 
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>=Properties=</p>
+
+<p>A person can satisfy particular sections in the legislation.  For example, a particular person might satisfy Section Y by fulfilling whatever criteria are in Section Y.  If Section Y said &#8216;the person is under 18&#8217; and the particular person was in fact under 18, then we say that the person satisfies section Y.</p>
+
+<p>We express this in OWL with an &#8216;object type property&#8217; called &#8216;satisfies&#8217;.  This is a relationship between classes.  The &#8216;domain&#8217; of the property is the class Person.  The &#8216;range&#8217; of the property is the class Section.</p>
+
+<p>You can say this aloud as &#8216;a person satisfies a section&#8217;.  Notice that we are referring in general to <strong>a</strong> person, <strong>not</strong> a particular person at this point.  A particular person would be &#8216;Bob&#8217; or &#8216;Jill&#8217;.   The property is <strong>defined</strong> at a more abstract level as a relation between classes, not individuals.  When we create individual instances, they will have this property, but we do not define the property for them - we defined it at the class level.It is important not to get confused between classes and individuals, and between an object type property and instances of the property connecting individuals.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ObjectProperty: satisfies
+</span><span class='line'>
+</span><span class='line'>    Domain: 
+</span><span class='line'>        Person
+</span><span class='line'>    
+</span><span class='line'>    Range:
+</span><span class='line'>  Section</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>We can also add some additional characteristics to this object property to communicate more information about it.  In general, the more information we add, the more can be inferred from the ontology.  In this case, we want to express that the property is:
+* asymettric, and
+* irreflexive.</p>
+
+<p>&#8216;Asymetric&#8217; means that a person can satisfy a section, but a section cannot satisfy a person.</p>
+
+<p>&#8216;Irreflexive&#8217; means that a person cannot satisfy themselves (in this context, anyway).</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Characteristics: 
+</span><span class='line'>    Asymmetric,
+</span><span class='line'>    Irreflexive</span></code></pre></td></tr></table></div></figure>
+
+
+<p>=Individuals=</p>
+
+<p>==Sections===
+As discussed above, each particular section of the legislation we will model as an instance of the class &#8216;Section&#8217;.  Since there are section &#8216;A&#8217; through &#8216;G&#8217; in our source rules, we create one individual for each:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> 
+</span><span class='line'>Individual: SectionA
+</span><span class='line'>  Types: Section
+</span><span class='line'>  
+</span><span class='line'>Individual: SectionB
+</span><span class='line'>  Types: Section
+</span><span class='line'>
+</span><span class='line'>Individual: SectionC
+</span><span class='line'>  Types: Section
+</span><span class='line'>
+</span><span class='line'>Individual: SectionD
+</span><span class='line'>  Types: Section
+</span><span class='line'>
+</span><span class='line'>Individual: SectionE
+</span><span class='line'>  Types: Section
+</span><span class='line'>
+</span><span class='line'>Individual: SectionF
+</span><span class='line'>  Types: Section
+</span><span class='line'>
+</span><span class='line'>Individual: SectionG
+</span><span class='line'>  Types: Section</span></code></pre></td></tr></table></div></figure>
+
+
+<p>=Rules=</p>
+
+<p>The rules contain the logic that glues together the sections so tthey apply to a person.  Since we have defined the person class and individuals for the praticular sections, we can now write the rules to capture the logic.</p>
+
+<p>Recall the first part of the source rules were that a person satisfies Section A if either:
+* they satisfy both Sections B and C, OR
+* they satisfy EITHER Section D or Section E.</p>
+
+<p>Recall that in SWRL, rules consist of a head and a body, and all the clauses in the body have to be true for the head to be true.  You cannot have a disjunction in the body of a rule - you need to create separate rules for disjunctions.</p>
+
+<p>So this rule above really breaks down to <strong>three</strong> rules, showing that a person may satisfy section A <strong>three</strong> ways:
+Rule 1:  A person satisfies Section A if they satisfy sections B AND C.
+Rule 2: A person satisfies Section A if they satisfy Section D.
+Rule 3: A person satisfies Section A if they satisfy section E.</p>
+
+<p>The rules will apply to any person, so we need a variable for person.  The variable has to have a full URI for a name, so we&#8217;ll call it &#8216;urn:anyPerson&#8217; just to make it clear that this variable represents any person.</p>
+
+<p>In SWRL, Rule 1 is :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Rule:
+</span><span class='line'>Person(?), satisfies(?,SectionB), satisfies(?,SectionC) -&gt; satisfies(?,SectionA)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This consists of three clauses in the body, separated by a comma, followed by the head.</p>
+
+<p>The first clause &#8216;Person&#8217; binds all instances of the class Person to the variable &#8216;urn:anyPerson&#8217;.  The predicate will be true if there is an instance of the class Person in our ontology.  (There isn&#8217;t yet as we haven&#8217;t defined one yet, but we will shortly.)  This is so we can refer to this set of persons in the rest of the rule.</p>
+
+<p>The second clause looks for persons with the object type property &#8216;satisfies&#8217; connecting to the individual &#8216;SectionB&#8217;. We have already defined the individual &#8216;SectionB&#8217;.  So this clause should identify a set of people that satisfy section B.  Similarly, the third clause identifies people that satisfy SectionC.</p>
+
+<p>If all three of those clauses are true for a given person, we know that person should satisfy Section A.  The clause in the head of the rule expresses this.</p>
+
+<p>So the overall effect of that rule is that for every person that satisfies section B and Section C, that person is inferred to satisfy Section A.  The rule will applies to multiple people if there are multiple people defined in the ontology.</p>
+
+<p>Rules 2 and 3 follow the same pattern.</p>
+
+<p>The last rule we need to write says that a person satisfies section E if they satisfy both Section F and Section G.  This time Section E is in the head of the rule rather than the body:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Rule:
+</span><span class='line'>Person(?), satisfies(?,SectionF), satisfies(?,SectionG) -&gt; satisfies(?,SectionD)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that the same clause &#8216;satisfies(?,SectionD)&#8217; appears in the head of this rule, but the body of Rule 3 discussed above.  This means the rules are <strong>chained</strong> together.  The inference of one rule can feed into another rule, so they are all evaluated together.</p>
+
+<p>==Testing the rules==</p>
+
+<p>We can test the rules by creating some instances of the class Person, then running our rules.</p>
+
+<p>For this simple example, we&#8217;ll just create one person, called &#8216;Person1&#8217;.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Individual: Person1
+</span><span class='line'>  Types: Person</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For the purpose of this test, we will say the person satisfies Section D and Section E:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Facts: satisfies SectionB
+</span><span class='line'>Facts: satisfies SectionC</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The expected result is that Person01 also satisfies Section A.</p>
+
+<p>==Running the rules==</p>
+
+<p>We&#8217;ll demonstrate running the rules using the Pellet reasoner from the command line.  You can also  use Pellet from within Protege 3.x and 4.x.</p>
+
+<p>First, save the ontology you have built up as &#8216;legislativeSwrl.owl&#8217;.</p>
+
+<p>For convenience, create an environment variable that contains the full path of the this file, called &#8216;LS&#8217; for &#8216;Legislative SWRL&#8217;.  We&#8217;ll use this in the Pellet commands.</p>
+
+<p>Linux:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>LS=</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Change to the directory where you unzipped Pellet (cd ).</p>
+
+<p>The following command asks Pellet to explain whether Person1 satisfies Section A, and for the reasons why:</p>
+
+<p>Linux:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./pellet.sh explain --property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Some things to note:
+* we use the &#8216;-property-value&#8217; switch because &#8216;satisfies&#8217; is an object type property.
+* we specify the property value we want to explain in the form ,,.  This is: Person1,satisfies,SectionA.  We need to use the full URIs in the for the Pellet command line however.  The full URI&#8217;s begin with &lt;urn:ls#> because this was the default prefix we defined in our ontology (see above).</p>
+
+<p>The output of this command is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Axiom: Person1 satisfies SectionA
+</span><span class='line'>
+</span><span class='line'>Explanation(s): 
+</span><span class='line'>1)   Rule(Emission(?urn:anyPerson), satisfies(?urn:anyPerson, SectionB), satisfies(?urn:anyPerson, SectionC) -&gt; satisfies(?urn:anyPersone, SectionA))
+</span><span class='line'>     Person1 satisfies SectionB
+</span><span class='line'>     Person1 type Person
+</span><span class='line'>     Person1 satisfies SectionC
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The first line of the result tells us that Person1 does indeed satisy SectionA.  This accords with our expected result.</p>
+
+<p>The explanation tells us <strong>why</strong> Person1 satisfies Section A in terms of our ontology.  In plain English, it tells us that Person1 satisfies Section A because they satisfy Section B and C, Person 1 is an individual of the &#8216;Person&#8217; class and because of the rule we defined.</p>
+
+<p>Note that Pellet has identifed only the <strong>relevant</strong> information from our ontology.  It has not listed any of the other rules, or any of the irrelevant sections.</p>
+
+<p>===What if there are multiple ways to satisfy a section?===</p>
+
+<p>In the test above, there is only one way that Person1 can satisfy Section A given the facts we provided: because they satisfy both sections B and C.  In other cases though, there may be multiple routes to the same conclusion.  To test this, change the facts for Person1 from:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Facts: satisfies SectionB
+</span><span class='line'>Facts: satisfies SectionC</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8230; to &#8230;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Facts: satisfies SectionD
+</span><span class='line'>` Facts: satisfies SectionE</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Recall from the source rules that a person satisfies Section A if they satisfy <strong>either</strong> Section D <strong>or</strong> Section E.  In the new facts, Person1 satisfies <strong>both</strong> - so there are two ways they can satisfy Section A.</p>
+
+<p>Change the Pellet explain command to show up to 10 explanations:</p>
+
+<p>Linux:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./pellet.sh explain --max 10 --property-value urn:ls#Person1,urn:ls#satisfies,urn:ls#SectionA $LS</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The output is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Axiom: Person1 satisfies SectionA
+</span><span class='line'>
+</span><span class='line'>Explanation(s): 
+</span><span class='line'>1)   Person1 type Person
+</span><span class='line'>     Person1 satisfies SectionD
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>2)   satisfies domain Person
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>     Person1 satisfies SectionE
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>3)   satisfies domain Person
+</span><span class='line'>     Person1 satisfies SectionD
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>4)   Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>     Person1 type Person
+</span><span class='line'>     Person1 satisfies SectionE
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This shows <strong>four</strong> explanations for why Person1 satisfies SectionA.</p>
+
+<p>Explanation 1 is similar to the one in our first test: Person1 satisfies SectionA because they are a Person, they satisfy Section D, and there is a rule which says any person who satisfies Section D automatically satisfies Section A.</p>
+
+<p>Explanation 3 shows that you can infer Person1 satisies Section A because:
+* the domain of the satisfies property is the class &#8216;Person&#8217;
+* Person1 is in the domain of a satisfies property (in this case the property connected to &#8216;SectionD&#8217;), therefore Person1 must be a person.
+* The rule discussed above applies.</p>
+
+<p>If Explanation 3 is correct, we should not need to specify explicitly in our ontology that Person1 is a Person.  It should be sufficient to specify that Person1 satisfies SectionE.  To test this, <strong>temporarily remove</strong> the assertion that Person1 is a Person:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Individual: Person1
+</span><span class='line'>
+</span><span class='line'>    Types: &lt;-- REMOVE THIS LINE
+</span><span class='line'>        Person &lt;-- REMOVE THIS LINE
+</span><span class='line'>    
+</span><span class='line'>    Facts:  
+</span><span class='line'>     satisfies  SectionD,
+</span><span class='line'>     satisfies  SectionE
+</span><span class='line'> </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now run the Pellet command again.  This time the explanation is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Axiom: Person1 satisfies SectionA
+</span><span class='line'>
+</span><span class='line'>Explanation(s): 
+</span><span class='line'>1)   satisfies domain Person
+</span><span class='line'>     Person1 satisfies SectionD
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>2)   satisfies domain Person
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionE) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>     Person1 satisfies SectionE
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice how explanations based on the explicit fact that Person1 is a Person no longer appear. Don&#8217;t forget to put the lines you removed back in.</p>
+
+<p>Returning to the original explations, we can see Explanation 2 and 4 mirror the original Explanations 1 and 2 except that they refer to Section E.  As expected, this shows us that there are multiple ways the person in our test can satisfy Seciton A: via Section D or via Section E.</p>
+
+<p>==Chaining rules==</p>
+
+<p>Recall that a person satisfies Section A if they satisfy Section E.  Further, a person satisfies Section E if they satisfy both Section F and G.  Therefore, a person who satisfies Sections F and G should automatically satisfy Section A - because the rules chain together.</p>
+
+<p>To test this, change the facts about Person1 to:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Individual: Person1
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Person
+</span><span class='line'>    
+</span><span class='line'>    Facts:  
+</span><span class='line'>     satisfies  SectionF,
+</span><span class='line'>     satisfies  SectionG
+</span><span class='line'> </span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Now run the Pellet command again.  The first explanation is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Axiom: Person1 satisfies SectionA
+</span><span class='line'>
+</span><span class='line'>Explanation(s): 
+</span><span class='line'>1)   Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionF), satisfies(?urn:anyPerson, SectionG) -&gt; satisfies(?urn:anyPerson, SectionD))
+</span><span class='line'>     Person1 satisfies SectionF
+</span><span class='line'>     Person1 type Person
+</span><span class='line'>     Rule(Person(?urn:anyPerson), satisfies(?urn:anyPerson, SectionD) -&gt; satisfies(?urn:anyPerson, SectionA))
+</span><span class='line'>     Person1 satisfies SectionG
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This tells us that Person1 satisfies Section A because:
+* they satisfy both Sections F and G;
+* of the rule which chains together Sections F, G, D;
+* of the rule which chains together Section D and Section A.</p>
+
+<p>=The complete ontology=</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Prefix: : &lt;urn:ls#&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Ontology: 
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>ObjectProperty: satisfies
+</span><span class='line'>
+</span><span class='line'>    Characteristics: 
+</span><span class='line'>        Asymmetric,
+</span><span class='line'>        Irreflexive
+</span><span class='line'>    
+</span><span class='line'>    Domain: 
+</span><span class='line'>        Person
+</span><span class='line'>    
+</span><span class='line'>    Range: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Class: Person
+</span><span class='line'>
+</span><span class='line'>    DisjointWith: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Class: Section
+</span><span class='line'>
+</span><span class='line'>    DisjointWith: 
+</span><span class='line'>        Person
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionG
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionD
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionC
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionF
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionE
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionB
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: Person1
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Person
+</span><span class='line'>    
+</span><span class='line'>    Facts:  
+</span><span class='line'>     satisfies  SectionD,
+</span><span class='line'>     satisfies  SectionE
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Individual: SectionA
+</span><span class='line'>
+</span><span class='line'>    Types: 
+</span><span class='line'>        Section
+</span><span class='line'>    
+</span><span class='line'>    
+</span><span class='line'>Rule: 
+</span><span class='line'>    Person(?), satisfies(?, SectionB), satisfies(?, SectionC) -&gt; satisfies(?, SectionA)
+</span><span class='line'>
+</span><span class='line'>Rule: 
+</span><span class='line'>    Person(?), satisfies(?, SectionF), satisfies(?, SectionG) -&gt; satisfies(?, SectionD)
+</span><span class='line'>
+</span><span class='line'>Rule: 
+</span><span class='line'>    Person(?), satisfies(?, SectionD) -&gt; satisfies(?, SectionA)
+</span><span class='line'>
+</span><span class='line'>Rule: 
+</span><span class='line'>    Person(?), satisfies(?, SectionE) -&gt; satisfies(?, SectionA)
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1138,51 +1839,6 @@ public class TheSourceObject : INotifyPropertyChanged
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/16/how-to-enable-tracing-in-lightswitch/">How to Enable Tracing in Lightswitch</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-16T00:12:28+10:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Edit Web.config in server project:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;add</span> <span class="na">key=</span><span class="s">&quot;Microsoft.LightSwitch.Trace.Enabled&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Make sure custom errors in web.config is also set to &#8220;Off&#8221; (sic).</p>
-
-<p>Then check <your app root>/trace.axd in browser.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -1198,6 +1854,10 @@ public class TheSourceObject : INotifyPropertyChanged
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/07/ascetic-acid-content-of-always-fresh-vinegar/">ascetic-acid-content-of-always-fresh-vinegar</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/03/get-most-recent-file-in-bash/">get most recent file in bash</a>
@@ -1273,10 +1933,6 @@ public class TheSourceObject : INotifyPropertyChanged
     
       <li class="post">
         <a href="/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles/">When to use decimals and when to use floats or doubles</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/02/how-to-check-if-a-sequence-is-ordered-in-a-contract/">How to check if a sequence is ordered</a>
       </li>
     
   </ul>

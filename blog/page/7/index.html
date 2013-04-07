@@ -9,7 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Classpath: parameter for JVM that tells it where to look for user-defined classes and packages. java -classpath /home/user/myprogram org.mypackage. &hellip;">
+  <meta name="description" content="For .doc: use antiword: linux utility that extracts texts from .doc files. For .docx: extract text from ms word .docx files: 1
+unzip -p some.docx &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -62,6 +63,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/10/how-to-extract-text-from-ms-word-docs-in-linux/">How to Extract Text From MS Word Docs in Linux</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-10T02:41:37+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For .doc: use antiword: linux utility that extracts texts from .doc files.</p>
+
+<p>For .docx: extract text from ms word .docx files:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>unzip -p some.docx word/document.xml | sed -e <span class="s1">&#39;s/&lt;[^&gt;]\{1,\}&gt;//g; s/[^[:print:]]\{1,\}//g&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -296,6 +342,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/07/ascetic-acid-content-of-always-fresh-vinegar/">ascetic-acid-content-of-always-fresh-vinegar</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/03/get-most-recent-file-in-bash/">get most recent file in bash</a>
       </li>
     
@@ -369,10 +419,6 @@
     
       <li class="post">
         <a href="/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles/">When to use decimals and when to use floats or doubles</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/02/how-to-check-if-a-sequence-is-ordered-in-a-contract/">How to check if a sequence is ordered</a>
       </li>
     
   </ul>

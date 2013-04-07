@@ -9,8 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="$(MainLightswitchProjectDirectory)\Bin\Data
-">
+  <meta name="description" content="Edit Web.config in server project: 1
+&lt;add key=&quot;Microsoft.LightSwitch.Trace.Enabled&quot; value=&quot;true&quot; /&gt; Make sure custom errors &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/16/how-to-enable-tracing-in-lightswitch/">How to Enable Tracing in Lightswitch</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-16T00:12:28+10:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Edit Web.config in server project:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;add</span> <span class="na">key=</span><span class="s">&quot;Microsoft.LightSwitch.Trace.Enabled&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Make sure custom errors in web.config is also set to &#8220;Off&#8221; (sic).</p>
+
+<p>Then check <your app root>/trace.axd in browser.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -526,112 +571,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/linux-directories/">Linux Directories</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T03:17:00+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Can’t remember where this came from.</p>
-
-<p><strong>/bin</strong> – Contains the executable programs that are part of the Linux operating system. Many Linux commands, such as cat, cp, ls, more, and tar, are locate in /bin</p>
-
-<p><strong>/boot</strong> – Contains the Linux kernel and other files needed by LILO and GRUB boot managers.</p>
-
-<p><strong>/dev </strong>– Contains all device files. Linux treats each device as a special file. All such files are located in /dev.</p>
-
-<p><strong>/etc </strong>– Contains most system configuration files and the initialisation scripts in /etc/rc.d subdirectory.</p>
-
-<p><strong>/home</strong> – Home directory is the parent to the home directories of users.</p>
-
-<p><strong>/lib</strong> – Contains library files, including loadable driver modules needed to boot the system.</p>
-
-<p><strong>/lost+found</strong> – Directory for lost files. Every disk partition has a lost+found directory.</p>
-
-<p><strong>/media </strong>– Directory for mounting files systems on removable media like CD-ROM drives, floppy disks, and Zip drives.</p>
-
-<p><strong>/mnt </strong>– A directory for temporarily mounted filesystems.</p>
-
-<p><strong>/opt </strong>– Optional software packages copy/install files here.</p>
-
-<p><strong>/proc </strong>– A special directory in a virtual filesystem. It contains the information about various aspects of a Linux system.</p>
-
-<p><strong>/root </strong>– Home directory of the root user.</p>
-
-<p><strong>/sbin </strong>– Contains administrative binary files. Commands such as mount, shutdown, umount, reside here.</p>
-
-<p><strong>/srv</strong> – Contains data for services (HTTP, FTP, etc.) offered by the system.</p>
-
-<p><strong>/sys</strong> – A special directory that contains information about the devices, as seen by the Linux kernel.</p>
-
-<p><strong>/tmp</strong> – Temporary directory which can be used as a scratch directory (storage for temporary files). The contents of this directory are cleared each time the system boots.</p>
-
-<p><strong>/usr </strong>– Contains subdirectories for many programs such as the X Window System.</p>
-
-<p><strong>/usr/bin</strong> – Contains executable files for many Linux commands. It is not part of the core Linux operating system.</p>
-
-<p><strong>/usr/include</strong> – Contains header files for C and C++ programming languages</p>
-
-<p><strong>/usr/lib </strong>– Contains libraries for C and C++ programming languages.</p>
-
-<p><strong>/usr/local</strong> – Contains local files. It has a si</p>
-
-<p>milar directories as /usr contains.</p>
-
-<p><strong>/usr/sbin </strong>– Contains administrative commands.</p>
-
-<p><strong>/usr/share</strong> – Contains files that are shared, like, default configuration files, images, documentation, etc.</p>
-
-<p><strong>/usr/src </strong>– Contains the source code for the Linux kernel.</p>
-
-<p><strong>/var </strong>– Contains various system files such as log, mail directories, print spool, etc. which tend to change in numbers and size over time.</p>
-
-<p><strong>/var/cache</strong> – Storage area for cached data for applications.</p>
-
-<p><strong>/var/lib </strong>– Contains information relating to the current state of applications. Programs modify this when they run.</p>
-
-<p><strong>/var/lock</strong> – Contains lock files which are checked by applications so that a resource can be used by one application only.</p>
-
-<p><strong>/var/log </strong>– Contains log files for differenct applications.</p>
-
-<p><strong>/var/mail</strong> – Contains users’ emails.</p>
-
-<p><strong>/var/opt </strong>– Contains variable data for packages stored in /opt directory.</p>
-
-<p><strong>/var/run </strong>– Contains data describing the system since it was booted.</p>
-
-<p><strong>/var/spool</strong> – Contains data that is waiting for some kind of processing.</p>
-
-<p><strong>/var/tmp </strong>– Contains temporary files preserved between system reboots.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -647,6 +586,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/07/ascetic-acid-content-of-always-fresh-vinegar/">ascetic-acid-content-of-always-fresh-vinegar</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/03/get-most-recent-file-in-bash/">get most recent file in bash</a>
@@ -722,10 +665,6 @@
     
       <li class="post">
         <a href="/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles/">When to use decimals and when to use floats or doubles</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/02/how-to-check-if-a-sequence-is-ordered-in-a-contract/">How to check if a sequence is ordered</a>
       </li>
     
   </ul>
