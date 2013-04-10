@@ -5,12 +5,18 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Pre-build event command to remove output of previous tests - Junk I Would Otherwise Forget</title>
+  <title>how-to-require-parameterless-constructor-in-generic-class-definition - Junk I Would Otherwise Forget</title>
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Remove any junk previous test runs may have written to TestOutput directory: 1
-del /Q $(ProjectDir)\TestOutput ">
+  <meta name="description" content="1
+2
+3
+4
+5
+6
+7
+class ItemFactory&lt;T&gt; where T : new() { public T GetNewItem() { return new T(); } } ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +25,7 @@ del /Q $(ProjectDir)\TestOutput ">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="nickmiller.com.au/blog/2012/08/17/pre-build-event-command-to-remove-output-of-previous-tests/">
+  <link rel="canonical" href="nickmiller.com.au/blog/2013/04/10/how-to-require-parameterless-constructor-in-generic-classs-definition/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -66,7 +72,7 @@ del /Q $(ProjectDir)\TestOutput ">
   
   <header>
     
-      <h1 class="entry-title">Pre-build Event Command to Remove Output of Previous Tests</h1>
+      <h1 class="entry-title">How-to-require-parameterless-constructor-in-generic-class-definition</h1>
     
     
       <p class="meta">
@@ -82,17 +88,30 @@ del /Q $(ProjectDir)\TestOutput ">
   
 
 
-<time datetime="2012-08-17T00:23:43+10:00" pubdate data-updated="true">Aug 17<span>th</span>, 2012</time>
+<time datetime="2013-04-10T10:05:00+10:00" pubdate data-updated="true">Apr 10<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Remove any junk previous test runs may have written to TestOutput directory:</p>
+<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">class</span> <span class="nc">ItemFactory</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="k">new</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">public</span> <span class="n">T</span> <span class="nf">GetNewItem</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="k">new</span> <span class="nf">T</span><span class="p">();</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>del /Q $(ProjectDir)\TestOutput</span></code></pre></td></tr></table></div></figure>
+
 
 </div>
 
@@ -116,12 +135,12 @@ del /Q $(ProjectDir)\TestOutput ">
   
 
 
-<time datetime="2012-08-17T00:23:43+10:00" pubdate data-updated="true">Aug 17<span>th</span>, 2012</time>
+<time datetime="2013-04-10T10:05:00+10:00" pubdate data-updated="true">Apr 10<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/exocortex/'>exocortex</a>
+    <a class='category' href='/blog/categories/c-/'>C#</a>
   
 </span>
 
@@ -130,7 +149,7 @@ del /Q $(ProjectDir)\TestOutput ">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="nickmiller.com.au/blog/2012/08/17/pre-build-event-command-to-remove-output-of-previous-tests/" data-via="" data-counturl="nickmiller.com.au/blog/2012/08/17/pre-build-event-command-to-remove-output-of-previous-tests/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="nickmiller.com.au/blog/2013/04/10/how-to-require-parameterless-constructor-in-generic-classs-definition/" data-via="" data-counturl="nickmiller.com.au/blog/2013/04/10/how-to-require-parameterless-constructor-in-generic-classs-definition/" >Tweet</a>
   
   
   
@@ -139,10 +158,8 @@ del /Q $(ProjectDir)\TestOutput ">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/08/16/how-to-enable-tracing-in-lightswitch/" title="Previous Post: How to enable tracing in Lightswitch">&laquo; How to enable tracing in Lightswitch</a>
+        <a class="basic-alignment left" href="/blog/2013/04/07/ascetic-acid-content-of-always-fresh-vinegar/" title="Previous Post: ascetic acid content of always fresh vinegar">&laquo; ascetic acid content of always fresh vinegar</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/08/21/how-to-find-modified-entities-in-lightswitch/" title="Next Post: How to find modified entities in Lightswitch">How to find modified entities in Lightswitch &raquo;</a>
       
     </p>
   </footer>

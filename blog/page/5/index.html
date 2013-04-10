@@ -9,8 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Edit Web.config in server project: 1
-&lt;add key=&quot;Microsoft.LightSwitch.Trace.Enabled&quot; value=&quot;true&quot; /&gt; Make sure custom errors &hellip;">
+  <meta name="description" content="Remove any junk previous test runs may have written to TestOutput directory: 1
+del /Q $(ProjectDir)\TestOutput ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/17/pre-build-event-command-to-remove-output-of-previous-tests/">Pre-build Event Command to Remove Output of Previous Tests</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-17T00:23:43+10:00" pubdate data-updated="true">Aug 17<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Remove any junk previous test runs may have written to TestOutput directory:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>del /Q $(ProjectDir)\TestOutput</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -535,42 +575,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/best-mono-build-script/">Best Mono Build Script</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T03:18:24+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://github.com/firegrass/mono-installer-script/blob/master/mono_build.sh">https://github.com/firegrass/mono-installer-script/blob/master/mono_build.sh</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -586,6 +590,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/10/how-to-require-parameterless-constructor-in-generic-classs-definition/">how-to-require-parameterless-constructor-in-generic-class-definition</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/07/ascetic-acid-content-of-always-fresh-vinegar/">ascetic acid content of always fresh vinegar</a>
@@ -661,10 +669,6 @@
     
       <li class="post">
         <a href="/blog/2012/10/02/how-to-concatenate-pdf-files-in-linux/">How to concatenate PDF files in linux</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles/">When to use decimals and when to use floats or doubles</a>
       </li>
     
   </ul>

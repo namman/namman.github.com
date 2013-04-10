@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-04-07T16:39:26+10:00</updated>
+  <updated>2013-04-10T10:07:14+10:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[how-to-require-parameterless-constructor-in-generic-class-definition]]></title>
+    <link href="nickmiller.com.au/blog/2013/04/10/how-to-require-parameterless-constructor-in-generic-classs-definition/"/>
+    <updated>2013-04-10T10:05:00+10:00</updated>
+    <id>nickmiller.com.au/blog/2013/04/10/how-to-require-parameterless-constructor-in-generic-classs-definition</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">class</span> <span class="nc">ItemFactory</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="k">new</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">public</span> <span class="n">T</span> <span class="nf">GetNewItem</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="k">new</span> <span class="nf">T</span><span class="p">();</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ascetic acid content of always fresh vinegar]]></title>
@@ -486,15 +512,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[When to use decimals and when to use floats or doubles]]></title>
-    <link href="nickmiller.com.au/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles/"/>
-    <updated>2012-10-02T10:37:03+10:00</updated>
-    <id>nickmiller.com.au/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles</id>
-    <content type="html"><![CDATA[<p>[[http://stackoverflow.com/questions/618535/what-is-the-difference-between-decimal-float-and-double-in-c/618596#618596|http://stackoverflow.com/questions/618535/what-is-the-difference-between-decimal-float-and-double-in-c/618596#618596]]</p>
 ]]></content>
   </entry>
   

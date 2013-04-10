@@ -9,8 +9,20 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Check &#8216;Allow nuget to download missing packages during build&#8217;. (Tools: Library Package Manager: Package Manager Settings).
-Check in &hellip;">
+  <meta name="description" content="IValueConverter:
+Convert goes source object -> UI
+ConvertBack goes UI -> source object
+&#8216;paramater is passed in by UI. 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +75,68 @@ Check in &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/21/wpf-cheat-sheet/">WPF Cheat Sheet</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-21T06:52:00+11:00" pubdate data-updated="true">Dec 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>IValueConverter:
+Convert goes source object -> UI
+ConvertBack goes UI -> source object
+&#8216;paramater is passed in by UI.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;ObjectDataProvider</span> <span class="na">x:Key=</span><span class="s">&quot;ZoomOptions&quot;</span>
+</span><span class='line'><span class="na">MethodName=</span><span class="s">&quot;GetNames&quot;</span>
+</span><span class='line'><span class="na">ObjectType=</span><span class="s">&quot;{x:Type sys:Enum}&quot;</span>
+</span><span class='line'><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;ObjectDataProvider.MethodParameters&gt;</span>
+</span><span class='line'><span class="nt">&lt;x:Type</span> <span class="na">TypeName=</span><span class="s">&quot;bll:enumZoomOptions&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ObjectDataProvider.MethodParameters&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ObjectDataProvider&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;ComboBox</span> <span class="na">ItemsSource=</span><span class="s">&quot;{Binding Source={StaticResource ZoomOptions}}&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -582,42 +656,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles/">When to Use Decimals and When to Use Floats or Doubles</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-02T10:37:03+10:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>[[http://stackoverflow.com/questions/618535/what-is-the-difference-between-decimal-float-and-double-in-c/618596#618596|http://stackoverflow.com/questions/618535/what-is-the-difference-between-decimal-float-and-double-in-c/618596#618596]]</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -633,6 +671,10 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/10/how-to-require-parameterless-constructor-in-generic-classs-definition/">how-to-require-parameterless-constructor-in-generic-class-definition</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/07/ascetic-acid-content-of-always-fresh-vinegar/">ascetic acid content of always fresh vinegar</a>
@@ -708,10 +750,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
     
       <li class="post">
         <a href="/blog/2012/10/02/how-to-concatenate-pdf-files-in-linux/">How to concatenate PDF files in linux</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/02/when-to-use-decimals-and-when-to-use-floats-or-doubles/">When to use decimals and when to use floats or doubles</a>
       </li>
     
   </ul>
