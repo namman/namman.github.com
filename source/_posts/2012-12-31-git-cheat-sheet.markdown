@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "git cheat sheet"
-date: 2012-12-31 08:51
+date: 2013-04-15 11:49
 comments: true
-categories: 
+categories: git
 ---
 Dredge up files deleted by previous lameness:
 ```bash
@@ -18,3 +18,9 @@ git checkout [hash of commit with files you want] -- .\**
 # short log of last five commits
 git log --oneline -5
 ```
+
+Revert to particular commit
+```bash
+git reset <hash of commit you want to revert to>
+```
+-H to discard changes in working copy.
