@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-04-10T10:07:14+10:00</updated>
+  <updated>2013-05-08T20:39:25+10:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -201,6 +201,39 @@
 </span><span class='line'><span class="c"># short log of last five commits</span>
 </span><span class='line'>git log --oneline -5
 </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Rolling back:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git reset -h
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or to create new commit reversing bad one:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git revert &lt;<span class="nb">hash </span>of bad commit&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or to roll back multiple commits, using temporary branch</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git branch temp &lt;<span class="nb">hash </span>of last good commit&gt;
+</span><span class='line'>git checkout temp
+</span><span class='line'>git reset --soft master <span class="c">#  moves pointer in temp branch to latest from master so we can merge</span>
+</span><span class='line'>git commit -am <span class="s2">&quot;back to last good commit&quot;</span>
+</span><span class='line'>git checkout master
+</span><span class='line'>git merge temp
+</span></code></pre></td></tr></table></div></figure>
+
+
 
 ]]></content>
   </entry>
