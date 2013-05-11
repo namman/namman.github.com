@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-05-08T20:39:25+10:00</updated>
+  <updated>2013-05-11T19:14:38+10:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -12,6 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[how compress pdf in linux]]></title>
+    <link href="nickmiller.com.au/blog/2013/05/11/compress-pdf/"/>
+    <updated>2013-05-11T19:11:00+10:00</updated>
+    <id>nickmiller.com.au/blog/2013/05/11/compress-pdf</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gs -sDEVICE<span class="o">=</span>pdfwrite -dCompatibilityLevel<span class="o">=</span>1.4 -dPDFSETTINGS<span class="o">=</span>/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile<span class="o">=</span>output.pdf input.pdf
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[how-to-require-parameterless-constructor-in-generic-class-definition]]></title>
@@ -531,18 +543,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
 </span><span class='line'>            <span class="k">from</span> <span class="n">n</span> <span class="k">in</span> <span class="n">numbers</span>
 </span><span class='line'>            <span class="k">group</span> <span class="n">n</span> <span class="n">by</span> <span class="n">n</span> <span class="p">%</span> <span class="m">5</span> <span class="k">into</span> <span class="n">g</span>
 </span><span class='line'>            <span class="k">select</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Remainder</span> <span class="p">=</span> <span class="n">g</span><span class="p">.</span><span class="n">Key</span><span class="p">,</span> <span class="n">Numbers</span> <span class="p">=</span> <span class="n">g</span> <span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to concatenate PDF files in linux]]></title>
-    <link href="nickmiller.com.au/blog/2012/10/02/how-to-concatenate-pdf-files-in-linux/"/>
-    <updated>2012-10-02T20:25:45+10:00</updated>
-    <id>nickmiller.com.au/blog/2012/10/02/how-to-concatenate-pdf-files-in-linux</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>

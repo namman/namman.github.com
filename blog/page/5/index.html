@@ -9,8 +9,10 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Remove any junk previous test runs may have written to TestOutput directory: 1
-del /Q $(ProjectDir)\TestOutput ">
+  <meta name="description" content="Add to SaveChanges_Executing() hook (runs before EF writes scheduled changes to database): 1
+2
+3
+4 var remainingChangesToMyEntity = from e in this. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +65,55 @@ del /Q $(ProjectDir)\TestOutput ">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/21/how-to-find-modified-entities-in-lightswitch/">How to Find Modified Entities in Lightswitch</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-21T22:06:20+10:00" pubdate data-updated="true">Aug 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Add to SaveChanges_Executing() hook (runs before EF writes scheduled changes to database):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'>    <span class="kt">var</span> <span class="n">remainingChangesToMyEntity</span> <span class="p">=</span>
+</span><span class='line'>            <span class="k">from</span> <span class="n">e</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="n">DataWorkspace</span><span class="p">.</span><span class="n">ApplicationData</span><span class="p">.</span><span class="n">Details</span><span class="p">.</span><span class="n">GetChanges</span><span class="p">().</span><span class="n">ModifiedEntities</span>
+</span><span class='line'>             <span class="k">where</span> <span class="n">e</span> <span class="k">is</span> <span class="n">MyEntity</span>
+</span><span class='line'>             <span class="k">select</span> <span class="n">e</span> <span class="k">as</span> <span class="n">MyEntity</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -535,46 +586,6 @@ del /Q $(ProjectDir)\TestOutput ">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/nuget-packages-in-source-control/">NuGet Packages in Source Control</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T03:19:36+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Install-Package NuGetPowerTools</p>
-
-<p>Enable-PackageRestore</p>
-
-<p>Then don&#8217;t need to commit packages to source control.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -590,6 +601,10 @@ del /Q $(ProjectDir)\TestOutput ">
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/11/compress-pdf/">how compress pdf in linux</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/10/how-to-require-parameterless-constructor-in-generic-classs-definition/">how-to-require-parameterless-constructor-in-generic-class-definition</a>
@@ -665,10 +680,6 @@ del /Q $(ProjectDir)\TestOutput ">
     
       <li class="post">
         <a href="/blog/2012/10/22/simple-linq-group/">Simple LINQ group</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/02/how-to-concatenate-pdf-files-in-linux/">How to concatenate PDF files in linux</a>
       </li>
     
   </ul>

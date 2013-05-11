@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linux | Junk I Would Otherwise Forget]]></title>
+  <link href="nickmiller.com.au/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="nickmiller.com.au/"/>
+  <updated>2013-05-11T19:14:38+10:00</updated>
+  <id>nickmiller.com.au/</id>
+  <author>
+    <name><![CDATA[Nick Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[how compress pdf in linux]]></title>
+    <link href="nickmiller.com.au/blog/2013/05/11/compress-pdf/"/>
+    <updated>2013-05-11T19:11:00+10:00</updated>
+    <id>nickmiller.com.au/blog/2013/05/11/compress-pdf</id>
+    <content type="html"><![CDATA[<p><code>bash
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
