@@ -9,19 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Dredge up files deleted by previous lameness: 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-#Change to location where files deleted
-cd wherever
-# Find last commit that &hellip;">
+  <meta name="description" content="When opening a new screen: Run. (It&#8217;s in Application namespace. Screen paramaters are arguments.)
+InitialiseDataWorkspace. Appears to happen &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,6 +63,64 @@ cd wherever
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/03/lightswitch-cheat-sheet/">Order of Lightswitch Screen Events</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-03T17:33:00+11:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When opening a new screen:</p>
+
+<ol>
+<li>Run.  (It&#8217;s in Application namespace.  Screen paramaters are arguments.)</li>
+<li>InitialiseDataWorkspace.  Appears to happen BEFORE data context gets hydrated from database.</li>
+<li>Now loads custom controls. (ControlAvailable events fire when done.)</li>
+<li>CanRun</li>
+<li>Created</li>
+<li>Activated</li>
+<li>Validate on all the entity properties.</li>
+<li>Loaded</li>
+</ol>
+
+
+<p>When navigating back to an already open screen:</p>
+
+<ol>
+<li>Activated</li>
+<li>Control available events fire.</li>
+</ol>
+
+
+<p>To do something with a custom control on load (like set its view model or feed it some data), use FindControl in the <em>Activated hook, then hook into the Control_Available event.  Don&#8217;t use </em>Activated - it may appear to work, but this is just dumb luck.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -659,55 +706,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/22/simple-linq-group/">Simple LINQ Group</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-22T01:20:19+11:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'> <span class="kt">int</span><span class="p">[]</span> <span class="n">numbers</span> <span class="p">=</span> <span class="p">{</span> <span class="m">5</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0</span> <span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="kt">var</span> <span class="n">numberGroups</span> <span class="p">=</span>
-</span><span class='line'>            <span class="k">from</span> <span class="n">n</span> <span class="k">in</span> <span class="n">numbers</span>
-</span><span class='line'>            <span class="k">group</span> <span class="n">n</span> <span class="n">by</span> <span class="n">n</span> <span class="p">%</span> <span class="m">5</span> <span class="k">into</span> <span class="n">g</span>
-</span><span class='line'>            <span class="k">select</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Remainder</span> <span class="p">=</span> <span class="n">g</span><span class="p">.</span><span class="n">Key</span><span class="p">,</span> <span class="n">Numbers</span> <span class="p">=</span> <span class="n">g</span> <span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -723,6 +721,10 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/18/windows-creditials/">How to specify Windows credentials in odata client</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/05/11/compress-pdf/">how compress pdf in linux</a>
@@ -798,10 +800,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
     
       <li class="post">
         <a href="/blog/2012/10/23/how-to-remap-key-in-linux/">How to remap key in linux</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/22/simple-linq-group/">Simple LINQ group</a>
       </li>
     
   </ul>
