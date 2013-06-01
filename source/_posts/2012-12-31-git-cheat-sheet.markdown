@@ -24,3 +24,9 @@ Revert to particular commit
 git reset <hash of commit you want to revert to>
 ```
 -H to discard changes in working copy.
+
+
+Pretty log
+```
+git log --graph --decorate --pretty=oneline --abbrev-commit master origin/master <any other branch names you want in log>
+```
