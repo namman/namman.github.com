@@ -31,6 +31,12 @@ Pretty log
 git log --graph --decorate --pretty=oneline --abbrev-commit master origin/master <any other branch names you want in log>
 ```
 
+Diff between merge and rebase:
+* merge does a three way merge between your commit, the remote head and the most recent common ancestor of the two.  Then in commits that to the remote branch.
+* rebase compares your branch to the point in master where you diverged, makes a patch, then applies it to master.  Then you need to fastforward the HEAD of master by checkout out master and merging the latest commit (because HEAD of master will point to the second latest commit).
+
+The point is that rebase makes one commit to master with clean history, rather than merging all the commits separately which you made in your topic branch.
+
 Detached HEAD means the commit that is HEAD can't be referenced by other commits - you can never merge it.
 To check if it was caused by a partially completed rebase (which creates a detached HEAD):
 See if there is anything in:
