@@ -30,3 +30,30 @@ Pretty log
 ```
 git log --graph --decorate --pretty=oneline --abbrev-commit master origin/master <any other branch names you want in log>
 ```
+
+Detached HEAD means the commit that is HEAD can't be referenced by other commits - you can never merge it.
+To check if it was caused by a partially completed rebase (which creates a detached HEAD):
+See if there is anything in:
+```
+.git/rebase-merge/
+```
+To confirm detached head:
+```
+git branch -a
+```
+
+Solution: 
+* Make a temp branch from your branch with work you want to push
+* Merge that branch into the target branch (eg, master)
+* Delete the temp branch
+```
+git checkout -b temp
+# check your work is there
+git checkout master
+git merge temp
+git branch -d temp
+```
+
+
+
+
