@@ -19,6 +19,9 @@ git checkout [hash of commit with files you want] -- .\**
 git log --oneline -5
 ```
 
+# Checkout a version of a file from a previous commit into working tree
+git checkout <hash of previous commit> <path of file>
+
 Revert to particular commit
 ```bash
 git reset <hash of commit you want to revert to>
