@@ -9,8 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="Two ways: Get your spouse to microwave it. Careful about burning if synthetic.
+Put it in your dog&#8217;s bed. In the morning, excavate from under &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,48 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/07/03/warm-underware/">How to Ensure Your Underware Is Warm and Toasty and Ready for You in the Morning</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-03T11:39:00+10:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Two ways:</p>
+
+<ul>
+<li>Get your spouse to microwave it.  Careful about burning if synthetic.</li>
+<li>Put it in your dog&#8217;s bed.  In the morning, excavate from under dog.  Your dog will be happy as dogs need a job.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/07/03/pdfs/">PDFs</a></h1>
     
     
@@ -92,7 +134,177 @@
   </header>
 
 
-  <div class="entry-content">
+  <div class="entry-content"><p>Notes from reading iText in Action:</p>
+
+<p>PDFs are not a declarative layout language like XAML.  They are a bunch of instructions to a renderer, and a bunch of them are in sequence.</p>
+
+<p>Eg:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>canvas.saveState();                                       // q
+</span><span class='line'>        canvas.beginText();                               // BT
+</span><span class='line'>        canvas.moveText(36, 788);                         // 36 788 Td
+</span><span class='line'>        canvas.setFontAndSize(BaseFont.createFont(), 12); // /F1 12 Tf
+</span><span class='line'>        canvas.showText("Hello World");                   // (Hello World)Tj
+</span><span class='line'>        canvas.endText();                                 // ET
+</span><span class='line'>        canvas.restoreState();                            // Q</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Basic steps to create new doc with iText:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'> <span class="n">Document</span> <span class="n">document</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Document</span><span class="p">();</span>
+</span><span class='line'>        <span class="c1">// step 2</span>
+</span><span class='line'>        <span class="n">PdfWriter</span><span class="p">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="n">filename</span><span class="p">));</span>
+</span><span class='line'>        <span class="c1">// step 3</span>
+</span><span class='line'>        <span class="n">document</span><span class="p">.</span><span class="n">open</span><span class="p">();</span>
+</span><span class='line'>        <span class="c1">// step 4</span>
+</span><span class='line'>        <span class="n">document</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Paragraph</span><span class="p">(</span><span class="s">&quot;Hello World!&quot;</span><span class="p">));</span>
+</span><span class='line'>        <span class="c1">// step 5</span>
+</span><span class='line'>        <span class="n">document</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Basic parts of PDF in iText&#8217;s object model:
+* Chunk: smallest thing that can be added to a document.  Images get added in a chunk.
+* Phrases: can be composed of chunks
+* Paragraph: a phrase with extra properties and new line at the end
+* List: sequence of paragraphs
+* Chapter: contains one or more section objects.  Inherits from LargeElement.
+* Section: set a bookmark on this and you get nice little table of contents in reader apps.  Inherits from LargeElement.
+* Anchor: for hypelinks</p>
+
+<p>Content layers, numbered 1 to 4:
+* 1 and 4 are for direct content
+* 2 and 3 are for higher level objects, like chunks, sections, chapters etc.
+* 1 is the bottom layer - under text and graphhics
+* 4 is the top layer- over text and graphics</p>
+
+<p>Get writer for top layer:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">PdfWriter</span><span class="p">.</span><span class="n">getDirectContent</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Get writer for bottom layer:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">PdfWriter</span><span class="p">.</span><span class="n">getDirectContentUnder</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To read PDF doc, use PdfReader.  Can tell you high level things about the doc like:</p>
+
+<ul>
+<li>pages</li>
+<li>rotation of pages</li>
+<li>length</li>
+<li>whether encrypted</li>
+</ul>
+
+
+<p>Get content stream of the page - the raw stream of the page with underlying PDF syntax:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="kt">var</span> <span class="n">content</span> <span class="n">stream</span> <span class="p">=</span> <span class="n">PdfReader</span><span class="p">.</span><span class="n">GetContentStream</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>How to extract a page from PDF:</p>
+
+<ul>
+<li>DON&#8217;T attempt to extract a page using the PdfReader.</li>
+<li>Pass the PdfReader to a PdfWriter and ask it to copy the page to another PDF.</li>
+<li>This will give you a PdfImportedPage object.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">Document</span> <span class="n">document</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Document</span><span class="p">();</span>
+</span><span class='line'><span class="n">PdfWriter</span> <span class="n">writer</span> <span class="p">=</span> <span class="n">PdfWriter</span><span class="p">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;extractPage.pdf&quot;</span><span class="p">));</span>
+</span><span class='line'><span class="n">document</span><span class="p">.</span><span class="n">open</span><span class="p">();</span>
+</span><span class='line'><span class="n">PdfReader</span> <span class="n">reader</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PdfReader</span><span class="p">(</span><span class="s">&quot;sourceDocument.pdf&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">PdfImportedPage</span> <span class="n">page</span> <span class="p">=</span> <span class="n">writer</span><span class="p">.</span><span class="n">getImportedPage</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="m">1</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// do something with it</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To put a header and footer or stationary on a PDF:</p>
+
+<ul>
+<li>create the stationary in one PDF</li>
+<li>import that page</li>
+<li>superimpose that page on the target PDF</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// open reader with source doc</span>
+</span><span class='line'><span class="c1">// open target doc in writer</span>
+</span><span class='line'><span class="c1">// create pdfContentByte by calling getDirectContent on the writer</span>
+</span><span class='line'><span class="c1">// call addTemplate on the contentByte and feed it the imported page</span>
+</span><span class='line'><span class="n">PdfReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PdfReader</span><span class="o">(</span><span class="s">&quot;stationary.pdf&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">Document</span> <span class="n">document</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Document</span><span class="o">();</span>
+</span><span class='line'><span class="n">PdfWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">PdfWriter</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">document</span><span class="o">,</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">&quot;result.pdf&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">document</span><span class="o">.</span><span class="na">open</span><span class="o">();</span>
+</span><span class='line'><span class="n">PdfContentByte</span> <span class="n">canvas</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">getDirectContent</span><span class="o">();</span>
+</span><span class='line'><span class="n">PdfImportedPage</span> <span class="n">page</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">reader</span><span class="o">.</span><span class="na">getNumberOfPages</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">page</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">getImportedPage</span><span class="o">(</span><span class="n">reader</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">canvas</span><span class="o">.</span><span class="na">addTemplate</span><span class="o">(</span><span class="n">page</span><span class="o">,</span> <span class="mi">1</span><span class="n">f</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'><span class="n">document</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class='line'><span class="n">reader</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Problem with this: annotations are not part of the content stream, they are part of the annotations dictionary.
+They are not copied when using PdfImportedPage.</p>
+
+<p>To draw something onto the doc at a particular position:</p>
+
+<ul>
+<li>subclass VerticalPositionMark.  It has a draw() method so you can add it to a Document object.</li>
+<li>Imprement Draw interface, then wrap class in a chunk so you can add it to Document object.</li>
+</ul>
+
 </div>
   
   
@@ -433,61 +645,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/18/httphandlers/">How to Register HTTP Handler in web.config in IIS 7</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-18T15:26:00+11:00" pubdate data-updated="true">Jan 18<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;system.webServer&gt;</span>
-</span><span class='line'><span class="nt">&lt;handlers&gt;</span>
-</span><span class='line'><span class="nt">&lt;add</span> <span class="na">path=</span><span class="s">&quot;RelativePathWithoutLeadingOrTrailingBackslashOrAlternativelyAFileNameOrGlobFilePattern&quot;</span>
-</span><span class='line'><span class="na">verb=</span><span class="s">&quot;*&quot;</span>
-</span><span class='line'><span class="na">type=</span><span class="s">&quot;ClassNameOfHTTPHandlerClassIncludingFullNamspace, AssemblyNameOfHandlerClassIfReferencedAssemblyFromWebProject&quot;</span>
-</span><span class='line'><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;/handlers&gt;</span>
-</span><span class='line'><span class="nt">&lt;/system.webServer&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Full options on MSDN: http://msdn.microsoft.com/en-us/library/ms691481(v=vs.90).aspx</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -501,6 +658,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/03/warm-underware/">How to ensure your underware is warm and toasty and ready for you in the morning</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/03/pdfs/">PDFs</a>
@@ -576,10 +737,6 @@
     
       <li class="post">
         <a href="/blog/2012/11/09/validate-xml-file-against-schema/">Validate XML file against schema</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/24/awesome-outline-of-date-format-strings-for-net/">Awesome outline of date format strings for .NET</a>
       </li>
     
   </ul>

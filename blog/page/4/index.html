@@ -9,9 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="public static RegexOptions ExplicitCapture = RegexOptions.ExplicitCapture
-in enum RegexOptions Summary:
-Specifies that the only valid captures are &hellip;">
+  <meta name="description" content="Sententious advice abounds. What has worked for me: | Principle | Where I first got it| Example |
+| Start in the middle. | Daryel Akerlind | For f*&k &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +63,51 @@ Specifies that the only valid captures are &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/12/personal-programming-principles/">Personal Programming Principles</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-12T23:10:32+10:00" pubdate data-updated="true">Sep 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sententious advice abounds.  What has worked for me:</p>
+
+<p>| Principle | Where I first got it| Example |
+| Start in the middle. | Daryel Akerlind | For f*&k;&#8217;s sake don&#8217;t start a new module by sketching out interfaces and base classes - a recipe for over engineering. |
+| If data structures are likely to change a lot, but the behaviours not so much: use OO.  For the reverse, use FP.  If both, use OO. | &#8220;Real World Functional Programming&#8221; book. | FP: use C# extension methods for manipulating generated classes from Odata service reference.  Database is not going to change much.  If it does, you&#8217;re hosed anyway. |
+| Use small and cohesive functions and classes. | &#8220;Clean Code&#8221; book. |
+| For tricky and self contained: TDD.  For sprawling and fluid: TAD (test after development). | Personal goddamn experience. |
+| Depend on abstractions, not implementations. | Head First Design Patterns book. | Creating simple interfaces for everything that gets constructor injected seems like a hassle at first.  But it will be more of a hassle later when you can&#8217;t mock the dependencies.  Then you&#8217;ll have to extract interfaces from classes that are already throughout your code.  So just do it up front.  ReSharper makes it easy. |
+| Just &#8216;pushing through&#8217; never bloody works. | Daryel Akerlind | |
+| Use contracts and exceptions to flag things you don&#8217;t expect.  Don&#8217;t let these cases fall into an &#8216;else&#8217; branch or a default value. | Personal goddamned experience. | Slam a contract assertion in before returning from within an else block. |</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -3143,57 +3187,6 @@ public class TheSourceObject : INotifyPropertyChanged
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/02/simple-background-worker/">Simple Background Worker</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-02T08:54:05+10:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>[csharp]</p>
-
-<p>var worker = new BackgroundWorker();</p>
-
-<pre><code>        worker.DoWork += worker_DoWork;
-        worker.RunWorkerAsync();
-</code></pre>
-
-<p>void worker_DoWork(object sender, DoWorkEventArgs e)</p>
-
-<pre><code>    {
-        // the actual work
-    }
-</code></pre>
-
-<p>[/csharp]</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -3209,6 +3202,10 @@ public class TheSourceObject : INotifyPropertyChanged
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/03/warm-underware/">How to ensure your underware is warm and toasty and ready for you in the morning</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/03/pdfs/">PDFs</a>
@@ -3284,10 +3281,6 @@ public class TheSourceObject : INotifyPropertyChanged
     
       <li class="post">
         <a href="/blog/2012/11/09/validate-xml-file-against-schema/">Validate XML file against schema</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/24/awesome-outline-of-date-format-strings-for-net/">Awesome outline of date format strings for .NET</a>
       </li>
     
   </ul>
