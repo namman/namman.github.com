@@ -133,20 +133,28 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Basic parts of PDF in iText&#8217;s object model:
-* Chunk: smallest thing that can be added to a document.  Images get added in a chunk.
-* Phrases: can be composed of chunks
-* Paragraph: a phrase with extra properties and new line at the end
-* List: sequence of paragraphs
-* Chapter: contains one or more section objects.  Inherits from LargeElement.
-* Section: set a bookmark on this and you get nice little table of contents in reader apps.  Inherits from LargeElement.
-* Anchor: for hypelinks</p>
+<p>Basic parts of PDF in iText&#8217;s object model:</p>
 
-<p>Content layers, numbered 1 to 4:
-* 1 and 4 are for direct content
-* 2 and 3 are for higher level objects, like chunks, sections, chapters etc.
-* 1 is the bottom layer - under text and graphhics
-* 4 is the top layer- over text and graphics</p>
+<ul>
+<li>Chunk: smallest thing that can be added to a document.  Images get added in a chunk.</li>
+<li>Phrases: can be composed of chunks</li>
+<li>Paragraph: a phrase with extra properties and new line at the end</li>
+<li>List: sequence of paragraphs</li>
+<li>Chapter: contains one or more section objects.  Inherits from LargeElement.</li>
+<li>Section: set a bookmark on this and you get nice little table of contents in reader apps.  Inherits from LargeElement.</li>
+<li>Anchor: for hypelinks</li>
+</ul>
+
+
+<p>Content layers, numbered 1 to 4:</p>
+
+<ul>
+<li>1 and 4 are for direct content</li>
+<li>2 and 3 are for higher level objects, like chunks, sections, chapters etc.</li>
+<li>1 is the bottom layer - under text and graphhics</li>
+<li>4 is the top layer- over text and graphics</li>
+</ul>
+
 
 <p>Get writer for top layer:</p>
 
