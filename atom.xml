@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-06-21T20:34:22+10:00</updated>
+  <updated>2013-07-03T10:31:21+10:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PDFs]]></title>
+    <link href="nickmiller.com.au/blog/2013/07/03/pdfs/"/>
+    <updated>2013-07-03T10:30:00+10:00</updated>
+    <id>nickmiller.com.au/blog/2013/07/03/pdfs</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to specify Windows credentials in odata client]]></title>
@@ -514,30 +523,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>DateTime.Now.ToString("dd-MM-yyyy_hh-mm-tt")</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to remap key in linux]]></title>
-    <link href="nickmiller.com.au/blog/2012/10/23/how-to-remap-key-in-linux/"/>
-    <updated>2012-10-23T01:56:52+11:00</updated>
-    <id>nickmiller.com.au/blog/2012/10/23/how-to-remap-key-in-linux</id>
-    <content type="html"><![CDATA[<p>Use ##xev## to find the keycode for any key.</p>
-
-<p>To remap the annoying backslash on a British Standard 4822 keyboard to left shift:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~
-</span><span class='line'>xmodmap -e <span class="s2">&quot;keycode 94 = Shift_L&quot;</span>
-</span><span class='line'>xmodmap -pke &gt; .Xmodmap
-</span><span class='line'><span class="nb">echo </span>xmodmap .Xmodmap &gt; .xinitrc
-</span><span class='line'>chmod u+x .xinitrc
-</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>

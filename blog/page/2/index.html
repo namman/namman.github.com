@@ -9,8 +9,8 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="When opening a new screen: Run. (It&#8217;s in Application namespace. Screen paramaters are arguments.)
-InitialiseDataWorkspace. Appears to happen &hellip;">
+  <meta name="description" content="1
+&lt;ElementYouWantToSetPropertyIn PropertyYouWantToSet={Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType= &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,45 @@ InitialiseDataWorkspace. Appears to happen &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/17/how-to-bind-to-a-property-on-an-ancestor-control-in-xaml-in-silverlight/">How to Bind to a Property on an Immediate Ancestor (Parent) Control in XAML in Silverlight?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-17T17:20:00+11:00" pubdate data-updated="true">Jan 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;ElementYouWantToSetPropertyIn</span> <span class="na">PropertyYouWantToSet=</span><span class="s">{Binding</span> <span class="na">RelativeSource=</span><span class="s">{RelativeSource</span> <span class="na">Mode=</span><span class="s">FindAncestor,</span> <span class="na">AncestorLevel=</span><span class="s">1,</span> <span class="na">AncestorType=</span><span class="s">namespaceOfType:AncestorTypeName}</span> <span class="na">Path=</span><span class="s">PropertyOnAncestor}&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -655,57 +694,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/23/how-to-remap-key-in-linux/">How to Remap Key in Linux</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-23T01:56:52+11:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Use ##xev## to find the keycode for any key.</p>
-
-<p>To remap the annoying backslash on a British Standard 4822 keyboard to left shift:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~
-</span><span class='line'>xmodmap -e <span class="s2">&quot;keycode 94 = Shift_L&quot;</span>
-</span><span class='line'>xmodmap -pke &gt; .Xmodmap
-</span><span class='line'><span class="nb">echo </span>xmodmap .Xmodmap &gt; .xinitrc
-</span><span class='line'>chmod u+x .xinitrc
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -721,6 +709,10 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/03/pdfs/">PDFs</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/05/18/windows-creditials/">How to specify Windows credentials in odata client</a>
@@ -796,10 +788,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
     
       <li class="post">
         <a href="/blog/2012/10/24/awesome-outline-of-date-format-strings-for-net/">Awesome outline of date format strings for .NET</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/23/how-to-remap-key-in-linux/">How to remap key in linux</a>
       </li>
     
   </ul>

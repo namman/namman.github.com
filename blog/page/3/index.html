@@ -9,12 +9,12 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="1
+  <meta name="description" content="Use ##xev## to find the keycode for any key. To remap the annoying backslash on a British Standard 4822 keyboard to left shift: 1
 2
 3
 4
 5
-6 int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 }; var numberGroups = from n in numbers group n by n % 5 into g select new { Remainder = g &hellip;">
+cd ~ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +67,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/23/how-to-remap-key-in-linux/">How to Remap Key in Linux</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-23T01:56:52+11:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Use ##xev## to find the keycode for any key.</p>
+
+<p>To remap the annoying backslash on a British Standard 4822 keyboard to left shift:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~
+</span><span class='line'>xmodmap -e <span class="s2">&quot;keycode 94 = Shift_L&quot;</span>
+</span><span class='line'>xmodmap -pke &gt; .Xmodmap
+</span><span class='line'><span class="nb">echo </span>xmodmap .Xmodmap &gt; .xinitrc
+</span><span class='line'>chmod u+x .xinitrc
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -542,55 +593,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/12/what-regexoptions-explicitcapture-does/">What RegexOptions.ExplicitCapture Does</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-12T20:40:23+10:00" pubdate data-updated="true">Sep 12<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>public static RegexOptions ExplicitCapture = RegexOptions.ExplicitCapture
-in enum RegexOptions</p>
-
-<p>Summary:
-Specifies that the only valid captures are explicitly named or numbered groups of the form (?…). This allows unnamed parentheses to act as noncapturing groups without the syntactic clumsiness of the expression (?:…).</p>
-
-<p>Eg, this only captures the first letter of a the string, and the period at the end:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'> <span class="kt">var</span> <span class="n">r</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Regex</span><span class="p">(</span><span class="s">@&quot;(^[a-z])|\.\s+(.)&quot;</span><span class="p">,</span> <span class="n">RegexOptions</span><span class="p">.</span><span class="n">ExplicitCapture</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -606,6 +608,10 @@ Specifies that the only valid captures are explicitly named or numbered groups o
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/03/pdfs/">PDFs</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/05/18/windows-creditials/">How to specify Windows credentials in odata client</a>
@@ -681,10 +687,6 @@ Specifies that the only valid captures are explicitly named or numbered groups o
     
       <li class="post">
         <a href="/blog/2012/10/24/awesome-outline-of-date-format-strings-for-net/">Awesome outline of date format strings for .NET</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/23/how-to-remap-key-in-linux/">How to remap key in linux</a>
       </li>
     
   </ul>
