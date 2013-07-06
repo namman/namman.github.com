@@ -207,55 +207,112 @@ Put it in your dog&#8217;s bed. In the morning, excavate from under &hellip;">
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
 </pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="na">[object number]</span> <span class="m">0</span> <span class="n">obj</span>
 </span><span class='line'><span class="p">&lt;&lt;</span>
 </span><span class='line'><span class="na">[metadata about object]</span>
 </span><span class='line'><span class="p">&gt;&gt;</span>
 </span><span class='line'><span class="na">[binary content in a stream]</span>
 </span><span class='line'><span class="n">end</span> <span class="n">obj</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">In</span> <span class="n">the</span> <span class="n">PDF</span> <span class="n">doc</span> <span class="n">itself</span><span class="p">,</span> <span class="n">the</span> <span class="n">main</span> <span class="n">parts</span> <span class="n">are</span><span class="p">:</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">*</span> <span class="n">header</span>
-</span><span class='line'><span class="p">*</span> <span class="n">body</span>
-</span><span class='line'><span class="p">*</span> <span class="n">cross</span> <span class="n">reference</span> <span class="n">table</span> <span class="p">(</span><span class="n">like</span> <span class="n">dictionary</span> <span class="k">for</span> <span class="n">objects</span> <span class="k">in</span> <span class="n">the</span> <span class="n">body</span><span class="p">)</span>
-</span><span class='line'><span class="p">*</span> <span class="n">trailer</span> <span class="p">(</span><span class="n">locates</span> <span class="n">cross</span> <span class="n">reference</span> <span class="n">table</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">Content</span> <span class="n">layers</span><span class="p">,</span> <span class="n">numbered</span> <span class="m">1</span> <span class="n">to</span> <span class="m">4</span><span class="p">:</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">*</span> <span class="m">1</span> <span class="n">and</span> <span class="m">4</span> <span class="n">are</span> <span class="k">for</span> <span class="n">direct</span> <span class="n">content</span>
-</span><span class='line'><span class="p">*</span> <span class="m">2</span> <span class="n">and</span> <span class="m">3</span> <span class="n">are</span> <span class="k">for</span> <span class="n">higher</span> <span class="n">level</span> <span class="n">objects</span><span class="p">,</span> <span class="n">like</span> <span class="n">chunks</span><span class="p">,</span> <span class="n">sections</span><span class="p">,</span> <span class="n">chapters</span> <span class="n">etc</span><span class="p">.</span>
-</span><span class='line'><span class="p">*</span> <span class="m">1</span> <span class="k">is</span> <span class="n">the</span> <span class="n">bottom</span> <span class="n">layer</span> <span class="p">-</span> <span class="n">under</span> <span class="n">text</span> <span class="n">and</span> <span class="n">graphhics</span>
-</span><span class='line'><span class="p">*</span> <span class="m">4</span> <span class="k">is</span> <span class="n">the</span> <span class="n">top</span> <span class="n">layer</span><span class="p">-</span> <span class="n">over</span> <span class="n">text</span> <span class="n">and</span> <span class="n">graphics</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="n">Get</span> <span class="n">writer</span> <span class="k">for</span> <span class="n">top</span> <span class="n">layer</span><span class="p">:</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>PdfWriter.getDirectContent()</p>
+<p>In the PDF doc itself, the main parts are:</p>
+
+<ul>
+<li>header</li>
+<li>body</li>
+<li>cross reference table (like dictionary for objects in the body)</li>
+<li>trailer (locates cross reference table)</li>
+</ul>
+
+
+<p>Content layers, numbered 1 to 4:</p>
+
+<ul>
+<li>1 and 4 are for direct content</li>
+<li>2 and 3 are for higher level objects, like chunks, sections, chapters etc.</li>
+<li>1 is the bottom layer - under text and graphhics</li>
+<li>4 is the top layer- over text and graphics</li>
+</ul>
+
+
+<h1>Get writer for top layer:</h1>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">Get</span> <span class="n">writer</span> <span class="k">for</span> <span class="n">bottom</span> <span class="n">layer</span><span class="p">:</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">PdfWriter</span><span class="p">.</span><span class="n">getDirectContent</span><span class="p">()</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>PdfWriter.getDirectContentUnder()</p>
+<p>Get writer for bottom layer:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">PdfWriter</span><span class="p">.</span><span class="n">getDirectContentUnder</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Main classes for manipulating Pdf:</h1>
+
+<ul>
+<li>PdfWriter</li>
+<li>PdfStamper</li>
+<li>PdfImportedPage</li>
+<li>PdfCopy</li>
+</ul>
+
+
+<h1>Reading docs</h1>
+
+<p>To read PDF doc, use PdfReader.  Can tell you high level things about the doc like:</p>
+
+<ul>
+<li>pages</li>
+<li>rotation of pages</li>
+<li>length</li>
+<li>whether encrypted</li>
+</ul>
+
+
+<p>Get content stream of the page - the raw stream of the page with underlying PDF syntax:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="kt">var</span> <span class="n">content</span> <span class="n">stream</span> <span class="p">=</span> <span class="n">PdfReader</span><span class="p">.</span><span class="n">GetContentStream</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>How to extract a page from PDF:</h1>
+
+<ul>
+<li>DON&#8217;T attempt to extract a page using the PdfReader.</li>
+<li>Pass the PdfReader to a PdfWriter and ask it to copy the page to another PDF.</li>
+<li>This will give you a PdfImportedPage object.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">Document</span> <span class="n">document</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Document</span><span class="p">();</span>
+</span><span class='line'><span class="n">PdfWriter</span> <span class="n">writer</span> <span class="p">=</span> <span class="n">PdfWriter</span><span class="p">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;extractPage.pdf&quot;</span><span class="p">));</span>
+</span><span class='line'><span class="n">document</span><span class="p">.</span><span class="n">open</span><span class="p">();</span>
+</span><span class='line'><span class="n">PdfReader</span> <span class="n">reader</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PdfReader</span><span class="p">(</span><span class="s">&quot;sourceDocument.pdf&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">PdfImportedPage</span> <span class="n">page</span> <span class="p">=</span> <span class="n">writer</span><span class="p">.</span><span class="n">getImportedPage</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="m">1</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// do something with it</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>To put a header and footer or stationary on a PDF:</h1>
+
+<ul>
+<li>create the stationary in one PDF</li>
+<li>import that page</li>
+<li>superimpose that page on the target PDF</li>
+</ul>
+
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -273,103 +330,29 @@ Put it in your dog&#8217;s bed. In the morning, excavate from under &hellip;">
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="err">#</span> <span class="n">Main</span> <span class="n">classes</span> <span class="k">for</span> <span class="n">manipulating</span> <span class="n">Pdf</span><span class="p">:</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">*</span> <span class="n">PdfWriter</span>
-</span><span class='line'><span class="p">*</span> <span class="n">PdfStamper</span>
-</span><span class='line'><span class="p">*</span> <span class="n">PdfImportedPage</span>
-</span><span class='line'><span class="p">*</span> <span class="n">PdfCopy</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="n">Reading</span> <span class="n">docs</span>
-</span><span class='line'><span class="n">To</span> <span class="n">read</span> <span class="n">PDF</span> <span class="n">doc</span><span class="p">,</span> <span class="n">use</span> <span class="n">PdfReader</span><span class="p">.</span>  <span class="n">Can</span> <span class="n">tell</span> <span class="n">you</span> <span class="n">high</span> <span class="n">level</span> <span class="n">things</span> <span class="n">about</span> <span class="n">the</span> <span class="n">doc</span> <span class="n">like</span><span class="p">:</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">*</span> <span class="n">pages</span>
-</span><span class='line'><span class="p">*</span> <span class="n">rotation</span> <span class="n">of</span> <span class="n">pages</span>
-</span><span class='line'><span class="p">*</span> <span class="n">length</span>
-</span><span class='line'><span class="p">*</span> <span class="n">whether</span> <span class="n">encrypted</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">Get</span> <span class="n">content</span> <span class="n">stream</span> <span class="n">of</span> <span class="n">the</span> <span class="n">page</span> <span class="p">-</span> <span class="n">the</span> <span class="n">raw</span> <span class="n">stream</span> <span class="n">of</span> <span class="n">the</span> <span class="n">page</span> <span class="n">with</span> <span class="n">underlying</span> <span class="n">PDF</span> <span class="n">syntax</span><span class="p">:</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// open reader with source doc</span>
+</span><span class='line'><span class="c1">// open target doc in writer</span>
+</span><span class='line'><span class="c1">// create pdfContentByte by calling getDirectContent on the writer</span>
+</span><span class='line'><span class="c1">// call addTemplate on the contentByte and feed it the imported page</span>
+</span><span class='line'><span class="n">PdfReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PdfReader</span><span class="o">(</span><span class="s">&quot;stationary.pdf&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">Document</span> <span class="n">document</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Document</span><span class="o">();</span>
+</span><span class='line'><span class="n">PdfWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">PdfWriter</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">document</span><span class="o">,</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">&quot;result.pdf&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">document</span><span class="o">.</span><span class="na">open</span><span class="o">();</span>
+</span><span class='line'><span class="n">PdfContentByte</span> <span class="n">canvas</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">getDirectContent</span><span class="o">();</span>
+</span><span class='line'><span class="n">PdfImportedPage</span> <span class="n">page</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">reader</span><span class="o">.</span><span class="na">getNumberOfPages</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">page</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">getImportedPage</span><span class="o">(</span><span class="n">reader</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">canvas</span><span class="o">.</span><span class="na">addTemplate</span><span class="o">(</span><span class="n">page</span><span class="o">,</span> <span class="mi">1</span><span class="n">f</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'><span class="n">document</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class='line'><span class="n">reader</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>var content stream = PdfReader.GetContentStream();</p>
+<p>Problem with this: annotations are not part of the content stream, they are part of the annotations dictionary.
+They are not copied when using PdfImportedPage.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="err">#</span> <span class="n">How</span> <span class="n">to</span> <span class="n">extract</span> <span class="n">a</span> <span class="n">page</span> <span class="k">from</span> <span class="n">PDF</span><span class="p">:</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">*</span> <span class="n">DON</span><span class="err">&#39;</span><span class="n">T</span> <span class="n">attempt</span> <span class="n">to</span> <span class="n">extract</span> <span class="n">a</span> <span class="n">page</span> <span class="k">using</span> <span class="nn">the</span> <span class="n">PdfReader</span><span class="p">.</span>
-</span><span class='line'><span class="p">*</span> <span class="n">Pass</span> <span class="n">the</span> <span class="n">PdfReader</span> <span class="n">to</span> <span class="n">a</span> <span class="n">PdfWriter</span> <span class="n">and</span> <span class="n">ask</span> <span class="n">it</span> <span class="n">to</span> <span class="n">copy</span> <span class="n">the</span> <span class="n">page</span> <span class="n">to</span> <span class="n">another</span> <span class="n">PDF</span><span class="p">.</span>
-</span><span class='line'><span class="p">*</span> <span class="n">This</span> <span class="n">will</span> <span class="n">give</span> <span class="n">you</span> <span class="n">a</span> <span class="n">PdfImportedPage</span> <span class="kt">object</span><span class="p">.</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Document document = new Document();
-PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(&#8220;extractPage.pdf&#8221;));
-document.open();
-PdfReader reader = new PdfReader(&#8220;sourceDocument.pdf&#8221;);
-PdfImportedPage page = writer.getImportedPage(reader, 1);
-// do something with it</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="err">#</span> <span class="n">To</span> <span class="n">put</span> <span class="n">a</span> <span class="n">header</span> <span class="n">and</span> <span class="n">footer</span> <span class="n">or</span> <span class="n">stationary</span> <span class="n">on</span> <span class="n">a</span> <span class="n">PDF</span><span class="p">:</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">*</span> <span class="n">create</span> <span class="n">the</span> <span class="n">stationary</span> <span class="k">in</span> <span class="n">one</span> <span class="n">PDF</span>
-</span><span class='line'><span class="p">*</span> <span class="n">import</span> <span class="n">that</span> <span class="n">page</span>
-</span><span class='line'><span class="p">*</span> <span class="n">superimpose</span> <span class="n">that</span> <span class="n">page</span> <span class="n">on</span> <span class="n">the</span> <span class="n">target</span> <span class="n">PDF</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>java
-// open reader with source doc
-// open target doc in writer
-// create pdfContentByte by calling getDirectContent on the writer
-// call addTemplate on the contentByte and feed it the imported page
-PdfReader reader = new PdfReader(&#8220;stationary.pdf&#8221;);
-Document document = new Document();
-PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(&#8220;result.pdf&#8221;));
-document.open();
-PdfContentByte canvas = writer.getDirectContent();
-PdfImportedPage page;</p>
-
-<pre><code>    for (int i = 1; i &lt;= reader.getNumberOfPages(); i++) {
-        page = writer.getImportedPage(reader, i);
-        canvas.addTemplate(page, 1f, 0, 0, 1, 0, 0);
-    }
-</code></pre>
-
-<p>document.close();
-reader.close();</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">Problem</span> <span class="n">with</span> <span class="k">this</span><span class="p">:</span> <span class="n">annotations</span> <span class="n">are</span> <span class="n">not</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="n">content</span> <span class="n">stream</span><span class="p">,</span> <span class="n">they</span> <span class="n">are</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="n">annotations</span> <span class="n">dictionary</span><span class="p">.</span>
-</span><span class='line'><span class="n">They</span> <span class="n">are</span> <span class="n">not</span> <span class="n">copied</span> <span class="n">when</span> <span class="k">using</span> <span class="nn">PdfImportedPage.</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="n">To</span> <span class="n">stamp</span> <span class="n">a</span> <span class="n">page</span> <span class="k">using</span> <span class="nn">PdfStamper</span><span class="p">:</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>java
-PdfReader reader = new PdfReader(src);
-PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-PdfContentByte canvas = stamper.getOverContent(1); // note: compare to &#8216;getDirectContent()&#8217; method on PdfWriter
-ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(&#8220;Hello people!&#8221;), 36, 540, 0);
-stamper.close();
-reader.close();</p>
+<h1>To stamp a page using PdfStamper:</h1>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -377,38 +360,26 @@ reader.close();</p>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">Generally</span><span class="p">,</span> <span class="n">use</span> <span class="n">PdfStamper</span> <span class="k">for</span> <span class="n">adding</span> <span class="n">to</span> <span class="n">existing</span> <span class="n">files</span> <span class="n">and</span> <span class="n">PdfWriter</span> <span class="k">for</span> <span class="n">building</span> <span class="n">up</span> <span class="n">files</span> <span class="k">from</span> <span class="n">scratch</span><span class="p">.</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="n">To</span> <span class="n">concatenate</span> <span class="n">files</span><span class="p">:</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">*</span> <span class="k">new</span> <span class="n">Document</span>
-</span><span class='line'><span class="p">*</span> <span class="k">new</span> <span class="n">PdfCopy</span> <span class="n">with</span> <span class="n">target</span> <span class="n">stream</span>
-</span><span class='line'><span class="p">*</span> <span class="n">make</span> <span class="k">new</span> <span class="n">PdfReader</span> <span class="k">for</span> <span class="n">each</span> <span class="n">source</span> <span class="n">doc</span><span class="p">,</span> <span class="n">iterating</span> <span class="n">through</span> <span class="n">the</span> <span class="n">pages</span><span class="p">.</span>
-</span><span class='line'><span class="p">*</span> <span class="n">call</span> <span class="n">GetImportedPage</span> <span class="n">on</span> <span class="n">the</span> <span class="n">PdfCopy</span><span class="p">,</span> <span class="n">passing</span> <span class="n">it</span> <span class="n">the</span> <span class="n">reader</span> <span class="k">for</span> <span class="n">each</span> <span class="n">source</span> <span class="n">document</span><span class="p">.</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">PdfReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PdfReader</span><span class="o">(</span><span class="n">src</span><span class="o">);</span>
+</span><span class='line'><span class="n">PdfStamper</span> <span class="n">stamper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PdfStamper</span><span class="o">(</span><span class="n">reader</span><span class="o">,</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">dest</span><span class="o">));</span>
+</span><span class='line'><span class="n">PdfContentByte</span> <span class="n">canvas</span> <span class="o">=</span> <span class="n">stamper</span><span class="o">.</span><span class="na">getOverContent</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span> <span class="c1">// note: compare to &#39;getDirectContent()&#39; method on PdfWriter</span>
+</span><span class='line'><span class="n">ColumnText</span><span class="o">.</span><span class="na">showTextAligned</span><span class="o">(</span><span class="n">canvas</span><span class="o">,</span> <span class="n">Element</span><span class="o">.</span><span class="na">ALIGN_LEFT</span><span class="o">,</span> <span class="k">new</span> <span class="n">Phrase</span><span class="o">(</span><span class="s">&quot;Hello people!&quot;</span><span class="o">),</span> <span class="mi">36</span><span class="o">,</span> <span class="mi">540</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'><span class="n">stamper</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class='line'><span class="n">reader</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>java
-Document document = new Document();
-PdfCopy copy = new PdfCopy(document, new FileOutputStream(&#8220;targetFile.pdf&#8221;));
-document.open();
-PdfReader reader;
-int n;
-for (int i = 0; i &lt; files.length; i++) {</p>
+<p>Generally, use PdfStamper for adding to existing files and PdfWriter for building up files from scratch.</p>
 
-<pre><code>reader = new PdfReader(files[i]);
-n = reader.getNumberOfPages();
-for (int page = 0; page &lt; n; ) {
-    copy.addPage(copy.getImportedPage(reader, ++page));
-}
-copy.freeReader(reader);
-reader.close();
-</code></pre>
+<h1>To concatenate files:</h1>
 
-<p>}
-document.close();</p>
+<ul>
+<li>new Document</li>
+<li>new PdfCopy with target stream</li>
+<li>make new PdfReader for each source doc, iterating through the pages.</li>
+<li>call GetImportedPage on the PdfCopy, passing it the reader for each source document.</li>
+</ul>
+
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -419,20 +390,48 @@ document.close();</p>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">PdfCopy</span> <span class="n">does</span> <span class="n">not</span> <span class="n">copy</span> <span class="n">forms</span> <span class="n">and</span> <span class="n">some</span> <span class="n">other</span> <span class="n">stuff</span><span class="p">.</span>  <span class="n">See</span> <span class="n">PdfSmartCopy</span><span class="p">.</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="n">To</span> <span class="n">draw</span> <span class="n">something</span> <span class="n">onto</span> <span class="n">the</span> <span class="n">doc</span> <span class="n">at</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">position</span><span class="p">:</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">*</span> <span class="n">subclass</span> <span class="n">VerticalPositionMark</span><span class="p">.</span>  <span class="n">It</span> <span class="n">has</span> <span class="n">a</span> <span class="n">draw</span><span class="p">()</span> <span class="n">method</span> <span class="n">so</span> <span class="n">you</span> <span class="n">can</span> <span class="k">add</span> <span class="n">it</span> <span class="n">to</span> <span class="n">a</span> <span class="n">Document</span> <span class="kt">object</span><span class="p">.</span>
-</span><span class='line'><span class="p">*</span> <span class="n">Imprement</span> <span class="n">Draw</span> <span class="k">interface</span><span class="p">,</span> <span class="n">then</span> <span class="n">wrap</span> <span class="k">class</span> <span class="nc">in</span> <span class="n">a</span> <span class="n">chunk</span> <span class="n">so</span> <span class="n">you</span> <span class="n">can</span> <span class="k">add</span> <span class="n">it</span> <span class="n">to</span> <span class="n">Document</span> <span class="kt">object</span><span class="p">.</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">How</span> <span class="n">to</span> <span class="k">get</span> <span class="n">the</span> <span class="n">raw</span> <span class="n">underlying</span> <span class="n">pdf</span> <span class="n">syntax</span><span class="p">:</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Document</span> <span class="n">document</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Document</span><span class="o">();</span>
+</span><span class='line'><span class="n">PdfCopy</span> <span class="n">copy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PdfCopy</span><span class="o">(</span><span class="n">document</span><span class="o">,</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">&quot;targetFile.pdf&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">document</span><span class="o">.</span><span class="na">open</span><span class="o">();</span>
+</span><span class='line'><span class="n">PdfReader</span> <span class="n">reader</span><span class="o">;</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="o">;</span>
+</span><span class='line'><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">files</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PdfReader</span><span class="o">(</span><span class="n">files</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+</span><span class='line'>  <span class="n">n</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">getNumberOfPages</span><span class="o">();</span>
+</span><span class='line'>  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">page</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">page</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">copy</span><span class="o">.</span><span class="na">addPage</span><span class="o">(</span><span class="n">copy</span><span class="o">.</span><span class="na">getImportedPage</span><span class="o">(</span><span class="n">reader</span><span class="o">,</span> <span class="o">++</span><span class="n">page</span><span class="o">));</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="n">copy</span><span class="o">.</span><span class="na">freeReader</span><span class="o">(</span><span class="n">reader</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">reader</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="n">document</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>byte[] pdfStreamAsText = yourPdfReader.GetPageContent(1);
-&#8220;`</p>
+<p>PdfCopy does not copy forms and some other stuff.  See PdfSmartCopy.</p>
+
+<h1>To draw something onto the doc at a particular position:</h1>
+
+<ul>
+<li>subclass VerticalPositionMark.  It has a draw() method so you can add it to a Document object.</li>
+<li>Imprement Draw interface, then wrap class in a chunk so you can add it to Document object.</li>
+</ul>
+
+
+<p>How to get the raw underlying pdf syntax:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kt">byte</span><span class="o">[]</span> <span class="n">pdfStreamAsText</span> <span class="o">=</span> <span class="n">yourPdfReader</span><span class="o">.</span><span class="na">GetPageContent</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
   
   
