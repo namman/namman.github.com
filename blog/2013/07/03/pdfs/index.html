@@ -200,7 +200,7 @@
 </span><span class='line'><span class="p">*</span> <span class="m">1</span> <span class="k">is</span> <span class="n">the</span> <span class="n">bottom</span> <span class="n">layer</span> <span class="p">-</span> <span class="n">under</span> <span class="n">text</span> <span class="n">and</span> <span class="n">graphhics</span>
 </span><span class='line'><span class="p">*</span> <span class="m">4</span> <span class="k">is</span> <span class="n">the</span> <span class="n">top</span> <span class="n">layer</span><span class="p">-</span> <span class="n">over</span> <span class="n">text</span> <span class="n">and</span> <span class="n">graphics</span>
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span><span class="n">Get</span> <span class="n">writer</span> <span class="k">for</span> <span class="n">top</span> <span class="n">layer</span><span class="p">:</span>
+</span><span class='line'><span class="err">#</span> <span class="n">Get</span> <span class="n">writer</span> <span class="k">for</span> <span class="n">top</span> <span class="n">layer</span><span class="p">:</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -230,7 +230,7 @@
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="err">#</span><span class="n">Main</span> <span class="n">classes</span> <span class="k">for</span> <span class="n">manipulating</span> <span class="n">Pdf</span><span class="p">:</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="err">#</span> <span class="n">Main</span> <span class="n">classes</span> <span class="k">for</span> <span class="n">manipulating</span> <span class="n">Pdf</span><span class="p">:</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">*</span> <span class="n">PdfWriter</span>
 </span><span class='line'><span class="p">*</span> <span class="n">PdfStamper</span>
@@ -238,7 +238,7 @@
 </span><span class='line'><span class="p">*</span> <span class="n">PdfCopy</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span><span class="n">Reading</span> <span class="n">docs</span>
+</span><span class='line'><span class="err">#</span> <span class="n">Reading</span> <span class="n">docs</span>
 </span><span class='line'><span class="n">To</span> <span class="n">read</span> <span class="n">PDF</span> <span class="n">doc</span><span class="p">,</span> <span class="n">use</span> <span class="n">PdfReader</span><span class="p">.</span>  <span class="n">Can</span> <span class="n">tell</span> <span class="n">you</span> <span class="n">high</span> <span class="n">level</span> <span class="n">things</span> <span class="n">about</span> <span class="n">the</span> <span class="n">doc</span> <span class="n">like</span><span class="p">:</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">*</span> <span class="n">pages</span>
@@ -257,7 +257,7 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="err">#</span><span class="n">How</span> <span class="n">to</span> <span class="n">extract</span> <span class="n">a</span> <span class="n">page</span> <span class="k">from</span> <span class="n">PDF</span><span class="p">:</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="err">#</span> <span class="n">How</span> <span class="n">to</span> <span class="n">extract</span> <span class="n">a</span> <span class="n">page</span> <span class="k">from</span> <span class="n">PDF</span><span class="p">:</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">*</span> <span class="n">DON</span><span class="err">&#39;</span><span class="n">T</span> <span class="n">attempt</span> <span class="n">to</span> <span class="n">extract</span> <span class="n">a</span> <span class="n">page</span> <span class="k">using</span> <span class="nn">the</span> <span class="n">PdfReader</span><span class="p">.</span>
 </span><span class='line'><span class="p">*</span> <span class="n">Pass</span> <span class="n">the</span> <span class="n">PdfReader</span> <span class="n">to</span> <span class="n">a</span> <span class="n">PdfWriter</span> <span class="n">and</span> <span class="n">ask</span> <span class="n">it</span> <span class="n">to</span> <span class="n">copy</span> <span class="n">the</span> <span class="n">page</span> <span class="n">to</span> <span class="n">another</span> <span class="n">PDF</span><span class="p">.</span>
@@ -277,7 +277,7 @@ PdfImportedPage page = writer.getImportedPage(reader, 1);
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="err">#</span><span class="n">To</span> <span class="n">put</span> <span class="n">a</span> <span class="n">header</span> <span class="n">and</span> <span class="n">footer</span> <span class="n">or</span> <span class="n">stationary</span> <span class="n">on</span> <span class="n">a</span> <span class="n">PDF</span><span class="p">:</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="err">#</span> <span class="n">To</span> <span class="n">put</span> <span class="n">a</span> <span class="n">header</span> <span class="n">and</span> <span class="n">footer</span> <span class="n">or</span> <span class="n">stationary</span> <span class="n">on</span> <span class="n">a</span> <span class="n">PDF</span><span class="p">:</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">*</span> <span class="n">create</span> <span class="n">the</span> <span class="n">stationary</span> <span class="k">in</span> <span class="n">one</span> <span class="n">PDF</span>
 </span><span class='line'><span class="p">*</span> <span class="n">import</span> <span class="n">that</span> <span class="n">page</span>
@@ -315,7 +315,7 @@ reader.close();</p>
 </span><span class='line'><span class="n">They</span> <span class="n">are</span> <span class="n">not</span> <span class="n">copied</span> <span class="n">when</span> <span class="k">using</span> <span class="nn">PdfImportedPage.</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span><span class="n">To</span> <span class="n">stamp</span> <span class="n">a</span> <span class="n">page</span> <span class="k">using</span> <span class="nn">PdfStamper</span><span class="p">:</span>
+</span><span class='line'><span class="err">#</span> <span class="n">To</span> <span class="n">stamp</span> <span class="n">a</span> <span class="n">page</span> <span class="k">using</span> <span class="nn">PdfStamper</span><span class="p">:</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -337,7 +337,7 @@ reader.close();</p>
 <span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">Generally</span><span class="p">,</span> <span class="n">use</span> <span class="n">PdfStamper</span> <span class="k">for</span> <span class="n">adding</span> <span class="n">to</span> <span class="n">existing</span> <span class="n">files</span> <span class="n">and</span> <span class="n">PdfWriter</span> <span class="k">for</span> <span class="n">building</span> <span class="n">up</span> <span class="n">files</span> <span class="k">from</span> <span class="n">scratch</span><span class="p">.</span>
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span><span class="n">To</span> <span class="n">concatenate</span> <span class="n">files</span><span class="p">:</span>
+</span><span class='line'><span class="err">#</span> <span class="n">To</span> <span class="n">concatenate</span> <span class="n">files</span><span class="p">:</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">*</span> <span class="k">new</span> <span class="n">Document</span>
 </span><span class='line'><span class="p">*</span> <span class="k">new</span> <span class="n">PdfCopy</span> <span class="n">with</span> <span class="n">target</span> <span class="n">stream</span>
@@ -378,7 +378,7 @@ document.close();</p>
 </pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">PdfCopy</span> <span class="n">does</span> <span class="n">not</span> <span class="n">copy</span> <span class="n">forms</span> <span class="n">and</span> <span class="n">some</span> <span class="n">other</span> <span class="n">stuff</span><span class="p">.</span>  <span class="n">See</span> <span class="n">PdfSmartCopy</span><span class="p">.</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span><span class="n">To</span> <span class="n">draw</span> <span class="n">something</span> <span class="n">onto</span> <span class="n">the</span> <span class="n">doc</span> <span class="n">at</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">position</span><span class="p">:</span>
+</span><span class='line'><span class="err">#</span> <span class="n">To</span> <span class="n">draw</span> <span class="n">something</span> <span class="n">onto</span> <span class="n">the</span> <span class="n">doc</span> <span class="n">at</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">position</span><span class="p">:</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">*</span> <span class="n">subclass</span> <span class="n">VerticalPositionMark</span><span class="p">.</span>  <span class="n">It</span> <span class="n">has</span> <span class="n">a</span> <span class="n">draw</span><span class="p">()</span> <span class="n">method</span> <span class="n">so</span> <span class="n">you</span> <span class="n">can</span> <span class="k">add</span> <span class="n">it</span> <span class="n">to</span> <span class="n">a</span> <span class="n">Document</span> <span class="kt">object</span><span class="p">.</span>
 </span><span class='line'><span class="p">*</span> <span class="n">Imprement</span> <span class="n">Draw</span> <span class="k">interface</span><span class="p">,</span> <span class="n">then</span> <span class="n">wrap</span> <span class="k">class</span> <span class="nc">in</span> <span class="n">a</span> <span class="n">chunk</span> <span class="n">so</span> <span class="n">you</span> <span class="n">can</span> <span class="k">add</span> <span class="n">it</span> <span class="n">to</span> <span class="n">Document</span> <span class="kt">object</span><span class="p">.</span>
