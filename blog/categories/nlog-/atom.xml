@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: nlog, | Junk I Would Otherwise Forget]]></title>
+  <link href="nickmiller.com.au/blog/categories/nlog-/atom.xml" rel="self"/>
+  <link href="nickmiller.com.au/"/>
+  <updated>2013-07-11T11:52:54+10:00</updated>
+  <id>nickmiller.com.au/</id>
+  <author>
+    <name><![CDATA[Nick Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Basics of NLog]]></title>
+    <link href="nickmiller.com.au/blog/2013/07/11/nlog/"/>
+    <updated>2013-07-11T11:27:00+10:00</updated>
+    <id>nickmiller.com.au/blog/2013/07/11/nlog</id>
+    <content type="html"><![CDATA[<ul>
+<li>You have a separete logger for each class.</li>
+<li>You instantiate it using LogManager factory and assign it to a private member field.</li>
+</ul>
+
+
+<p>```
+using NLog;</p>
+
+<p>Logger logger = LogManager.GetLogger("MyClassName");
+```</p>
+
+<p>To log things other than exceptions:</p>
+
+<p>```csharp
+using NLog;</p>
+
+<p>public class MyClass
+{
+  private static Logger logger = LogManager.GetCurrentClassLogger();</p>
+
+<p>  public void MyMethod1()
+  {</p>
+
+<pre><code>logger.Trace("Sample trace message");
+logger.Debug("Sample debug message");
+logger.Info("Sample informational message");
+logger.Warn("Sample warning message");
+logger.Error("Sample error message");
+logger.Fatal("Sample fatal error message");
+
+// alternatively you can call the Log() method 
+// and pass log level as the parameter.
+logger.Log(LogLevel.Info, "Sample fatal error message");
+</code></pre>
+
+<p>  }
+}
+```</p>
+
+<p>In NLog.config:</p>
+
+<p>```XML
+&lt;?xml version="1.0" encoding="utf-8" ?>
+&lt;nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"</p>
+
+<pre><code>  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+
+&lt;targets&gt;
+    &lt;target name="logfile" xsi:type="File" fileName="file.txt" /&gt;
+&lt;/targets&gt;
+
+&lt;rules&gt;
+    &lt;logger name="*" minlevel="Info" writeTo="logfile" /&gt;
+&lt;/rules&gt;
+</code></pre>
+
+<p></nlog>
+```</p>
+
+<p>For exceptions:</p>
+
+<p>```csharp
+try
+{</p>
+
+<pre><code>// some code which may throw 
+</code></pre>
+
+<p>}
+catch (MyException ex)
+{</p>
+
+<pre><code>logger.ErrorException("Got exception.", ex); 
+</code></pre>
+
+<p>}
+```</p>
+
+<p>```xml
+<nlog>
+  <targets></p>
+
+<pre><code>&lt;target name="f" type="File" 
+        layout="${longdate} ${message} ${exception:format=tostring}"/&gt; 
+</code></pre>
+
+<p>  </targets>
+  <rules></p>
+
+<pre><code>&lt;logger name="*" writeTo="f"/&gt; 
+</code></pre>
+
+<p>  </rules>
+</nlog>
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
