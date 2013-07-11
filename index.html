@@ -9,8 +9,11 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="Two ways: Get your spouse to microwave it. Careful about burning if synthetic.
-Put it in your dog&#8217;s bed. In the morning, excavate from under &hellip;">
+  <meta name="description" content="You have a separete logger for each class.
+You instantiate it using LogManager factory and assign it to a private member field. 1
+2
+3
+using NLog; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +66,172 @@ Put it in your dog&#8217;s bed. In the morning, excavate from under &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/11/nlog/">Basics of NLog</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-11T11:27:00+10:00" pubdate data-updated="true">Jul 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li>You have a separete logger for each class.</li>
+<li>You instantiate it using LogManager factory and assign it to a private member field.</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>using NLog;
+</span><span class='line'> 
+</span><span class='line'>Logger logger = LogManager.GetLogger("MyClassName");</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To log things other than exceptions:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">using</span> <span class="nn">NLog</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">MyClass</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">private</span> <span class="k">static</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="p">=</span> <span class="n">LogManager</span><span class="p">.</span><span class="n">GetCurrentClassLogger</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">public</span> <span class="k">void</span> <span class="nf">MyMethod1</span><span class="p">()</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Trace</span><span class="p">(</span><span class="s">&quot;Sample trace message&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Debug</span><span class="p">(</span><span class="s">&quot;Sample debug message&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Info</span><span class="p">(</span><span class="s">&quot;Sample informational message&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Sample warning message&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&quot;Sample error message&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Fatal</span><span class="p">(</span><span class="s">&quot;Sample fatal error message&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// alternatively you can call the Log() method </span>
+</span><span class='line'>    <span class="c1">// and pass log level as the parameter.</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">LogLevel</span><span class="p">.</span><span class="n">Info</span><span class="p">,</span> <span class="s">&quot;Sample fatal error message&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In NLog.config:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
+</span><span class='line'><span class="nt">&lt;nlog</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot;</span>
+</span><span class='line'>      <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;targets&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;logfile&quot;</span> <span class="na">xsi:type=</span><span class="s">&quot;File&quot;</span> <span class="na">fileName=</span><span class="s">&quot;file.txt&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/targets&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;rules&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;logger</span> <span class="na">name=</span><span class="s">&quot;*&quot;</span> <span class="na">minlevel=</span><span class="s">&quot;Info&quot;</span> <span class="na">writeTo=</span><span class="s">&quot;logfile&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/rules&gt;</span>
+</span><span class='line'><span class="nt">&lt;/nlog&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For exceptions:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">try</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="c1">// some code which may throw </span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">catch</span> <span class="p">(</span><span class="n">MyException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">ErrorException</span><span class="p">(</span><span class="s">&quot;Got exception.&quot;</span><span class="p">,</span> <span class="n">ex</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;nlog&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;targets&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;f&quot;</span> <span class="na">type=</span><span class="s">&quot;File&quot;</span>
+</span><span class='line'>            <span class="na">layout=</span><span class="s">&quot;${longdate} ${message} ${exception:format=tostring}&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/targets&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;rules&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;logger</span> <span class="na">name=</span><span class="s">&quot;*&quot;</span> <span class="na">writeTo=</span><span class="s">&quot;f&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/rules&gt;</span>
+</span><span class='line'><span class="nt">&lt;/nlog&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -728,50 +897,6 @@ They are not copied when using PdfImportedPage.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/14/xaml-name-attributes/">How Does x:Name Attribute Magically Pop Up in the Code Behind?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-14T11:15:00+11:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>&#8220;The specified x:Name becomes the name of a field that is created in the underlying code when XAML is processed, and that field holds a reference to the object. In Silverlight, using the managed API, the process of creating this field is performed by the MSBuild target steps, which also are responsible for joining the partial classes for a XAML file and its code-behind. &#8221;</p>
-
-<p>The name applies for a XAML namescope.</p>
-
-<p>All the XAML in a single XAML file can be in one namescope.  So the name applies for all the elements in that XAML file.</p>
-
-<p>So that&#8217;s why you can access it anywhere in the code behind for that XAML file.</p>
-
-<p>http://msdn.microsoft.com/en-us/library/cc189028(v=vs.95).aspx</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -785,6 +910,10 @@ They are not copied when using PdfImportedPage.</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/11/nlog/">Basics of NLog</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/03/warm-underware/">How to ensure your underware is warm and toasty and ready for you in the morning</a>
@@ -860,10 +989,6 @@ They are not copied when using PdfImportedPage.</p>
     
       <li class="post">
         <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/09/validate-xml-file-against-schema/">Validate XML file against schema</a>
       </li>
     
   </ul>

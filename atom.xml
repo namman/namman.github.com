@@ -4,7 +4,7 @@
   <title><![CDATA[Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-07-06T15:27:03+10:00</updated>
+  <updated>2013-07-11T11:56:02+10:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -12,6 +12,145 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Basics of NLog]]></title>
+    <link href="nickmiller.com.au/blog/2013/07/11/nlog/"/>
+    <updated>2013-07-11T11:27:00+10:00</updated>
+    <id>nickmiller.com.au/blog/2013/07/11/nlog</id>
+    <content type="html"><![CDATA[<ul>
+<li>You have a separete logger for each class.</li>
+<li>You instantiate it using LogManager factory and assign it to a private member field.</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>using NLog;
+</span><span class='line'> 
+</span><span class='line'>Logger logger = LogManager.GetLogger("MyClassName");</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To log things other than exceptions:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">using</span> <span class="nn">NLog</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">MyClass</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">private</span> <span class="k">static</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="p">=</span> <span class="n">LogManager</span><span class="p">.</span><span class="n">GetCurrentClassLogger</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">public</span> <span class="k">void</span> <span class="nf">MyMethod1</span><span class="p">()</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Trace</span><span class="p">(</span><span class="s">&quot;Sample trace message&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Debug</span><span class="p">(</span><span class="s">&quot;Sample debug message&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Info</span><span class="p">(</span><span class="s">&quot;Sample informational message&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Sample warning message&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&quot;Sample error message&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Fatal</span><span class="p">(</span><span class="s">&quot;Sample fatal error message&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// alternatively you can call the Log() method </span>
+</span><span class='line'>    <span class="c1">// and pass log level as the parameter.</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">LogLevel</span><span class="p">.</span><span class="n">Info</span><span class="p">,</span> <span class="s">&quot;Sample fatal error message&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In NLog.config:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
+</span><span class='line'><span class="nt">&lt;nlog</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot;</span>
+</span><span class='line'>      <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;targets&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;logfile&quot;</span> <span class="na">xsi:type=</span><span class="s">&quot;File&quot;</span> <span class="na">fileName=</span><span class="s">&quot;file.txt&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/targets&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;rules&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;logger</span> <span class="na">name=</span><span class="s">&quot;*&quot;</span> <span class="na">minlevel=</span><span class="s">&quot;Info&quot;</span> <span class="na">writeTo=</span><span class="s">&quot;logfile&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/rules&gt;</span>
+</span><span class='line'><span class="nt">&lt;/nlog&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For exceptions:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">try</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="c1">// some code which may throw </span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">catch</span> <span class="p">(</span><span class="n">MyException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">ErrorException</span><span class="p">(</span><span class="s">&quot;Got exception.&quot;</span><span class="p">,</span> <span class="n">ex</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;nlog&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;targets&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;f&quot;</span> <span class="na">type=</span><span class="s">&quot;File&quot;</span>
+</span><span class='line'>            <span class="na">layout=</span><span class="s">&quot;${longdate} ${message} ${exception:format=tostring}&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/targets&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;rules&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;logger</span> <span class="na">name=</span><span class="s">&quot;*&quot;</span> <span class="na">writeTo=</span><span class="s">&quot;f&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/rules&gt;</span>
+</span><span class='line'><span class="nt">&lt;/nlog&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to ensure your underware is warm and toasty and ready for you in the morning]]></title>
@@ -675,152 +814,6 @@ $windows.~bt\Sources\Rollback: Log location when Setup rolls back in the event o
     <updated>2012-11-09T23:42:08+11:00</updated>
     <id>nickmiller.com.au/blog/2012/11/09/path-to-localdb-instances</id>
     <content type="html"><![CDATA[<h2>C:\Users{user name}\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances></h2>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Validate XML file against schema]]></title>
-    <link href="nickmiller.com.au/blog/2012/11/09/validate-xml-file-against-schema/"/>
-    <updated>2012-11-09T22:39:53+11:00</updated>
-    <id>nickmiller.com.au/blog/2012/11/09/validate-xml-file-against-schema</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-</pre></td><td class='code'><pre><code class='csharp'><span class='line'>    <span class="c1">/// </span>
-</span><span class='line'>    <span class="c1">/// Validates XML file against schema.</span>
-</span><span class='line'>    <span class="c1">/// </span>
-</span><span class='line'>    <span class="k">internal</span> <span class="k">class</span> <span class="nc">Validator</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">private</span> <span class="k">readonly</span> <span class="n">IEnumerable</span> <span class="n">_filesToValidate</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">private</span> <span class="k">readonly</span> <span class="n">XmlSchemaSet</span> <span class="n">_xmlSchemaSet</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">private</span> <span class="kt">int</span> <span class="n">_errorCount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">// no namespaces in schema or target</span>
-</span><span class='line'>        <span class="k">public</span> <span class="nf">Validator</span><span class="p">(</span><span class="n">IEnumerable</span> <span class="n">filesToValidate</span><span class="p">,</span> <span class="kt">string</span> <span class="n">pathToSchema</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">_filesToValidate</span> <span class="p">=</span> <span class="n">filesToValidate</span><span class="p">;</span>
-</span><span class='line'>            <span class="kt">var</span> <span class="n">schemaSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">XmlSchemaSet</span><span class="p">();</span>
-</span><span class='line'>            <span class="n">schemaSet</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="n">pathToSchema</span><span class="p">);</span>
-</span><span class='line'>            <span class="n">_xmlSchemaSet</span> <span class="p">=</span> <span class="n">schemaSet</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">public</span> <span class="nf">Validator</span><span class="p">(</span><span class="n">IEnumerable</span> <span class="n">filesToValidate</span><span class="p">,</span> <span class="n">XmlSchemaSet</span> <span class="n">xmlSchemaSet</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">_filesToValidate</span> <span class="p">=</span> <span class="n">filesToValidate</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">_xmlSchemaSet</span> <span class="p">=</span> <span class="n">xmlSchemaSet</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">AllValid</span><span class="p">()</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">_errorCount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">file</span> <span class="k">in</span> <span class="n">_filesToValidate</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">ValidateFile</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;\nTotal error count: {0}&quot;</span><span class="p">,</span><span class="n">_errorCount</span><span class="p">));</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">_errorCount</span> <span class="p">==</span> <span class="m">0</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">void</span> <span class="nf">ValidateFile</span><span class="p">(</span><span class="kt">string</span> <span class="n">file</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="kt">var</span> <span class="n">settings</span> <span class="p">=</span> <span class="k">new</span> <span class="n">XmlReaderSettings</span><span class="p">();</span>
-</span><span class='line'>            <span class="n">settings</span><span class="p">.</span><span class="n">Schemas</span> <span class="p">=</span> <span class="n">_xmlSchemaSet</span><span class="p">;</span>
-</span><span class='line'>       <span class="c1">//     settings.ValidationFlags =</span>
-</span><span class='line'>       <span class="c1">//XmlSchemaValidationFlags.ReportValidationWarnings |</span>
-</span><span class='line'>       <span class="c1">//XmlSchemaValidationFlags.ProcessIdentityConstraints |</span>
-</span><span class='line'>       <span class="c1">//XmlSchemaValidationFlags.ProcessInlineSchema |</span>
-</span><span class='line'>       <span class="c1">//XmlSchemaValidationFlags.ProcessSchemaLocation;</span>
-</span><span class='line'>            <span class="n">settings</span><span class="p">.</span><span class="n">ValidationType</span> <span class="p">=</span> <span class="n">ValidationType</span><span class="p">.</span><span class="n">Schema</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">settings</span><span class="p">.</span><span class="n">CloseInput</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">settings</span><span class="p">.</span><span class="n">ValidationEventHandler</span> <span class="p">+=</span> <span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="p">=&gt;</span>
-</span><span class='line'>                                                   <span class="p">{</span>
-</span><span class='line'>                                                       <span class="n">_errorCount</span><span class="p">++;</span>
-</span><span class='line'>                                                       <span class="kt">var</span> <span class="n">message</span> <span class="p">=</span> <span class="n">String</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;Line: {0} of {1}: {2}&quot;</span><span class="p">,</span>
-</span><span class='line'>                                                                                   <span class="n">e</span><span class="p">.</span><span class="n">Exception</span><span class="p">.</span><span class="n">LineNumber</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
-</span><span class='line'>                                                       <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
-</span><span class='line'>                                                   <span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>            <span class="k">using</span> <span class="p">(</span><span class="n">XmlReader</span> <span class="n">xmlReader</span> <span class="p">=</span> <span class="n">XmlReader</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">settings</span><span class="p">))</span>
-</span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="k">while</span> <span class="p">(</span><span class="n">xmlReader</span><span class="p">.</span><span class="n">Read</span><span class="p">())</span>
-</span><span class='line'>                <span class="p">{</span>
-</span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
