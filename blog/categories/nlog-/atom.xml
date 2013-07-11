@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nlog, | Junk I Would Otherwise Forget]]></title>
   <link href="nickmiller.com.au/blog/categories/nlog-/atom.xml" rel="self"/>
   <link href="nickmiller.com.au/"/>
-  <updated>2013-07-11T11:56:02+10:00</updated>
+  <updated>2013-07-11T13:23:53+10:00</updated>
   <id>nickmiller.com.au/</id>
   <author>
     <name><![CDATA[Nick Miller]]></name>
@@ -71,14 +71,14 @@ logger.Log(LogLevel.Info, "Sample fatal error message");
 &lt;/targets&gt;
 
 &lt;rules&gt;
-    &lt;logger name="*" minlevel="Info" writeTo="logfile" /&gt;
+&lt;logger name="*" minLevel="Trace" writeTo="{logfile}" /&gt;
 &lt;/rules&gt;
 </code></pre>
 
 <p></nlog>
 ```</p>
 
-<p>For exceptions:</p>
+<p>To log as much data as possible about exceptions, including inner exceptions:</p>
 
 <p>```csharp
 try
@@ -92,6 +92,7 @@ catch (MyException ex)
 {</p>
 
 <pre><code>logger.ErrorException("Got exception.", ex); 
+throw ex;
 </code></pre>
 
 <p>}
@@ -99,14 +100,11 @@ catch (MyException ex)
 
 <p>```xml
 <nlog>
-  <targets></p>
+  <targets>
+  <target name="f" type="File" layout="${message}${onexception:EXCEPTION OCCURRED\:${exception:format=ToString,stacktrace,message,method:maxInnerExceptionLevel=5:innerFormat=tostring,stacktrace,message,method}}" />
+</targets></p>
 
-<pre><code>&lt;target name="f" type="File" 
-        layout="${longdate} ${message} ${exception:format=tostring}"/&gt; 
-</code></pre>
-
-<p>  </targets>
-  <rules></p>
+<p>  <rules></p>
 
 <pre><code>&lt;logger name="*" writeTo="f"/&gt; 
 </code></pre>

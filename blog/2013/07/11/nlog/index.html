@@ -174,13 +174,13 @@ using NLog; &hellip;">
 </span><span class='line'>    <span class="nt">&lt;/targets&gt;</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="nt">&lt;rules&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;logger</span> <span class="na">name=</span><span class="s">&quot;*&quot;</span> <span class="na">minlevel=</span><span class="s">&quot;Info&quot;</span> <span class="na">writeTo=</span><span class="s">&quot;logfile&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;logger</span> <span class="na">name=</span><span class="s">&quot;*&quot;</span> <span class="na">minLevel=</span><span class="s">&quot;Trace&quot;</span> <span class="na">writeTo=</span><span class="s">&quot;{logfile}&quot;</span> <span class="nt">/&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;/rules&gt;</span>
 </span><span class='line'><span class="nt">&lt;/nlog&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>For exceptions:</p>
+<p>To log as much data as possible about exceptions, including inner exceptions:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -190,6 +190,7 @@ using NLog; &hellip;">
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">try</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="c1">// some code which may throw </span>
@@ -197,6 +198,7 @@ using NLog; &hellip;">
 </span><span class='line'><span class="k">catch</span> <span class="p">(</span><span class="n">MyException</span> <span class="n">ex</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">logger</span><span class="p">.</span><span class="n">ErrorException</span><span class="p">(</span><span class="s">&quot;Got exception.&quot;</span><span class="p">,</span> <span class="n">ex</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">throw</span> <span class="n">ex</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -214,9 +216,9 @@ using NLog; &hellip;">
 <span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;nlog&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;targets&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;f&quot;</span> <span class="na">type=</span><span class="s">&quot;File&quot;</span>
-</span><span class='line'>            <span class="na">layout=</span><span class="s">&quot;${longdate} ${message} ${exception:format=tostring}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/targets&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;f&quot;</span> <span class="na">type=</span><span class="s">&quot;File&quot;</span> <span class="na">layout=</span><span class="s">&quot;${message}${onexception:EXCEPTION OCCURRED\:${exception:format=ToString,stacktrace,message,method:maxInnerExceptionLevel=5:innerFormat=tostring,stacktrace,message,method}}&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/targets&gt;</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="nt">&lt;rules&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;logger</span> <span class="na">name=</span><span class="s">&quot;*&quot;</span> <span class="na">writeTo=</span><span class="s">&quot;f&quot;</span><span class="nt">/&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;/rules&gt;</span>
