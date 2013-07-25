@@ -17,11 +17,11 @@
 6
 7
 8
-bool IsEFClass()
-{
-var typeOfT = typeof (T);
-var attributes = System.Attribute.GetCustomAttributes(typeOfT);
-if (attributes.Any(a =& &hellip;">
+9
+10
+11
+public class MyStateControl : ButtonBase
+{ public MyStateControl() : base() { } public Boolean State { get { return (Boolean) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,6 +74,73 @@ if (attributes.Any(a =& &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/11/how-to-do-dependency-properties-in-xaml/">How to Do Dependency Properties in XAML</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-11T00:12:09+10:00" pubdate data-updated="true">Aug 11<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public class MyStateControl : ButtonBase
+</span><span class='line'>{
+</span><span class='line'>  public MyStateControl() : base() { }
+</span><span class='line'>  public Boolean State
+</span><span class='line'>  {
+</span><span class='line'>    get { return (Boolean)this.GetValue(StateProperty); }
+</span><span class='line'>    set { this.SetValue(StateProperty, value); }
+</span><span class='line'>  }
+</span><span class='line'>  public static readonly DependencyProperty StateProperty = DependencyProperty.Register(
+</span><span class='line'>    "State", typeof(Boolean), typeof(MyStateControl),new PropertyMetadata(false));
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Remember:</p>
+
+<ul>
+<li>The identifier of the property has to end in &#8220;Property&#8221;: eg &#8220;StateProperty&#8221;.</li>
+<li>The name of the property here is &#8220;State&#8221;.</li>
+<li>Set the property from within the class using the Set on the public property.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -527,42 +594,6 @@ if (attributes.Any(a =& &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/nullable-enums-in-c/">Nullable Enums in C#</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T02:58:58+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Use nullable enums because then can use Enum.IsDefined static methods and others. Add &#8216;?&#8217; after type declaration when using the enum.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -578,6 +609,10 @@ if (attributes.Any(a =& &hellip;">
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/https/">How does HTTPS work?</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/11/nlog/">Basics of NLog</a>
@@ -653,10 +688,6 @@ if (attributes.Any(a =& &hellip;">
     
       <li class="post">
         <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
       </li>
     
   </ul>

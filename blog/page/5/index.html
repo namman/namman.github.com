@@ -9,8 +9,10 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="[xml]
-&lt;Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns: &hellip;">
+  <meta name="description" content="There are three radio buttons:
+- Unknown
+- True
+- False The ViewModel has a string property for the name of the selected button. The radio buttons &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +65,165 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/04/how-to-bind-the-name-of-a-the-selected-radio-button-to-a-string-property/">How to Bind the Name of a the Selected Radio Button to a String Property</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-04T02:41:00+10:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There are three radio buttons:
+- Unknown
+- True
+- False</p>
+
+<p>The ViewModel has a string property for the name of the selected button.</p>
+
+<p>The radio buttons should reflect the current value of the property and vice versa: two way binding.</p>
+
+<p>Simple? F&amp;*K no.</p>
+
+<p>The XAML for the control:</p>
+
+<p>[xml]</p>
+
+<p>&lt;UserControl x:Class=&#8221;CustomControls.DecisionPicker&#8221;</p>
+
+<pre><code>xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:local="clr-namespace:CustomControls" mc:Ignorable="d"
+d:DesignHeight="300" d:DesignWidth="400" &gt;
+&lt;UserControl.Resources&gt;
+    &lt;local:RadioButtonBoolToDecisionString x:Key="RadioButtonBoolToDecisionString"/&gt;
+&lt;/UserControl.Resources&gt;
+    &lt;StackPanel  x:Name="DecisionRadioButtonControl"  &gt;
+    &lt;RadioButton GroupName="g1" IsChecked="{Binding Path=DummyDecision, Mode=TwoWay, Converter={StaticResource RadioButtonBoolToDecisionString}, ConverterParameter=Unknown}"  x:Name="UnknownRadioButton" Content="Unknown" ClickMode="Press" /&gt;
+    &lt;RadioButton GroupName="g1" IsChecked="{Binding Path=DummyDecision, Mode=TwoWay, Converter={StaticResource RadioButtonBoolToDecisionString}, ConverterParameter=True}" x:Name="TrueRadioButton" Content="True" /&gt;
+    &lt;RadioButton GroupName="g1" IsChecked="{Binding Path=DummyDecision, Mode=TwoWay, Converter={StaticResource RadioButtonBoolToDecisionString}, ConverterParameter=False}" x:Name="FalseRadioButton" Content="False" /&gt;
+    &lt;/StackPanel&gt;
+</code></pre>
+
+<p></UserControl></p>
+
+<p>[/xml]</p>
+
+<p>Note:</p>
+
+<ul>
+<li><p>New up the value converter as a static resource in the XAML</p></li>
+<li><p>The DataContext of the control is instantiated ViewModel.  The is for the MainPage.  But the control inherits it.</p></li>
+<li><p>The Path of the binding is the string property on the instantiated ViewModel.</p></li>
+</ul>
+
+
+<p>The value converter:</p>
+
+<p>[csharp]
+public class RadioButtonBoolToDecisionString : IValueConverter</p>
+
+<pre><code>{
+    // Convert method is from the ViewModel -&gt; the IsChecked boolean property of the radio button
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        var parameterString = (string)parameter;
+        string decisionString = System.Convert.ToString(value);
+
+        if (parameterString == decisionString)
+            return true;
+
+        return false;
+    }
+
+    // ConvertBack is from the IsChecked property of the radio button to the string property on the ViewModel
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        var decisionStringFromControl = (string) parameter;
+        return decisionStringFromControl;
+
+    }
+}
+</code></pre>
+
+<p>[/csharp]</p>
+
+<p>The ViewModel and MainPage setup:</p>
+
+<p>[csharp]</p>
+
+<p> public partial class MainPage : UserControl</p>
+
+<pre><code>{
+    public MainPage()
+    {
+        InitializeComponent();
+
+        var dvm = new DummyViewModel();
+        DataContext = dvm;
+        dvm.InitDecision("False");
+
+    }
+}
+</code></pre>
+
+<p> public class DummyViewModel : INotifyPropertyChanged</p>
+
+<pre><code>{
+    private string _dummyDecision;
+
+    public string DummyDecision { get { return _dummyDecision; }
+    set
+    {
+            _dummyDecision = value;
+
+    }}
+
+    public void InitDecision(string decision)
+    {
+        _dummyDecision = decision;
+        OnPropertyChanged("DummyDecision");
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChangedEventHandler handler = PropertyChanged;
+        if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+</code></pre>
+
+<p>[/csharp]</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -616,73 +777,6 @@ public class TheSourceObject : INotifyPropertyChanged
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/11/how-to-do-dependency-properties-in-xaml/">How to Do Dependency Properties in XAML</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-11T00:12:09+10:00" pubdate data-updated="true">Aug 11<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>public class MyStateControl : ButtonBase
-</span><span class='line'>{
-</span><span class='line'>  public MyStateControl() : base() { }
-</span><span class='line'>  public Boolean State
-</span><span class='line'>  {
-</span><span class='line'>    get { return (Boolean)this.GetValue(StateProperty); }
-</span><span class='line'>    set { this.SetValue(StateProperty, value); }
-</span><span class='line'>  }
-</span><span class='line'>  public static readonly DependencyProperty StateProperty = DependencyProperty.Register(
-</span><span class='line'>    "State", typeof(Boolean), typeof(MyStateControl),new PropertyMetadata(false));
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Remember:</p>
-
-<ul>
-<li>The identifier of the property has to end in &#8220;Property&#8221;: eg &#8220;StateProperty&#8221;.</li>
-<li>The name of the property here is &#8220;State&#8221;.</li>
-<li>Set the property from within the class using the Set on the public property.</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -698,6 +792,10 @@ public class TheSourceObject : INotifyPropertyChanged
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/https/">How does HTTPS work?</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/11/nlog/">Basics of NLog</a>
@@ -773,10 +871,6 @@ public class TheSourceObject : INotifyPropertyChanged
     
       <li class="post">
         <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
       </li>
     
   </ul>

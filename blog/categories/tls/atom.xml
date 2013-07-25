@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tls | Junk I Would Otherwise Forget]]></title>
+  <link href="nickmiller.com.au/blog/categories/tls/atom.xml" rel="self"/>
+  <link href="nickmiller.com.au/"/>
+  <updated>2013-07-26T09:35:35+10:00</updated>
+  <id>nickmiller.com.au/</id>
+  <author>
+    <name><![CDATA[Nick Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How does HTTPS work?]]></title>
+    <link href="nickmiller.com.au/blog/2013/07/26/https/"/>
+    <updated>2013-07-26T08:52:00+10:00</updated>
+    <id>nickmiller.com.au/blog/2013/07/26/https</id>
+    <content type="html"><![CDATA[<p>First step is to use public key cryptography.</p>
+
+<ul>
+<li>Parties agree on a 'root' (small number) and a large prime.  This can be in the clear.  This is the public key.</li>
+<li>Based on a private key and the public key, client and server generate another number.  It's a mixture of the public and private keys. They exchange the mixture in the clear.  You can't work back from the number to the private keys.
+
+<ul>
+<li>Using DH key exchange exchange, each party sends (root<sup>secret</sup> % prime).</li>
+</ul>
+</li>
+<li>Each party derives a shared secret from the other party's mixture.  So now they both have the same secret, but they don't need to send it to each other.
+
+<ul>
+<li>Using DH: (otherPartyMixture<sup>mySecret</sup> % prime)</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Now the parties can communicate using symmetric-key crytography.</p>
+
+<ul>
+<li>They agree on a cypher suite - a method of encryption and decryption.</li>
+<li>They use the shared secret with the suite.</li>
+</ul>
+
+
+<p>For authentication, the public key needs to be verifyiably attached to a particular party.  So with websites, the public key is attached to a domain via a certificate.  The client doesn't need a public key.</p>
+
+<p>TLS is a protocol most often used to implement secure HTTP (HTTPS).<br/>
+It's a level below HTTP in the stack.</p>
+]]></content>
+  </entry>
+  
+</feed>

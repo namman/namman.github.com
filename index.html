@@ -9,11 +9,7 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="You have a separete logger for each class.
-You instantiate it using LogManager factory and assign it to a private member field. 1
-2
-3
-using NLog; &hellip;">
+  <meta name="description" content="First step is to use public key cryptography. Parties agree on a &#8216;root&#8217; (small number) and a large prime. This can be in the clear. This &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +62,72 @@ using NLog; &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/26/https/">How Does HTTPS Work?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-26T08:52:00+10:00" pubdate data-updated="true">Jul 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>First step is to use public key cryptography.</p>
+
+<ul>
+<li>Parties agree on a &#8216;root&#8217; (small number) and a large prime.  This can be in the clear.  This is the public key.</li>
+<li>Based on a private key and the public key, client and server generate another number.  It&#8217;s a mixture of the public and private keys. They exchange the mixture in the clear.  You can&#8217;t work back from the number to the private keys.
+
+<ul>
+<li>Using DH key exchange exchange, each party sends (root<sup>secret</sup> % prime).</li>
+</ul>
+</li>
+<li>Each party derives a shared secret from the other party&#8217;s mixture.  So now they both have the same secret, but they don&#8217;t need to send it to each other.
+
+<ul>
+<li>Using DH: (otherPartyMixture<sup>mySecret</sup> % prime)</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Now the parties can communicate using symmetric-key crytography.</p>
+
+<ul>
+<li>They agree on a cypher suite - a method of encryption and decryption.</li>
+<li>They use the shared secret with the suite.</li>
+</ul>
+
+
+<p>For authentication, the public key needs to be verifyiably attached to a particular party.  So with websites, the public key is attached to a domain via a certificate.  The client doesn&#8217;t need a public key.</p>
+
+<p>TLS is a protocol most often used to implement secure HTTP (HTTPS).<br/>
+It&#8217;s a level below HTTP in the stack.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -863,42 +925,6 @@ They are not copied when using PdfImportedPage.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/21/mtf/">How to Understand MTF Graphs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-21T21:12:00+11:00" pubdate data-updated="true">Mar 21<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>MTF stands for &#8216;Modulation Transfer Function&#8217;.  It is a function which tells how many line pairs can be distinguished per unit of distance for a given value between 0 and 1.  As number of line pairs increases, MTF decreases because of diffraction.  At 1, there is perfect contrast.  At zero, there is no contrast.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -912,6 +938,10 @@ They are not copied when using PdfImportedPage.</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/https/">How does HTTPS work?</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/11/nlog/">Basics of NLog</a>
@@ -987,10 +1017,6 @@ They are not copied when using PdfImportedPage.</p>
     
       <li class="post">
         <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/09/path-to-localdb-instances/">Path to localDB instances</a>
       </li>
     
   </ul>
