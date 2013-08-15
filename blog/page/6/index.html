@@ -9,19 +9,7 @@
   <meta name="author" content="Nick Miller">
 
   
-  <meta name="description" content="1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-public class MyStateControl : ButtonBase
-{ public MyStateControl() : base() { } public Boolean State { get { return (Boolean) &hellip;">
+  <meta name="description" content="Create the control as Silverlight User Control. Make sure there is a dependency property in the control for the data you want to access from the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,6 +62,116 @@ public class MyStateControl : ButtonBase
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/11/binding-controls-to-lightswitch-screens/">Binding Controls to Lightswitch Screens</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-11T02:22:26+10:00" pubdate data-updated="true">Aug 11<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Create the control as Silverlight User Control.</p>
+
+<p>Make sure there is a dependency property in the control for the data you want to access from the Lightswitch screen.</p>
+
+<p>Add ref to Lightswitich project.</p>
+
+<p>Add code to the &#8230;Created() hook:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="c1">// The entity for the screen is &#39;Customer&#39;.</span>
+</span><span class='line'><span class="k">partial</span> <span class="k">void</span> <span class="nf">Customer_InitializeDataWorkspace</span><span class="p">()</span>  <span class="c1">// some people use .._Created, but this is actually run after the screen is displayed</span>
+</span><span class='line'> <span class="p">{</span>
+</span><span class='line'>    <span class="kt">var</span> <span class="n">proxy</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">FindControl</span><span class="p">(</span><span class="s">&quot;NameOfYourControl&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="cm">/** this is the name in the properties view in Lightswitch, not necessarily the class name of the control**/</span>
+</span><span class='line'>    <span class="n">proxy</span><span class="p">.</span><span class="n">ControlAvailable</span> <span class="p">+=</span> <span class="n">OnControlAvailable</span><span class="p">;</span> <span class="c1">// hook up event handler below.  It will fire when Lightswitch initialises the control.</span>
+</span><span class='line'>
+</span><span class='line'> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>csharp</p>
+
+<p>Create new event to set up the binding when Lightswitch initialises control:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">using</span> <span class="nn">Microsoft.LightSwitch.Threading</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">private</span> <span class="k">void</span> <span class="nf">OnControlAvailable</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span>
+</span><span class='line'> <span class="n">ControlAvailableEventArgs</span> <span class="n">e</span><span class="p">)</span>
+</span><span class='line'> <span class="p">{</span>
+</span><span class='line'> <span class="n">Dispatchers</span><span class="p">.</span><span class="n">Main</span><span class="p">.</span><span class="n">BeginInvoke</span><span class="p">(()</span> <span class="p">=&gt;</span>
+</span><span class='line'> <span class="p">{</span>
+</span><span class='line'><span class="n">YourControlName</span> <span class="n">c</span> <span class="p">=</span> <span class="n">e</span><span class="p">.</span><span class="n">Control</span> <span class="k">as</span> <span class="n">YourControlName</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// can fiddle with control here if you like</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">var</span> <span class="n">b</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Binding</span><span class="p">(</span><span class="s">&quot;Value&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">b</span><span class="p">.</span><span class="n">Mode</span> <span class="p">=</span> <span class="n">BindingMode</span><span class="p">.</span><span class="n">TwoWay</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">rc</span><span class="p">.</span><span class="n">SetBinding</span><span class="p">(</span><span class="n">YourControlName</span><span class="p">.</span><span class="n">NameOfDependencyPropertyYouWantToBindTo</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+</span><span class='line'><span class="cm">/**Note this is the name of the dependency property in the control.  It has to end in &#39;Property&#39;.**/</span>
+</span><span class='line'> <span class="p">});</span>
+</span><span class='line'> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8220;Value&#8221; path in Binding: This specifies the path of what we bind to in the Lightswitch screen.</p>
+
+<p>The Data Context is automatically set by Lightswitch.  Usually the custom control content element is attached to a property of the EF-generated Entity for the screen.  So the data context is already narrowed down to an entity.  For example, the entity of the screen could be &#8216;Customer&#8217;, the table &#8216;Customers&#8217;.</p>
+
+<p>The Customer entity has a &#8216;Name&#8217; property.  The custom control might be attached to the &#8216;Name&#8217; property in the Lightswitch designer.  In this case, then we are binding to the Name.Value.  So when we call SaveChanges() on the data context, the value from the control will go into the database.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -546,54 +644,6 @@ public class MyStateControl : ButtonBase
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/10/assemblies-to-add-for-ooxml-sdk/">Assemblies to Add for OOXML SDK</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-10T03:00:02+10:00" pubdate data-updated="true">Aug 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>OOXML SDK assemblies to add:</p>
-
-<ul>
-<li>WindowsBase</li>
-<li>DocumentFormat.OpenXml</li>
-</ul>
-
-
-<p>Search for them in add references.</p>
-
-<p>DocumentFormat is in:
-* &#8220;C:\Program Files (x86)\Open XML SDK\V2.0\lib\DocumentFormat.OpenXml.dll&#8221; or
-* Install-Package DocumentFormat</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -609,6 +659,10 @@ public class MyStateControl : ButtonBase
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/15/how-to-rotate-pdf-file-in-linux/">How to rotate PDF file in linux</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/26/https/">How does HTTPS work?</a>
@@ -684,10 +738,6 @@ public class MyStateControl : ButtonBase
     
       <li class="post">
         <a href="/blog/2012/11/16/location-of-windows-8-log-files/">Location of Windows 8 log files</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/15/expand-root-partition-on-windows-ec2-instance-using-aws-console/">Expand root partition on Windows EC2 instance using AWS Console</a>
       </li>
     
   </ul>
