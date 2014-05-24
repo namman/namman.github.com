@@ -1,5 +1,14 @@
-*Field parameters
-*initializers for auto properties
+---
+layout: post
+title: "Notes on new C# features"
+date: 2014-5-24
+comments: false
+categories: c#, .NET
+---
+
+* Field parameters
+* initializers for auto properties
+
 ```csharp
 
 public class SecurityClearance
@@ -7,5 +16,48 @@ public class SecurityClearance
   public string Level {get; set;} = "Baseline" 
 }
 ```
+* Explicit constructors: pass parameters to a primary constructor with 'this(x,y)'
+
+* Passing params to base constructor now easier: Customer : CustomerBase(name)
+
+* Declaration expressions
+
+```csharp
+if (int.TryParse(s, out int i)) { … } 
+GetCoordinates(out var x, out var y); 
+Console.WriteLine("Result: {0}", (int x = GetValue()) * x); 
+if ((string s = o as string) != null) { … s … } 
+```csharp
+
+* Exception filters
+
+```csharp
+try { … } 
+catch (MyException e) if (myfilter(e)) 
+{ 
+ … 
+}
+```
+
+* Element initialisers
+
+```csharp
+
+var numbers = new Dictionary<int, string> { 
+ [7] = "seven", 
+ [9] = "nine", 
+ [13] = "thirteen" 
+};
+
+var customer = new JsonData { 
+ $first = "Anders", // => ["first"] = "Anders" 
+ $last = "Hejlsberg" // => ["last"] = "Hejlsberg" 
+} 
+
+string first = customer.$first; // => customer["first"] 
+
+```
+
+
 
 
