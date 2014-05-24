@@ -1,2 +1,11 @@
 *Field parameters
 *initializers for auto properties
+```csharp
+
+public class SecurityClearance
+{
+  public string Level {get; set;} = "Baseline" 
+}
+```
+
+
